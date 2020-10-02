@@ -1,109 +1,14 @@
 % twoside = false setzen, falls kein doppelseitiger Druck nötig
 \documentclass[oneside, ngerman, final, 11pt, a4paper, 1.1headlines, headinclude=false, footinclude=false, mpinclude=false, pagesize, onecolumn, titlepage, parskip=half, headsepline, chapterprefix=false, version=first, listof=totoc, bibliography=totoc, toc=graduated, fleqn, twoside=true]{scrbook}
 
-% Die folgenden Pakete werden in der TEX-Vorlage verwendet.
-% Sollten zusätzliche Pakete verwendet werden, sind sie an dieser Stelle hinzuzufügen 
-\usepackage[T1]{fontenc}
-\usepackage{listings}
-\usepackage{refstyle}
-\usepackage{float}
-\usepackage{textcomp}
-\usepackage{graphicx}
-\usepackage{nomencl}
-\usepackage{textpos} 
-\usepackage{xcolor}
-\usepackage{tocloft}
-\usepackage{lipsum}
-\usepackage[utf8]{inputenc}
-\usepackage{color}
-\usepackage{scrhack}
-\usepackage{babel}
-\usepackage{wrapfig}
+% Import file that contains configuration
+\input{content/preamble/packages}
+
+% Import file that contains configuration
+\input{content/preamble/configuration}
 
 %\usepackage{glossaries}
 %\input{content/preamble/glossar}
-
-% Schachtelungstiefe eine Nummerierung der Überschriften 
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
-
-% Die folgenden Befehle sind nüzulich bei Verwendung des alten nomencl.sty Pakets
-\providecommand{\printnomenclature}{\printglossary}
-\providecommand{\makenomenclature}{\makeglossary}
-\makenomenclature
-
-% Zusätzliche Konfigurationen 
-\makeatletter
-\setkomafont{disposition}{\normalcolor\bfseries}
-\makeatother
-
-% Farben fuer Programmlisting
-\usepackage{listings,xcolor}
-\definecolor{pl_background}{rgb}{0.95,0.95,0.95}
-\definecolor{pl_comment}{rgb}{0.12, 0.38, 0.18 }
-\definecolor{pl_ifelse}{rgb}{0.74,0.74,.29}
-\definecolor{pl_keyword}{rgb}{0.37, 0.08, 0.25}
-\definecolor{pl_string}{rgb}{0.06, 0.10, 0.98}
-
-\definecolor{lstbackground}{RGB}{235,235,235}
-\definecolor{lstkeyword}{RGB}{127,0,85}
-\definecolor{lststring}{RGB}{42,0,255}
-\definecolor{lstcomment}{RGB}{63,127,95}
-\definecolor{lstannotation}{RGB}{127,159,191}
-
-\definecolor{fh_grau}{rgb}{0.76,0.75,0.76}
-
-% Vordefiniertes Programmlisting
-\lstset{
-	basicstyle = \small\sffamily,
-	backgroundcolor = \color{pl_background},
-	stringstyle = \color{pl_string},
-	keywordstyle = \color{pl_keyword}\bfseries,
-	commentstyle = \color{pl_comment}\itshape,
-	frame = lrbt,
-	numbers = left,
-	captionpos=b,
-	showstringspaces = false,
-	breaklines = true,
-	xleftmargin = 15pt,
-	emph = [1]{php},
-	emphstyle = [1]\color{black},
-	emph = [2]{if,and,or,else},
-	emphstyle = [2]\color{pl_ifelse}
-}
-
-% Quellcde Formatierung im normalen Stil 
-\lstset{
-	basicstyle={\footnotesize\fontfamily{pcr}\selectfont},
-	backgroundcolor=\color{lstbackground},
-	breaklines=true,
-	frame=single,
-	numbers=left,
-	showstringspaces=false,
-	tabsize=4
-}
-
-% Quellcde Formatierung im Eclipse Stil
-\lstdefinestyle{java-eclipse}{
-	commentstyle={\color{lstcomment}},
-	keywordstyle={\color{lstkeyword}\bfseries},
-	stringstyle={\color{lststring}},
-	moredelim={[il][\textcolor{lstannotation}]{§§}},
-	moredelim={[is][\textcolor{lstannotation}]{\%\%}{\%\%}}
-}
-
-% Umbenennen von Listings und Nomuklatur 
-\renewcommand{\nomname}{Abkürzungsverzeichnis}
-\renewcommand\lstlistlistingname{Quellcodeverzeichnis}
-\renewcommand{\lstlistingname}{Quellcode}
-\renewcommand\appendixname{Anhang}
-
-\addto\captionsngerman{
-	\renewcommand{\figurename}{Abb.}
-	\renewcommand{\tablename}{Tab.}
-}
-
-\newcommand{\etal}{\textit{et al}}
 
 % Beginn des Dokumentes 
 \begin{document}
@@ -213,6 +118,10 @@
 	\chapter{Fazit}
 	
 	\textit{\lipsum[1-3]}
+	
+	\chapter{Test-Kapitel}
+	
+	\input{content/to-be-removed/test}
 	
 	\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
 	
