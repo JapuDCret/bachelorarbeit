@@ -19,7 +19,7 @@ In der Webentwicklung ist dieses Problem noch prägnanter, denn hier sind..
 \begin{wrapfigure}[13]{r}{0.33\linewidth}
 	\centering
 	\vspace{-10pt}
-	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback}
+	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
 	\caption{Formular aus der Instagram \cite{Instagram} Android App}
 	\label{fig:instagram-feedback-example}
 \end{wrapfigure}
@@ -37,21 +37,35 @@ Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine 
 %\end{itemize}
 \section{Zielsetzung}
 
-Ziel dieser Arbeit ist es, zu erörtern, wie Fehler und Probleme, die ``im Feld`` auftreten, effektiv von Entwicklern identifiziert und behoben werden können.
+Ziel dieser Arbeit ist es, zu erörtern, wie Fehler und Probleme, die ``im Feld`` auftreten, effektiv von Entwicklern und Betreibern identifiziert und behoben werden können. Entwickler und Betreiber sind die Hauptzielgruppe dieser Arbeit und werden nachfolgend \textbf{Stakeholder} genannt.
 
 Im Zuge der Arbeit sollen folgende Fragen beantwortet werden:
 
 \begin{enumerate}
 	\item Was gibt es für Probleme bei Nutzern?
 	\item Was sind häufige Fehlerursachen?
-	\item Was ist der aktuelle Stand der Technik? \\ 
-	Wenn es hier Ansätze gibt:
+	\item Wie können diese Probleme identifiziert werden?
+	\item Wie kann man die Identifizierung mit einer Sofware vereinfachen?
 	\begin{enumerate}
-		\item Welche Probleme werden hiermit behoben?
-		\item Was sind die Kosten für den Einsatz?
-		\item Was sind die Kosten für den Nutzer? (initiale Ladezeit, Datenlast)
-		\item Wie wird mit den Daten gehandhabt? (in Hinblick auf die DSGVO)
+		\item Was ist der Aufwand?
+		\begin{enumerate}
+			\item bspw. Zeitaufwand bei der Integration von Software
+		\end{enumerate}
+		\item Was sind die Kosten für den Nutzer?
+		\begin{enumerate}
+			\item Wird die Leistung der Webapplikation beeinträchtigt?
+			\item Werden persönliche Daten von ihm erhoben (Stichwort DSGVO)?
+		\end{enumerate}
+		\item Welche Probleme werden tatsächlich erkannt?
 	\end{enumerate}
+%	\item Was ist der aktuelle Stand der Technik? \\ 
+%	Wenn es hier Ansätze gibt:
+%	\begin{enumerate}
+%		\item Welche Probleme werden hiermit behoben?
+%		\item Was sind die Kosten für den Einsatz?
+%		\item Was sind die Kosten für den Nutzer? (initiale Ladezeit, Datenlast)
+%		\item Wie wird mit den Daten gehandhabt? (in Hinblick auf die DSGVO)
+%	\end{enumerate}
 \end{enumerate}
 
 Am Ende der Arbeit soll dem Leser klar vermittelt worden sein, wie er diese Probleme identifiziert und ihnen nachhaltig begegnen kann. Risiken sowie Einschränkungen der Technologien und Methodiken sind dem Leser ebenso vermittelt worden.
@@ -67,8 +81,22 @@ Am Ende der Arbeit soll dem Leser klar vermittelt worden sein, wie er diese Prob
 %\end{itemize}
 \section{Vorgehensweise}
 
-Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und einer ggf. Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
+Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
 
 Danach soll erörtert werden, welche Ursachen es für häufige Fehlerszenarien gibt. Darauf aufbauend könnten Aussagen getroffen werden, wie man diese bereits vorher vermeidet/reduziert.
 
-Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
+Durch das gewonnene Verständnis über diese Probleme, soll nun ein Konzept erarbeitet werden. Dieses Konzept soll darauf abzielen zu den einzelnen Problembildern jeweils einen Ansatz zu finden, diese aufzuzeigen und den Stakeholdern Informationen zu liefern, die bei der Behebung notwendig sind (bspw. Geräteinformationen, Sitzungsinformationen, Logs, etc.).
+
+Anhand des Konzeptes soll nun eine Softwarelösung entworfen werden. Hierbei soll es einerseits eine datenerhebende Komponente geben, welche mit in der Webapplikation läuft. Und andererseits soll es eine auswertende und informative Komponente geben, welche die Stakeholdern über die Probleme informiert und wichtige Informationen zur Behebung bereitstellt.
+
+Nach dem Entwurf soll die Softwarelösung implementiert werden. Diese Implementierung soll zunächst projektunabhängig erfolgen.
+
+Als letztes soll eine Webapplikation in der Open Knowledge GmbH hinzugezogen werden, in welche die Softwarelösung integriert werden soll. Nach der Integration sollen folgende Aspekte beleuchtet werden:
+
+\begin{itemize}
+	\item Wie einfach ist die Integration in ein bestehendes Projekt?
+	\item Welche Problembilder können mit der Softwarelösung erkannt werden?
+	\item Welchen Einfluss hat die Softwarelösung auf die Leistung? \\(Anhand von Aspekten wie Netzwerktraffic, Reaktionsgeschwindigkeit)
+\end{itemize}
+
+% Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
