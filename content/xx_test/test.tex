@@ -78,7 +78,7 @@ Eine Tabelle sollte immer eine Über- oder Unterschrift erhalten und mit dieser 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{content/to-be-removed/Phase_diagram_of_water_simplified.svg.png}
+	\includegraphics[width=\linewidth]{content/xx_test/Phase_diagram_of_water_simplified.svg.png}
 	\caption{Vereinfachtes Phasendiagramm von Wasser \cite{TestCitation020}}
 \end{figure}
 
@@ -87,7 +87,7 @@ Eine Tabelle sollte immer eine Über- oder Unterschrift erhalten und mit dieser 
 \subsection{Innerhalb eines Textes (Floating)}
 
 \begin{wrapfigure}[14]{r}{0.33\textwidth}
-	\includegraphics[width=\linewidth]{content/to-be-removed/1032px-3D_model_hydrogen_bonds_in_water.svg.png}
+	\includegraphics[width=\linewidth]{content/xx_test/1032px-3D_model_hydrogen_bonds_in_water.svg.png}
 	\caption{Verkettung der Wassermoleküle \cite{TestCitation021}}
 \end{wrapfigure}
 
@@ -98,7 +98,7 @@ Cras non arcu ante. Donec faucibus lectus risus, ac sagittis risus malesuada pre
 Sed fringilla lectus non elit convallis, non eleifend sem porta. Proin aliquet urna ultrices metus blandit ornare. Duis nec ultricies ligula, quis volutpat ante. Suspendisse non lacus mauris.
 
 \begin{wrapfigure}[14]{o}{0.45\textwidth}
-	\includegraphics[width=\linewidth]{content/to-be-removed/Kleiner_Streichteich_Ilmenau.JPG}
+	\includegraphics[width=\linewidth]{content/xx_test/Kleiner_Streichteich_Ilmenau.JPG}
 	\caption{Spiegelung an der Wasseroberfläche \cite{TestCitation022}}
 \end{wrapfigure}
 
@@ -108,14 +108,16 @@ Suspendisse potenti. Ut pellentesque malesuada dolor vitae porta. Aliquam erat v
 
 \section{Quellcode}
 
-\subsection{Blockdarstellung anhand eines JavaScript Quellcodes}
+Der jeweilige Quellcode sollte mit Syntax-Highlighting versehen sein und im Quellcodeverzeichnis aufzufinden sein.
 
-% language=ES6,
+\subsection{Darstellung eines JavaScript Quellcodes (inline)}
+
 \begin{lstlisting}[
+  language = JavaScript,
      style = ES6,
-   caption = Beispiel eines JavaScript-Listings,
+   caption = Beispiel eines JavaScript Quellcodes (inline),
 captionpos = b,
-     label = lst:javascript-example,
+     label = lst:javascript-inline-example,
 ]
 var fetch = require("node-fetch")
 
@@ -130,3 +132,43 @@ async function getCountries() {
 
 getCountries()
 \end{lstlisting}
+
+\subsection{Darstellung eines JavaScript Quellcodes (importiert)}
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+   caption = Beispiel eines JavaScript Quellcodes (importiert),
+captionpos = b,
+     label = lst:javascript-import-example,
+]{content/xx_test/import-example_javascript.js}
+
+\subsection{Darstellung eines Java Quellcodes (inline)}
+
+\begin{lstlisting}[
+   caption = Beispiel eines Java Quellcodes (inline),
+     label = lst:java-inline-example,
+  language = java, 
+     style = java-eclipse,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont}
+]
+	/*
+	 * Main-Methode
+	 */
+	§§@LineAnnotation
+	public class Main {
+	  public static void main(%%@InlineAnnotation%% String[] args) {
+	    System.out.println("Hallo Welt");
+	  }
+	}
+\end{lstlisting}
+
+\subsection{Darstellung eines Java Quellcodes (importiert)}
+
+\lstinputlisting[
+   caption = Beispiel eines Java Quellcodes (importiert),
+     label = lst:java-import-example,
+  language = java,
+     style = java-eclipse,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont}
+]{content/xx_test/import-example_java.js}

@@ -2,10 +2,10 @@
 \documentclass[oneside, ngerman, final, 11pt, a4paper, 1.1headlines, headinclude=false, footinclude=false, mpinclude=false, pagesize, onecolumn, titlepage, parskip=half, headsepline, chapterprefix=false, version=first, listof=totoc, bibliography=totoc, toc=graduated, fleqn, twoside=true]{scrbook}
 
 % Import file that contains configuration
-\input{content/preamble/packages}
+\input{content/00_preamble/packages}
 
 % Import file that contains configuration
-\input{content/preamble/configuration}
+\input{content/00_preamble/configuration}
 
 %\usepackage{glossaries}
 %\input{content/preamble/glossar}
@@ -96,80 +96,31 @@
 	\pagenumbering{arabic}
 	
 	\chapter{Einleitung}
-	
-	\input{content/einleitung}
+	\input{content/01_einleitung/einleitung}
 	
 	\chapter{Probleme der Nutzer}
-	
-		\textit{\lipsum[1]}
-		
-		\section{Logische Probleme}
-		\textit{\lipsum[1]}
-		
-		\section{Probleme in der Software}
-		\textit{\lipsum[1]}
-		
-		\section{Klassifizierung}
-		\textit{\lipsum[1]}
+	\input{content/02_probleme/probleme}
 	
 	\chapter{Problemursachen}
-	
-	\textit{\lipsum[1-3]}
+	\input{content/03_ursachen/ursachen}
 	
 	\chapter{Konzept einer Softwarelösung}
-	
-		\section{Stand der Technik}
-		\textit{\lipsum[1]}
-		
-		\section{Datenerhebung}
-		\textit{\lipsum[1]}
-		
-		\section{Auswertung und Visualisierung}
-		\textit{\lipsum[1]}
+	\input{content/04_konzept/konzept}
 	
 	\chapter{Entwurf der Softwarelösung}
-		
-		\section{Grobarchitektur}
-		\textit{\lipsum[1]}
-	
-		\section{Datenerhebende Komponente}
-		\textit{\lipsum[1]}
-		
-		\section{Auswertende Komponente}
-		\textit{\lipsum[1]}
+	\input{content/05_entwurf/entwurf}
 	
 	\chapter{Implementierung der Softwarelösung}
-	
-		\section{Datenerhebende Komponente}
-		\textit{\lipsum[1]}
-		
-		\section{Auswertende Komponente}
-		\textit{\lipsum[1]}
-		
-		\section{Kommunikation zwischen den Komponenten}
-		\textit{\lipsum[1]}
+	\input{content/06_implementierung/implementierung}
 	
 	\chapter{Einsatz der Softwarelösung}
+	\input{content/07_einsatz/einsatz}
 	
-		\section{Integration in eine bestehende Applikation}
-		\textit{\lipsum[1]}
-		
-		\section{Testen der Softwarelösung anhand der Applikation}
-		\textit{\lipsum[1]}
-		
-		\section{Aufwände und Kosten}
-		\textit{\lipsum[1]}
-		
-		\section{Nutzen}
-		\textit{\lipsum[1]}
-	
-	\chapter{Fazit}
-	
-	\textit{\lipsum[1-3]}
+	\chapter{Abschluss}
+	\input{content/08_abschluss/abschluss}
 	
 	\chapter{Test-Kapitel}
-	
-	\input{content/to-be-removed/test}
+	\input{content/xx_test/test}
 	
 	\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
 	
