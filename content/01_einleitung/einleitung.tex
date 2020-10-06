@@ -7,18 +7,18 @@
 
 In der Welt der Systeme mit Benutzerinteraktionen gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Diese Systeme können bspw. Graphical User Interfaces (GUI) sein. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete erwartet werden muss. Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
 
-In der Webentwicklung ist dieses Problem noch prägnanter, denn hier sind..
+Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
 \begin{itemize}
 	\item ..die Systeme selber meist um ein Vielfaches komplexer \cite{ManagingTheComplexityOfWebSystemsDevelopment},
 	\item ..die Umgebungen komplex und unterschiedlich,
-	\item ..die Nutzer meist weniger gut oder gar nicht geschult,
+%	\item ..die Nutzer meist weniger gut oder gar nicht geschult,
 	\item ..die Nutzer eher unwissend, wie das System funktioniert \cite{AnErrorReportingAndFeedbackComponent} und
-	\item ..die Nutzer stehen meist nicht im direkten Kontakt mit den Entwicklern \cite{EndUsersAsUnwittingSoftwareDevelopers}.
+	\item ..die Nutzer stehen meist nicht im direkten Kontakt mit den Stakeholdern \cite{EndUsersAsUnwittingSoftwareDevelopers}. Stakeholder sind im Rahmen dieser Arbeit die Betreiber und Entwickler einer Webapplikation.
 \end{itemize}
 
 \begin{wrapfigure}[13]{r}{0.33\linewidth}
 	\centering
-	\vspace{-10pt}
+	\vspace{-\baselineskip}
 	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
 	\caption{Formular aus der Instagram \cite{Instagram} Android App}
 	\label{fig:instagram-feedback-example}
@@ -26,7 +26,7 @@ In der Webentwicklung ist dieses Problem noch prägnanter, denn hier sind..
 
 \section{Problemstellung}
 
-Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Entwickler Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
+Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
 
 Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine Dissonanz zwischen dem was Entwickler als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten. Eine besser zugeschnittene Lösung ist anzustreben. % \textbf{Wie kann den Entwicklern die Möglichkeit geboten werden, diese Probleme zu beheben?}
 
@@ -37,38 +37,24 @@ Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine 
 %\end{itemize}
 \section{Zielsetzung}
 
-Ziel dieser Arbeit ist es, zu erörtern, wie Fehler und Probleme, die ``im Feld`` auftreten, effektiv von Entwicklern und Betreibern identifiziert und behoben werden können. Entwickler und Betreiber sind die Hauptzielgruppe dieser Arbeit und werden nachfolgend \textbf{Stakeholder} genannt.
+Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen Interaktionen eines Nutzers und Verhalten einer Webapplikation nachvollziehen zu können. 
 
-Im Zuge der Arbeit sollen folgende Fragen beantwortet werden:
+Folgende Fragen sollen im Zuge der Ausarbeitung für den Leser beantwortet werden:
 
 \begin{enumerate}
-	\item Was gibt es für Probleme bei Nutzern?
-	\item Was sind häufige Problemursachen?
-	\item Wie können diese Probleme identifiziert werden?
-	\item Wie kann die Identifizierung mit einer Sofware vereinfacht werden?
+	\item Warum ist die Nachvollziehbarkeit wichtig?
+	\item Wie kann die Nachvollziehbarkeit verbessert werden?
+	\item Wie kann eine Erweiterung einer Webapplikation aussehen um dies zu erreichen? \\ (Hierbei soll ein Projekt der Open Knowledge GmbH hinzugezogen werden)
 	\begin{enumerate}
-		\item Was ist der Aufwand?
-		\begin{enumerate}
-			\item bspw. Zeitaufwand bei der Integration von Software
-		\end{enumerate}
-		\item Was sind die Kosten für den Nutzer?
+		\item Was sind die Auswirkungen für den Nutzer?
 		\begin{enumerate}
 			\item Wird die Leistung der Webapplikation beeinträchtigt?
-			\item Werden persönliche Daten von ihm erhoben (Stichwort DSGVO)?
+			\item Wie wird mit seinen Daten umgegangen (Stichwort DSGVO)?
 		\end{enumerate}
-		\item Welche Probleme werden tatsächlich erkannt?
 	\end{enumerate}
-%	\item Was ist der aktuelle Stand der Technik? \\ 
-%	Wenn es hier Ansätze gibt:
-%	\begin{enumerate}
-%		\item Welche Probleme werden hiermit behoben?
-%		\item Was sind die Kosten für den Einsatz?
-%		\item Was sind die Kosten für den Nutzer? (initiale Ladezeit, Datenlast)
-%		\item Wie wird mit den Daten gehandhabt? (in Hinblick auf die DSGVO)
-%	\end{enumerate}
 \end{enumerate}
 
-Am Ende der Arbeit soll dem Leser klar vermittelt worden sein, wie er diese Probleme identifiziert und ihnen nachhaltig begegnen kann. Risiken sowie Einschränkungen der Technologien und Methodiken sind dem Leser ebenso vermittelt worden.
+% Am Ende der Ausarbeitung soll dem Leser klar vermittelt worden sein, warum eine Nachvollziehbarkeit zur Nutzerinteraktion und Applikationsverhalten sinnvoll ist und wie man diese erreichen kann.
 
 \subsection{Abgrenzung}
 
@@ -78,6 +64,8 @@ Die zu erstellende Softwarelösung soll sich mit Webapplikationen beschäftigen,
 %
 %Diese Arbeit soll sich mit der GUI Entwicklung in der Webentwicklung beschäftigen. Weiterhin soll sich nicht auf den anfänglichen Entwicklungsprozess konzentriert werden, sondern auf bereits bestehende Software. Es soll keine benutzerorientierte Entwicklung \cite{UserCenteredWebDesign} beleuchtet oder angestrebt werden.
 
+% \newpage
+
 %\begin{itemize}
 %	\item 	Wie wird vorgegangen, um das Ziel zu erreichen?
 %	\item 	Warum ist die Arbeit so gegliedert, wie sie gegliedert ist?
@@ -85,24 +73,34 @@ Die zu erstellende Softwarelösung soll sich mit Webapplikationen beschäftigen,
 %\end{itemize}
 \section{Vorgehensweise}
 
-Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
+Zunächst soll dem Leser vermittelt werden, wie die genaue Ausgangssituation ist und welche besonderen Hürden es in der GUI (graphical user interface) Betreibung in Bezug auf das Themengebiet gibt. Es soll aufzeigt werden, welche Folgen eine bessere Nachvollziehbarkeit bei der GUI Betreibung besitzt und warum diese erstrebenswert ist.
 
-Danach soll erörtert werden, welche Ursachen es für häufige Problemszenarien gibt. Darauf aufbauend könnten Aussagen getroffen werden, wie diese Szenarien bereits vorher vermeidet werden können oder die Häufigkeit reduziert werden kann.
+% Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
 
-Durch das gewonnene Verständnis über diese Probleme, soll nun ein Konzept erarbeitet werden. Dieses Konzept soll darauf abzielen zu den einzelnen Problembildern jeweils einen Ansatz zu finden, diese aufzuzeigen und den Stakeholdern Informationen zu liefern, die bei der Behebung notwendig sind (bspw. Geräteinformationen, Sitzungsinformationen, Logs, etc.).
+% Danach soll erörtert werden, welche Ursachen es für häufige Problemszenarien gibt. Darauf aufbauend könnten Aussagen getroffen werden, wie diese Szenarien bereits vorher vermeidet werden können oder die Häufigkeit reduziert werden kann.
 
-Anhand des Konzeptes soll nun eine Softwarelösung entworfen werden. Hierbei soll es einerseits eine datenerhebende Komponente geben, welche mit in der Webapplikation läuft. Und andererseits soll es eine auswertende und informative Komponente geben, welche die Stakeholdern über die Probleme informiert und wichtige Informationen zur Behebung bereitstellt.
+Durch das gewonnene Verständnis über die Ausgangssituation, sollen nun Methoden aufzeigt werden, wie man eine Nachvollziehbarkeit erreichen kann. Methoden wie Logging, Metriken, Tracing und ggf. ähnliche sollen betrachtet werden.
 
-Nach dem Entwurf soll die Softwarelösung implementiert werden. Diese Implementierung soll zunächst projektunabhängig erfolgen.
+%Durch das gewonnene Verständnis über diese Probleme, soll nun ein Konzept erarbeitet werden. Dieses Konzept soll darauf abzielen zu den einzelnen Problembildern jeweils einen Ansatz zu finden, diese aufzuzeigen und den Stakeholdern Informationen zu liefern, die bei der Behebung notwendig sind (bspw. Geräteinformationen, Sitzungsinformationen, Logs, etc.).
 
-Als letztes soll eine Webapplikation in der Open Knowledge GmbH hinzugezogen werden, in welche die Softwarelösung integriert werden soll. Nach der Integration sollen folgende Aspekte beleuchtet werden:
+Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden soll nun eine Erweiterung einer bestehenden Webapplikation der Open Knowledge GmbH erstellt werden, welche als Ziel hat, die Nachvollziehbarkeit zu erhöhen.
 
-\begin{itemize}
-	\item Wie einfach ist die Integration in ein bestehendes Projekt?
-	\item Welche Problembilder können mit der Softwarelösung erkannt werden?
-	\item Welchen Einfluss hat die Softwarelösung auf die Leistung? \\(Anhand von Aspekten wie Netzwerktraffic, Reaktionsgeschwindigkeit)
-\end{itemize}
+Zunächst soll ein Konzept erstellt werden, welches die Komponenten definiert und beschreibt und die Interaktion zwischen den Komponenten umfasst. Auf Basis der Konzeptes soll nun die Implementierung der Erweiterung erfolgen.
 
 Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausblick genannt werden, wie das Themengebiet und die erstellte Softwarelösung sich weiterentwickeln könnten.
 
 % Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
+
+\newpage
+
+\section{Open Knowledge GmbH}
+
+{\color{red}TODO: Dieser Abschnitt muss noch überarbeitet werden}
+
+Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute ca. 75 Mitarbeiter. Mitte 2017 wurde der zweite Standort in Essen eröffnet an dem aktuell 13 Mitarbeiter angestellt sind.
+
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Speaker auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen.  \cite{VincentOpenKnowledge}
+
+Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
+
+Entsprechend der Philosophie ``Offenkundig Gut`` und dem Namen des Unternehmens wird stets versucht das benötigte Wissen zur Erstellung und Wartung der Software mit dem Kunden zu teilen, sodass die Kunden nach Abschluss der Projekte in der Lage sind, die Software selbstständig zu Pflegen und die Projektarbeit von OK damit abgeschlossen ist \cite{OpenKnowledgePhilosophie}.
