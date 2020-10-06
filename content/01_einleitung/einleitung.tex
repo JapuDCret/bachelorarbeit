@@ -37,7 +37,7 @@ Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine 
 %\end{itemize}
 \section{Zielsetzung}
 
-Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen Interaktionen eines Nutzers und Verhalten einer Webapplikation nachvollziehen zu können. 
+Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder die Interaktionen eines Nutzers und das Verhalten einer Webapplikation nachvollziehen zu können. 
 
 Folgende Fragen sollen im Zuge der Ausarbeitung für den Leser beantwortet werden:
 
@@ -75,19 +75,19 @@ Die zu erstellende Softwarelösung soll sich mit Webapplikationen beschäftigen,
 
 Zunächst soll dem Leser vermittelt werden, wie die genaue Ausgangssituation ist und welche besonderen Hürden es in der GUI (graphical user interface) Betreibung in Bezug auf das Themengebiet gibt. Es soll aufzeigt werden, welche Folgen eine bessere Nachvollziehbarkeit bei der GUI Betreibung besitzt und warum diese erstrebenswert ist.
 
+Durch das gewonnene Verständnis über die Ausgangssituation, sollen nun Methoden aufzeigt werden, wie man eine Nachvollziehbarkeit erreichen kann. Methoden wie Logging, Metriken, Tracing und ggf. ähnliche sollen betrachtet werden.
+
+Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden soll nun eine Erweiterung einer bestehenden Webapplikation der Open Knowledge GmbH erstellt werden, welche als Ziel hat, die Nachvollziehbarkeit zu erhöhen.
+
+Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausblick genannt werden, wie das Themengebiet und die erstellte Softwarelösung sich weiterentwickeln könnten.
+
 % Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
 
 % Danach soll erörtert werden, welche Ursachen es für häufige Problemszenarien gibt. Darauf aufbauend könnten Aussagen getroffen werden, wie diese Szenarien bereits vorher vermeidet werden können oder die Häufigkeit reduziert werden kann.
 
-Durch das gewonnene Verständnis über die Ausgangssituation, sollen nun Methoden aufzeigt werden, wie man eine Nachvollziehbarkeit erreichen kann. Methoden wie Logging, Metriken, Tracing und ggf. ähnliche sollen betrachtet werden.
-
 %Durch das gewonnene Verständnis über diese Probleme, soll nun ein Konzept erarbeitet werden. Dieses Konzept soll darauf abzielen zu den einzelnen Problembildern jeweils einen Ansatz zu finden, diese aufzuzeigen und den Stakeholdern Informationen zu liefern, die bei der Behebung notwendig sind (bspw. Geräteinformationen, Sitzungsinformationen, Logs, etc.).
 
-Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden soll nun eine Erweiterung einer bestehenden Webapplikation der Open Knowledge GmbH erstellt werden, welche als Ziel hat, die Nachvollziehbarkeit zu erhöhen.
-
-Zunächst soll ein Konzept erstellt werden, welches die Komponenten definiert und beschreibt und die Interaktion zwischen den Komponenten umfasst. Auf Basis der Konzeptes soll nun die Implementierung der Erweiterung erfolgen.
-
-Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausblick genannt werden, wie das Themengebiet und die erstellte Softwarelösung sich weiterentwickeln könnten.
+% Zunächst soll ein Konzept erstellt werden, welches die Komponenten definiert und beschreibt und die Interaktion zwischen den Komponenten umfasst. Auf Basis der Konzeptes soll nun die Implementierung der Erweiterung erfolgen.
 
 % Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
 
@@ -99,7 +99,7 @@ Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausbl
 
 Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute ca. 75 Mitarbeiter. Mitte 2017 wurde der zweite Standort in Essen eröffnet an dem aktuell 13 Mitarbeiter angestellt sind.
 
-Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Speaker auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen.  \cite{VincentOpenKnowledge}
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Speaker auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
 
 Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
 
