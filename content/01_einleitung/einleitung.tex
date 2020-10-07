@@ -5,6 +5,8 @@
 %\end{itemize}
 \section{Motivation}
 
+\nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
+
 In der Welt der Systeme mit Benutzerinteraktionen gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Diese Systeme können bspw. Graphical User Interfaces (GUI) sein. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete erwartet werden muss. Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
 
 Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
@@ -37,15 +39,27 @@ Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine 
 %\end{itemize}
 \section{Zielsetzung}
 
-Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder die Interaktionen eines Nutzers und das Verhalten einer Webapplikation nachvollziehen zu können. 
+\nomenclature[Fachbegriff]{SPA}{Single Page Application}
+\nomenclature[Fachbegriff]{DSGVO}{Datenschutz Grundverordnung}
+
+Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder die Interaktionen eines Nutzers und das Verhalten einer Webapplikation nachvollziehen können. 
 
 Folgende Fragen sollen im Zuge der Ausarbeitung für den Leser beantwortet werden:
 
+% Feedback von Stephan: Gefällt mir in der neuen Fassung gut. Ggf. kannst du zu 1 noch 2-3 Unterpunkte hinzufügen worauf du genauer eingehen willst -> z.B. Fehler, "Nutzerverhalten" (wie navigiert der User durch die Anwendung), ...
+
 \begin{enumerate}
-	\item Warum ist die Nachvollziehbarkeit wichtig?
-	\item Wie kann die Nachvollziehbarkeit verbessert werden?
-	\item Wie kann eine Erweiterung einer Webapplikation aussehen um dies zu erreichen? \\ (Hierbei soll ein Projekt der Open Knowledge GmbH hinzugezogen werden)
+	\item Was bedeutet Nachvollziehbarkeit?
+	\item Warum ist Nachvollziehbarkeit wichtig?
+	\item Wie kann eine gute Nachvollziehbarkeit erreicht/verbessert werden?
 	\begin{enumerate}
+		\item Was benötigt man, um nachvollziehen zu können?
+		\item Wie kann Nutzerverhalten nachvollzogen werden?
+		\item Wie können Fehler nachgestellt werden?
+	\end{enumerate}
+	\item Wie kann eine Erweiterung einer Webapplikation aussehen um dies zu erreichen? \\ (Hierbei soll ein Projekt der Open Knowledge GmbH hinzugezogen werden.)
+	\begin{enumerate}
+		\item Was für Technologien helfen hierbei?
 		\item Was sind die Auswirkungen für den Nutzer?
 		\begin{enumerate}
 			\item Wird die Leistung der Webapplikation beeinträchtigt?
@@ -54,17 +68,16 @@ Folgende Fragen sollen im Zuge der Ausarbeitung für den Leser beantwortet werde
 	\end{enumerate}
 \end{enumerate}
 
-% Am Ende der Ausarbeitung soll dem Leser klar vermittelt worden sein, warum eine Nachvollziehbarkeit zur Nutzerinteraktion und Applikationsverhalten sinnvoll ist und wie man diese erreichen kann.
 
 \subsection{Abgrenzung}
 
+% Feedback von Christian: ja finde ich auch gut. Ich war zwischendurch am überlegen, in welchem Rahmen man das betrachten kann, da Datenschutz und Datensicherheit ja ein großes Thema ist. Also, ob man da nicht ggf. eine Abgrenzung machen sollte.
+
 Die zu erstellende Softwarelösung soll sich mit Webapplikationen beschäftigen, die dynamisch mit JavaScript erzeugt werden - auch Single-Page-Applications (SPAs) genannt. 
 
-%\subsection{Abgrenzung}
-%
-%Diese Arbeit soll sich mit der GUI Entwicklung in der Webentwicklung beschäftigen. Weiterhin soll sich nicht auf den anfänglichen Entwicklungsprozess konzentriert werden, sondern auf bereits bestehende Software. Es soll keine benutzerorientierte Entwicklung \cite{UserCenteredWebDesign} beleuchtet oder angestrebt werden.
+Im Zuge der Implementierung der Erweiterung, soll beleuchtet werden, welche Daten erhoben werden und wie mit diesen umgegangen wird. Eine tiefgreifende Analyse der Datenverarbeitung in Hinblick auf vollste Konformität mit der DSGVO wird jedoch nicht Bestandteil sein.
 
-% \newpage
+\pagebreak
 
 %\begin{itemize}
 %	\item 	Wie wird vorgegangen, um das Ziel zu erreichen?
@@ -75,11 +88,11 @@ Die zu erstellende Softwarelösung soll sich mit Webapplikationen beschäftigen,
 
 Zunächst soll dem Leser vermittelt werden, wie die genaue Ausgangssituation ist und welche besonderen Hürden es in der GUI (graphical user interface) Betreibung in Bezug auf das Themengebiet gibt. Es soll aufzeigt werden, welche Folgen eine bessere Nachvollziehbarkeit bei der GUI Betreibung besitzt und warum diese erstrebenswert ist.
 
-Durch das gewonnene Verständnis über die Ausgangssituation, sollen nun Methoden aufzeigt werden, wie man eine Nachvollziehbarkeit erreichen kann. Methoden wie Logging, Metriken, Tracing und ggf. ähnliche sollen betrachtet werden.
+Durch das gewonnene Verständnis über die Ausgangssituation, sollen nun Methoden aufzeigt werden, wie man eine Nachvollziehbarkeit erreichen kann. Methoden wie Logging, Metriken, Tracing und ggf. andere sollen betrachtet werden.
 
 Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden soll nun eine Erweiterung einer bestehenden Webapplikation der Open Knowledge GmbH erstellt werden, welche als Ziel hat, die Nachvollziehbarkeit zu erhöhen.
 
-Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausblick genannt werden, wie das Themengebiet und die erstellte Softwarelösung sich weiterentwickeln könnten.
+Als letztes soll ein Fazit erstellt werden. Darin enthalten ist ein Ausblick, welcher beschreibt, wie das Themengebiet und die erstellte Software voranschreiten könnten.
 
 % Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
 
@@ -91,16 +104,18 @@ Als letztes soll ein Fazit über die Arbeit gezogen werden. Danach soll im Ausbl
 
 % Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
 
-\newpage
+%\newpage
 
 \section{Open Knowledge GmbH}
 
-{\color{red}TODO: Dieser Abschnitt muss noch überarbeitet werden}
+%{\color{red}TODO: Dieser Abschnitt muss noch überarbeitet werden}
 
-Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute ca. 75 Mitarbeiter. Mitte 2017 wurde der zweite Standort in Essen eröffnet an dem aktuell 13 Mitarbeiter angestellt sind.
+Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Open Knowledge GmbH erstellt. Der Standortleiter des Standortes Essen, Dipl. Inf. Stephan Müller, übernimmt die Zweitbetreuung.
 
-Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Speaker auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
+Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde der zweite Standort in Essen eröffnet an dem aktuell 13 Mitarbeiter angestellt sind.
 
-Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
 
-Entsprechend der Philosophie ``Offenkundig Gut`` und dem Namen des Unternehmens wird stets versucht das benötigte Wissen zur Erstellung und Wartung der Software mit dem Kunden zu teilen, sodass die Kunden nach Abschluss der Projekte in der Lage sind, die Software selbstständig zu Pflegen und die Projektarbeit von OK damit abgeschlossen ist \cite{OpenKnowledgePhilosophie}.
+%Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
+%
+%Entsprechend der Philosophie ``Offenkundig Gut`` und dem Namen des Unternehmens wird stets versucht das benötigte Wissen zur Erstellung und Wartung der Software mit dem Kunden zu teilen, sodass die Kunden nach Abschluss der Projekte in der Lage sind, die Software selbstständig zu Pflegen und die Projektarbeit von OK damit abgeschlossen ist \cite{OpenKnowledgePhilosophie}.
