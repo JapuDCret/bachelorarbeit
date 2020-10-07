@@ -102,7 +102,7 @@
 	
 		\section{Phase in Softwareprojekten}
 
-			\begin{wrapfigure}[9]{r}{0.4\linewidth}
+			\begin{wrapfigure}[12]{r}{0.45\linewidth}
 				\centering
 				\vspace{-\baselineskip}
 				\includegraphics[width=\linewidth]{img/software-development-life-cycle.jpg}
@@ -110,15 +110,21 @@
 				\label{fig:software-development-life-cycle}
 			\end{wrapfigure}
 			
-			In vielen Modellen über Phasen oder den Lebenszyklus einer Software gibt es eine Phase, in der Instandhaltung und Support den Alltag bestimmen \citationneeded, sie wird oftmals ``Maintenance`` bezeichnet. Sie ist häufig weniger stark betrachtet als die anderen Phasen \citationneeded, ist aber nach Zelkowitz \etal \cite{PrinciplesOfSoftwareEngineeringAndDesign} für rund zwei Drittel der Entwicklungskosten verantwortlich.
+			In vielen Modellen über den Lebenszyklus einer Software gibt es eine Phase, in der Instandhaltung und Support den Alltag bestimmen, sie wird oftmals ``Maintenance`` bezeichnet \cite{ManagingTheComplexityOfWebSystemsDevelopment} \cite{CostBenefitAnalaysisHumanFactorsSoftwareLifecycle}. Sie ist nach Zelkowitz \etal \cite{PrinciplesOfSoftwareEngineeringAndDesign} für rund zwei Drittel der Entwicklungskosten verantwortlich, begründet durch exponentielle Steigung \cite{ExtremeProgrammingExplained}.
+			
+			Es werden immer bessere Methoden entwickelt, um Probleme in Software - oder auch Bugs - zu verringern. Jedoch erhöht sich zugleich die Komplexität von Software, was zur Ursache hat, dass es mehr Nährboden für Bugs gibt \cite{TrackingDownSoftwareBugsAnomalyDetection}. De-facto sind Bugs ein unvermeidbarer Bestandteil einer Software und müssen daher erwartet und gehandhabt werden \cite{TheMythicalManMonth}.
+			
+			Wenn nun ein Bug auffällt, sei es durch einen Nutzer oder auch zufällig einem Stakeholder, muss entschieden werden, ob dieser zu beheben ist. Wenn eine Behebung angestrebt wird, benötigt der Stakeholder meistens Rahmeninformationen \citationneeded um den Bug ggf. zu reproduzieren und die Situation \textbf{nachzuvollziehen}. Desto mehr Verständnis der Stakeholder über das Problem erhält, desto schneller und präziser kann er die Ursache aufdecken. Die Ermöglichung der schnellen Verständnis über ein Problem, wird in dieser Arbeit Nachvollziehbarkeit genannt.
 	
 		\section{Nachvollziehbarkeit}
 		
-			Ein wichtiger Aspekt in der Maintenance-Phase, ist die Nachvollziehbarkeit. Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer verstehen zu können.
+			Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer verstehen zu können.
 		
 	\chapter{Methoden und Praktiken}
 
 		In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Softwareprojekten erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.
+		
+		\section{Fehlerberichte}
 		
 		\section{Logging}
 		
