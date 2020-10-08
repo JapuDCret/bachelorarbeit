@@ -152,9 +152,13 @@
 %	\chapter{Test-Kapitel}
 %	\input{content/xx_test/test}
 	
+	\newpage{}
+	
+	\addcontentsline{toc}{chapter}{Eidesstattliche Erklärung}
 	\chapter*{Eidesstattliche Erklärung}
-	\addcontentsline{toc}{chapter}{Eidesstattliche Erklärung}  
 	\input{content/99_postscript/eidesstattliche-erklaerung}
+	
+	\let\cleardoublepage\relax
 	
 	\newpage{}
 	
