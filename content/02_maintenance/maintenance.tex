@@ -19,10 +19,20 @@
 
 \section{Nachvollziehbarkeit}
 
-	Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer verstehen zu können.
+	\textit{Hier soll die Nachvollziehbarkeit allgemein beschrieben werden und warum sie erstrebenswert ist.}
+
+	Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer für die Stakeholder verständlich zu machen. Sie ist getrennt von der Anstrebung einer Reproduzierbarkeit nach der wissenschaftlichen Methode anzusehen.
+	
+	{\color{red}\textit{\lipsum[1]}}
+	
+	Tritt ein Problem bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
+	
+	\begin{quotation}
+	Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
+	\end{quotation}
 
 \section{Maintenance bei Webapplikationen}
 
 	\textit{Hier sollen die Besonderen Hürden bei Webapplikationen hervorgehoben werden (ungeschulte Nutzer, indirekte Kommunikation, etc.)}
 	
-	Webapplikationen haben in der Phase der Maintenance ein vielfach höheres Potenzial Behinderungen zu begegnen. Einerseits  ist JavaScript dafür bekannt, dass fehleranfälliger Quellcode weniger offensichtlich ist \cite{BuildingStableWebApplications} \cite{BugsJSABenchmarkOfJavaScriptBugs}. Andererseits muss im Vergleich zu vielen anderen nutzerorientierten Applikationen damit umgegangen werden, dass die Nutzer eine
+	Webapplikationen haben in der Phase der Maintenance ein höheres Potenzial Hindernissen zu begegnen. Einerseits  ist JavaScript dafür bekannt, dass fehleranfälliger Quellcode häufiger auftritt \cite{BuildingStableWebApplications} \cite{BugsJSABenchmarkOfJavaScriptBugs}. Andererseits ist oftmals eine große und breit verteilte Nutzerschaft die Zielgruppe. Dies bedeutet potenziell viele unterschiedliche Umgebungen, stark abweichende Verständnisse einer Webapplikation und indirekte Kommunikationswege zu den Stakeholdern.
