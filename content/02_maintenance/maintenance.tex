@@ -15,7 +15,7 @@
 	
 	Es werden immer bessere Methoden entwickelt, um Probleme in Software - oder auch Bugs - zu verringern. Jedoch erhöht sich zugleich die Komplexität von Software, was zur Ursache hat, dass es mehr Nährboden für Bugs gibt \cite{TrackingDownSoftwareBugsAnomalyDetection}. De-facto sind Bugs ein unvermeidbarer Bestandteil einer Software und müssen daher erwartet und gehandhabt werden \cite{TheMythicalManMonth}.
 	
-	Wenn nun ein Bug auffällt, sei es durch einen Nutzer oder auch zufällig einem Stakeholder, muss entschieden werden, ob dieser zu beheben ist. Wenn eine Behebung angestrebt wird, benötigt der Stakeholder meistens Rahmeninformationen \citationneeded um den Bug ggf. zu reproduzieren und die Situation \textbf{nachzuvollziehen}. Desto mehr Verständnis der Stakeholder über das Problem erhält, desto schneller und präziser kann er die Ursache aufdecken. Die Ermöglichung der schnellen Verständnis über ein Problem, wird in dieser Arbeit Nachvollziehbarkeit genannt.
+	Wenn nun ein Bug auffällt, sei es durch einen Nutzer oder auch zufällig einem Stakeholder, muss entschieden werden, ob dieser zu beheben ist. Wenn eine Behebung angestrebt wird, benötigt der Stakeholder meistens Rahmeninformationen \cite{WhatMakesAGoodBugReport} um den Bug ggf. zu reproduzieren und die Situation nachzuvollziehen. Desto mehr Verständnis der Stakeholder über das Problem erhält, desto schneller und präziser kann er die Ursache aufdecken. Die Ermöglichung der schnellen Verständnis über ein Problem, wird in dieser Arbeit \textbf{Nachvollziehbarkeit} genannt.
 
 \section{Nachvollziehbarkeit}
 
@@ -24,3 +24,5 @@
 \section{Maintenance bei Webapplikationen}
 
 	\textit{Hier sollen die Besonderen Hürden bei Webapplikationen hervorgehoben werden (ungeschulte Nutzer, indirekte Kommunikation, etc.)}
+	
+	Webapplikationen haben in der Phase der Maintenance ein vielfach höheres Potenzial Behinderungen zu begegnen. Einerseits  ist JavaScript dafür bekannt, dass fehleranfälliger Quellcode weniger offensichtlich ist \cite{BuildingStableWebApplications} \cite{BugsJSABenchmarkOfJavaScriptBugs}. Andererseits muss im Vergleich zu vielen anderen nutzerorientierten Applikationen damit umgegangen werden, dass die Nutzer eine
