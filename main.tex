@@ -1,5 +1,5 @@
 % twoside = false setzen, falls kein doppelseitiger Druck nötig
-\documentclass[oneside, ngerman, final, 11pt, a4paper, 1.1headlines, headinclude=false, footinclude=false, mpinclude=false, pagesize, onecolumn, titlepage, parskip=half, headsepline, chapterprefix=false, version=first, listof=totoc, bibliography=totoc, toc=graduated, fleqn, twoside=true]{scrbook}
+\documentclass[oneside, ngerman, final, 11pt, a4paper, 1.1headlines, headinclude=false, footinclude=false, mpinclude=false, pagesize, onecolumn, titlepage, parskip=half, headsepline, chapterprefix=false, version=first, listof=totoc, bibliography=totoc, toc=graduated, fleqn, twoside=false]{scrbook}
 
 % Import file that contains configuration
 \input{content/00_preamble/packages}
@@ -144,6 +144,6 @@
 	
 	\newpage{}
 	
-	\bibliographystyle{alphadin}
+	\bibliographystyle{my-alphadin}
 	\bibliography{bib}
 \end{document}
