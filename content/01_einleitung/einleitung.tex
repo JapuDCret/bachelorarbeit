@@ -7,16 +7,20 @@
 
 \nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
 
-In der Welt der Systeme mit Benutzerinteraktionen gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Diese Systeme können bspw. Graphical User Interfaces (GUI) sein. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete zu erwarten ist. Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
+In der Welt der Systeme mit Benutzerinteraktionen gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete zu erwarten ist. % Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
 
-Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
-\begin{itemize}
-	\item ..die Systeme selber meist um ein Vielfaches komplexer \cite{ManagingTheComplexityOfWebSystemsDevelopment},
-	\item ..die Umgebungen komplex und unterschiedlich,
-%	\item ..die Nutzer meist weniger gut oder gar nicht geschult,
-	\item ..die Nutzer eher unwissend, wie das System funktioniert \cite{AnErrorReportingAndFeedbackComponent} und
-	\item ..die Nutzer stehen meist nicht im direkten Kontakt mit den Stakeholdern \cite{EndUsersAsUnwittingSoftwareDevelopers}. Stakeholder sind im Rahmen dieser Arbeit die Betreiber und Entwickler einer Webapplikation.
-\end{itemize}
+Diese Probleme gilt es meist zu beheben, um einen uneingeschränkten Ablauf zu gewährleisten. Bei Webapplikationen, also dem Fokus der Arbeit, können im Regelfall die Nutzer selber die Probleme nicht lösen. Für dessen Behebung werden Informationen benötigt, welche sich auf das System und den Nutzer beziehen, und welche den Verantwortlichen mitzuteilen sind. Diese Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
+
+Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillierte Informationen, was in der Praxis aber leider selten der Fall ist. Dies erschwert die Verständnisgewinnung, dadurch dass das Problem nicht oder nicht einfach nachvollziehbar ist.
+
+%Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
+%\begin{itemize}
+%	\item ..die Systeme selber meist um ein Vielfaches komplexer \cite{ManagingTheComplexityOfWebSystemsDevelopment},
+%	\item ..die Umgebungen komplex und unterschiedlich,
+%%	\item ..die Nutzer meist weniger gut oder gar nicht geschult,
+%	\item ..die Nutzer eher unwissend, wie das System funktioniert \cite{AnErrorReportingAndFeedbackComponent} und
+%	\item ..die Nutzer stehen meist nicht im direkten Kontakt mit den Stakeholdern \cite{EndUsersAsUnwittingSoftwareDevelopers}. Stakeholder sind im Rahmen dieser Arbeit die Betreiber und Entwickler einer Webapplikation.
+%\end{itemize}
 
 \nomenclature[Fachbegriff]{Stakeholder}{In dieser Arbeit werden Betreiber und Entwickler einer Webapplikation so zusammengefasst}
 
@@ -30,9 +34,11 @@ Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
 
 \section{Problemstellung}
 
-Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
+%Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
 
-Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden bei Fehlerberichten eine Dissonanz zwischen dem was Entwickler als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten. Eine besser zugeschnittene Lösung ist anzustreben. % \textbf{Wie kann den Entwicklern die Möglichkeit geboten werden, diese Probleme zu beheben?}
+Formulare sind eine häufige Wahl, um Nutzern die Möglichkeit zu bieten Probleme zu melden und Kontextinformationen zu liefern (vgl. \ref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
+
+Dies lässt folgern, dass die Informationserhebung nicht allein von den Nutzern aus geschehen sollte. Es ist ein übergreifendes Konzept anzustreben, welches die Informationslücke ausgleicht und eine Nachvollziehbarkeit für die Stakeholder ermöglicht.
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
