@@ -1,7 +1,30 @@
+\section{Browserumgebung}
+
+\textit{Hier soll eine Beschreibung der Umgebung erstellt werden, mit Nennung der speziellen Eigenschaften (Keywords: Sandbox, CORS, Logging)}
+
 \section{JavaScript-basierte Webapplikationen}
 \input{content/02_theorie/js-webapplications}
 	
 \newpage
-	
-\section{``Maintenance``}
+
 \input{content/02_theorie/maintenance}
+
+\newpage
+
+\section{Nachvollziehbarkeit}
+
+	\textit{Hier soll die Nachvollziehbarkeit allgemein beschrieben werden und warum sie erstrebenswert ist.}
+
+	Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer für die Stakeholder verständlich zu machen. Sie ist getrennt von der Anstrebung einer Reproduzierbarkeit nach der wissenschaftlichen Methode anzusehen.
+	
+	{\color{red}\textit{\lipsum[1]}}
+	
+	Tritt ein Problem bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
+	
+	\begin{quotation}
+	Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
+	\end{quotation}
+
+\subsection{Nachvollziehbarkeit bei Webapplikationen}
+
+	\textit{Hier sollen die Besonderen Hürden bei Webapplikationen hervorgehoben werden (indirekte Kommunikation, keinen Zugriff auf Logs, etc.)}
