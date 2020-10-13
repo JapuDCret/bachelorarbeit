@@ -7,11 +7,15 @@
 
 \nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
 
-In der Welt der Systeme mit Benutzerinteraktionen gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete zu erwarten ist. % Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
+In der Welt der Webapplikationen gibt es die Hürde, dass meist keine direkte Kommunikation zwischen Nutzern und den Verantwortlichen besteht. Die Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
 
-Diese Probleme gilt es meist zu beheben, um einen uneingeschränkten Ablauf zu gewährleisten. Bei Webapplikationen, also dem Fokus der Arbeit, können im Regelfall die Nutzer selber die Probleme nicht lösen. Für dessen Behebung werden Informationen benötigt, welche sich auf das System und den Nutzer beziehen, und welche den Verantwortlichen mitzuteilen sind. Diese Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
+Die Stakeholder müssen aber das Nutzer- und das Anwendungsverhalten verstehen und nachvollziehen können. Nur so kann eine effiziente Instandhaltung und erfolgreiche Weiterentwicklung der Anwendung gewährleistet werden. Bei JavaScript-basierten Webapplikationen gibt es zusätzlich das Hindernis, dass Kontextinformationen, wie z.B. Logs, nur auf dem Client verfügbar sind. Diese Hürden müssen überkommen werden, es muss eine \textbf{Nachvollziehbarkeit} erreicht werden.
 
-Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillierte Informationen, was in der Praxis aber selten der Fall ist \cite{AnErrorReportingAndFeedbackComponent}. Fehlende Informationen erschweren die Verständnisgewinnung, dadurch dass das Problem nicht oder nicht einfach nachvollziehbar ist.
+% gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete zu erwarten ist. % Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
+
+%Diese Probleme gilt es meist zu beheben, um einen uneingeschränkten Ablauf zu gewährleisten. Bei Webapplikationen, also dem Fokus der Arbeit, können im Regelfall die Nutzer selber die Probleme nicht lösen. Für dessen Behebung werden Informationen benötigt, welche sich auf das System und den Nutzer beziehen, und welche den Verantwortlichen mitzuteilen sind.
+%
+%Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillierte Informationen, was in der Praxis aber selten der Fall ist \cite{AnErrorReportingAndFeedbackComponent}. Fehlende Informationen erschweren die Verständnisgewinnung, dadurch dass das Problem nicht oder nicht einfach nachvollziehbar ist.
 
 %Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
 %\begin{itemize}
@@ -24,7 +28,11 @@ Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillie
 
 \nomenclature[Fachbegriff]{Stakeholder}{In dieser Arbeit werden Betreiber und Entwickler einer Webapplikation als Stakeholder bezeichnet}
 
-\begin{wrapfigure}[11]{r}{0.33\linewidth}
+\section{Problemstellung}
+
+Die besonderen Hürden bei GUIs und speziell bei JavaScript-basierten Webapplikationen, welche die Nachvollziehbarkeit einschränken, gilt es zu bewältigen.
+
+\begin{wrapfigure}[12]{r}{0.33\linewidth}
 	\centering
 	\vspace{-\baselineskip}
 	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
@@ -32,11 +40,15 @@ Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillie
 	\label{fig:instagram-feedback-example}
 \end{wrapfigure}
 
-\section{Problemstellung}
-
 %Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
 
-Problemberichte sind eine gängige Wahl, um Nutzern die Möglichkeit zu bieten Probleme zu melden und zu beschreiben (vgl. ~\autoref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz, zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
+Diese Hürden für Stakeholder umfassen folgendes:
+\begin{enumerate}
+	\item Kontextinformationen sind nicht einsehbar und
+	\item Nutzerverhalten ist nicht bekannt.
+\end{enumerate}
+
+Problemberichte sind eine gängige Wahl, um den Stakeholdern eine  Verständnishilfe zu bieten (vgl. ~\autoref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz, zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
 
 Dies lässt folgern, dass die Informationserhebung nicht allein von den Nutzern aus geschehen sollte. Es ist ein übergreifendes Konzept anzustreben, welches die Informationslücke ausgleicht und eine Nachvollziehbarkeit für die Stakeholder ermöglicht.
 
@@ -126,7 +138,7 @@ Die Bachelorarbeit wird unter anderem im Rahmen einer Werkstudententätigkeit in
 
 Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde der zweite Standort in Essen eröffnet an dem aktuell 13 Mitarbeiter angestellt sind.
 
-Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten. \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten.% \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
 
 %Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
 %
