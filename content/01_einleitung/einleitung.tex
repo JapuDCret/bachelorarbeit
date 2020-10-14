@@ -7,12 +7,13 @@
 
 \nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
 \nomenclature[Fachbegriff]{Log}{Englisch für ``Protokoll``}
-
 \nomenclature[Fachbegriff]{Stakeholder}{In dieser Arbeit werden Betreiber und Entwickler einer Webapplikation als Stakeholder bezeichnet}
 
-Entwickler und Betreiber von JavaScript-basierten Webapplikationen werden fast alltäglich damit konfrontiert, dass sie beispielsweise zu Zwecken der Problembehebung nachvollziehen müssen, wie ein Nutzer die Applikation verwendet und wie sich die Applikation dabei verhält. Dies ist in der Umgebung von Browsern deutlich schwieriger, als in anderen Projekten mit Nutzerinteraktion. Denn es gibt von Haus aus keine Möglichkeit über Logs das Verhalten nachzuvollziehen, weil die Logs nur beim Client einsehbar sind. Weiterhin muss man bei einer eigenen Lösung zur Informationsgewinnung mit der JavaScript-Sandbox im Browser umgehen, und CORS-Vorgaben einhalten.
+Entwickler und Betreiber von JavaScript-basierten Webapplikationen werden fast alltäglich mit Verständnisproblemen konfrontiert. Sie müssen beispielsweise zu Zwecken der Problembehebung oder Verbesserung nachvollziehen können, wie ein Nutzer die Applikation verwendet und wie sich die Applikation dabei verhält. Dies ist in der Umgebung von Browsern deutlich erschwert, als in anderen Projekten mit Nutzerinteraktion. Denn die notwendigen Informationen liegen beim Nutzer, für den Betreiber ist lediglich die Kommunikation zum Backend sichtbar.
 
-Mit diesen Schwierigkeiten bei Webapplikationen wird sich in dieser Arbeit beschäftigt, um nachhaltig eine Nachvollziehbarkeit zu erreichen.
+Backend-Aufrufe sind jedoch nur bedingt hilfreich, weil sie meist ein Ergebnis eines abgeschlossenen Prozesses darstellen, aber keine Informationen dazu liefern, wie der Prozess abgeschlossen wurde.
+
+Deswegen beschäftigt sich die Arbeit mit der Erreichung von Nachvollziehbarkeit in JavaScript-basierten Webapplikationen und zielt darauf ab die zuvor genannten Hürden zu meistern.
 
 %In der Welt der Webapplikationen gibt es die Hürde, dass meist keine direkte Kommunikation zwischen Nutzern und den Verantwortlichen besteht. Die Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
 %
@@ -20,27 +21,31 @@ Mit diesen Schwierigkeiten bei Webapplikationen wird sich in dieser Arbeit besch
 
 \section{Problemstellung}
 
-Die besonderen Hürden bei GUIs und speziell bei JavaScript-basierten Webapplikationen, welche die Nachvollziehbarkeit einschränken, gilt es zu bewältigen.
+%Die besonderen Hürden bei GUIs und speziell bei JavaScript-basierten Webapplikationen, welche die Nachvollziehbarkeit einschränken, gilt es zu bewältigen.
 
-\begin{wrapfigure}[12]{r}{0.33\linewidth}
-	\centering
-	\vspace{-\baselineskip}
-	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
-	\caption{Formular aus der Instagram \cite{Instagram} Android App}
-	\label{fig:instagram-feedback-example}
-\end{wrapfigure}
+%\begin{wrapfigure}[12]{r}{0.33\linewidth}
+%	\centering
+%	\vspace{-\baselineskip}
+%	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
+%	\caption{Formular aus der Instagram \cite{Instagram} Android App}
+%	\label{fig:instagram-feedback-example}
+%\end{wrapfigure}
 
 %Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
 
-Diese Hürden für Stakeholder umfassen folgendes:
-\begin{enumerate}
-	\item Kontextinformationen sind nicht einsehbar und
-	\item Nutzerverhalten ist nicht bekannt.
-\end{enumerate}
+%Diese Hürden für Stakeholder umfassen folgendes:
+%\begin{enumerate}
+%	\item Kontextinformationen sind nicht einsehbar und
+%	\item Nutzerverhalten ist nicht bekannt.
+%\end{enumerate}
+%
+%Problemberichte sind eine gängige Wahl, um den Stakeholdern eine  Verständnishilfe zu bieten (vgl. ~\autoref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz, zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
+%
+%Dies lässt folgern, dass die Informationserhebung nicht allein von den Nutzern aus geschehen sollte. Es ist ein übergreifendes Konzept anzustreben, welches die Informationslücke ausgleicht und eine Nachvollziehbarkeit für die Stakeholder ermöglicht.
 
-Problemberichte sind eine gängige Wahl, um den Stakeholdern eine  Verständnishilfe zu bieten (vgl. ~\autoref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz, zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
+Das Hauptproblem ergibt sich durch die Umgebung von Browsern. Denn die Webapplikationen befinden sich dadurch in einem abgekapselten System, welches einerseits nicht im Einfluss der Stakeholder ist und andererseits nur über deklarierte Schnittstellen zu anderen Systemen kommunizieren kann (Stichwort: CORS). Es gilt hierbei eine Möglichkeit zu schaffen, die Einblick in eine Browserumgebung gewährt.
 
-Dies lässt folgern, dass die Informationserhebung nicht allein von den Nutzern aus geschehen sollte. Es ist ein übergreifendes Konzept anzustreben, welches die Informationslücke ausgleicht und eine Nachvollziehbarkeit für die Stakeholder ermöglicht.
+Weiterhin gibt es die Herausforderung, dass das Verhalten einer Applikation nachvollziehbar gemacht wird. Dies ist abhängig von der Bewältigung des Hauptproblems, denn die Nachvollziehbarkeit soll aus Sicht der Stakeholder erreicht werden.
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
