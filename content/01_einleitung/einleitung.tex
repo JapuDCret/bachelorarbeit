@@ -8,26 +8,15 @@
 \nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
 \nomenclature[Fachbegriff]{Log}{Englisch für ``Protokoll``}
 
-In der Welt der Webapplikationen gibt es die Hürde, dass meist keine direkte Kommunikation zwischen Nutzern und den Verantwortlichen besteht. Die Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
-
-Die Stakeholder müssen aber das Nutzer- und das Anwendungsverhalten verstehen und nachvollziehen können. Nur so kann eine effiziente Instandhaltung und erfolgreiche Weiterentwicklung der Anwendung gewährleistet werden. Bei JavaScript-basierten Webapplikationen gibt es zusätzlich das Hindernis, dass Kontextinformationen, wie z.B. Logs, nur auf dem Client verfügbar sind. Diese Hürden müssen überkommen werden, es muss eine \textbf{Nachvollziehbarkeit} erreicht werden.
-
-% gibt es stets die Hürde, dass ``im Feld`` unvorhergesehene Probleme auftreten. Donald Norman \cite{TheProblemOfAutomation} argumentierte bereits 1989, dass bei komplexen Aufgaben und Umgebungen das Unerwartete zu erwarten ist. % Nutzerfeedback ist notwendig um diese Situation aufzuklären und beheben zu können \cite{AnErrorReportingAndFeedbackComponent}.
-
-%Diese Probleme gilt es meist zu beheben, um einen uneingeschränkten Ablauf zu gewährleisten. Bei Webapplikationen, also dem Fokus der Arbeit, können im Regelfall die Nutzer selber die Probleme nicht lösen. Für dessen Behebung werden Informationen benötigt, welche sich auf das System und den Nutzer beziehen, und welche den Verantwortlichen mitzuteilen sind.
-%
-%Für eine schnelle und gründliche Behebung benötigen die Stakeholder detaillierte Informationen, was in der Praxis aber selten der Fall ist \cite{AnErrorReportingAndFeedbackComponent}. Fehlende Informationen erschweren die Verständnisgewinnung, dadurch dass das Problem nicht oder nicht einfach nachvollziehbar ist.
-
-%Bei Webapplikationen ist dieses Problem noch prägnanter, denn hier sind..
-%\begin{itemize}
-%	\item ..die Systeme selber meist um ein Vielfaches komplexer \cite{ManagingTheComplexityOfWebSystemsDevelopment},
-%	\item ..die Umgebungen komplex und unterschiedlich,
-%%	\item ..die Nutzer meist weniger gut oder gar nicht geschult,
-%	\item ..die Nutzer eher unwissend, wie das System funktioniert \cite{AnErrorReportingAndFeedbackComponent} und
-%	\item ..die Nutzer stehen meist nicht im direkten Kontakt mit den Stakeholdern \cite{EndUsersAsUnwittingSoftwareDevelopers}. Stakeholder sind im Rahmen dieser Arbeit die Betreiber und Entwickler einer Webapplikation.
-%\end{itemize}
-
 \nomenclature[Fachbegriff]{Stakeholder}{In dieser Arbeit werden Betreiber und Entwickler einer Webapplikation als Stakeholder bezeichnet}
+
+Entwickler und Betreiber von JavaScript-basierten Webapplikationen werden fast alltäglich damit konfrontiert, dass sie beispielsweise zu Zwecken der Problembehebung nachvollziehen müssen, wie ein Nutzer die Applikation verwendet und wie sich die Applikation dabei verhält. Dies ist in der Umgebung von Browsern deutlich schwieriger, als in anderen Projekten mit Nutzerinteraktion. Denn es gibt von Haus aus keine Möglichkeit über Logs das Verhalten nachzuvollziehen, weil die Logs nur beim Client einsehbar sind. Weiterhin muss man bei einer eigenen Lösung zur Informationsgewinnung mit der JavaScript-Sandbox im Browser umgehen, und CORS-Vorgaben einhalten.
+
+Mit diesen Schwierigkeiten bei Webapplikationen wird sich in dieser Arbeit beschäftigt, um nachhaltig eine Nachvollziehbarkeit zu erreichen.
+
+%In der Welt der Webapplikationen gibt es die Hürde, dass meist keine direkte Kommunikation zwischen Nutzern und den Verantwortlichen besteht. Die Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
+%
+%Die Stakeholder müssen aber das Nutzer- und das Anwendungsverhalten verstehen und nachvollziehen können. Nur so kann eine effiziente Instandhaltung und erfolgreiche Weiterentwicklung der Anwendung gewährleistet werden. Bei JavaScript-basierten Webapplikationen gibt es zusätzlich das Hindernis, dass Kontextinformationen, wie z.B. Logs, nur auf dem Client verfügbar sind. Diese Hürden müssen überkommen werden, es muss eine \textbf{Nachvollziehbarkeit} erreicht werden.
 
 \section{Problemstellung}
 
