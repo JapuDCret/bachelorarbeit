@@ -1,0 +1,6 @@
+[2020-10-15 12:47:00]
+Started watching "Application Monitoring and Error Tracking: How to Implement and Configure Sentry"
+https://www.youtube.com/watch?v=Kz-SudCTdu4
+
+[2020-10-15 13:34:00]
+finished watching - skipped Q&A
