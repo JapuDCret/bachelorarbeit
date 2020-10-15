@@ -4,13 +4,19 @@
 
 Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung  integriert - einer sogenannten Sandbox. \cite{LearningJavaScript}
 
-Zusätzlich hierzu gibt es weitere Einschränkungen, welche definieren was für Daten innerhalb der JavaScript Umgebung abgerufen werden dürfen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen werden folgend erklärt.
+Zusätzlich hierzu gibt es weitere Einschränkungen, welche definieren was für Daten innerhalb der JavaScript Umgebung abgerufen werden dürfen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen, die eine Webapplikationen nutzen kann, werden folgend erklärt.
 
 \subsection{Content-Security-Policy}
 
-Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor cross-site scripting (XSS), indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einem externen CDN benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
+\nomenclature[Fachbegriff]{CSP}{Content-Security-Policy}
+\nomenclature[Fachbegriff]{XSS}{cross-site scripting}
+\nomenclature[Fachbegriff]{CDN}{Content Delivery Network}
+
+Eine Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor cross-site scripting, indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einer externen Quelle (wie z.B. ein CDN) benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
 
 \subsection{Cross-Origin Resource Sharing (CORS)}
+
+
 
 \section{JavaScript-basierte Webapplikationen}
 \input{content/02_theorie/js-webapplications}
