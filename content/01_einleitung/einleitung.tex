@@ -5,15 +5,19 @@
 %\end{itemize}
 \section{Motivation}
 
-Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern klassisch per Telefon oder Post bzw. heutzutage überwiegend im Netz stattfindet.
+Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern klassisch per Telefon oder Post bzw. heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
 
-Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
+Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf die Situation und Bedürfnisse der Nutzer abgestimmt ist. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
 
-Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden, dass sie selber ihre Daten eingeben können und darauf basierend Vertragsvorschläge erhalten, die auf die Situation und Bedürfnisse der Kunden abgestimmt ist. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände, welche am Ende an einen Server übertragen werden und dieser antwortet dann mit den Vertragsvorschlägen.
+Nun kommt es aber vor, dass die gesendeten Eingaben nicht erlaubte Werte oder Wertkombinationen enthalten, sodass der Server darauf basierend keine Preise berechnen kann und einen Fehler liefert. Diese invaliden Eingaben sind in der Anfrage zu sehen und auch wie der Server darauf reagiert. Jedoch kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten, lediglich die Informationen, die bei der Dienstabfrage des Backends gesendet wurden (Eingaben, User-Agent, IP).
 
-Nun kommt es aber vor, dass die gesendeten Eingaben nicht erlaubte Werte oder Wertkombinationen enthalten, sodass der Server darauf basierend keinen Vorschlag senden kann und einen Fehler liefert. Diese invaliden Eingaben sieht das Entwicklerteam der Open Knowledge und auch wie der Server darauf reagiert, jedoch kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. 
+% ggf. Trennung zu Problemstellung hier
 
-Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten, lediglich die Informationen, die beim Dienstaufruf des Backends gesendet wurden (Eingaben, User-Agent, IP).
+Basierend auf den begrenzten Daten, ist es dem Team bisher nicht gelungen alle dieser Probleme nachzustellen. Dafür fehlen dem Team die Informationen, die beim jeweiligen Nutzer vorliegen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat oder wie genau seine Browserumgebung aussieht.
+
+Es handelt sich hierbei um keine Expertenanwendung, sondern um ein öffentliches Produkt im Internet. Es gibt keinen direkten Kommunikationsweg von den Nutzern zu den Stakeholdern. Deswegen ist ein Einbau eines simplen Fehlerberichtes nicht ausreichend.
+
+Anzustreben ist eine automatische Informationserfassung, die den Stakeholdern eine Nachvollziehbarkeit über die Webapplikation verleiht. Dabei ist zu beachten, dass das Projektumfeld sich im Web bewegt und das während einer Lösungserstellung mit den Limitierungen von Browsern umgegangen werden muss.
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
