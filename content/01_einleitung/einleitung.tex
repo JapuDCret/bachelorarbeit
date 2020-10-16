@@ -5,53 +5,15 @@
 %\end{itemize}
 \section{Motivation}
 
-\nomenclature[Fachbegriff]{GUI}{Graphical-User-Interface, Grafische Benutzeroberfläche}
-\nomenclature[Fachbegriff]{Log}{Englisch für ``Protokoll``}
-\nomenclature[Fachbegriff]{Stakeholder}{In dieser Arbeit werden Betreiber und Entwickler einer Webapplikation als Stakeholder bezeichnet}
+Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern klassisch per Telefon oder Post bzw. heutzutage überwiegend im Netz stattfindet.
 
-Entwickler und Betreiber von JavaScript-basierten Webapplikationen werden fast alltäglich mit Verständnisproblemen konfrontiert. Sie müssen beispielsweise zu Zwecken der Problembehebung oder Verbesserung nachvollziehen können, wie ein Nutzer die Applikation verwendet und wie sich diese dabei verhält. Dies ist in der Umgebung von Browsern deutlich erschwert, als in anderen Projekten mit Nutzerinteraktion. Denn die notwendigen Informationen liegen beim Nutzer, für den Betreiber ist lediglich die Kommunikation zum Backend sichtbar.
+Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
 
-Backend-Aufrufe sind jedoch nur bedingt hilfreich, weil sie meist ein Ergebnis eines abgeschlossenen Prozesses darstellen, aber keine Informationen dazu liefern, wie der Prozess abgeschlossen wurde.
+Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden, dass sie selber ihre Daten eingeben können und darauf basierend Vertragsvorschläge erhalten, die auf die Situation und Bedürfnisse der Kunden abgestimmt ist. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände, welche am Ende an einen Server übertragen werden und dieser antwortet dann mit den Vertragsvorschlägen.
 
-Deswegen beschäftigt sich die Arbeit mit der Erreichung von Nachvollziehbarkeit in JavaScript-basierten Webapplikationen und zielt darauf ab die zuvor genannten Hürden zu meistern.
+Nun kommt es aber vor, dass die gesendeten Eingaben nicht erlaubte Werte oder Wertkombinationen enthalten, sodass der Server darauf basierend keinen Vorschlag senden kann und einen Fehler liefert. Diese invaliden Eingaben sieht das Entwicklerteam der Open Knowledge und auch wie der Server darauf reagiert, jedoch kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. 
 
-%In der Welt der Webapplikationen gibt es die Hürde, dass meist keine direkte Kommunikation zwischen Nutzern und den Verantwortlichen besteht. Die Verantwortlichen werden in dieser Arbeit mit \textbf{Stakeholder} bezeichnet und umfassen Betreiber und Entwickler.
-%
-%Die Stakeholder müssen aber das Nutzer- und das Anwendungsverhalten verstehen und nachvollziehen können. Nur so kann eine effiziente Instandhaltung und erfolgreiche Weiterentwicklung der Anwendung gewährleistet werden. Bei JavaScript-basierten Webapplikationen gibt es zusätzlich das Hindernis, dass Kontextinformationen, wie z.B. Logs, nur auf dem Client verfügbar sind. Diese Hürden müssen überkommen werden, es muss eine \textbf{Nachvollziehbarkeit} erreicht werden.
-
-\section{Problemstellung}
-
-%Die besonderen Hürden bei GUIs und speziell bei JavaScript-basierten Webapplikationen, welche die Nachvollziehbarkeit einschränken, gilt es zu bewältigen.
-
-%\begin{wrapfigure}[12]{r}{0.33\linewidth}
-%	\centering
-%	\vspace{-\baselineskip}
-%	\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
-%	\caption{Formular aus der Instagram \cite{Instagram} Android App}
-%	\label{fig:instagram-feedback-example}
-%\end{wrapfigure}
-
-%Aufgrund dieser Bedingungen werden bei Webprojekten Probleme im Feld erwartet. Zur Behebung dieser Mängel benötigen die Stakeholder Informationen. Für Nutzer gibt es daher oftmals Formulare um diese Auffälligkeiten zu melden (Beispiel siehe rechts). Die Einbindung solcher Formulare ist zeit- und kostengünstig, kann aber nur erfolgreich sein, wenn die Nutzer verständliches und informatives Feedback geben können und wollen.
-
-%Diese Hürden für Stakeholder umfassen folgendes:
-%\begin{enumerate}
-%	\item Kontextinformationen sind nicht einsehbar und
-%	\item Nutzerverhalten ist nicht bekannt.
-%\end{enumerate}
-%
-%Problemberichte sind eine gängige Wahl, um den Stakeholdern eine  Verständnishilfe zu bieten (vgl. ~\autoref{fig:instagram-feedback-example}). Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch bei Problemberichten eine Diskrepanz, zwischen dem was die Stakeholder als hilfreich empfanden und dem was Nutzer ihnen als Bericht lieferten.
-%
-%Dies lässt folgern, dass die Informationserhebung nicht allein von den Nutzern aus geschehen sollte. Es ist ein übergreifendes Konzept anzustreben, welches die Informationslücke ausgleicht und eine Nachvollziehbarkeit für die Stakeholder ermöglicht.
-
-Eine Problematik ergibt sich nun aus der Einschränkung, dass den Entwicklern und Betreibern die Möglichkeit fehlt, an notwendige Informationen zu gelangen.
-
-Aufgespalten finden sich aus der Problematik vier Kernprobleme:
-\begin{enumerate}
-	\item Welche Informationen gibt es und wie helfen diese bei der Nachvollziehbarkeit?
-	\item Wie können diese Informationen erfasst werden?
-	\item Wie können diese Informationen an die Stakeholder gelangen?
-	\item Wie können diese Informationen für die Stakeholder verständlich aufbereitet werden?
-\end{enumerate}
+Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten, lediglich die Informationen, die beim Dienstaufruf des Backends gesendet wurden (Eingaben, User-Agent, IP).
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
