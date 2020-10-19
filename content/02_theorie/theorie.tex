@@ -25,7 +25,13 @@ Wie zuvor angerissen, wird die JavaScript Umgebung in Browsern in einer virtuell
 
 \subsection{Logdaten}
 
+Ähnlich wie andere Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf und die Funktionen dessen können je nach Browser variieren. Weiterhin sind die Daten, welche in die Ausgabe geschrieben wurden, aus der JavaScript Umgebung nicht lesbar.
 
+Die Daten selber zu Handhaben wäre eine Möglichkeit, Zugriff zu ihnen zu haben - aber hier besteht weiterhin das Problem, wie die Daten an die Stakeholder gelangen. Weiterhin muss dann mit dem Problem des limitierten Speichers der JavaScript Umgebung umgegangen werden.
+
+\subsection{Fernzugriff}
+
+Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist dass die Stakeholder sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen ginge dies vielleicht, aber wenn eine Webapplikation für den offenen Markt geschaffen ist, sind die Nutzer zahlreich und unbekannt.
 
 \section{JavaScript-basierte Webapplikationen}
 \input{content/02_theorie/js-webapplications}
