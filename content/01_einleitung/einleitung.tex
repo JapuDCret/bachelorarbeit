@@ -5,15 +5,15 @@
 %\end{itemize}
 \section{Motivation}
 
-Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern klassisch per Telefon oder Post bzw. heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
+Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern entweder klassisch per Telefon oder heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
 
-Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf die Situation und Bedürfnisse der Nutzer abgestimmt ist. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
+Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf der Situation der Nutzer basieren. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
 
 Nun kommt es aber vor, dass die gesendeten Eingaben nicht erlaubte Werte oder Wertkombinationen enthalten, sodass der Server darauf basierend keine Preise berechnen kann und einen Fehler liefert. Diese invaliden Eingaben sind in der Anfrage zu sehen und auch wie der Server darauf reagiert. Jedoch kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten, lediglich die Informationen, die bei der Dienstabfrage des Backends gesendet wurden (Eingaben, User-Agent, IP).
 
 % ggf. Trennung zu Problemstellung hier
 
-Basierend auf den begrenzten Daten, ist es dem Team bisher nicht gelungen alle dieser Probleme nachzustellen. Dafür fehlen dem Team die Informationen, die beim jeweiligen Nutzer vorliegen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat oder wie genau seine Browserumgebung aussieht.
+Basierend auf den begrenzten Daten, ist es dem Team bisher nicht gelungen alle dieser Probleme nachzustellen. Dafür fehlen dem Team jene Informationen, die beim jeweiligen Nutzer vorliegen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat oder wie genau seine Browserumgebung aussieht.
 
 Es handelt sich hierbei um keine Expertenanwendung, sondern um ein öffentliches Produkt im Internet. Es gibt keinen direkten Kommunikationsweg von den Nutzern zu den Stakeholdern. Deswegen ist ein Einbau eines simplen Fehlerberichtes nicht ausreichend.
 
