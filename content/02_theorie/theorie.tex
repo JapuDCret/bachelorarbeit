@@ -12,12 +12,16 @@ Zusätzlich hierzu gibt es weitere Einschränkungen, welche definieren was für 
 \subsection{Content-Security-Policy}
 
 \nomenclature[Fachbegriff]{CSP}{Content-Security-Policy}
-\nomenclature[Fachbegriff]{XSS}{cross-site scripting}
+\nomenclature[Fachbegriff]{XSS}{Cross-Site-Scripting}
 \nomenclature[Fachbegriff]{CDN}{Content Delivery Network}
 
-Eine Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor cross-site scripting, indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einer externen Quelle (wie z.B. ein CDN) benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
+Eine Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor Cross-Site-Scripting, indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einer externen Quelle (wie z.B. ein CDN) benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
 
 \subsection{Cross-Origin Resource Sharing (CORS)}
+
+Das Konzept von CORS stellt sicher, dass eine Webapplikation keine Ressourcen von Webservern anfragt, die nicht dem bereitstellenden Webserver entsprechen.
+
+Beispielsweise könnte man versuchen eine eigene Webapplikation auf \texttt{localhost:3000} zu hosten und von hier aus Anfragen an eine Facebook API zu senden, bspw. ``https://graph.facebook.com/{user-id}/feed``. Dies lässt der Browser aber nur zu, wenn der Dienst von Facebook explizit sagt, dass die eine unter ``localhost:3000`` bereitgestellte Applikation ihren Dienst benutzen darf. Dies ist natürlich nicht der Fall und deswegen wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl.
 
 \subsection{Sandbox}
 
@@ -27,7 +31,7 @@ Wie zuvor angerissen, wird die JavaScript Umgebung in Browsern in einer virtuell
 
 Ähnlich wie andere Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf und die Funktionen dessen können je nach Browser variieren. Weiterhin sind die Daten, welche in die Ausgabe geschrieben wurden, aus der JavaScript Umgebung nicht lesbar.
 
-Die Daten selber zu Handhaben wäre eine Möglichkeit, Zugriff zu ihnen zu haben - aber hier besteht weiterhin das Problem, wie die Daten an die Stakeholder gelangen. Weiterhin muss dann mit dem Problem des limitierten Speichers der JavaScript Umgebung umgegangen werden.
+Eine Alternative wäre, die Daten selber zu erheben oder sie abzufangen - aber es besteht weiterhin die Hürde, wie die Daten an die Stakeholder gelangen. Weiterhin muss dann mit dem Problem des limitierten Speichers der JavaScript Umgebung umgegangen werden.
 
 \subsection{Fernzugriff}
 
