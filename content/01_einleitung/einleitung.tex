@@ -5,19 +5,19 @@
 %\end{itemize}
 \section{Motivation}
 
-Die Open Knowledge GmbH betreut einen Kunden, welcher als Direktversicherer agiert. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern entweder klassisch per Telefon oder heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in der Beratung und der Weiterentwicklung.
+Die Open Knowledge GmbH betreut einen großen deutschen Direktversicherer. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern entweder klassisch per Telefon oder heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in allen Phasen der Softwareentwicklung.
 
-Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf der Situation der Nutzer basieren. Diese Webapplikationen ist clientbasiert und beinhaltet viele Eingaben und darauf basierende Zustände. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
+Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf der Situation der Nutzer basieren. Diese Webapplikation ist clientbasiert und beinhaltet. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
 
-Nun kommt es aber vor, dass die gesendeten Eingaben nicht erlaubte Werte oder Wertkombinationen enthalten, sodass der Server darauf basierend keine Preise berechnen kann und einen Fehler liefert. Diese invaliden Eingaben sind in der Anfrage zu sehen und auch wie der Server darauf reagiert. Jedoch kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten, lediglich die Informationen, die bei der Dienstabfrage des Backends gesendet wurden (Eingaben, User-Agent, IP).
+Im Betrieb kommt es aber vor, dass zu manchen Eingaben der Server keine Preise berechnen kann und einen Fehler liefert. Der Fehler konnte auf das Frontend eingeschränkt werden, denn es wurden nicht erlaubte Wertkombinationen gesendet. Bei einigen dieser invaliden Eingaben, kann nciht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten. Im Idealfall gibt es Informationen vom Backend, die bei der Anfrage mitgesendet wurden (Eingaben, User-Agent, IP), welche aber nur bedingt hilfreich sind.
 
 % ggf. Trennung zu Problemstellung hier
 
-Basierend auf den begrenzten Daten, ist es dem Team bisher nicht gelungen alle dieser Probleme nachzustellen. Dafür fehlen dem Team jene Informationen, die beim jeweiligen Nutzer vorliegen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat oder wie genau seine Browserumgebung aussieht.
+Basierend auf den begrenzten Daten, ist es den Stakeholdern bisher nicht gelungen alle dieser Probleme nachzustellen. Dafür fehlen ihnen jene Informationen, die beim Nutzer im Browser vorliegen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat oder wie genau seine Browserumgebung aussieht. Es handelt sich hierbei um keine Expertenanwendung, sondern um ein öffentliches Produkt im Internet. Es gibt keinen direkten Kommunikationsweg von den Nutzern zu den Stakeholdern. Das Einholen von Feedback der Nutzer ist nicht primär anzustreben, denn wie Bettenburg \etal \cite{WhatMakesAGoodBugReport} herausfanden, sind solche Berichte meist nicht ausreichend hilfreich für die Stakeholder.
 
-Es handelt sich hierbei um keine Expertenanwendung, sondern um ein öffentliches Produkt im Internet. Es gibt keinen direkten Kommunikationsweg von den Nutzern zu den Stakeholdern. Deswegen ist ein Einbau eines simplen Fehlerberichtes nicht ausreichend.
+Daher ist eine automatische Informationserfassung anzustreben, die den Stakeholdern Verständnis über das Nutzerinteraktionen und das Applikationsverhalten ermöglicht. Letztendlich soll aus Sicht der Stakeholder eine Nachvollziehbarkeit das Ziel sein.
 
-Anzustreben ist eine automatische Informationserfassung, die den Stakeholdern eine Nachvollziehbarkeit über die Webapplikation verleiht. Dabei ist zu beachten, dass das Projektumfeld sich im Web bewegt und das während einer Lösungserstellung mit den Limitierungen von Browsern umgegangen werden muss.
+Dabei ist zu beachten, dass das Projektumfeld sich im Web bewegt und das während einer Lösungserstellung mit den Limitierungen von Browsern umgegangen werden muss. Des Weiteren müssen gesetzliche Vorgaben und firmeninterne Vorgaben und Einschränkungen beachtet werden.
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
@@ -62,11 +62,9 @@ Folgende Fragen sollen im Zuge der Ausarbeitung beantwortet werden:
 
 Bei der Betrachtung von Webapplikationen, sollen nur jene betrachtet werden, die dynamisch mit JavaScript erzeugt werden - auch Single-Page-Applications (SPAs) genannt.
 
-Bei der Implementierung soll ein Proof-of-Concept bzw. eine Demonstration der vorgestellten Methoden und Konzepte erstellt werden. Eine allgemeingültige Lösung übersteigt den Rahmen der Bachelorarbeit und ist nicht anzustreben.
-
 \nomenclature[Fachbegriff]{PoC}{Proof-of-Concept}
 
-Im Zuge der Implementierung der Erweiterung, soll beleuchtet werden, welche Daten erhoben werden und wie mit diesen umgegangen wird. Eine Analyse der Datenverarbeitung in Hinblick auf vollste Konformität mit der DSGVO wird jedoch nicht Bestandteil sein.
+Bei der Implementierung soll ein Proof-of-Concept bzw. eine Demonstration der vorgestellten Methoden und Konzepte erstellt werden. Eine allgemeingültige Lösung übersteigt den Rahmen der Bachelorarbeit und ist nicht anzustreben. Weiterhin soll beleuchtet werden, welche Daten erhoben werden und wie mit diesen umgegangen wird. Eine Analyse der Datenverarbeitung in Hinblick auf vollste Konformität mit der DSGVO wird jedoch nicht Bestandteil sein.
 
 \pagebreak
 
