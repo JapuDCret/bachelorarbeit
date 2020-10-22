@@ -9,7 +9,7 @@ Die Open Knowledge GmbH betreut einen großen deutschen Direktversicherer. Direk
 
 Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie selber ihre Daten eingeben können und darauf basierend Versicherungspreise erhalten, die auf der Situation der Nutzer basieren. Diese Webapplikation ist clientbasiert und beinhaltet. Diese Eingaben werden an einen Server übertragen, welcher daraufhin mit Preisen für Vertrag basierend auf den Eingaben antwortet.
 
-Im Betrieb kommt es aber vor, dass zu manchen Eingaben der Server keine Preise berechnen kann und einen Fehler liefert. Der Fehler konnte auf das Frontend eingeschränkt werden, denn es wurden nicht erlaubte Wertkombinationen gesendet. Bei einigen dieser invaliden Eingaben, kann nciht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten. Im Idealfall gibt es Informationen vom Backend, die bei der Anfrage mitgesendet wurden (Eingaben, User-Agent, IP), welche aber nur bedingt hilfreich sind.
+Im Betrieb kommt es aber vor, dass zu manchen Eingaben der Server keine Preise berechnen kann und einen Fehler liefert. Der Fehler konnte auf das Frontend eingeschränkt werden, denn es wurden nicht erlaubte Wertkombinationen gesendet. Bei einigen dieser invaliden Eingaben, kann nicht nachvollzogen werden, wie ein Kunde zu diesem Zustand gelangt ist. Es gibt derzeit keine Möglichkeit die Informationen des Clients zu erhalten. Im Idealfall gibt es Informationen vom Backend, die bei der Anfrage mitgesendet wurden (Eingaben, User-Agent, IP), welche aber nur bedingt hilfreich sind.
 
 % ggf. Trennung zu Problemstellung hier
 
@@ -75,7 +75,7 @@ Bei der Implementierung soll ein Proof-of-Concept bzw. eine Demonstration der vo
 %\end{itemize}
 \section{Vorgehensweise}
 
-Zur Vorbereitung eines Proof-of-Concepts, soll zunächst die Ausgangssituation geschildert werden. Speziell soll auf die Herausforderungen der Umgebung ``Browser`` eingegangen werden, in Hinblick auf den Aspekt der Nachvollziehbarkeit. Des Weiteren gilt es die Nachvollziehbarkeit als solche zu erläutern.
+Zur Vorbereitung eines Proof-of-Concepts, soll zunächst die Ausgangssituation geschildert werden. Speziell sollen auf die Herausforderungen der Umgebung ``Browser`` eingegangen werden, besonders in Hinblick auf die Verständnisgewinnung zu Interaktionen eines Nutzers und des Verhaltens der Applikation. Des Weiteren gilt es die Nachvollziehbarkeit als solche zu erläutern.
 
 % Um das Ziel, die Erstellung eines Proof-of-Concept (PoC), zu erreichen, wird vorerst die Literatur geprüft und die Ausgangssituation erörtert und beschrieben. Die Nachvollziehbarkeit und ihr Nutzen werden vorgestellt.
 

@@ -17,7 +17,7 @@ Die JavaScript-Sandbox bei Browsern schränkt ein, dass unter anderem kein Zugri
 
 \subsection{Einschränkungen}
 
-Zusätzlich zu der Sandbox gibt es weitere Einschränkungen, die definieren welche für Daten innerhalb der JavaScript Umgebung abgerufen werden dürfen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
+Zusätzlich zu der Sandbox gibt es weitere Einschränkungen, die definieren welche Daten innerhalb der JavaScript Umgebung abgerufen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
 
 \subsubsection{Content-Security-Policy}
 
@@ -34,14 +34,14 @@ Das Konzept von CORS stellt sicher, dass eine Webapplikation keine Ressourcen vo
 \begin{quotation}
 Ein Nutzer ruft eine Webapplikation auf, welche unter \texttt{localhost:3000} bereitgestellt wird. Diese Webapplikation sendet, für den Nutzer unwissend, Anfragen an einen Facebook Dienst. Dies lässt der Browser aber nur zu, wenn der Dienst von Facebook explizit bestätigt, dass eine Anfrage von \texttt{localhost:3000} diese Aktion ausführen darf.
 
-Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``) der Anfrage notiert ist. Der Facebook Dienst antwortet daraufhin mit den entsprechenden CORS-Headern und gibt somit an, von welchen Origins aus diese Abfragen erlaubt sind. Nun prüft der Browser, ob die von Facebook untermittelten Origins übereinstimmen. Ist dies nicht der Fall, wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl. Details zum Fehler werden der JavaScript Umgebung nicht verfügbar gemacht.
+Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``) der Anfrage notiert ist. Der Facebook Dienst antwortet daraufhin mit den entsprechenden CORS-Headern und gibt somit an, ob die Anfrage von dieser Origin aus erlaubt ist. Nun prüft der Browser, ob die von Facebook untermittelten Origins übereinstimmen. Ist dies nicht der Fall, wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl. Details zum Fehler werden der JavaScript Umgebung nicht verfügbar gemacht.
 \end{quotation}
 
 \subsection{Logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf und die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer diesen Log bereitstellen.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf sowie die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer diesen Log bereitstellen.
 
-Eine Automatisierung der Logdatenerhebung ist aber ebenso nicht leicht, denn die Daten, welche in die Ausgabe geschrieben wurden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Dabei besteht aber weiterhin die Hürde, wie die Daten an die Stakeholder gelangen und zusätzlich ist der limitierte Speicher der JavaScript Umgebung zu beachten.
+Eine Automatisierung der Logdatenerhebung ist aber ebenso nicht unkompliziert, denn die Daten, welche in die Ausgabe geschrieben werden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Dabei besteht aber weiterhin die Hürde, wie die Daten an die Stakeholder gelangen und zusätzlich ist der limitierte Speicher der JavaScript Umgebung zu beachten.
 
 \subsection{Fernzugriff}
 
@@ -58,9 +58,7 @@ Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist 
 
 \section{Nachvollziehbarkeit}
 
-	\textit{Hier soll die Nachvollziehbarkeit allgemein beschrieben werden und warum sie erstrebenswert ist.}
-
-	Sie beschäftigt sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer für die Stakeholder verständlich zu machen. Sie ist getrennt von der Anstrebung einer Reproduzierbarkeit nach der wissenschaftlichen Methode anzusehen.
+	Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten einer Software auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits schon lange vorher im Gebiet der Ingenieur- und Steuerungstheorie Bedeutung. Speziell in dieser Arbeit wird sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer für die Stakeholder verständlich zu machen. Sie ist getrennt von der Anstrebung einer Reproduzierbarkeit nach der wissenschaftlichen Methode anzusehen.
 	
 	{\color{red}\textit{\lipsum[1]}}
 	
