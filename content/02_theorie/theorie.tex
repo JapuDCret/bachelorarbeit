@@ -58,12 +58,16 @@ Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist 
 
 \section{Nachvollziehbarkeit}
 
-	Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten einer Software auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits schon lange vorher im Gebiet der Ingenieur- und Steuerungstheorie Bedeutung. Speziell in dieser Arbeit wird sich mit der Informationserfassung und -aufbereitung, um das Verhalten eines Systems und die Interaktionen der Nutzer für die Stakeholder verständlich zu machen. Sie ist getrennt von der Anstrebung einer Reproduzierbarkeit nach der wissenschaftlichen Methode anzusehen.
+	Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{EnablingEventDrivenObservability} lässt sich diese Definition auch auf Softwaresysteme übertragen.
+	
+	Speziell in dieser Arbeit wird sich mit der Nachvollziehbarkeit in speziellen Situation befasst, nämlich wenn die Stakeholder das Verhalten einer Webapplikation und die Interaktionen eines Nutzers verstehen möchten. Dies bedeutet auch, dass keine allgemeine Nachvollziehbarkeit das Ziel ist, denn z.B. das Nutzer die internen Zustände eines Systems nachvollziehen können, ist nicht das Ziel.
 	
 	{\color{red}\textit{\lipsum[1]}}
 	
-	Tritt ein Problem bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
+	Tritt beispielsweise ein Problem bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder gering priorisiert und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
 	
 	\begin{quotation}
 	Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
 	\end{quotation}
+	
+	
