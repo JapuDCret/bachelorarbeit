@@ -1,54 +1,10 @@
 \section{Browserumgebung}
-
-% \textit{Hier soll eine Beschreibung der Umgebung erstellt werden, mit Nennung der speziellen Eigenschaften (Keywords: Sandbox, CORS, Logging)}
-
-In diesem Abschnitt wird erörtert, welche Besonderheiten die Umgebung ``Browser`` im Vergleich zu anderen Umgebungen besitzt.
-
-\subsection{JavaScript}
-
-Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung  integriert - einer sogenannten Sandbox. \cite{LearningJavaScript}
-
-% Erster Eindruck zu 2.1 ist schon ganz gut. Ich würde noch die Themen "Sandbox", "Logdaten" und "Fernzugriff (nicht möglich)" ergänzen.
-% Beim Thema "Fernzugriff" kann Christian Wansart dir ein bisschen was zum S&B Projekt erzählen. Dort haben wir an einer Kassensoftware gearbeitet, wo die Herausforderung existierte, dass man sich bei Bedarf auf der Kasse aufschalten kann.
-
-\subsubsection{JavaScript-Sandbox}
-
-Die JavaScript-Sandbox bei Browsern schränkt ein, dass unter anderem kein Zugriff auf das Dateisystem erfolgen kann. Auch Zugriff auf native Bibliotheken oder Ausführung von nativem Code ist nicht möglich \cite{TheSpyInTheSandbox}. Browser bieten dafür aber einige Schnittstellen an, die es erlauben z.B. Anfragen an andere Server zu senden oder auch um Daten beim Client zu speichern.
-
-\subsection{Einschränkungen}
-
-Zusätzlich zu der Sandbox gibt es weitere Einschränkungen, die definieren welche Daten innerhalb der JavaScript Umgebung abgerufen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
-
-\subsubsection{Content-Security-Policy}
-
-\nomenclature[Fachbegriff]{CSP}{Content-Security-Policy}
-\nomenclature[Fachbegriff]{XSS}{Cross-Site-Scripting}
-\nomenclature[Fachbegriff]{CDN}{Content Delivery Network}
-
-Eine Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor Cross-Site-Scripting, indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einer externen Quelle (wie z.B. ein CDN) benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
-
-\subsubsection{Cross-Origin Resource Sharing (CORS)}
-
-Das Konzept von CORS stellt sicher, dass eine Webapplikation keine Ressourcen von Webservern anfragt, die nicht dem bereitstellenden Webserver entsprechen \cite{MDNCORS}. Folgendes Beispiel soll den Nutzen und den generellen Ablauf von CORS näher erläutern:
-
-\begin{quotation}
-Ein Nutzer ruft eine Webapplikation auf, welche unter \texttt{localhost:3000} bereitgestellt wird. Diese Webapplikation sendet, für den Nutzer unwissend, Anfragen an einen Facebook Dienst. Dies lässt der Browser aber nur zu, wenn der Dienst von Facebook explizit bestätigt, dass eine Anfrage von \texttt{localhost:3000} diese Aktion ausführen darf.
-
-Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``) der Anfrage notiert ist. Der Facebook Dienst antwortet daraufhin mit den entsprechenden CORS-Headern und gibt somit an, ob die Anfrage von dieser Origin aus erlaubt ist. Nun prüft der Browser, ob die von Facebook untermittelten Origins übereinstimmen. Ist dies nicht der Fall, wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl. Details zum Fehler werden der JavaScript Umgebung nicht verfügbar gemacht.
-\end{quotation}
-
-\subsection{Logdaten}
-
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf sowie die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer diesen Log bereitstellen.
-
-Eine Automatisierung der Logdatenerhebung ist aber ebenso nicht unkompliziert, denn die Daten, welche in die Ausgabe geschrieben werden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Hierbei besteht aber weiterhin die Hürde, wie die Daten an die Stakeholder gelangen.
-
-\subsection{Fernzugriff}
-
-Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist dass die Stakeholder sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen ginge dies vielleicht, aber wenn eine Webapplikation für den offenen Markt geschaffen ist, sind die Nutzer zahlreich und unbekannt. Dies erschwert die detailreiche Informationserhebung, bei nicht nachvollziehbaren Situationen.
+\label{sec:browserumgebung}
+\input{content/02_theorie/browserumgebung}
 
 \section{Clientbasierte Webapplikationen}
-\input{content/02_theorie/js-webapplications}
+\label{sec:clientbased-webapps}
+\input{content/02_theorie/clientbasierte-webapps}
 	
 \newpage
 
@@ -57,19 +13,5 @@ Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist 
 \newpage
 
 \section{Nachvollziehbarkeit}
-
-	Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{EnablingEventDrivenObservability} lässt sich diese Definition auch auf Softwaresysteme übertragen.
-	
-	In dieser Arbeit wird sich mit der Nachvollziehbarkeit in speziellen Situation befasst, nämlich wenn die Stakeholder das Verhalten einer Webapplikation und die Interaktionen eines Nutzers verstehen möchten.% Dies bedeutet auch, dass keine allgemeine Nachvollziehbarkeit das Ziel ist, denn z.B. das Nutzer die internen Zustände eines Systems nachvollziehen können, ist nicht das Ziel.
-	
-	\subsection{Nutzen}
-	
-	Tritt beispielsweise ein Softwarefehler (Bug) bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder gering priorisiert und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und diesen bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
-	
-	\begin{quotation}
-	Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
-	\end{quotation}
-	
-	Durch den Bug konnte Shreateh auf die private Profilseite von Nutzern schreiben, ohne dass er mit ihnen vernetzt war. Um Aufmerksamkeit auf das Sicherheitsproblem zu erregen, hinterließ er eine Nachricht auf Facebooks Gründer und CEO Mark Zuckerbergs Profilseite. Erst hiernach wurde Facebooks Team aktiv, aber sperrte subsequent sein Konto.
-	
-	\subsection{Nachvollziehbarkeit in Webapplikationen}
+\label{sec:nachvollziehbarkeit}
+\input{content/02_theorie/nachvollziehbarkeit}
