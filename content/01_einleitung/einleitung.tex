@@ -31,14 +31,13 @@ Dabei ist zu beachten, dass das Projektumfeld sich im Web bewegt und das währen
 \nomenclature[Fachbegriff]{SPA}{Single Page Application}
 \nomenclature[Fachbegriff]{DSGVO}{Datenschutz Grundverordnung}
 
-Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder die Interaktionen eines Nutzers und das Verhalten einer Webapplikation nachvollziehen können. Dieses Ziel wird unter dem Begriff ``Nachvollziehbarkeit`` zusammengefasst.
-
-Folgende Fragen sollen im Zuge der Ausarbeitung beantwortet werden:
+Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder die Interaktionen eines Nutzers und das Verhalten einer Webapplikation nachvollziehen können. Dieses Ziel wird unter dem Begriff ``Nachvollziehbarkeit`` zusammengefasst. Folgende Fragen sollen im Zuge der Ausarbeitung beantwortet werden:
 
 % Feedback von Stephan: Gefällt mir in der neuen Fassung gut. Ggf. kannst du zu 1 noch 2-3 Unterpunkte hinzufügen worauf du genauer eingehen willst -> z.B. Fehler, "Nutzerverhalten" (wie navigiert der User durch die Anwendung), ...
 
 \begin{enumerate}
-	\item Was bedeutet Nachvollziehbarkeit?
+	\item Wie sieht das Projektumfeld aus?
+	\item Was bedeutet Nachvollziehbarkeit (bei Webapplikationen)?
 	\item Warum ist Nachvollziehbarkeit wichtig?
 	\item Wie kann eine gute Nachvollziehbarkeit erreicht werden?
 	\begin{enumerate}
@@ -62,11 +61,9 @@ Folgende Fragen sollen im Zuge der Ausarbeitung beantwortet werden:
 
 % Feedback von Christian: ja finde ich auch gut. Ich war zwischendurch am überlegen, in welchem Rahmen man das betrachten kann, da Datenschutz und Datensicherheit ja ein großes Thema ist. Also, ob man da nicht ggf. eine Abgrenzung machen sollte.
 
-Bei der Betrachtung von Webapplikationen, sollen nur jene betrachtet werden, die dynamisch mit JavaScript erzeugt werden - auch Single-Page-Applications (SPAs) genannt.
-
 \nomenclature[Fachbegriff]{PoC}{Proof-of-Concept}
 
-Bei der Implementierung soll ein Proof-of-Concept für eine spezielle Webapplikation das Ziel sein, eine vollständig allgemeingültige Lösung ist nicht anzustreben. Weiterhin soll beleuchtet werden, welche Daten erhoben werden und wie mit diesen umgegangen wird. Vollste Konformität mit der DSGVO soll jedoch nicht das primäre Ziel sein.
+Bei der Betrachtung von Webapplikationen, werden nur Single-Page-Applications (SPAs) hinzugezogen, denn hier bewegt sich das Projektumfeld von Open Knowledge. Bei der Implementierung soll ein Proof-of-Concept für eine spezielle Webapplikation das Ziel sein, eine vollständig allgemeingültige Lösung ist nicht anzustreben. Weiterhin soll beleuchtet werden, welche Daten erhoben werden und wie mit diesen umgegangen wird. Vollste Konformität mit der DSGVO soll jedoch nicht das primäre Ziel sein.
 
 \pagebreak
 
@@ -77,7 +74,7 @@ Bei der Implementierung soll ein Proof-of-Concept für eine spezielle Webapplika
 %\end{itemize}
 \section{Vorgehensweise}
 
-Zur Vorbereitung eines Proof-of-Concepts, soll zunächst die Ausgangssituation geschildert werden. Speziell sollen auf die Herausforderungen der Umgebung ``Browser`` eingegangen werden, besonders in Hinblick auf die Verständnisgewinnung zu Interaktionen eines Nutzers und des Verhaltens der Applikation. Des Weiteren gilt es die Nachvollziehbarkeit als solche zu erläutern.
+Zur Vorbereitung eines Proof-of-Concepts wird zunächst die Ausgangssituation geschildert. Speziell wird auf die Herausforderungen der Umgebung ``Browser`` eingegangen, besonders in Hinblick auf die Verständnisgewinnung zu Interaktionen eines Nutzers und des Verhaltens der Applikation. Des Weiteren wird die Nachvollziehbarkeit als solche formal beschrieben und was sie im Projektumfeld genau bedeutet.
 
 % Um das Ziel, die Erstellung eines Proof-of-Concept (PoC), zu erreichen, wird vorerst die Literatur geprüft und die Ausgangssituation erörtert und beschrieben. Die Nachvollziehbarkeit und ihr Nutzen werden vorgestellt.
 
@@ -89,7 +86,7 @@ Darauf aufbauend werden allgemeine Methoden vorgestellt, mit der die Stakeholder
 
 Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden wird nun ein Proof-of-Concept erstellt. Ziel soll dabei sein, die Nachvollziehbarkeit einer Webapplikation zu verbessern. Das Proof-of-Concept erfolgt auf Basis einer bestehenden Webapplikation der Open Knowledge GmbH. 
 
-Ist ein PoC nun erstellt, wird analysiert, welchen Einfluss es auf die Nachvollziehbarkeit hat und ob die gewünschten Ziele erreicht wurden.
+Ist ein PoC nun erstellt, wird analysiert, welchen Einfluss es auf die Nachvollziehbarkeit hat und ob die gewünschten Ziele erreicht wurden (vgl. Zielsetzung).
 
 % Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
 
@@ -111,7 +108,7 @@ Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Op
 
 Die Open Knowledge GmbH ist ein brancheneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde in Essen der zweite Standort eröffnet, an dem 13 Mitarbeiter angestellt sind.
 
-Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten.% \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH sind als Redner auf Fachmessen wie der Javaland oder als Autoren in Fachzeitschriften wie dem Java Magazin vertreten. % Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten.% \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z.B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
 
 %Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
 %
