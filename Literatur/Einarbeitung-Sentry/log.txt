@@ -4,3 +4,8 @@ https://www.youtube.com/watch?v=Kz-SudCTdu4
 
 [2020-10-15 13:34:00]
 finished watching - skipped Q&A
+
+
+[2020-10-26 12:33:00]
+Found interesting video "Debugging in Full Context with FullStory and Sentry"
+https://www.youtube.com/watch?v=ugUtpuWMPsg

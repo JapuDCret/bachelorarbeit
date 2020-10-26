@@ -1,0 +1,28 @@
+https://www.overops.com/blog/the-complete-guide-to-error-tracking-tools-rollbar-vs-raygun-vs-sentry-vs-airbrake-vs-bugsnag-vs-overops/
+Error Tracking Tools
+1. OverOps
+2. Rollbar
+3. Raygun
+4. Sentry
+5. Airbrake
+6. BugSnag
+7. StackHunter
+
+
+https://docs.logrocket.com/docs/comparisons
+Application Performance Monitoring
+  New Relic, Dynatrace, AppDynamics
+
+Session Replay
+  Hotjar, Inspectlet, FullStory, Jaco, Smartlook
+
+Exception Trackers
+  Bugsnag, Sentry, Rollbar, TrackJS
+
+
+https://stackshare.io/stackups/logrocket-vs-sentry
+
+
+https://sentry.io/resources/debugging-with-full-context-using-sentry-fullstory/
+https://github.com/getsentry/sentry-fullstory
+  Integraton für Sentry
