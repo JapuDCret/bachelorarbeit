@@ -15,6 +15,10 @@ Microsoft nahm 1999 im Internet Explorer 5.0 eine neue Methode in ihre JavaScrip
 
 Webapplikationen wurden nun immer beliebter, aber Entwickler klagten darüber, dass Browser die Abfragen von JavaScript nur auf dem bereitstellenden Webserver, also ``same-origin``, erlauben\cite{CrossSiteXHRWithCORS}. Im selben Jahr der Standardisierung von Ajax, wurde ein erster Entwurf zur Ermöglichung und Absicherung von Abrufen domänenfremder Ressourcen eingereicht \cite{AuthorizingCORS}, das sogenannte Cross-Origin Resource Sharing.
 
+% {\color{red}\textit{TODO: add some more which flows into the next subsection}}
+
+Im folgenden Abschnitt werden, für diese Arbeit relevante, Sicherheitsvorkehrungen von Browsern vorgestellt und beschrieben - darunter auch Cross-Origin Resource Sharing.
+
 %\subsubsection{Fehleranfälligkeit}
 %
 %Die Sprache JavaScript stellt an sich auch eine Besonderheit der Umgebung dar. Denn anders als z.B. C, C++, Java gilt sie als fehleranfällig \cite{FastReproducingWebApplicationErrors}. Dies
@@ -23,23 +27,43 @@ Webapplikationen wurden nun immer beliebter, aber Entwickler klagten darüber, d
 
 % Zusätzlich zu der Sandbox gibt es weitere Vorkehrungen, die definieren welche Daten innerhalb der JavaScript Umgebung abgerufen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Vorkehrungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
 
+\subsubsection{Cross-Origin Resource Sharing (CORS)}
+
+Das Konzept von CORS stellt sicher, dass aus einer JavaScript-Umgebung heraus keine Ressourcen von Webservern angefragt werden, außer diese Webserver stimmen der Anfrage zu \cite{MDNCORS}. Folgendes vereinfachtes Beispiel soll den Nutzen und den generellen Ablauf von CORS näher erläutern:
+
+\begin{quotation}
+Ein Nutzer ruft eine Webapplikation auf, welche unter \texttt{localhost:3000} bereitgestellt wird. Diese Webapplikation sendet, für den Nutzer unwissend, Anfragen an einen Facebook Dienst. Dies lässt der Browser aber nur zu, wenn der Dienst von Facebook explizit bestätigt, dass eine Anfrage von \texttt{localhost:3000} diese Aktion ausführen darf.
+
+Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``) der Anfrage notiert ist. Der Facebook Dienst antwortet daraufhin mit den entsprechenden CORS-Headern und gibt somit an, ob die Anfrage von dieser Origin aus erlaubt ist. Nun prüft der Browser, ob die von Facebook übermittelten Origins übereinstimmen. Ist dies nicht der Fall, wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl. Details zum Fehler werden der JavaScript-Umgebung bewusst enthalten.
+\end{quotation}
+
 \subsubsection{Content-Security-Policy}
 
 \nomenclature[Fachbegriff]{CSP}{Content-Security-Policy}
 \nomenclature[Fachbegriff]{XSS}{Cross-Site-Scripting}
 \nomenclature[Fachbegriff]{CDN}{Content Delivery Network}
 
-Eine Content-Security-Policy definiert, welche Ressourcen (also Bilder, Skripte, etc.) von der Webapplikation aus geladen werden dürfen und über welches Protokoll. Dies dient dem Schutz vor Cross-Site-Scripting, indem eine Webapplikation beschränken kann, welche Aufrufe von ihr aus getätigt werden dürfen. Wird beispielsweise eine JavaScript-Bibliothek aus einer externen Quelle (wie z.B. ein CDN) benutzt und die Bibliothek wird zu späterer Zeit böswillig ausgetauscht oder modifiziert, kann durch die Härtungsmaßnahme einer Content-Security-Policy gewährleistet werden, dass keine Daten an unbekannte Server geschickt werden dürfen \cite{MDNContentSecurityPolicy}.
+Eine Content-Security-Policy (CSP) definiert, welche Funktionalitäten einer Webapplikation aus geladen zur Verfügung stehen. Dies dient unter anderem dem Schutz vor Cross-Site-Scripting, indem eine Webapplikation beschränken kann, welche Funktionalitäten in JavaScript verfügbar sind und von wo aus JavaScript und CSS Skripte geladen werden dürfen \cite{MDNContentSecurityPolicy}. Weiterhin kann bei einem Versuch der Webapplikation die Regeln zu umgehen Bericht darüber erstattet werden.
 
-\subsubsection{Cross-Origin Resource Sharing (CORS)}
+%Nachfolgendes Beispiel soll den Nutzen etwas näher bringen:
 
-Das Konzept von CORS stellt sicher, dass eine Webapplikation keine Ressourcen von Webservern anfragt, die nicht dem bereitstellenden Webserver entsprechen \cite{MDNCORS}. Folgendes Beispiel soll den Nutzen und den generellen Ablauf von CORS näher erläutern:
-
-\begin{quotation}
-Ein Nutzer ruft eine Webapplikation auf, welche unter \texttt{localhost:3000} bereitgestellt wird. Diese Webapplikation sendet, für den Nutzer unwissend, Anfragen an einen Facebook Dienst. Dies lässt der Browser aber nur zu, wenn der Dienst von Facebook explizit bestätigt, dass eine Anfrage von \texttt{localhost:3000} diese Aktion ausführen darf.
-
-Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``) der Anfrage notiert ist. Der Facebook Dienst antwortet daraufhin mit den entsprechenden CORS-Headern und gibt somit an, ob die Anfrage von dieser Origin aus erlaubt ist. Nun prüft der Browser, ob die von Facebook übermittelten Origins übereinstimmen. Ist dies nicht der Fall, wird die Anfrage im Browser blockiert und im JavaScript Kontext schlägt dieser fehl. Details zum Fehler werden der JavaScript Umgebung nicht verfügbar gemacht.
-\end{quotation}
+%\begin{quotation}
+%Eine Webapplikation, welche zwei numerische Eingaben von einem Nutzer entgegennimmt und darauf basierend eine komplexe Operation ausführt und das Ergebnis anzeigt. Diese Operation wird über ein eingebundenes Skript von einem CDN bereitgestellt. Weiterhin wird die Datenverarbeitung über ein eigens bereitgestelltes Skript durchgeführt. Da wir unseren Anwendungsfall kennen, kann durch die Härtungsmaßnahme einer CSP die Webapplikation abgesichert werden. Hierfür werden die Funktionalitäten auf das Folgende beschränkt:
+%
+%\begin{itemize}
+%	\item Das Laden von JavaScript vom eigenen Webserver (\textbf{self}) und vom CDN.
+%	\item Das Laden von \texttt{inline}-Skripten wird nicht erlaubt (und ist damit verboten).
+%	\item Bei Verstoß soll ein Bericht an einen eigenen Protokollserver gesendet werden.
+%\end{itemize}
+%
+%Die entsprechende CSP sieht wie folgt aus:
+%
+%\begin{verbatim}
+%Content-Security-Policy: default-src 'self'; script-src 'self' example.com;
+%\end{verbatim}
+%
+%Wird nun das Skript des CDN kompromittiert und versucht 
+%\end{quotation}
 
 \subsection{Logdaten}
 
