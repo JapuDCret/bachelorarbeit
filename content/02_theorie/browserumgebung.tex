@@ -4,22 +4,23 @@ In diesem Abschnitt wird erörtert, welche Besonderheiten die Umgebung ``Browser
 
 \subsection{JavaScript}
 
-Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung  integriert - einer sogenannten Sandbox. \cite{LearningJavaScript}
+Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung integriert - einer sogenannten Sandbox. \cite{LearningJavaScript}
 
-% Erster Eindruck zu 2.1 ist schon ganz gut. Ich würde noch die Themen "Sandbox", "Logdaten" und "Fernzugriff (nicht möglich)" ergänzen.
-% Beim Thema "Fernzugriff" kann Christian Wansart dir ein bisschen was zum S&B Projekt erzählen. Dort haben wir an einer Kassensoftware gearbeitet, wo die Herausforderung existierte, dass man sich bei Bedarf auf der Kasse aufschalten kann.
+Die JavaScript-Sandbox bei Browsern schränkt ein, dass unter anderem kein Zugriff auf das Dateisystem erfolgen kann. Auch Zugriff auf native Bibliotheken oder Ausführung von nativem Code ist nicht möglich \cite{TheSpyInTheSandbox}. Browser bieten dafür aber einige Schnittstellen an, die es erlauben z.B. Daten beim Client zu speichern oder auch Videos abzuspielen.
 
-\subsubsection{JavaScript-Sandbox}
+\nomenclature[Fachbegriff]{W3C}{World Wide Web Consortium}
 
-Die JavaScript-Sandbox bei Browsern schränkt ein, dass unter anderem kein Zugriff auf das Dateisystem erfolgen kann. Auch Zugriff auf native Bibliotheken oder Ausführung von nativem Code ist nicht möglich \cite{TheSpyInTheSandbox}. Browser bieten dafür aber einige Schnittstellen an, die es erlauben z.B. Anfragen an andere Server zu senden oder auch um Daten beim Client zu speichern.
+Microsoft nahm 1999 im Internet Explorer 5.0 eine neue Methode in ihre JavaScript-Umgebung auf, um den Funktionsumfang zu erweitern: Ajax (Asynchronous JavaScript and XML). Ajax erlaubt die Datenabfrage von Webservern mittels JavaScript. Hierdurch wird ermöglicht, dass Inhalte auf Webseiten dynamisch abgefragt und dargestellt wurden, zuvor war hierfür ein erneuter Seitenaufruf notwendig. Das Konzept wurde kurz darauf von allen damals gängigen Browser übernommen. Erst jedoch mit der Standardisierung 2006 durch das W3C \cite{TheXMLHttpRequestObject} fand die Methode Anklang und Einsatz bei Entwicklern und ist seitdem der Grundstein für unser dynamisches und interaktives Web \cite{TheStoryOfXMLHTTP}.
+
+Webapplikationen wurden nun immer beliebter, aber Entwickler klagten darüber, dass Browser die Abfragen von JavaScript nur auf dem bereitstellenden Webserver, also ``same-origin``, erlauben\cite{CrossSiteXHRWithCORS}. Im selben Jahr der Standardisierung von Ajax, wurde ein erster Entwurf zur Ermöglichung und Absicherung von Abrufen domänenfremder Ressourcen eingereicht \cite{AuthorizingCORS}, das sogenannte Cross-Origin Resource Sharing.
 
 %\subsubsection{Fehleranfälligkeit}
 %
 %Die Sprache JavaScript stellt an sich auch eine Besonderheit der Umgebung dar. Denn anders als z.B. C, C++, Java gilt sie als fehleranfällig \cite{FastReproducingWebApplicationErrors}. Dies
 
-\subsection{Einschränkungen}
+\subsection{Sicherheitsvorkehrungen}
 
-Zusätzlich zu der Sandbox gibt es weitere Einschränkungen, die definieren welche Daten innerhalb der JavaScript Umgebung abgerufen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Einschränkungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
+% Zusätzlich zu der Sandbox gibt es weitere Vorkehrungen, die definieren welche Daten innerhalb der JavaScript Umgebung abgerufen und mit welchen Diensten kommuniziert werden darf \cite{LearningJavaScript}. Zwei wichtige dieser Vorkehrungen, die eine Webapplikationen nutzen kann bzw. beachten muss, werden folgend erklärt.
 
 \subsubsection{Content-Security-Policy}
 
@@ -41,7 +42,7 @@ Dafür sendet der Browser eine OPTIONS-Anfrage, in der die Herkunft (``Origin``)
 
 \subsection{Logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf sowie die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer diesen Log bereitstellen. Zusätzlich ist es durch die zuvor beschrieben Härtungsmaßnahmen von Browsern nicht möglich den Log in eine Datei zu schreiben.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf sowie die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer dieses Log bereitstellen. Zusätzlich ist es durch die zuvor beschrieben Härtungsmaßnahmen von Browsern nicht möglich das Log in eine Datei zu schreiben.
 
 Eine Automatisierung der Logdatenerhebung ist zudem auch nicht trivial, denn die Daten, welche in die Ausgabe geschrieben werden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Hierbei besteht aber weiterhin die Hürde, wie die Daten an die Stakeholder gelangen.
 

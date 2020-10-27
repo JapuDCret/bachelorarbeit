@@ -19,6 +19,9 @@ Session Replay
 Exception Trackers
   Bugsnag, Sentry, Rollbar, TrackJS
 
+Real User Monitoring
+  
+
 
 https://stackshare.io/stackups/logrocket-vs-sentry
 
