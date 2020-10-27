@@ -1,14 +1,15 @@
-% \textit{Hier soll eine Beschreibung der Umgebung erstellt werden, mit Nennung der speziellen Eigenschaften (Keywords: Sandbox, CORS, Logging)}
-
-In diesem Abschnitt wird erörtert, welche Besonderheiten die Umgebung ``Browser`` im Vergleich zu anderen Umgebungen besitzt.
+Web Browser haben sich seit der Veröffentlichung von Mosaic, einer der ersten populären Browser, im Jahr 1993 stark weiterentwickelt. Das Abrufen und Anzeigen von statischen HTML-Dokumenten wurde mit Hilfe von JavaScript um interaktive und später dynamische Inhalte erweitert. Heutzutage können in Browsern komplexe Webapplikationen realisiert werden, welche zudem unabhängig von einem speziellen Browser entwickelt werden können. Durch diese Entwicklung und die breiten Anwendungsfälle, besitzt die Umgebung ``Browser`` besondere Eigenschaften, welche nachfolgend beschrieben werden.
 
 \subsection{JavaScript}
 
-Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung integriert - einer sogenannten Sandbox. \cite{LearningJavaScript}
+Als JavaScript 1997 veröffentlicht und in den NetScape Navigator integriert wurde, gab es die berechtigen Bedenken, dass das Öffnen einer Webseite dem Betreiber erlaubt Code auf dem System eines Nutzers auszuführen. Damit dies nicht eintritt, wurde der JavaScript Ausführungskontext in eine virtuelle Umgebung integriert, einer Sandbox. \cite{LearningJavaScript}
 
 Die JavaScript-Sandbox bei Browsern schränkt ein, dass unter anderem kein Zugriff auf das Dateisystem erfolgen kann. Auch Zugriff auf native Bibliotheken oder Ausführung von nativem Code ist nicht möglich \cite{TheSpyInTheSandbox}. Browser bieten dafür aber einige Schnittstellen an, die es erlauben z.B. Daten beim Client zu speichern oder auch Videos abzuspielen.
 
+\nomenclature[Fachbegriff]{CORS}{Cross-Origin Resource Sharing}
+\nomenclature[Fachbegriff]{Ajax}{Asynchronous JavaScript and XML}
 \nomenclature[Fachbegriff]{W3C}{World Wide Web Consortium}
+\nomenclature[Fachbegriff]{XHR}{XMLHttpRequest}
 
 Microsoft nahm 1999 im Internet Explorer 5.0 eine neue Methode in ihre JavaScript-Umgebung auf, um den Funktionsumfang zu erweitern: Ajax (Asynchronous JavaScript and XML). Ajax erlaubt die Datenabfrage von Webservern mittels JavaScript. Hierdurch wird ermöglicht, dass Inhalte auf Webseiten dynamisch abgefragt und dargestellt wurden, zuvor war hierfür ein erneuter Seitenaufruf notwendig. Das Konzept wurde kurz darauf von allen damals gängigen Browser übernommen. Erst jedoch mit der Standardisierung 2006 durch das W3C \cite{TheXMLHttpRequestObject} fand die Methode Anklang und Einsatz bei Entwicklern und ist seitdem der Grundstein für unser dynamisches und interaktives Web \cite{TheStoryOfXMLHTTP}.
 
