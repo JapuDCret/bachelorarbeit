@@ -1,3 +1,6 @@
+% a hack, to make the Motivation fit into one page..
+\vspace{-\baselineskip}
+
 %In diesem Unterkapitel sollten folgende Punkte behandelt werden:
 %\begin{itemize}
 %	\item	Was ist das Problem
@@ -5,19 +8,19 @@
 %\end{itemize}
 \section{Motivation}
 
-Die Open Knowledge GmbH betreut einen großen deutschen Direktversicherer. Direktversicherer bedeutet, dass die Vertreibung der Produkte nicht über Vermittler, sondern entweder klassisch per Telefon oder heutzutage überwiegend im Netz stattfindet. Dementsprechend ist ein solider Internetauftritt für den Kunden wichtig und Open Knowledge unterstützt hierbei in allen Phasen der Softwareentwicklung.
+Die Open Knowledge GmbH ist als branchenneutraler Softwaredienstleister in einer Vielzahl von Branchen wie Automotive, Logistik, Telekommunikation und Versicherungs- und Finanzwirtschaft aktiv. Zu den zahlreichen Kunden der Open Knowledge GmbH gehört auch ein führender deutscher Direktversicherer. 
 
-Eine der Webapplikation des Direktversicherers ermöglicht seinen Kunden (nachfolgend Nutzer genannt), dass sie zu einer ausgewählten Versicherung, selber Preise abrufen können, indem die Nutzer die notwendigen Daten eingeben. Bis zum eigentlichen Abruf des Versicherungspreises ist die gesamte Logik beim Nutzer im Browser lokalisiert. Sind die notwendigen Daten eingegeben, so kann der Nutzer den Preis abfragen und erhält Informationen zum Abschließen der Versicherung.
+Ein Direktversicherer bietet Versicherungsprodukte seinen Kunden ausschließlich im Direktvertrieb, d. h. vor allem über das Internet und zusätzlich auch über Telefon, Fax oder Brief an. Im Unterschied zum klassischen Versicherer verfügt ein Direktversicherer jedoch über keinen Außendienst oder Geschäftsstellen, wo Kunden eine persönliche Beratung bekommen können. Da das Internet der primäre Vertriebskanal ist, gehört heute ein umfassender Online-Auftritt zum Standard. Dieser besteht typischerweise aus einem Kundenportal mit der Möglichkeit Angebote für Versicherungsprodukte berechnen und abschließen zu können, sowie persönliche Daten und Verträge einzusehen.
 
-Im Betrieb kommt es aber unter anderem vor, dass zu manchen Eingaben der Server keine Preise berechnen kann und einen Fehler liefert. Der Ursache konnte auf das Frontend eingeschränkt werden, denn es wurden nicht erlaubte Wertkombinationen gesendet. Wie es zu diesem Zustand kam, ist unbekannt, denn es gibt derzeit keine Möglichkeit die notwendigen Informationen des Nutzers und seiner (Browser-)Umgebung abzurufen. Weiterhin können diese Informationen nicht von den Nutzern erfragt werden, denn es handelt sich nicht um eine Expertenanwendung, sondern um ein öffentliches Produkt. Zudem stehen die Nutzer nicht in einem direkten Kommunikationsweg mit den Betreibern oder Entwicklern (nachfolgend Stakeholder genannt).
+\nomenclature[Fachbegriff]{Serverseitiges Rendering}{Die darzustellenden Inhalte, werden beim Server generiert und der Client stellt diese dar. Beispielsweise sind Anwendungen mit PHP oder auch eine Java Web Application}
+\nomenclature[Fachbegriff]{Clientseitiges Rendering}{Der Server stellt dem Client lediglich die Logik und die notwendigen Daten bereit, die eigentliche Inhaltsgenerierung geschieht im Client. Für ein Beispiel siehe \autoref{subsec:singe-page-applications}}
 
-% ggf. Trennung zu Problemstellung hier
+% i.d.R. getrennt: https://www.scribbr.de/wissenschaftliches-schreiben/abkuerzungen/
+Während in der Vergangenheit Online-Auftritte i. d. R. als Webapplikation mit serverseitigen Rendering realisiert wurden, sind heutzutage Javascript-basierte Webapplikation mit clientseitigem Rendering der Standard. Bei einer solchen Webapplikation befindet sich die gesamte Logik mit Ausnahme der Berechnung des Angebots und der Verarbeitung der Antragsdaten im Browser des Nutzers.
 
-Basierend auf den begrenzten Daten, ist es den Stakeholdern bisher nicht gelungen solche Probleme nachzustellen. Beispielsweise kann nicht nachvollzogen werden, welche Interaktionen der Nutzer vorgenommen hat. Es handelt sich hierbei um ein Kernproblem von clientbasierten Webapplikationen \cite{ClientSideMonitoringOfDistributedSystems}. % Das Einholen von Feedback der Nutzer ist nicht primär anzustreben, denn wie Bettenburg \etal \cite{WhatMakesAGoodBugReport} herausfanden, sind solche Berichte meist nicht ausreichend hilfreich für die Stakeholder.
+Im produktiven Einsatz kommt es auch bei gut getesteten Webapplikationen hin und wieder vor, dass es zu unvorhergesehenen Fehlern in der Berechnung oder Verarbeitung kommen kann. Liegt die Ursache für den Fehler im Browser, z.B. aufgrund einer ungültigen Wertkombination, steht man vor einer Herausforderung. Während man bei Server-Anwendungen Fehlermeldungen in den Log-Dateien einsehen kann, gibt es für den Betreiber der Anwendung i. d. R. keine Möglichkeit die notwendigen Informationen über den Nutzer und seine Umgebung abzurufen. Noch wichtiger ist, dass er mitbekommt, wenn ein Nutzer ein Problem bei der Bedienung der Anwendung hat. Ohne eine aktive Benachrichtigung durch den Nutzer, sowie detaillierte Informationen, ist es dem Betreiber nicht möglich Kenntnis über das Problem zu erlangen, geschweige denn dieses nachzustellen.
 
-Es wird daher ein Proof-of-Concept angestrebt, welches dieses Kernproblem auf Basis einer Beispielapplikation löst. Eine automatische Datenerfassung für Situation, wie z.B. den veranschaulichten Fehlerfall, soll Kern der Lösung sein. Darauf basierend, sind die gesammelten Informationen so aufzubereiten, sodass den Stakeholdern ein besseres Verständnis der Nutzerinteraktionen und des Applikationsverhaltens ermöglicht wird. % Letztendlich soll aus Sicht der Stakeholder eine Nachvollziehbarkeit das Ziel sein.
-
-Dabei ist zu beachten, dass das Projektumfeld sich im Web bewegt und mit den Limitierungen von Browsern umgegangen werden muss. Des Weiteren müssen gesetzliche Vorschriften sowie firmeninterne Vorgaben beachtet werden.
+Dies stellt ein Kernproblem von  Webapplikationen dar \cite{ClientSideMonitoringOfDistributedSystems}. Im Rahmen der Arbeit soll daher ein Proof-of-Concept konzipiert und umgesetzt werden, welcher dieses Kernproblem am Beispiel einer Demoanwendung löst.
 
 %\begin{itemize}
 %	\item 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?
@@ -43,7 +46,7 @@ Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder d
 		\item Wie kann Nutzerverhalten nachvollzogen werden?
 		\item Wie können Fehler nachgestellt werden?
 	\end{enumerate}
-	\item Wie ist eine Webapplikation zu erweitern, um dies zu erreichen? \\ (Hierbei sollen Projekte von Open Knowledge untersucht werden.)
+	\item Wie ist eine Webapplikation zu erweitern, um dies zu erreichen? \\ (Hierbei wird eine Demoanwendung untersucht.)
 	\begin{enumerate}
 		\item Was für Technologien helfen hierbei?
 		\item Was sind die Auswirkungen für den Nutzer?
@@ -61,7 +64,7 @@ Ziel dieser Arbeit ist es, eine Möglichkeit zu schaffen, dass die Stakeholder d
 
 \nomenclature[Fachbegriff]{PoC}{Proof-of-Concept}
 
-Bei der Betrachtung von Webapplikationen, werden nur Single-Page-Applications (SPAs) hinzugezogen, denn hier bewegt sich das Projektumfeld der Open Knowledge. Bei der Implementierung soll ein Proof-of-Concept für eine spezielle Webapplikation das Ziel sein, eine allgemeingültige Lösung ist nicht anzustreben. Bei der Betrachtung der Datenerhebung und -verarbeitung ist eine volle Konformität mit der DSGVO nicht zu prüfen.
+Bei der Betrachtung von Webapplikationen, wird sich auf Single-Page-Applications (SPAs) konzentriert, denn hier bewegt sich das Projektumfeld der Open Knowledge. Bei der Implementierung soll ein Proof-of-Concept für eine Demoanwendung das Ziel sein, eine allgemeingültige Lösung ist nicht anzustreben. Bei der Betrachtung der Datenerhebung und -verarbeitung ist eine volle Konformität mit der DSGVO nicht zu prüfen.
 
 \pagebreak
 
