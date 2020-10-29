@@ -22,3 +22,9 @@
 % to allow the configuration of caption
 \usepackage{caption}
 \usepackage{hyperref}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+% see https://tex.stackexchange.com/questions/1460/script-to-automate-externalizing-tikz-graphics
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz-figures/]
