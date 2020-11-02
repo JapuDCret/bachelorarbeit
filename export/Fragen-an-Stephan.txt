@@ -1,7 +1,0 @@
-1. Wird eine Webapplikation von OK hinzugezogen?
-  1.1 Wird die Applikation selber vorgestellt/mit dargestellt, oder soll auf Basis dessen nur die Implementierung erfolgen, aber nicht die Ausarbeitung
-
-
-2. Soll es um eine generelle Nachvollziehbarkeit oder um eine event-basierte gehen?
-   ("In welchen Situation möchten die Stakeholder nachvollziehen können?")
- -> event-basiert: Sentry
