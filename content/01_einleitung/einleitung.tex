@@ -63,33 +63,21 @@ Bei der Erörterung zum Stand der Technik sollen detaillierte Produktvorstellung
 %\end{itemize}
 \section{Vorgehensweise}
 
+\vspace{-0.5\baselineskip}
+
 Zur Vorbereitung eines Proof-of-Concepts wird zunächst die Ausgangssituation geschildert. Speziell wird auf die Herausforderungen der Umgebung ``Browser`` eingegangen, besonders in Hinblick auf die Verständnisgewinnung zu Interaktionen eines Nutzers und des Verhaltens der Applikation. Des Weiteren wird die Nachvollziehbarkeit als solche formal beschrieben und was sie im Projektumfeld genau bedeutet.
 
-% Um das Ziel, die Erstellung eines Proof-of-Concept (PoC), zu erreichen, wird vorerst die Literatur geprüft und die Ausgangssituation erörtert und beschrieben. Die Nachvollziehbarkeit und ihr Nutzen werden vorgestellt.
-
-%Es ist dem Leser zu vermitteln, was die theoretischen Grundlagen sind und wie die der Nachvollziehbarkeit definiert wird. Es gilt zu erörtern, warum die Nachvollziehbarkeit erstrebenswert ist und wie sehr sie bereits Beachtung findet.
-
 Darauf aufbauend werden allgemeine Methoden vorgestellt, mit der die Betreiber und Entwickler eine bessere Nachvollziehbarkeit erreichen können. Dabei werden die Besonderheiten der Umgebung beachtet und es wird erläutert, wie diese Methoden in der Umgebung zum Einsatz kommen können. Hiernach sind Ansätze aus der Literatur und Fachpraxis zu erörtern, welche eine praktische Realisierung der zuvor vorgestellten Methoden darstellen.
-
-% Durch das gewonnene Verständnis über die Ausgangssituation, werden nun Methoden aufgezeigt, welche eine Nachvollziehbarkeit unterstützen. Methoden wie Fehlerberichte, Logging, Monitoring und ggf. andere sind zu betrachten.
 
 Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden wird nun ein Proof-of-Concept erstellt. Ziel soll dabei sein, die Nachvollziehbarkeit einer Webapplikation zu verbessern. Der Proof-of-Concept erfolgt auf Basis einer Demo-Anwendung, die im Rahmen dieser Arbeit erstellt wird.
 
 Ist ein Proof-of-Concept nun erstellt, wird analysiert, welchen Einfluss es auf die Nachvollziehbarkeit hat und ob die gewünschten Ziele erreicht wurden (vgl. Zielsetzung).
 
-% Anfangs soll identifiziert werden, was alles für einen Nutzer ein Problem darstellen kann. Es muss sich bei den Problemen nicht nur um Laufzeitfehler o.Ä. handeln, sondern Logikfehler oder auch Verständnisprobleme führen zu einer Einschränkung der Nutzbarkeit. Hier soll eine Analyse aus der Literatur und ggf. einer Umfrage erstellt werden, um daraufhin grobe Problembilder zu klassifizieren.
-
-% Danach soll erörtert werden, welche Ursachen es für häufige Problemszenarien gibt. Darauf aufbauend könnten Aussagen getroffen werden, wie diese Szenarien bereits vorher vermeidet werden können oder die Häufigkeit reduziert werden kann.
-
-%Durch das gewonnene Verständnis über diese Probleme, soll nun ein Konzept erarbeitet werden. Dieses Konzept soll darauf abzielen zu den einzelnen Problembildern jeweils einen Ansatz zu finden, diese aufzuzeigen und den Stakeholdern Informationen zu liefern, die bei der Behebung notwendig sind (bspw. Geräteinformationen, Sitzungsinformationen, Logs, etc.).
-
-% Zunächst soll ein Konzept erstellt werden, welches die Komponenten definiert und beschreibt und die Interaktion zwischen den Komponenten umfasst. Auf Basis der Konzeptes soll nun die Implementierung der Erweiterung erfolgen.
-
-% Da nun ein Basisverständnis gewonnen wurde, sollen etablierte Technologien wie Google Cloud \cite{GoogleCloudErrorReporting}, Dynatrace \cite{DynatraceDigitalExperienceMonitoring}, Sentry \cite{SentryForJavaScript} und LogRocket \cite{LogRocket} näher betrachtet werden. Durch die Erörterung des Stands der Technik sollen folgend Empfehlungen ausgesprochen werden, für welche Projekte welche Technologie oder Kombination von Technologien sinnvoll ist. Sollte keine Technologie als angemessen betrachtet werden, so soll basierend auf den Anforderungen ein Vorschlag gemacht werden, wie so eine Technologie aussehen könnte.
-
-%\newpage
+\vspace{-0.5\baselineskip}
 
 \section{Open Knowledge GmbH}
+
+\vspace{-0.5\baselineskip}
 
 %{\color{red}TODO: Dieser Abschnitt muss noch überarbeitet werden}
 
@@ -97,10 +85,6 @@ Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Op
 
 Die Open Knowledge GmbH ist ein branchenneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde in Essen der zweite Standort eröffnet, an dem 13 Mitarbeiter angestellt sind.
 
-Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH sind als Redner auf Fachmessen wie der Javaland oder als Autoren in Fachzeitschriften wie dem Java Magazin vertreten. % Aufgrund der großen Expertise in den Bereichen Technologien und Konzepte sind sowohl die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH als Redner auf Fachmessen wie der Javaland oder Autoren in Fachzeitschriften wie dem Java Magazin vertreten.% \cite{VincentOpenKnowledge} % Auch aufgrund der medialen Präsenz konnte die Open Knowledge GmbH in den letzten Jahre zahlreiche Projekte für namhafte Kunden, wie z. B. Vodafone, die HUK-Coburg, die Daimler AG und die DB Schenker AG übernehmen. \cite{VincentOpenKnowledge}
-
-%Durch das breite Dienstleistungsangebot und die Branchenneutralität übernimmt die Open Knowledge GmbH Projekte aus der Automobilindustrie, der Luft- und Raumfahrt, dem Bankwesen und dem Versicherungswesen innerhalb des nationalen und europäischen Raums.
-%
-%Entsprechend der Philosophie ``Offenkundig Gut`` und dem Namen des Unternehmens wird stets versucht das benötigte Wissen zur Erstellung und Wartung der Software mit dem Kunden zu teilen, sodass die Kunden nach Abschluss der Projekte in der Lage sind, die Software selbstständig zu Pflegen und die Projektarbeit von OK damit abgeschlossen ist \cite{OpenKnowledgePhilosophie}.
+Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH sind als Redner auf Fachmessen wie der Javaland oder als Autoren in Fachzeitschriften wie dem Java Magazin vertreten.
 
 \pagebreak
