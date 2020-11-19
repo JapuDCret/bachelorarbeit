@@ -49,13 +49,13 @@
 
 \section{Werkzeuge und Technologien}
 
-\textit{Basierend auf dem Grundwissen über die Methoden und Praktiken, soll nun der Stand der Technik erörtert werden. Hierbei sollen Werkzeuge und Technologien und ihre Ansätze hervorgehoben werden und mit Hilfe welcher Methoden sie welches Ziel erreichen.}
+%\textit{Basierend auf dem Grundwissen über die Methoden und Praktiken, soll nun der Stand der Technik erörtert werden. Hierbei sollen Werkzeuge und Technologien und ihre Ansätze hervorgehoben werden und mit Hilfe welcher Methoden sie welches Ziel erreichen.}
+%
+%\textit{Wie in der Zielsetzung definiert sollen hier zwei bis drei Technologien näher vorgestellt werden.}
+%
+%\textit{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „Fat-Client“-Lösungen (also nicht SPAs) angegangen werden, und kann man hier vielleicht etwas lernen oder übertragen (und wenn nicht, warum nicht)?}
 
-\textit{Wie in der Zielsetzung definiert sollen hier zwei bis drei Technologien näher vorgestellt werden.}
-
-\textit{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „Fat-Client“-Lösungen (also nicht SPAs) angegangen werden, und kann man hier vielleicht etwas lernen oder übertragen (und wenn nicht, warum nicht)?}
-
-In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, die eine verbesserte Nachvollziehbarkeit als Ziel haben. Es lassen sich zudem verschiedene Funktionskategorien festlegen, auf die sich die jeweiligen Technologien konzentrieren. Für das Projektumfeld von Webapplikationen konnten folgende Kategorien identifiziert werden.
+In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, die eine verbesserte Nachvollziehbarkeit als Ziel haben. Es lassen sich zudem verschiedene Funktionskategorien festlegen, auf die sich die jeweiligen Technologien konzentrieren. Die einzelnen Technologien lassen sich jedoch nicht strikt kategorisieren und weisen unterschiedliche Funktionsumfänge für dieselben Kategorien auf. Deshalb werden die Kategorien folgend beschrieben, aber bei der Vorstellung der Technologien erfolgt keine Kategorisierung oder direkte Gegenüberstellung.
 
 \subsection{Kategorien}
 
@@ -79,81 +79,51 @@ Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinte
 
 Beim Synthetic Monitoring werden Endnutzerszenarien simuliert, um zu prüfen und sicherzustellen, dass diese Szenarien wie gewünscht ablaufen. Hierbei kann auf Aspekte wie Funktionalität, Verfügbarkeit und auch verstrichene Zeit kontrolliert werden.
 
+\subsubsection{Tracing}
+
+Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei können einerseits die Kommunikationsflüsse innerhalb einer Applikation oder innerhalb eines Systems erfasst werden, aber auch andererseits die Kommunikationsflüsse bei verteilten Systemen erfasst werden, um diese meist komplexen Zusammenhänge zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
+
 \subsubsection{Error/Crash Monitoring}
 
 Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern. Es werden oftmals neben dem eigentlichen Fehler auch Aspekte vom RUM und Logging gemeldet, um mehr Kontextinformationen zu liefern.
 
-\subsection{Literatur und Fachpraxis}
+\subsubsection{Session Replay}
 
-Wie zuvor genannt gibt es einige Technologien, die auf eine verbesserte Nachvollziehbarkeit abzielen. Die zuvor genannte Kategorisierung ist hilfreich bei Funktionalitäten, aber nicht um gesamte Technologien einzuordnen. Denn meistens weisen Technologien eine Vielzahl der Funktionsumfänge auf. Folgend werden einige Technologien kurz vorgestellt und am Ende wird eine Übersicht erstellt, indem für den Leser erkennbar wird, welche Technologie welchen Funktionsumfang aufweist.
+Session Replay bedeuted, dass eine Sitzung eines Nutzers nachgestellt wird, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf, bei dem die tatsächliche zeitliche Abfolge von Kommunikationen nachvollzogen werden können. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Simulation und entsprechend hilfreich ist sie beim Nachvollziehen.
 
-\subsubsection{Literatur}
+\subsection{Fachpraxis}
 
-\subsubsection{Fachpraxis}
+\subsubsection{OpenTelemetry}
 
-\subsubsubsection{AppDynamics}
-
-\subsubsubsection{New Relic}
-
-\subsubsubsection{Dynatrace}
-
-\subsubsubsection{Sentry}
-
-\subsubsubsection{Honeycomb}
-
-\subsubsubsection{Elastic Stack}
-
-\subsubsubsection{Splunk}
-
-\subsubsection{Kategorisierung}
-
-\begin{wraptable}[13]{r}{0.55\linewidth}
+\begin{wrapfigure}[20]{r}{0.45\textwidth}
 \centering
-\vspace{-\baselineskip}
-\begin{tabularx}{\linewidth}{|l|X|}
-  \hline
-  Symbol & Bedeutung \\
-  \hline
-  K & Eine \textbf{K}ernfunktionalität, bei der der spezielle Funktionsumfang hoch und ausgereift ist. \\
-  \hline
-  F & Eine \textbf{F}unktionalität, die auch unterstützt wird. \\
-  \hline
-  T & Eine \textbf{T}eilfunktionalität, sie ist nicht funktionsreich und/oder nicht so ausgereift. \\
-  \hline
-   & Eine leere Zelle bedeutet, dass diese Funktionalität nicht unterstützt wird. \\
-  \hline
-\end{tabularx}
-\caption{Legende zur Kategorisierung}
-\label{tab:legende-zur-kategorisierung}
-\end{wraptable}
+\includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection.png}
+\caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
+\label{fig:otel-unified-collection}
+\end{wrapfigure}
 
-Um diese Technologien besser einschätzen und bewerten zu können, werden sie folgend kategorisiert. In jeder Kategorie erhält die jeweilige Technologie eine Bewertung entsprechend nach \autoref{tab:legende-zur-kategorisierung}. Die Einordnung erfolgt auf der Einschätzung des Autors in Bezug auf eigener Erfahrung sowie Literatur und den Produktbeschreibungen.
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark zu erfassen, verarbeiten, analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller in Tracing und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API angesprochen werden können. Diese Komponenten und Aufgabengebiete können in der \autoref{fig:otel-unified-collection} betrachtet werden.
 
-Bei Technologien, die selber Daten erheben (alle Kategorien außer Log Management), wurde jeweils die Webintegration betrachtet. 
+\nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
+\nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
+\footnotetext{Logging wird derzeit noch nicht unterstützt, es wird jedoch daran gearbeitet \cite{OpenTelemetryLoggingSpecification}}
 
-Nun kann man in \autoref{tab:kategorisierung-der-vorgestellten-technologien} betrachten, welchen Fokus die jeweiligen Technologien im Detail besitzen.
+\subsubsection{New Relic}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|l|l|l|l|l|l|l|}
-  \hline
-  Technologie & \makecell{System\\Monitoring} & \makecell{Log\\Management} & APM & RUM & \makecell{Synthetic\\Monitoring} & \makecell{Error\\Monitoring} \\
-  \hline
-  AppDynamics   & x & x & x & x & x & x \\
-  \hline
-  New Relic     & K & T & K & K & F & F \\
-  \hline
-  Dynatrace     & K &   & K & K & F & F \\
-  \hline
-  Sentry        &   &   &   &   &   & K \\
-  \hline
-  Honeycomb     & x & x & x & x & x & x \\
-  \hline
-  Elastic Stack & T & K & T &   &   & T \\
-  \hline
-  Splunk        &   & K &   &   &   &   \\
-  \hline
-\end{tabular}
-\caption{Kategorisierung der vorgestellten Technologien}
-\label{tab:kategorisierung-der-vorgestellten-technologien}
-\end{table}
+\subsubsection{Dynatrace}
+
+\subsubsection{Sentry}
+
+\subsubsection{Splunk}
+
+\subsubsection{LogRocket}
+
+\subsubsection{Honeycomb}
+
+\subsubsection{Jaeger}
+
+\subsubsection{Weiteres}
+
+AppDynamics, DataDog, Airbrake, Instabug, Rollbar, Bugsnag, TrackJS, Google Cloud Trace, Zipkin
+
+\subsection{Literatur}
