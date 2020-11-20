@@ -102,7 +102,14 @@ Session Replay bedeuted, dass eine Sitzung eines Nutzers nachgestellt wird, so a
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark zu erfassen, verarbeiten, analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller in Tracing und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API angesprochen werden können. Diese Komponenten und Aufgabengebiete können in der \autoref{fig:otel-unified-collection} betrachtet werden.
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark zu erfassen, verarbeiten, analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller in Tracing und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API angesprochen werden können. Die technische Infrastruktur einer Lösung basierend auf OTel kann in \autoref{fig:otel-unified-collection} betrachtet werden. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector, Backend (vgl. \autoref{fig:otel-components}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{img/03_methoden/dynatrace_otel-components.png}
+	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
+	\label{fig:otel-components}
+\end{figure}
 
 \nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
 \nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
@@ -110,22 +117,46 @@ OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder her
 
 \subsubsection{New Relic}
 
+New Relic \cite{NewRelic} ist ein Dienst der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen. Neben den Kernfunktionalitäten unterstützt New Relic auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
+
+New Relic gibt an, dass Daten nach dem OpenTelemetry Standard selber erfasst und an New Relic gesendet werden können, ohne eine proprietäre Software \cite{NewRelicAnnoundOTelBetaSupport}. Leider ist dieses Feature in der Testversion, die zum evaluieren benutzt wurde, nicht enthalten und kann somit nicht bestätigt werden. Es sind jedoch offizielle und quelloffen veröffentlichte Exporter für New Relic verfügbar für .NET, Python und Java \cite{OpenTelemetryRegistry}.
+
 \subsubsection{Dynatrace}
+
+Dynatrace \cite{Dynatrace} ist ein Dienst der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem OneAgent. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
+
+Dynatrace ist dem OpenTelemetry Team beigetreten und hat angegeben, an der Weiterentwicklung mitzuhelfen \cite{DynatraceJoinOTelProject}. Eine Integration des Dienstes Dynatrace ins Ökosystem von OTel gibt es jedoch noch nicht.
 
 \subsubsection{Sentry}
 
+{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von Sentry}}
+
 \subsubsection{Splunk}
+
+{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von Splunk}}
 
 \subsubsection{LogRocket}
 
+{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von LogRocket}}
+
 \subsubsection{Honeycomb}
+
+{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von Honeycomb}}
 
 \subsubsection{Jaeger}
 
-Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing von der Datensammlung bis hin zur Visualisierung, es unterstützt und implementiert den Standard OpenTracing. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing von der Datensammlung bis hin zur Visualisierung, es unterstützt und implementiert den Standard OpenTracing.  Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
 
 \subsubsection{Weiteres}
 
-AppDynamics, DataDog, Airbrake, Instabug, Rollbar, Bugsnag, TrackJS, Google Cloud Trace, Zipkin
+Bei meiner Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren Werkzeuge und Technologien tiefergehend betrachtet. Deshalb werden weitere Funde, die nicht betrachtet wurden, hier kurz notiert:
+
+\begin{itemize}
+	\item APM \& RUM: AppDynamics, DataDog
+	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
+	\item Tracing: Google Cloud Trace, Zipkin
+\end{itemize}
+
+Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und eine vorherige Betrachtung ist nicht als direkte Empfehlung zu verstehen.
 
 \subsection{Literatur}
