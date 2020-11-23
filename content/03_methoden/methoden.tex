@@ -147,11 +147,11 @@ Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auc
 
 \subsubsection{LogRocket}
 
-LogRocket \cite{LogRocket} ist ein SaaS Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme zu identifizieren, zu nachvollziehen und lösen zu können.
+LogRocket \cite{LogRocket} ist ein SaaS Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme zu identifizieren, zu nachvollziehen und lösen zu können. Session-Replay ist auch die einzig identifizierbare Kernfunktionalität, die LogRocket aufweist.
 
 Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wird das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mit Hilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt, hierbei sieht man die Anwendung, den Nutzer und seine Aktionen, die Netzwerkaufrufe sowie das DOM. Die Nachstellung wird video-ähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
 
-Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bilbiotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar.
+Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bilbiotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch einige Integrationen für andere Tools, wie z.B. Sentry. Die Integration mit Sentry wurde auch evaluiert und dadurch wurde ermöglicht, dass man von einem Sentry Issue direkt auf das Session-Replay des konkreten Fehlerfalls gehen konnte.
 
 \begin{figure}[H]
 	\centering
@@ -166,11 +166,15 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 \subsubsection{Honeycomb}
 
-{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von Honeycomb}}
+Honeycomb \cite{Honeycomb} ist ein SaaS der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und darauf basierend effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
+
+Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. ``Beelines`` an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind aber nur für Node.js, Go, Python, Java, Ruby und Rails verfügbar, aber nicht JavaScript im Browser. Deshalb wurden zur Evaluierung Werkzeuge von OpenTelemetry hinzugezogen und zusätzlich musste nur noch ein Exporter für Honeycomb geschrieben werden. Honeycomb wirkt komplett anders als New Relic und Dynatrace, denn es ist nicht ausgefertigt mit konkreten Graphen und Darstellungen, sondern bietet eine Oberfläche mit dem man auf Basis der Daten selber Abfragen, Graphen und andere Darstellungen selber erstellen kann. Auch ist es nicht mit Jaeger, welches gleich näher betrachtet wird, vergleichbar, denn es bietet deutlich mehr Möglichkeiten als striktes Tracing.
 
 \subsubsection{Jaeger}
 
 Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing von der Datensammlung bis hin zur Visualisierung, es unterstützt und implementiert den Standard OpenTracing.  Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+
+Jaeger wurde nicht aufgesetzt, sondern über Dokumentation und Kommunikation mit Kollegen der Open Knowledge evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger sehr auf Tracing, aber kann sich dafür auf dieses Gebiet spezialisieren und bietet eine gesamte Infrastruktur.
 
 \subsubsection{Weiteres}
 
