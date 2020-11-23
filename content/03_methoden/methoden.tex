@@ -127,7 +127,7 @@ New Relic gibt an, dass Daten nach dem OpenTelemetry Standard selber erfasst und
 
 \subsubsection{Dynatrace}
 
-Dynatrace \cite{Dynatrace} ist ein SaaS der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem ``OneAgent``. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
+Dynatrace \cite{Dynatrace} ist ein SaaS des gleichnamigen Unternehmens, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem ``OneAgent``. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
 
 Bei Dynatrace wurde die 14-tägige Testversion aufgesetzt und evaluiert. Wie zuvor genannt, erfolgt die Datenerhebung über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. Die Oberfläche von Dynatrace stellt auch ungefähr die selben Informationen dar wie New Relic, wobei Dynatrace das Ganze visuell ansprechender darstellt. Dynatrace bietet auch die Funktionalität vom Error Monitoring aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
 
@@ -147,9 +147,18 @@ Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auc
 
 \subsubsection{LogRocket}
 
-LogRocket ist ein 
+LogRocket \cite{LogRocket} ist ein SaaS Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme zu identifizieren, zu nachvollziehen und lösen zu können.
 
-{\color{red}\textit{Beschreibung zu grundlegenden Eigenschaften von LogRocket}}
+Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wird das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mit Hilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt, hierbei sieht man die Anwendung, den Nutzer und seine Aktionen, die Netzwerkaufrufe sowie das DOM. Die Nachstellung wird video-ähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
+
+Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bilbiotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example.png}
+	\caption{Beispiel eines Session-Replays bei LogRocket}
+	\label{fig:logrocket-session-replay-example}
+\end{figure}
 
 \subsubsection{Splunk}
 
