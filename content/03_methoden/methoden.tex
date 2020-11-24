@@ -93,16 +93,19 @@ Session Replay bedeuted, dass eine Sitzung eines Nutzers nachgestellt wird, so a
 
 \subsection{Fachpraxis}
 
+Bei der Recherche zu Werkzeugen und Technologien aus der Fachpraxis wurden eine Handvoll Produkte näher betrachtet. Folgend werden die Ergebnisse beschrieben, diese dienen aber nicht als Vergleich oder detaillierte Produktbeschreibung, eher wird ein grobes Verständnis der Fachpraxis gewonnen, um im Verlauf der Arbeit darauf zurückgreifen zu können. Bei dieser Recherche wurde immer wieder auf den Standard OpenTelemetry gestoßen, weshalb dieser zunächst kurz beschrieben wird.
+
 \subsubsection{OpenTelemetry}
 
-\begin{wrapfigure}[20]{r}{0.45\textwidth}
+\begin{wrapfigure}[19]{r}{0.45\textwidth}
 \centering
+\vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection.png}
 \caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark zu erfassen, verarbeiten, analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller in Tracing und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API angesprochen werden können. Die technische Infrastruktur einer Lösung basierend auf OTel kann in \autoref{fig:otel-unified-collection} betrachtet werden. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector, Backend (vgl. \autoref{fig:otel-components}).
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark zu erfassen, verarbeiten, analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller in Tracing und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API angesprochen werden können. Die technische Infrastruktur einer auf OTel basierenden Lösung kann in \autoref{fig:otel-unified-collection} betrachtet werden. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
 
 \begin{figure}[H]
 	\centering
@@ -162,7 +165,7 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 \subsubsection{Splunk}
 
-Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, sei es für Metriken, Logdaten o. Ä., und bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren.
+Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, sei es für Metriken, Logdaten o. Ä., und bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Splunk wird klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
 
 Splunks kostenlose Version der SaaS wurde nur begrenzt evaluiert, denn schnell wurde festgestellt, dass das Daten senden vom Browserkontext zu Splunk nicht möglich ist, da Splunk mit ablehnenden CORS-Headern antwortet.
 
