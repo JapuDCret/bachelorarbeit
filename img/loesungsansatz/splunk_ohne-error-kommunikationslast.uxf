@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>190</x>
+      <y>130</y>
+      <w>390</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Browser</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>170</x>
+      <y>70</y>
+      <w>440</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+Client PC</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1210</x>
+      <y>130</y>
+      <w>260</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+"Cloud"</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1220</x>
+      <y>180</y>
+      <w>230</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>Splunk</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>210</x>
+      <y>190</y>
+      <w>340</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+Frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>380</x>
+      <y>240</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Logger</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>240</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#efb08c
+lw=3
+&lt;&lt;HTTP&gt;&gt;
+Logs</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>380</x>
+      <y>290</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Tracer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>380</x>
+      <y>340</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Error Handler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>380</x>
+      <y>390</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Session-Replay</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>270</y>
+      <w>220</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#f8d49d
+lw=2
+&lt;&lt;HTTP&gt;&gt;
+Trace and Metric Data</panel_attributes>
+    <additional_attributes>180.0;10.0;60.0;10.0;60.0;40.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>780</x>
+      <y>80</y>
+      <w>260</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+"Backend"</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>790</x>
+      <y>130</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Backend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1030</x>
+      <y>240</y>
+      <w>200</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;?&gt;&gt;
+Logs, Traces and Metrics</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>160</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-&gt;&gt;
+fg=#5aa469
+lw=1
+&lt;&lt;HTTP&gt;&gt;
+Data</panel_attributes>
+    <additional_attributes>180.0;10.0;90.0;10.0;90.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1210</x>
+      <y>730</y>
+      <w>260</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;device&gt;&gt;
+"Cloud"</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1220</x>
+      <y>780</y>
+      <w>230</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Session-Replay Service</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>400</y>
+      <w>630</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#d35d6e
+lw=4
+&lt;&lt;HTTP&gt;&gt;
+Session-Replay Data</panel_attributes>
+    <additional_attributes>610.0;450.0;150.0;450.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>230</x>
+      <y>240</y>
+      <w>140</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Application</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>790</x>
+      <y>220</y>
+      <w>230</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Log-Proxy</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>620</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=#d35d6e
+konstanter Datenstrom</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>580</y>
+      <w>310</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>halign=left
+Legende</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>660</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=#efb08c
+nahezu konstanter Datenstrom</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>700</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=#f8d49d
+häufige Kommunikation</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>740</y>
+      <w>210</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=#5aa469
+Kommunikation bei Ereignis</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1280</x>
+      <y>220</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Log Management</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1280</x>
+      <y>270</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Application Monitoring</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1280</x>
+      <y>320</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Tracing</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1280</x>
+      <y>370</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;component&gt;&gt;
+Error Monitoring</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
