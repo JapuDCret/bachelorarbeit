@@ -9,10 +9,9 @@ jobs:
     name: A job to Compile Latex file
     steps:
     - uses: actions/checkout@v1
-    - name: Compilation
-      uses: vinay0410/tectonic-action@master
+    - name: Compile LaTeX document
+      uses: dante-ev/latex-action@master
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tex_path: 'main.tex'
-        push: 'yes'
+        root_file: 'main.tex'
