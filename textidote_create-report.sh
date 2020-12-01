@@ -1,0 +1,1 @@
+java -Dfile.encoding=UTF-8 -jar C:/git/textidote/textidote.jar --check de --encoding utf-8 --dict textidote_dict.txt --output html main.tex > textidote_report.html

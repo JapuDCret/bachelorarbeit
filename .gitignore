@@ -266,6 +266,3 @@ Backup of *.doc*
 
 # Visio autosave temporary files
 *.~vsd*
-
-# TikZ externalized diagrams
-tikz-figures/
