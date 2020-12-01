@@ -10,8 +10,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Compile LaTeX document
-      uses: dante-ev/latex-action@master
+      uses: xu-cheng/latex-action@v2
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         root_file: 'main.tex'
+        latexmk_shell_escape: true
