@@ -1,7 +1,12 @@
 Clientbasiert
 Clientbasierte
+Clientbasierten
 Clientseitiges
 Tracing
+Trace
+Tracen
+Span
+Spans
 OpenTracing
 Application
 Synthetic Monitoring
@@ -50,7 +55,9 @@ cross-origin
 application/x-www-form-urlencoded
 multipart/form-data
 text/plain
+CSP
 Content-Security-Policy
+XSS
 Cross-Site-Scripting
 Content Delivery Network
 Härtungsmaßnahmen
@@ -58,12 +65,16 @@ Log
 Logdatenerhebung
 Debugging
 Mosaic
+Browsermarkt
 Cross-Browser-Incompatibilities
+Cross-Browser-Inkompatibilität
+Cross-Browser-Inkompatibilitäten
 XBI
 XBIs
 NetScape
 Statista
 Browserengine
+COORS
 Cross-Origin Resource Sharing
 Asynchronous JavaScript and XML
 World Wide Web Consortium
@@ -74,9 +85,12 @@ branchenneutral
 branchenneutraler
 branchenneutrales
 Open Knowledge
+Open
+Knowledge
 Proof-of-Concept
+Proof-of-Concepts
 PoC
-Demo-Anwendung
+Demoanwendung
 Single-Page-Application
 SPA
 SPAs
@@ -85,3 +99,6 @@ Mobile
 Browserhistorie
 Browserkompatiblität
 Google Scholar
+Browserbedingt
+Browserbedingte
+Verständnisgewinnung
