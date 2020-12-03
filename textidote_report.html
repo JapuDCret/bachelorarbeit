@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TeXtidote analysis</title>
+<style type="text/css">
+body {
+  font-family: sans-serif;
+}
+.highlight, .highlight-sh, .highlight-spelling {
+  padding: 2pt;
+  border-radius: 4pt;
+  cursor: help;
+  opacity: 0.7;
+  border: dashed 1px;
+}
+.highlight {
+  background-color: orange;
+  color: black;
+}
+.highlight-sh {
+  background-color: yellow;
+  color: black;
+}
+.highlight-spelling {
+  background-color: red;
+  color: white;
+}
+div.original-file {
+  font-family: monospace;
+  font-size: 11pt;
+  background-color: #f8f8ff;
+  padding: 20pt;
+  border-radius: 6pt;
+}
+.textidote {
+  	background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+PHN2ZyAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiICAgd2lkdGg9IjEwMC4wOTEwNW1tIiAgIGhlaWdodD0iMTguMjA5MDk5bW0iICAgdmlld0JveD0iMCAwIDEwMC4wOTEwNSAxOC4yMDkwOTkiICAgdmVyc2lvbj0iMS4xIiAgIGlkPSJzdmc4IiAgIGlua3NjYXBlOnZlcnNpb249IjAuOTEgcjEzNzI1IiAgIHNvZGlwb2RpOmRvY25hbWU9InRleHRpZG90ZS5zdmciPiAgPGRlZnMgICAgIGlkPSJkZWZzMiIgLz4gIDxzb2RpcG9kaTpuYW1lZHZpZXcgICAgIGlkPSJiYXNlIiAgICAgcGFnZWNvbG9yPSIjZmZmZmZmIiAgICAgYm9yZGVyY29sb3I9IiM2NjY2NjYiICAgICBib3JkZXJvcGFjaXR5PSIxLjAiICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIiAgICAgaW5rc2NhcGU6cGFnZXNoYWRvdz0iMiIgICAgIGlua3NjYXBlOnpvb209IjEiICAgICBpbmtzY2FwZTpjeD0iLTI1NC4yNTMwOSIgICAgIGlua3NjYXBlOmN5PSItMjc4LjM3NTkxIiAgICAgaW5rc2NhcGU6ZG9jdW1lbnQtdW5pdHM9Im1tIiAgICAgaW5rc2NhcGU6Y3VycmVudC1sYXllcj0ibGF5ZXIxIiAgICAgc2hvd2dyaWQ9ImZhbHNlIiAgICAgZml0LW1hcmdpbi10b3A9IjAiICAgICBmaXQtbWFyZ2luLWxlZnQ9IjAiICAgICBmaXQtbWFyZ2luLXJpZ2h0PSIwIiAgICAgZml0LW1hcmdpbi1ib3R0b209IjAiICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMDIxIiAgICAgaW5rc2NhcGU6d2luZG93LXg9IjAiICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMjY1IiAgICAgaW5rc2NhcGU6d2luZG93LW1heGltaXplZD0iMSIgLz4gIDxtZXRhZGF0YSAgICAgaWQ9Im1ldGFkYXRhNSI+ICAgIDxyZGY6UkRGPiAgICAgIDxjYzpXb3JrICAgICAgICAgcmRmOmFib3V0PSIiPiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+ICAgICAgICA8ZGM6dHlwZSAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4gICAgICAgIDxkYzp0aXRsZSAvPiAgICAgIDwvY2M6V29yaz4gICAgPC9yZGY6UkRGPiAgPC9tZXRhZGF0YT4gIDxnICAgICBpbmtzY2FwZTpsYWJlbD0iTGF5ZXIgMSIgICAgIGlua3NjYXBlOmdyb3VwbW9kZT0ibGF5ZXIiICAgICBpZD0ibGF5ZXIxIiAgICAgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI5LjczODA5NSwtNzAuNTc3NzUxKSI+ICAgIDxnICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zaXplOjIwLjkyODk0NTU0cHg7bGluZS1oZWlnaHQ6MS4yNTtmb250LWZhbWlseTpzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOjBweDt3b3JkLXNwYWNpbmc6MHB4O2ZpbGw6I2ZmZmZmZjtmaWxsLW9wYWNpdHk6MTtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgaWQ9InRleHQ4MzYiPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSAzMC43MjY4NjQsNzEuNTY2NTIgNS4yMzIyMzYsMCAwLDQuMjA5MDQ0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtNS44MTM1OTYsMCAwLDQuODEzNjU4IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTYuMjMxNTYgeiIgICAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LWZhbWlseTpUdXRvcjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOlR1dG9yO2ZpbGw6I2ZmZmZmZjtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgICBpZD0icGF0aDMzODYiIC8+ICAgICAgPHBhdGggICAgICAgICBkPSJtIDQyLjMzNTg4OCw3NS43NzU1NjQgMTEuMDQ1ODMyLDAgMCw3LjgxMzQ3MyAtNS44MTM1OTYsMCAwLDAuNjA0NjE0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTIuMDIyNTE2IHogbSA1LjIzMjIzNiw0LjIwOTA0MyAwLjU4MTM2LDAgMCwtMC42MDQ2MTQgLTAuNTgxMzYsMCAwLDAuNjA0NjE0IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzg4IiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA1My45NDQ5MTIsNzUuNzc1NTY0IDUuMjMyMjM2LDAgMCwzLjYwNDQyOSAtNS4yMzIyMzYsMCAwLC0zLjYwNDQyOSB6IG0gNS44MTM1OTYsMCA1LjIzMjIzNiwwIDAsMy42MDQ0MjkgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MjkgeiBtIC01LjgxMzU5Niw4LjQxODA4NyA1LjIzMjIzNiwwIDAsMy42MDQ0MjkgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MjkgeiBtIDUuODEzNTk2LDAgNS4yMzIyMzYsMCAwLDMuNjA0NDI5IC01LjIzMjIzNiwwIDAsLTMuNjA0NDI5IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzkwIiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA2NS41NTM5MzYsNzEuNTY2NTIgNS4yMzIyMzYsMCAwLDQuMjA5MDQ0IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtNS44MTM1OTYsMCAwLDQuODEzNjU4IDUuODEzNTk2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMyLDAgMCwtMTYuMjMxNTYgeiIgICAgICAgICBzdHlsZT0iZm9udC1zdHlsZTpub3JtYWw7Zm9udC12YXJpYW50Om5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7Zm9udC1zdHJldGNoOm5vcm1hbDtmb250LWZhbWlseTpUdXRvcjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOlR1dG9yO2ZpbGw6I2ZmZmZmZjtzdHJva2U6IzAwMDAwMDtzdHJva2Utd2lkdGg6MS45Nzc1MzgyMztzdHJva2UtbWl0ZXJsaW1pdDo0O3N0cm9rZS1kYXNoYXJyYXk6bm9uZSIgICAgICAgICBpZD0icGF0aDMzOTIiIC8+ICAgICAgPHBhdGggICAgICAgICBkPSJtIDc3LjE2Mjk2LDc1Ljc3NTU2NCA1LjIzMjIzNiwwIDAsMTIuMDIyNTE2IC01LjIzMjIzNiwwIDAsLTEyLjAyMjUxNiB6IG0gMCwtNC4yMDkwNDQgNS4yMzIyMzYsMCAwLDMuNjA0NDMgLTUuMjMyMjM2LDAgMCwtMy42MDQ0MyB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzM5NCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gODIuOTY3NDcyLDc1Ljc3NTU2NCA1LjgxMzU5NiwwIDAsLTQuMjA5MDQ0IDUuMjMyMjM2LDAgMCwxNi4yMzE1NiAtMTEuMDQ1ODMyLDAgMCwtMTIuMDIyNTE2IHogbSA1LjIzMjIzNiw4LjQxODA4NyAwLjU4MTM2LDAgMCwtNC44MTM2NTggLTAuNTgxMzYsMCAwLDQuODEzNjU4IHoiICAgICAgICAgc3R5bGU9ImZvbnQtc3R5bGU6bm9ybWFsO2ZvbnQtdmFyaWFudDpub3JtYWw7Zm9udC13ZWlnaHQ6bm9ybWFsO2ZvbnQtc3RyZXRjaDpub3JtYWw7Zm9udC1mYW1pbHk6VHV0b3I7LWlua3NjYXBlLWZvbnQtc3BlY2lmaWNhdGlvbjpUdXRvcjtmaWxsOiNmZmZmZmY7c3Ryb2tlOiMwMDAwMDA7c3Ryb2tlLXdpZHRoOjEuOTc3NTM4MjM7c3Ryb2tlLW1pdGVybGltaXQ6NDtzdHJva2UtZGFzaGFycmF5Om5vbmUiICAgICAgICAgaWQ9InBhdGgzMzk2IiAvPiAgICAgIDxwYXRoICAgICAgICAgZD0ibSA5NC41NzY0OTYsNzUuNzc1NTY0IDExLjA0NTgzNCwwIDAsMTIuMDIyNTE2IC0xMS4wNDU4MzQsMCAwLC0xMi4wMjI1MTYgeiBtIDUuMjMyMjM3LDguNDE4MDg3IDAuNTgxMzU3LDAgMCwtNC44MTM2NTggLTAuNTgxMzU3LDAgMCw0LjgxMzY1OCB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzM5OCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gMTA2LjE4NTUyLDcxLjU2NjUyIDUuMjMyMjQsMCAwLDQuMjA5MDQ0IDUuODEzNTksMCAwLDMuNjA0NDI5IC01LjgxMzU5LDAgMCw0LjgxMzY1OCA1LjgxMzU5LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODMsMCAwLC0xNi4yMzE1NiB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzQwMCIgLz4gICAgICA8cGF0aCAgICAgICAgIGQ9Im0gMTE3Ljc5NDU0LDc1Ljc3NTU2NCAxMS4wNDU4NCwwIDAsNy44MTM0NzMgLTUuODEzNiwwIDAsMC42MDQ2MTQgNS44MTM2LDAgMCwzLjYwNDQyOSAtMTEuMDQ1ODQsMCAwLC0xMi4wMjI1MTYgeiBtIDUuMjMyMjQsNC4yMDkwNDMgMC41ODEzNiwwIDAsLTAuNjA0NjE0IC0wLjU4MTM2LDAgMCwwLjYwNDYxNCB6IiAgICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1hbDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtZmFtaWx5OlR1dG9yOy1pbmtzY2FwZS1mb250LXNwZWNpZmljYXRpb246VHV0b3I7ZmlsbDojZmZmZmZmO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoxLjk3NzUzODIzO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lIiAgICAgICAgIGlkPSJwYXRoMzQwMiIgLz4gICAgPC9nPiAgPC9nPjwvc3ZnPg==);
+}
+h2.filename {
+  font-family: monospace;
+}
+h1.textidote {
+  width: 378px;
+  height: 68px;
+  display: block;
+}
+.keyword1 {
+  font-weight: bold;
+  color: green;
+}
+.keyword2 {
+  font-weight: bold;
+  color: darkblue;
+}
+.comment, .comment * {
+  color: darkred;
+  font-weight: normal;
+}
+.linenb {
+  font-style: italic;
+  color: lightgrey;
+  width: 30pt;
+  float: left;
+  margin-top: 1pt;
+  margin-bottom: 1pt;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.codeline {
+  margin-left: -30pt;
+  padding-left: 60pt;
+  margin-top: 1pt;
+  margin-bottom: 1pt;
+}
+.no-text {
+  display: none;
+}
+.clear {
+  clear: both;
+}
+</style>
+</head>
+<body>
+<a href="https://sylvainhalle.github.io/textidote"><h1 class="textidote"><span class="no-text">Results of TeXtidote analysis</span></h1></a>
+<p>Here is the result of analyzing your file(s) with TeXtidote. Hover the mouse over highlighted portions of the document to read a tooltip that gives you some writing advice.</p>
+<h2 class="filename">content/02_theorie/theorie.tex</h2>
+
+<p>Found 3 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="keyword1">\section</span>{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Browser Umgebung] (0) [lt:de:GERMAN_SPELLER_RULE]"></span>Browserumgebung}</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline"><span class="keyword1">\label</span>{sec:browserumgebung}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">\input{content/02_theorie/browserumgebung}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline"><span class="keyword1">\section</span>{Clientbasierte <span class="highlight" title="Bitte ein Satzzeichen am Ende des Absatzes einfügen. Suggestions: [Webapplikationen., Webapplikationen!, Webapplikationen?, Webapplikationen:, Webapplikationen,, Webapplikationen;] (38) [lt:de:PUNCTUATION_PARAGRAPH_END]"></span>Webapplikationen}</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline"><span class="keyword1">\label</span>{sec:clientbased-webapps}</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">\input{content/02_theorie/clientbasierte-webapps}</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline"><span class="comment"><span class="comment">%\newpage</span></span></div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline"><span class="comment"><span class="comment">%\input{content/02_theorie/maintenance}</span></span></div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline"><span class="comment"><span class="comment">% \newpage</span></span></div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 2 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Nachvollziehbarkeit}</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline"><span class="keyword1">\label</span>{sec:nachvollziehbarkeit}</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">\input{content/02_theorie/nachvollziehbarkeit}</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/03_methoden/methoden.tex</h2>
+
+<p>Found 13 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% \chapter{Methoden und Praktiken}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline"><span class="keyword1">\textit</span>{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webapplikationen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline"><span class="comment"><span class="comment">% <span class="keyword1">\textit</span>{Hier könnte unter anderem <span class="keyword1">\textbf</span>{OpenTelemetry} betrachtet werden.}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 106 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Methoden}</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">\<span class="highlight-sh" title="Avoid stacked headings, i.e. consecutive headings without text in between. [sh:stacked]">subsection</span>{Logging}</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline"><span class="keyword1">\textit</span>{Folgende Fragen sollen zur Methode beantwortet werden}</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline"><span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Gibt es Besonderheiten zu Logging in anderen Projekten (Backend vs. Frontend)?}</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{<span class="highlight" title="Hier ein Komma hinter 'können' einfügen?. Suggestions: [Wie können,] (356) [lt:de:KOMMA_ZWISCHEN_HAUPT_UND_NEBENSATZ]">Wie können</span> Logs an einen auswertenden Stakeholder gelangen<span class="highlight" title="Die Verwendung von mehreren Frage- oder Ausrufezeichen wirkt oft übertrieben emphatisch.. Suggestions: [?] (414) [lt:de:DOPPELTES_AUSRUFEZEICHEN]"></span>??}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline"><span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword1">\subsection</span>{Monitoring}</span></span></div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline"><span class="comment"><span class="comment">%</span></span></div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword1">\textit</span>{Folgende Fragen sollen zur Methode beantwortet werden}</span></span></div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\begin{enumerate}</span></span></span></div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welche Anwendungseigenschaften sind zu monitoren?}</span></span></div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}</span></span></div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\end{enumerate}</span></span></span></div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline"><span class="keyword1">\subsection</span>{Metriken}</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline"><span class="keyword1">\textit</span>{Folgende Fragen sollen zur Methode beantwortet werden}</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline"><span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welche Metriken können definiert?}</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Wie können Metriken definiert werden?}</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline"><span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline"><span class="keyword1">\subsection</span>{Tracing}</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline"><span class="keyword1">\textit</span>{Folgende Fragen sollen zur Methode beantwortet werden}</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline"><span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welche Nutzerinteraktionen sind zu <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [tragen, traten, trafen, trauen, trägen, Kraken, träfen, traben, dräuen, tränen, träten, Frauen, treten, Grafen, Straßen, trugen, brachen, decken, denken, dicken] (829) [lt:de:GERMAN_SPELLER_RULE]">tracen</span>?}</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline"><span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">\<span class="highlight-sh" title="This subsection is very short (about 28 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{Fehlerberichte}</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline"><span class="keyword1">\textit</span>{Folgende Fragen sollen zur Methode beantwortet werden}</div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline"><span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Was genau sind Fehlerberichte (=Bug-Reports) }</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [welches] (1042) [lt:de:DE_CASE]">Welches</span> Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}</div><div class="clear"></div>
+<div class="linenb">48</div><div class="codeline"><span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">49</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">50</div><div class="codeline"><span class="keyword1">\section</span>{Praktiken aus der Fachpraxis}</div><div class="clear"></div>
+<div class="linenb">51</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">52</div><div class="codeline"><span class="keyword1">\textit</span>{Neben den allgemeinen Methoden weisen einige Technologien in sich geschlossene Funktionsbereiche auf, die einen eigenen Ansatz darstellen. Diese Ansätze sollen hier getrennt von der jeweiligen Technologie beschrieben werden. (Beispielsweise <span class="highlight" title="Wollen Sie ein typografisches Anführungszeichen ('„' '“', '»' '«') oder das Sekunden-/Zollzeichen ('″') verwenden?. Suggestions: [„, “, », «, ″] (1394) [lt:de:TYPOGRAFISCHE_ANFUEHRUNGSZEICHEN]">``</span><span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [real] (1396) [lt:de:DE_CASE]">Real</span> User Monitoring<span class="highlight" title="Wollen Sie ein typografisches Anführungszeichen ('„' '“', '»' '«') oder das Sekunden-/Zollzeichen ('″') verwenden?. Suggestions: [„, “, », «, ″] (1416) [lt:de:TYPOGRAFISCHE_ANFUEHRUNGSZEICHEN]">``</span>)}</div><div class="clear"></div>
+<div class="linenb">53</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">54</div><div class="codeline"><span class="keyword1">\section</span>{Werkzeuge und Technologien}</div><div class="clear"></div>
+<div class="linenb">55</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">56</div><div class="codeline"><span class="keyword1">\textit</span>{Basierend auf dem Grundwissen über die Methoden und Praktiken, soll nun der Stand der Technik aus Fachpraxis und Literatur erörtert werden. Hierbei sollen Werkzeuge und Technologien und ihre Ansätze hervorgehoben werden und <span class="highlight" title="Möchten Sie die vom Duden empfohlene Schreibweise 'mithilfe' verwenden?. Suggestions: [mithilfe] (1677) [lt:de:EMPFOHLENE_ZUSAMMENSCHREIBUNG]">mit Hilfe</span> welcher Methoden sie welches Ziel erreichen.}</div><div class="clear"></div>
+<div class="linenb">57</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">58</div><div class="codeline"><span class="keyword1">\textit</span>{In diesem Abschnitt werden die Technologien vom Autor evaluiert und dann beschrieben. Es soll jedoch keine Gegenüberstellung erfolgen, sondern einfach eine Evaluierung, dieses Wissen soll dann später in der Erstellung des Lösungsansatzes helfen.}</div><div class="clear"></div>
+<div class="linenb">59</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">60</div><div class="codeline"><span class="keyword1">\textit</span>{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Pfad-Client, Fad-Client, Hat-Client, Bad-Client, Fast-Client] (2064) [lt:de:GERMAN_SPELLER_RULE]">Fat-Client</span>“-Lösungen (also nicht SPAs) angegangen werden, und ob man hier etwas lernen oder übertragen kann (und wenn nicht, warum nicht)?}</div><div class="clear"></div>
+<div class="linenb">61</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">62</div><div class="codeline"><span class="keyword1">\section</span>{Fachpraxis}</div><div class="clear"></div>
+<div class="linenb">63</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">64</div><div class="codeline"><span class="keyword1">\textit</span>{Eine geringe Menge (3-8) an Technologien soll hierbei evaluiert werden, im Idealfall durch praktischen Einsatz.}</div><div class="clear"></div>
+<div class="linenb">65</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">66</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 32 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Literatur}</div><div class="clear"></div>
+<div class="linenb">67</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">68</div><div class="codeline"><span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">69</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Gibt es hierzu Ansätze in der Literatur?}</div><div class="clear"></div>
+<div class="linenb">70</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Wie sehen diese aus, welchen Zweck erfüllen sie?}</div><div class="clear"></div>
+<div class="linenb">71</div><div class="codeline">	<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Sind sie vergleichbar mit Ansätzen aus der Fachpraxis?}</div><div class="clear"></div>
+<div class="linenb">72</div><div class="codeline"><span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+</div>
+<h2 class="filename">content/02_theorie/nachvollziehbarkeit.tex</h2>
+
+<p>Found 4 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="keyword1">\textit</span>{Zunächst soll dem Leser die Definition für Nachvollziehbarkeit erläutert werden, zudem ist ihr Bezug und ihre Relevanz in der Softwareentwicklung aufzuzeigen.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline"><span class="keyword1">\subsection</span>{Nutzen}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline"><span class="keyword1">\textit</span>{Hier gilt es ein echtes Beispiel für Nachvollziehbarkeit in einem Softwareprodukt aufzuzeigen, welches für den Leser verständlich und aufschlussreich ist.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline"><span class="keyword1">\subsection</span>{Nachvollziehbarkeit bei SPAs}</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline"><span class="keyword1">\textit</span>{SPAs stellen aufgrund ihrer <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (394) [lt:de:GERMAN_SPELLER_RULE]">clientbasierten</span> Natur eine besondere Herausforderung dar. Hier sollen allgemein die Herausforderungen von SPAs in Bezug auf die Nachvollziehbarkeit beschrieben werden.}</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 45 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Browser bedingte] (565) [lt:de:GERMAN_SPELLER_RULE]">Browserbedingte</span> Hürden}</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline"><span class="keyword1">\textit</span>{Die Umgebung Browser besitzt, wie zuvor schon angerissen, einige besondere Hindernisse (<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [ORF, OS, CERN, CSS, RS, CMS, CRM, SOS, COPD, CSR, CMOS, OCR, CMR, CPR, DOS, FOS, HRS, LRS, MERS, OGS] (679) [lt:de:GERMAN_SPELLER_RULE]">CORS</span>, Content-Security-Policy, Fernzugriff, etc.). Hier soll detailliert auf diese Hindernisse eingegangen werden und ihren Einfluss auf die Nachvollziehbarkeit.}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline"><span class="keyword1">\textit</span>{Hier: Eine Überleitung zum nächsten Kapitel, in der Methoden zur besseren Nachvollziehbarkeit erklärt werden}</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/02_theorie/browserumgebung.tex</h2>
+
+<p>Found 4 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline"><span class="keyword1">\textit</span>{Es gilt die generelle Umgebung und ihr Geschichte <span class="keyword1">\textbf</span>{kurz} zu umreißen.}</div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline"><span class="keyword1">\subsection</span>{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Browser Produkte, Browser-produkt-] (71) [lt:de:GERMAN_SPELLER_RULE]"></span>Browserprodukte}</div><div class="clear"></div>
+<div class="linenb">4</div><div class="codeline"><span class="keyword1">\label</span>{sec:browserprodukte}</div><div class="clear"></div>
+<div class="linenb">5</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">6</div><div class="codeline"><span class="keyword1">\textit</span>{Hier soll kurz beschrieben werden, wie der aktuelle <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Browser Markt] (144) [lt:de:GERMAN_SPELLER_RULE]">Browsermarkt</span> aussieht und wie er sich entwickelt hat. Ob <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Groß-Browser-Inkompatibilitäten, Kross-Browser-Inkompatibilitäten, Tross-Browser-Inkompatibilitäten, Krass-Browser-Inkompatibilitäten, Crocs-Browser-Inkompatibilitäten] (201) [lt:de:GERMAN_SPELLER_RULE]">Cross-Browser-Inkompatibilitäten</span> noch präsent sind, ist auch aufzuzeigen. }</div><div class="clear"></div>
+<div class="linenb">7</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">8</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 38 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{JavaScript}</div><div class="clear"></div>
+<div class="linenb">9</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline"><span class="keyword1">\textit</span>{Als Subgebiet des Browsers aber als eigentliche Hauptumgebung für die betrachteten Webapplikationen, soll JavaScript und dessen Integration im Browser betrachtet werden. Eine kurze geschichtliche Entwicklung und die Auswirkungen auf die heutige Welt der Webapplikationen ist zu erstellen.}</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/01_einleitung/einleitung.tex</h2>
+
+<p>Found 39 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% a hack, to make the Motivation fit into one page..</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">\vspace{-\baselineskip}</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline"><span class="comment"><span class="comment">%In diesem Unterkapitel sollten folgende Punkte behandelt werden:</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\begin{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span>	Was ist das Problem</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> 	Problemgeschichte?</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\end{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline"><span class="keyword1">\section</span>{Motivation}</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">Die Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (27) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH ist als branchenneutraler Softwaredienstleister in einer Vielzahl von Branchen wie Automotive, Logistik, Telekommunikation und Versicherungs- und Finanzwirtschaft aktiv. Zu den zahlreichen Kunden der Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (247) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH gehört auch ein führender deutscher Direktversicherer. </div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">Ein Direktversicherer bietet Versicherungsprodukte seinen Kunden ausschließlich im Direktvertrieb, <span class="highlight" title="Innerhalb von Abkürzungen, die aus mehreren Buchstaben bestehen, sollten (außer bei Schriftarten mit fester Breite) in der Regel geschützte Leerzeichen verwendet werden: 'd. h.'. Suggestions: [d. h.] (420) [lt:de:ABKUERZUNG_LEERZEICHEN]">d. h.</span> vor allem über das Internet und zusätzlich auch über Telefon, Fax oder B</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">rief an. Im Unterschied zum klassischen Versicherer verfügt ein Direktversicherer jedoch über keinen Außendienst oder Geschäftsstellen, bei denen Kunden eine persönliche Beratung bekommen können. Da das Internet der primäre Vertriebskanal ist, gehört heute ein umfassender Online-Auftritt zum Standard. Dieser besteht typischerweise aus einem Kundenportal mit der Möglichkeit Angebote für Versicherungsprodukte berechnen und abschließen zu können, sowie persönliche Daten und Verträge einzusehen.</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Nomenklatur, Nomenklaturen, Nomenklatura] (1001) [lt:de:GERMAN_SPELLER_RULE]">nomenclature</span>[Fachbegriff]{Serverseitiges <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1041) [lt:de:GERMAN_SPELLER_RULE]">Rendering}{Die</span> darzustellenden Inhalte, werden beim Server generiert und der Client stellt diese dar. Beispielsweise sind Anwendungen mit PHP oder auch eine Java Web Application}</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Nomenklatur, Nomenklaturen, Nomenklatura] (1219) [lt:de:GERMAN_SPELLER_RULE]">nomenclature</span>[Fachbegriff]{Clientseitiges <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Rendernder, Rändernder] (1259) [lt:de:GERMAN_SPELLER_RULE]">Rendering}{Der</span> Server stellt dem Client lediglich die Logik und die notwendigen Daten bereit, die eigentliche Inhaltsgenerierung geschieht im Client. Für ein Beispiel siehe \autoref{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [super, zupfen, Dubcek, Pupsen, Pupser, pupse, pupsen, sulze, sulzen, zupfe] (1430) [lt:de:GERMAN_SPELLER_RULE]">subsec</span>:<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [singe-Page-applikations-, singe-Page-Applikation, singe-Page-Applikations-, singe-Page-applikatives, singe-Lage-applikations-] (1437) [lt:de:GERMAN_SPELLER_RULE]"></span>singe-page-applications}}</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline"><span class="comment"><span class="comment">% i.d.R. getrennt: https://www.scribbr.de/wissenschaftliches-schreiben/abkuerzungen/</span></span></div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">Während in der Vergangenheit Online-Auftritte i. d. R. als Webapplikation mit serverseitigen Rendering realisiert wurden, sind heutzutage Javascript-basierte Webapplikation mit clientseitigem Rendering die Norm. Bei einer solchen Webapplikation befindet sich die gesamte Logik mit Ausnahme der Berechnung des Angebots und der Verarbeitung der Antragsdaten im Browser des Nutzers.</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">Im produktiven Einsatz kommt es auch bei gut getesteten Webapplikationen hin und wieder vor, dass es zu unvorhergesehenen Fehlern in der Berechnung oder Verarbeitung kommen kann. Liegt die Ursache für den Fehler im Browser, <span class="highlight" title="Innerhalb von Abkürzungen, die aus mehreren Buchstaben bestehen, sollten (außer bei Schriftarten mit fester Breite) in der Regel geschützte Leerzeichen verwendet werden: 'z. B.'. Suggestions: [z. B.] (2071) [lt:de:ABKUERZUNG_LEERZEICHEN]">z. B.</span> aufgrund einer ungültigen Wertkombination, ist dies eine Herausforderung. Während bei Server-Anwendungen Fehlermeldungen in den Log-Dateien einzusehen sind, gibt es für den Betreiber der Anwendung i. d. R. keine Möglichkeit die notwendigen Informationen über den Nutzer und seine Umgebung abzurufen. Noch wichtiger ist, dass er mitbekommt, wenn ein Nutzer ein Problem bei der Bedienung der Anwendung hat. Ohne eine aktive Benachrichtigung durch den Nutzer, sowie detaillierte Informationen, ist es dem Betreiber nicht möglich, Kenntnis über das Problem zu erlangen, geschweige denn dieses nachzustellen.</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">Dies stellt ein Kernproblem von  Webapplikationen dar \cite{ClientSideMonitoringOfDistributedSystems}. Im Rahmen der Arbeit soll daher ein Proof-of-Concept konzipiert und umgesetzt werden, welcher dieses Kernproblem am Beispiel einer Demoanwendung löst.</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\begin{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> 	Was soll mit der Arbeit erreicht werden? Welche Ziele werden angestrebt?</span></span></div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline"><span class="comment"><span class="comment">%			Möglichst kurz und präzise geplante Ergebnisse umreißen. Daran werden</span></span></div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline"><span class="comment"><span class="comment">%			Ihre Resultate am Ende gemessen!</span></span></div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\end{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">\<span class="highlight-sh" title="If a section has sub-sections, it should have more than one such sub-section. [sh:nsubdiv]">section</span>{Zielsetzung}</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScript-basierten Webapplikation die Möglichkeit zu geben das Verhalten ihrer Applikation und die Interaktionen von Nutzern. Diese Nachvollziehbarkeit soll insbesondere bei Fehlerfällen <span class="highlight" title="Innerhalb von Abkürzungen, die aus mehreren Buchstaben bestehen, sollten (außer bei Schriftarten mit fester Breite) in der Regel geschützte Leerzeichen verwendet werden: 'u. Ä.'. Suggestions: [u. Ä.] (3172) [lt:de:ABKUERZUNG_LEERZEICHEN]">u. Ä.</span> gewährleistet sein, aber auch in sonstigen Fällen soll eine Nachvollziehbarkeit möglich sein. Eine vollständige Überwachung der Applikation und des Nutzers (wie <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [bis, bzw, bist, usw, Obst, ppa, ppm, post, bass, brav, biss, büßt, pass, ipso, bös, Abs., bes., best, bez., bspw., bus-, buß-, böse] (3339) [lt:de:GERMAN_SPELLER_RULE]">bpsw</span>. <span class="highlight" title="Dieser Satz fängt nicht mit einem großgeschriebenen Wort an. Suggestions: [Bei] (3345) [lt:de:UPPERCASE_SENTENCE_START]">bei</span> Werbe-Tracking) sind jedoch nicht vorgesehen. Daraus ergibt sich die Forschungsfrage:</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline"><span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Mutation, Rotation, Dotation, Flotation, Guttation, Notation, Nutation] (3438) [lt:de:GERMAN_SPELLER_RULE]"></span>quotation}</span></div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">	<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [wie] (3450) [lt:de:DE_CASE]">Wie</span> <span class="highlight" title="Wollen Sie ein Komma vor 'um' setzen (Einleitung Infinitivgruppe)?. Suggestions: [sieht ein Ansatz aus, um] (3454) [lt:de:KOMMA_INFINITIVGRUPPEN]">sieht ein Ansatz aus um</span> bei clientseitigen JavaScript-basierten Webapplikation den Betreibern eine Nachvollziehbarkeit zu gewährleisten?</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline"><span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Mutation, Rotation, Dotation, Flotation, Guttation, Notation, Nutation] (3592) [lt:de:GERMAN_SPELLER_RULE]"></span>quotation}</span></div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">Vom Leser wird eine Grundkenntnis der Informatik in Theorie oder Praxis erwartet, aber es sollen keine detaillierten Erfahrungen in der Webentwicklung vom Leser erwartet werden. Daher sind das Projektumfeld und seine besonderen Eigenschaften zu erläutern.</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">Die anzustrebende Lösung soll ein Proof-of-Concept sein, welches anhand einer bestehenden <span class="highlight" title="Uneinheitliche Verwendung von Bindestrichen. Der Text enthält sowohl 'Demo-Anwendung' als auch 'Demoanwendung'.. Suggestions: [Demoanwendung] (3954) [lt:de:DE_COMPOUND_COHERENCY]">Demo-Anwendung</span> erstellt werden soll. Die <span class="highlight" title="Uneinheitliche Verwendung von Bindestrichen. Der Text enthält sowohl 'Demo-Anwendung' als auch 'Demoanwendung'.. Suggestions: [Demoanwendung] (3995) [lt:de:DE_COMPOUND_COHERENCY]">Demo-Anwendung</span> soll repräsentativ eine abgespeckte JavaScript-basierte Webapplikation darstellen, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">Vor der eigentlichen Lösungserstellung soll jedoch die theoretische Seite beleuchtet werden, indem die Nachvollziehbarkeit sowie Methoden und Praktiken zur Erreichung dieser beschrieben werden. Es gilt aktuelle Literatur und den Stand der Technik zu erörtern, in Bezug auf die Forschungsfrage. Beim Stand der Technik sollen Technologien aus Fachpraxis und Literatur näher betrachtet werden und beschrieben werden.</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">45</div><div class="codeline">Weiterhin gilt es zu beleuchten, wie die Auswirkungen für die Nutzer der Webapplikation sind. Wurde die Leistung der Webapplikation beeinträchtigt (erhöhte Ladezeit, erhöhte Datenlast)? Werden mehr Daten von ihm erhoben und zu welchem Zweck?</div><div class="clear"></div>
+<div class="linenb">46</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">47</div><div class="codeline">Am Ende der Ausarbeitung soll überprüft werden, ob und wie die Forschungsfrage beantwortet wurde. Auch die Übertragbarkeit der erstellten Lösung (PoC) und Ergebnisse gilt es hierbei näher zu betrachten.</div><div class="clear"></div>
+<div class="linenb">48</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">49</div><div class="codeline">\<span class="highlight-sh" title="This subsection is very short (about 62 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{Abgrenzung}</div><div class="clear"></div>
+<div class="linenb">50</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">51</div><div class="codeline">\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Nomenklatur, Nomenklaturen, Nomenklatura] (5048) [lt:de:GERMAN_SPELLER_RULE]">nomenclature</span>[Fachbegriff]{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (5073) [lt:de:GERMAN_SPELLER_RULE]"></span>PoC}{Proof-of-Concept}</div><div class="clear"></div>
+<div class="linenb">52</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">53</div><div class="codeline">Die <span class="highlight" title="Uneinheitliche Verwendung von Bindestrichen. Der Text enthält sowohl 'Demo-Anwendung' als auch 'Demoanwendung'.. Suggestions: [Demoanwendung] (5100) [lt:de:DE_COMPOUND_COHERENCY]">Demo-Anwendung</span> wird als Single-Page-Application (SPA) realisiert, denn hier bewegt sich das Projektumfeld von der Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (5219) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH. Bei der Betrachtung der Datenerhebung und -verarbeitung ist eine volle Konformität mit der DSGVO nicht zu prüfen.</div><div class="clear"></div>
+<div class="linenb">54</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">55</div><div class="codeline">Bei der Erörterung zum Stand der Technik sollen detaillierte Produktvorstellungen nicht das Ziel sein, auch ist keine umfassende Gegenüberstellung anzustreben.</div><div class="clear"></div>
+<div class="linenb">56</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">57</div><div class="codeline">\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Sägebreak, Bachbreak, Fragebreak, Lagerbreak, Nachtbreak, Dachbreak, Fachbreak, Jagdbreak, Tagesbreak, Fächerbreak, Jägerbreak, Taktbreak, Hakenbreak, Käsebreak, Magenbreak, Mächtebreak, Nagelbreak, Paketbreak, Pachtbreak, Wachsbreak] (5516) [lt:de:GERMAN_SPELLER_RULE]"></span>pagebreak</div><div class="clear"></div>
+<div class="linenb">58</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">59</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\begin{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">60</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> 	Wie wird vorgegangen, um das Ziel zu erreichen?</span></span></div><div class="clear"></div>
+<div class="linenb">61</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> 	Warum ist die Arbeit so gegliedert, wie sie gegliedert ist?</span></span></div><div class="clear"></div>
+<div class="linenb">62</div><div class="codeline"><span class="comment"><span class="comment">%	<span class="keyword1">\item</span> 	Welche Aspekte werden nicht behandelt und warum?</span></span></div><div class="clear"></div>
+<div class="linenb">63</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword2">\end{itemize}</span></span></span></div><div class="clear"></div>
+<div class="linenb">64</div><div class="codeline"><span class="keyword1">\section</span>{Vorgehensweise}</div><div class="clear"></div>
+<div class="linenb">65</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">66</div><div class="codeline">\vspace{-0.5\baselineskip}</div><div class="clear"></div>
+<div class="linenb">67</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">68</div><div class="codeline">Zur Vorbereitung eines <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Probe-von-Konzepts, Probe-von-Konzept, Probe-von-Konzept-, Probe-von-Konzepte, Probe-von-Konzeptes] (5574) [lt:de:GERMAN_SPELLER_RULE]">Proof-of-Concepts</span> wird zunächst die Ausgangssituation geschildert. Speziell wird auf die Herausforderungen der Umgebung <span class="highlight" title="Wollen Sie ein typografisches Anführungszeichen ('„' '“', '»' '«') oder das Sekunden-/Zollzeichen ('″') verwenden?. Suggestions: [„, “, », «, ″] (5694) [lt:de:TYPOGRAFISCHE_ANFUEHRUNGSZEICHEN]">``</span>Browser<span class="highlight" title="Wollen Sie ein typografisches Anführungszeichen ('„' '“', '»' '«') oder das Sekunden-/Zollzeichen ('″') verwenden?. Suggestions: [„, “, », «, ″] (5703) [lt:de:TYPOGRAFISCHE_ANFUEHRUNGSZEICHEN]">``</span> eingegangen, besonders in Hinblick auf die <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Verständnis Gewinnung] (5749) [lt:de:GERMAN_SPELLER_RULE]">Verständnisgewinnung</span> zu Interaktionen eines Nutzers und des Verhaltens der Applikation. Des Weiteren wird die Nachvollziehbarkeit als solche formal beschrieben und was sie im Projektumfeld genau bedeutet.</div><div class="clear"></div>
+<div class="linenb">69</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">70</div><div class="codeline">Darauf aufbauend werden allgemeine Methoden vorgestellt, mit der die Betreiber und Entwickler eine bessere Nachvollziehbarkeit erreichen können. Dabei werden die Besonderheiten der Umgebung beachtet und es wird erläutert, wie diese Methoden in der Umgebung zum Einsatz kommen können. Hiernach sind Ansätze aus der Literatur und Fachpraxis zu erörtern, welche eine praktische Realisierung der zuvor vorgestellten Methoden darstellen.</div><div class="clear"></div>
+<div class="linenb">71</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">72</div><div class="codeline">Auf Basis des detaillierten Verständnisses der Problemstellung und der Methoden wird nun ein Proof-of-Concept erstellt. Ziel soll dabei sein, die Nachvollziehbarkeit einer Webapplikation zu verbessern. Der Proof-of-Concept erfolgt auf Basis einer <span class="highlight" title="Uneinheitliche Verwendung von Bindestrichen. Der Text enthält sowohl 'Demo-Anwendung' als auch 'Demoanwendung'.. Suggestions: [Demoanwendung] (6640) [lt:de:DE_COMPOUND_COHERENCY]">Demo-Anwendung</span>, die im Rahmen dieser Arbeit erstellt wird.</div><div class="clear"></div>
+<div class="linenb">73</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">74</div><div class="codeline">Ist ein Proof-of-Concept nun erstellt, wird analysiert, welchen Einfluss es auf die Nachvollziehbarkeit hat und ob die gewünschten Ziele erreicht wurden (vgl. Zielsetzung).</div><div class="clear"></div>
+<div class="linenb">75</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">76</div><div class="codeline">\vspace{-0.5\baselineskip}</div><div class="clear"></div>
+<div class="linenb">77</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">78</div><div class="codeline"><span class="keyword1">\section</span>{Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (6887) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH}</div><div class="clear"></div>
+<div class="linenb">79</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">80</div><div class="codeline">\vspace{-0.5\baselineskip}</div><div class="clear"></div>
+<div class="linenb">81</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">82</div><div class="codeline"><span class="comment"><span class="comment">%{\color{red}TODO: Dieser Abschnitt muss noch überarbeitet werden}</span></span></div><div class="clear"></div>
+<div class="linenb">83</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">84</div><div class="codeline">Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (6993) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH erstellt. Der Standortleiter des Standortes Essen, <span class="highlight" title="'Dipl.-Inf.' und ähnliche Bezeichnungen werden mit Bindestrich geschrieben.. Suggestions: [Dipl.-Inf.] (7059) [lt:de:DIPL_ING]">Dipl. Inf.</span> Stephan Müller, übernimmt die Zweitbetreuung.</div><div class="clear"></div>
+<div class="linenb">85</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">86</div><div class="codeline">Die Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (7128) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH ist ein branchenneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde in Essen der zweite Standort eröffnet, an dem 13 Mitarbeiter angestellt sind.</div><div class="clear"></div>
+<div class="linenb">87</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">88</div><div class="codeline">Die Mitarbeiter von Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (7560) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Mobil-, Mobile, Mobilen, Mobiler, Mobiles, Mobilem, Mobil, Mobilien, Möbel-, Mobilere, Mobilst] (7966) [lt:de:GERMAN_SPELLER_RULE]">Mobile-</span> und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Die Geschäftsführer als auch diverse Mitarbeiter der Open <span class="highlight" title="Möglicher Rechtschreibfehler gefunden (8139) [lt:de:GERMAN_SPELLER_RULE]">Knowledge</span> GmbH sind als Redner auf Fachmessen wie der Javaland oder als Autoren in Fachzeitschriften wie dem Java Magazin vertreten.</div><div class="clear"></div>
+<div class="linenb">89</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">90</div><div class="codeline">\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Sägebreak, Bachbreak, Fragebreak, Lagerbreak, Nachtbreak, Dachbreak, Fachbreak, Jagdbreak, Tagesbreak, Fächerbreak, Jägerbreak, Taktbreak, Hakenbreak, Käsebreak, Magenbreak, Mächtebreak, Nagelbreak, Paketbreak, Pachtbreak, Wachsbreak] (8276) [lt:de:GERMAN_SPELLER_RULE]"></span>pagebreak</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/05_ergebnis/ergebnis.tex</h2>
+
+<p>Found 1 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% \chapter{Ergebnis}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline"><span class="keyword1">\section</span>{Demonstration}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">	<span class="keyword1">\textit</span>{Nachdem nun eine Implementierung steht, soll die Erweiterung auf nicht-technische Weise veranschaulicht werden. Hier soll dargestellt werden, wie die Nachvollziehbarkeit nun verbessert worden ist.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline"><span class="keyword1">\section</span>{Kriterien}</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">	<span class="keyword1">\textit</span>{Die zuvor definierten Kriterien in 4.1 sollen hier überprüft werden.}</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline"><span class="keyword1">\section</span>{Übertragbarkeit}</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">	<span class="keyword1">\textit</span>{Wie gut lassen sich die ermittelten Ergebnisse im PoC auf andere Projekte im selben Umfeld übertragen?}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 100 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Einschätzung von anderen Entwicklern (optional)}</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">	<span class="keyword1">\textit</span>{<span class="keyword1">\textbf</span>{Dieser Abschnitt kann ggf. wegfallen}, wenn nicht genügend Zeit besteht oder der Nutzen nicht den Aufwand gerechtfertigt.}</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">	<span class="keyword1">\textit</span>{In diesem Abschnitt könnten Frontend-Entwicklern mit der Demo-Anwendung mit und ohne die Lösung konfrontiert werden. Daraufhin könnten diese befragt werden, ob}</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">	<span class="keyword2">\begin{enumerate}</span></div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Wie gut entspricht die Demo-Anwendung einem realen Szenario?}</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Sind die vorgestellten Probleme realitätsnah?}</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Wie gut lassen sich die Probleme ohne die Lösung beheben?}</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Wie gut lassen sich die Probleme mit der Lösung beheben?}</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Ist der Lösungsansatz zu komplex?}</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline">		<span class="keyword1">\item</span> <span class="keyword1">\textit</span>{Gibt es Bedenken zum Lösungsansatz?}</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline">	<span class="keyword2">\end{enumerate}</span></div><div class="clear"></div>
+</div>
+<h2 class="filename">content/06_abschluss/abschluss.tex</h2>
+
+<p>Found 3 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline"><span class="comment"><span class="comment">% \chapter{Abschluss}</span></span></div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline"><span class="keyword1">\section</span>{Fazit}</div><div class="clear"></div>
+<div class="linenb">4</div><div class="codeline"><span class="keyword1">\textit</span>{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Visum, Ditzum, Eitzum, Rysum, linksum] (10) [lt:de:GERMAN_SPELLER_RULE]">lipsum</span>[1]}</div><div class="clear"></div>
+<div class="linenb">5</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">6</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 1 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Ausblick}</div><div class="clear"></div>
+<div class="linenb">7</div><div class="codeline"><span class="keyword1">\textit</span>{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Visum, Ditzum, Eitzum, Rysum, linksum] (34) [lt:de:GERMAN_SPELLER_RULE]">lipsum</span>[1]}</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/99_postscript/eidesstattliche-erklaerung.tex</h2>
+
+<p>Found 6 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% siehe https://www.fh-dortmund.de/de/fb/9/personen/lehr/buechler/Buechler_2012_Leitfaden_zum_Anfertigen_wissenschaftlicher_Arbeiten.pdf?dev=ugbpucsk</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">Hiermit versichere ich an Eides statt, dass ich die vorliegende Arbeit selbständig und ohne die Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Alle Stellen, die wörtlich oder sinngemäß aus veröffentlichten und nicht veröffentlichten Schriften entnommen wurden, sind als solche kenntlich gemacht. Die Arbeit ist in gleicher oder ähnlicher Form oder auszugsweise im Rahmen einer anderen Prüfung noch nicht vorgelegt worden.</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">\vspace{4cm}</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline"><span class="comment"><span class="comment">% bases on https://www.math.tugraz.at/~grabner/Masterarbeit-template.tex</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">\noindent</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline"><span class="keyword2">\begin{minipage}</span>[h]{0.4\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (463) [lt:de:GERMAN_SPELLER_RULE]"></span>linewidth}</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline">	Dortmund, am \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Notfall, Goodwill, notvoll] (489) [lt:de:GERMAN_SPELLER_RULE]"></span>dotfill<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">	\vspace*{2.5mm}</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline"><span class="keyword2">\end{minipage}</span></div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">	\hspace*{0.1\linewidth}</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">	<span class="keyword2">\begin{minipage}</span>[h]{0.5\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (514) [lt:de:GERMAN_SPELLER_RULE]"></span>linewidth}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">	<span class="keyword2">\begin{center}</span></div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">		\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Notfall, Goodwill, notvoll] (531) [lt:de:GERMAN_SPELLER_RULE]"></span>dotfill<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\</span>\</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">		(Unterschrift)</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">	<span class="keyword2">\end{center}</span></div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline"><span class="keyword2">\end{minipage}</span></div><div class="clear"></div>
+</div>
+<h2 class="filename">content/02_theorie/clientbasierte-webapps.tex</h2>
+
+<p>Found 2 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline"><span class="keyword1">\subsection</span>{JavaScript-basierte Webapplikationen}</div><div class="clear"></div>
+<div class="linenb">2</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">3</div><div class="codeline"><span class="keyword1">\textit</span>{Als Einleitung zum nächsten Abschnitt sollen kurz JavaScript-basierte Webapplikationen erläutert werden. Es soll beschrieben werden, was sie von herkömmlichen Webapplikationen unterscheidet.}</div><div class="clear"></div>
+<div class="linenb">4</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">5</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 29 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Single-Page-Applikation, Single-Page-Applikations-, Single-Page-Applikationen, Single-Page-Applikators, Single-Page-Applikatives] (234) [lt:de:GERMAN_SPELLER_RULE]"></span>Single-Page-Applications}</div><div class="clear"></div>
+<div class="linenb">6</div><div class="codeline"><span class="keyword1">\label</span>{subsec:singe-page-applications}</div><div class="clear"></div>
+<div class="linenb">7</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">8</div><div class="codeline"><span class="keyword1">\textit</span>{Eine detailliertere Beschreibung zu SPAs soll nun erfolgen, da sie Hauptaugenmerk der Arbeit sind. Arbeitsweise, sowie Vorteile und Nachteile sollen für den Leser aufgezeigt und beschrieben werden.}</div><div class="clear"></div>
+</div>
+<h2 class="filename">main.tex</h2>
+
+<p>Found 63 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% twoside = false setzen, falls kein doppelseitiger Druck nötig</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;2</div><div class="codeline"><span class="keyword1">\documentclass</span>[oneside, ngerman, final, 11pt, a4paper, 1.1headlines, headinclude=false, footinclude=false, mpinclude=false, pagesize, onecolumn, titlepage, parskip=half, headsepline, chapterprefix=false, version=first, listof=totoc, bibliography=totoc, toc=graduated, fleqn, twoside=false]{scrbook}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;3</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;4</div><div class="codeline"><span class="comment"><span class="comment">% Import file that contains configuration</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;5</div><div class="codeline">\input{content/00_preamble/packages}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;6</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;7</div><div class="codeline"><span class="comment"><span class="comment">% Import file that contains configuration</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;8</div><div class="codeline">\input{content/00_preamble/configuration}</div><div class="clear"></div>
+<div class="linenb">&nbsp;&nbsp;9</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;10</div><div class="codeline"><span class="comment"><span class="comment">%<span class="keyword1">\usepackage</span>{glossaries}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;11</div><div class="codeline"><span class="comment"><span class="comment">%\input{content/preamble/glossar}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;12</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;13</div><div class="codeline"><span class="comment"><span class="comment">% Beginn des Dokumentes </span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;14</div><div class="codeline"><span class="keyword2">\begin{document}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;15</div><div class="codeline">	<span class="comment">% Die Commands werden auf der Titelseite eingefügt, die Werte sind anzupassen</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;16</div><div class="codeline">	\newcommand*{\thedockind}{<span class="keyword1">\textbf</span>{Proposal} zur Bachelorarbeit}</div><div class="clear"></div>
+<div class="linenb">&nbsp;17</div><div class="codeline">	\newcommand*{\thetitle}{Bessere Nachvollziehbarkeit clientseitiger JavaScript-basierter<span class="highlight-sh" title="You should not break lines manually in a paragraph. Either start a new paragraph or stay in the current one. [sh:nobreak]">\\</span>Webapplikationen}</div><div class="clear"></div>
+<div class="linenb">&nbsp;18</div><div class="codeline">	\newcommand*{\thesubtitle}{Ein Ansatz zur Verbesserung der Nachvollziehbarkeit von Nutzerinteraktion und Anwendungsverhalten}</div><div class="clear"></div>
+<div class="linenb">&nbsp;19</div><div class="codeline">	\newcommand*{\theauthor}{Marvin Kienitz}</div><div class="clear"></div>
+<div class="linenb">&nbsp;20</div><div class="codeline">	\newcommand*{\thematriculationnumber}{7097533}</div><div class="clear"></div>
+<div class="linenb">&nbsp;21</div><div class="codeline">	\newcommand*{\thebirthday}{26.04.1996}</div><div class="clear"></div>
+<div class="linenb">&nbsp;22</div><div class="codeline">	\newcommand*{\thedegree}{Bachelor of Science}</div><div class="clear"></div>
+<div class="linenb">&nbsp;23</div><div class="codeline">	\newcommand*{\themajor}{Software- und Systemtechnik, Vertiefung Softwaretechnik} <span class="comment">% Studiengang</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;24</div><div class="codeline">	\newcommand*{\thedate}{\today} <span class="comment">% \today kann durch ein Datum erstetzt werden. </span></div><div class="clear"></div>
+<div class="linenb">&nbsp;25</div><div class="codeline">	\newcommand*{\thebetreuer}{Prof. Dr. Sven Jörges} </div><div class="clear"></div>
+<div class="linenb">&nbsp;26</div><div class="codeline">	\newcommand*{\thezweitbetreuer}{Dipl. Inf. Stephan Müller}</div><div class="clear"></div>
+<div class="linenb">&nbsp;27</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;28</div><div class="codeline">	<span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (36) [lt:de:GERMAN_SPELLER_RULE]"></span>titlepage}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;29</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (50) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>6.5}(-1,-3)</div><div class="clear"></div>
+<div class="linenb">&nbsp;30</div><div class="codeline">	    <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [zoomorph, zoomorphe] (76) [lt:de:GERMAN_SPELLER_RULE]">color}</span>{fh</span>_grau}</div><div class="clear"></div>
+<div class="linenb">&nbsp;31</div><div class="codeline">	      \rule{6.8cm}{33cm}    </div><div class="clear"></div>
+<div class="linenb">&nbsp;32</div><div class="codeline">	    <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [cooler, zuvor, klar, Motor, Moor, Polo, solo, Chlor, Solon, cool, hohler, polar, Polos, Solos, Wolof, coole, coolen, solar, wohler, zollt] (104) [lt:de:GERMAN_SPELLER_RULE]"></span>color}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;33</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (114) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;34</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (128) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>6.5}(-1.2,-0.7)</div><div class="clear"></div>
+<div class="linenb">&nbsp;35</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (156) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;36</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (170) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>6.5}(-0.8,1)</div><div class="clear"></div>
+<div class="linenb">&nbsp;37</div><div class="codeline">	    {\Large \textsf{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (199) [lt:de:GERMAN_SPELLER_RULE]">thedockind}}</span>            </div><div class="clear"></div>
+<div class="linenb">&nbsp;38</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (226) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;39</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;40</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (243) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>7}(4.5,2)</div><div class="clear"></div>
+<div class="linenb">&nbsp;41</div><div class="codeline">	    {\noindent \huge </div><div class="clear"></div>
+<div class="linenb">&nbsp;42</div><div class="codeline">	      \textsf{<span class="keyword1">\textbf</span>{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [teilte, tätige, tätigte, textile, title, betitle, teile, treidle] (277) [lt:de:GERMAN_SPELLER_RULE]">thetitle\\</span>[<span class="highlight" title="Vor Einheitenzeichen sollte ein Leerzeichen gesetzt werden. Vorschlag: '0.3 cm'. Suggestions: [0.3 cm] (286) [lt:de:EINHEIT_LEERZEICHEN]">0.3cm</span>] </div><div class="clear"></div>
+<div class="linenb">&nbsp;43</div><div class="codeline">	          \Large  \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (309) [lt:de:GERMAN_SPELLER_RULE]">thesubtitle\\</span>[<span class="highlight" title="Vor Einheitenzeichen sollte ein Leerzeichen gesetzt werden. Vorschlag: '0.05 cm'. Suggestions: [0.05 cm] (321) [lt:de:EINHEIT_LEERZEICHEN]">0.05cm</span>]</div><div class="clear"></div>
+<div class="linenb">&nbsp;44</div><div class="codeline">	          }} }</div><div class="clear"></div>
+<div class="linenb">&nbsp;45</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (347) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;46</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;47</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;48</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (367) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>8.5}(4.5,6.5)\noindent</div><div class="clear"></div>
+<div class="linenb">&nbsp;49</div><div class="codeline">	    \textsf{An der Fachhochschule Dortmund\\</div><div class="clear"></div>
+<div class="linenb">&nbsp;50</div><div class="codeline">	    im Fachbereich Informatik\\</div><div class="clear"></div>
+<div class="linenb">&nbsp;51</div><div class="codeline">	    Studiengang \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (477) [lt:de:GERMAN_SPELLER_RULE]">themajor</span> \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;52</div><div class="codeline">	    erstelltes \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (505) [lt:de:GERMAN_SPELLER_RULE]">thedockind</span> \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;53</div><div class="codeline">	    zur Erlangung des akademischen Grades\\</div><div class="clear"></div>
+<div class="linenb">&nbsp;54</div><div class="codeline">	    \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [tätigere] (568) [lt:de:GERMAN_SPELLER_RULE]"></span>thedegree}</div><div class="clear"></div>
+<div class="linenb">&nbsp;55</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (582) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;56</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;57</div><div class="codeline">	  <span class="keyword2">\begin{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (599) [lt:de:GERMAN_SPELLER_RULE]">textblock}</span>{</span>6.5}(-0.4,10.0)</div><div class="clear"></div>
+<div class="linenb">&nbsp;58</div><div class="codeline">	    \noindent</div><div class="clear"></div>
+<div class="linenb">&nbsp;59</div><div class="codeline">	    \textsf{von \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;60</div><div class="codeline">	      \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [trauter] (650) [lt:de:GERMAN_SPELLER_RULE]">theauthor</span> \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;61</div><div class="codeline">	      geb.\ am \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (679) [lt:de:GERMAN_SPELLER_RULE]">thebirthday</span>  \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;62</div><div class="codeline">	      <span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [März-Er, März-Und, März-Art, März-New, März-Nur] (701) [lt:de:GERMAN_SPELLER_RULE]">Matr.-Nr</span>. \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (712) [lt:de:GERMAN_SPELLER_RULE]">thematriculationnumber\\</span>[<span class="highlight" title="Vor Einheitenzeichen sollte ein Leerzeichen gesetzt werden. Vorschlag: '0.7 cm'. Suggestions: [0.7 cm] (735) [lt:de:EINHEIT_LEERZEICHEN]">0.7cm</span>]</div><div class="clear"></div>
+<div class="linenb">&nbsp;63</div><div class="codeline">	      Betreuer:\\</div><div class="clear"></div>
+<div class="linenb">&nbsp;64</div><div class="codeline">	       \noindent\hspace*{6mm} \thebetreuer \\</div><div class="clear"></div>
+<div class="linenb">&nbsp;65</div><div class="codeline">	       \noindent\hspace*{6mm} \thezweitbetreuer\\ [0.5cm]</div><div class="clear"></div>
+<div class="linenb">&nbsp;66</div><div class="codeline">	      Dortmund, \<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [total, tot, töten, toten, tötet, tote, Notar, totale, Kodak, toter, Wotan, tonal, totem, totes, okay, töte, theta, iota, Body, Coda] (799) [lt:de:GERMAN_SPELLER_RULE]">today}</span>    </div><div class="clear"></div>
+<div class="linenb">&nbsp;67</div><div class="codeline">	  <span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Textblock, Feldblock, Testblock, Stadtblock, Textblocks, Zeitblock, Textblöcke, Weltblock, Westblock, Geldblock, Angstblock, Rechtsblock, Restblock, Bettblock, Heftblock, Hemdblock, Zeltblock, Sektblock, Beatblock, Festblock] (813) [lt:de:GERMAN_SPELLER_RULE]"></span>textblock}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;68</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">&nbsp;69</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;70</div><div class="codeline">	<span class="keyword2">\end{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (832) [lt:de:GERMAN_SPELLER_RULE]"></span>titlepage}</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;71</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;72</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">&nbsp;73</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;74</div><div class="codeline">	<span class="keyword1">\section</span>*{\thispagestyle{empty}Kurzfassung}</div><div class="clear"></div>
+<div class="linenb">&nbsp;75</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;76</div><div class="codeline">	<span class="keyword1">\textit</span>{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Visum, Ditzum, Eitzum, Rysum, linksum] (860) [lt:de:GERMAN_SPELLER_RULE]">lipsum</span>[1-4]}</div><div class="clear"></div>
+<div class="linenb">&nbsp;77</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;78</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">&nbsp;79</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;80</div><div class="codeline">	<span class="keyword1">\section</span>*{\thispagestyle{empty}Abstract}</div><div class="clear"></div>
+<div class="linenb">&nbsp;81</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;82</div><div class="codeline">	<span class="keyword1">\textit</span>{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Visum, Ditzum, Eitzum, Rysum, linksum] (890) [lt:de:GERMAN_SPELLER_RULE]">lipsum</span>[1-4]}</div><div class="clear"></div>
+<div class="linenb">&nbsp;83</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;84</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">&nbsp;85</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;86</div><div class="codeline">	<span class="comment">% Römische Nummerierung der Seiten des Inhaltsverzeichnisses </span></div><div class="clear"></div>
+<div class="linenb">&nbsp;87</div><div class="codeline">	\setcounter{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Page, Lage, Tage, Sache, Rache, mache, Bäche, vage, Gage, läge, sage, Säge, bare, baue, fache, wache, wage, Bache, Bake, bange] (913) [lt:de:GERMAN_SPELLER_RULE]">page}{</span>1}</div><div class="clear"></div>
+<div class="linenb">&nbsp;88</div><div class="codeline">	\pagenumbering{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Roman, romani, roman-, man, roten, voran, Romane, rosa, Norman, Roma, Romans, Domäne, Koran, rohen, woran, Aroma, Koma, Oman, Truman, human] (921) [lt:de:GERMAN_SPELLER_RULE]"></span>roman}</div><div class="clear"></div>
+<div class="linenb">&nbsp;89</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;90</div><div class="codeline">	\tableofcontents{}</div><div class="clear"></div>
+<div class="linenb">&nbsp;91</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;92</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">&nbsp;93</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;94</div><div class="codeline">	<span class="comment">% Arabische Nummerierung aller anderen Seiten</span></div><div class="clear"></div>
+<div class="linenb">&nbsp;95</div><div class="codeline">	\setcounter{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Page, Lage, Tage, Sache, Rache, mache, Bäche, vage, Gage, läge, sage, Säge, bare, baue, fache, wache, wage, Bache, Bake, bange] (944) [lt:de:GERMAN_SPELLER_RULE]">page}{</span>1} </div><div class="clear"></div>
+<div class="linenb">&nbsp;96</div><div class="codeline">	\pagenumbering{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [Grafik, arabisch, Tragik, Trapez, Harpyie, Trabi, Trabis] (953) [lt:de:GERMAN_SPELLER_RULE]"></span>arabic}</div><div class="clear"></div>
+<div class="linenb">&nbsp;97</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;98</div><div class="codeline">	\chapter{Einleitung}</div><div class="clear"></div>
+<div class="linenb">&nbsp;99</div><div class="codeline">	\input{content/01_einleitung/einleitung}</div><div class="clear"></div>
+<div class="linenb">100</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">101</div><div class="codeline">	\chapter{Ausgangssituation}</div><div class="clear"></div>
+<div class="linenb">102</div><div class="codeline">	\input{content/02_theorie/theorie}</div><div class="clear"></div>
+<div class="linenb">103</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">104</div><div class="codeline">	\chapter{Methoden und Praktiken}</div><div class="clear"></div>
+<div class="linenb">105</div><div class="codeline">	\input{content/03_methoden/methoden}</div><div class="clear"></div>
+<div class="linenb">106</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">107</div><div class="codeline">	\chapter{Erstellung Proof-of-Concept}</div><div class="clear"></div>
+<div class="linenb">108</div><div class="codeline">	\input{content/04_erstellung-poc/erstellung-poc}</div><div class="clear"></div>
+<div class="linenb">109</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">110</div><div class="codeline">	\chapter{Ergebnis}</div><div class="clear"></div>
+<div class="linenb">111</div><div class="codeline">	\input{content/05_ergebnis/ergebnis}</div><div class="clear"></div>
+<div class="linenb">112</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">113</div><div class="codeline">	\chapter{Abschluss}</div><div class="clear"></div>
+<div class="linenb">114</div><div class="codeline">	\input{content/06_abschluss/abschluss}</div><div class="clear"></div>
+<div class="linenb">115</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">116</div><div class="codeline"><span class="comment"><span class="comment">%	\chapter{Test-Kapitel}</span></span></div><div class="clear"></div>
+<div class="linenb">117</div><div class="codeline"><span class="comment"><span class="comment">%	\input{content/xx_test/test}</span></span></div><div class="clear"></div>
+<div class="linenb">118</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">119</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">120</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">121</div><div class="codeline">	\addcontentsline{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1121) [lt:de:GERMAN_SPELLER_RULE]"></span>toc}{chapter}{Anhang}</div><div class="clear"></div>
+<div class="linenb">122</div><div class="codeline">	\<span class="highlight-sh" title="This section is very short (about 47 words). You should consider merging it with another section or make it longer. [sh:seclen]">chapter</span>{Anhang}</div><div class="clear"></div>
+<div class="linenb">123</div><div class="codeline">	\input{content/99_postscript/anhang}</div><div class="clear"></div>
+<div class="linenb">124</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">125</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1156) [lt:de:GERMAN_SPELLER_RULE]"></span>clearpage</div><div class="clear"></div>
+<div class="linenb">126</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">127</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [lebt, legt, lud, lädt, rät, red, sät, lest, Jet, Met, Set, et, leb, leg, lägt, der, und, den, des, ist] (1172) [lt:de:GERMAN_SPELLER_RULE]">let</span>\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1176) [lt:de:GERMAN_SPELLER_RULE]">cleardoublepage</span>\relax</div><div class="clear"></div>
+<div class="linenb">128</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">129</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">130</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">131</div><div class="codeline">	\addcontentsline{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1209) [lt:de:GERMAN_SPELLER_RULE]">toc}{chapter}{Eidesstattliche</span> Erklärung}</div><div class="clear"></div>
+<div class="linenb">132</div><div class="codeline">	\chapter*{<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [eidesstattliche] (1247) [lt:de:DE_CASE]">Eidesstattliche</span> Erklärung}</div><div class="clear"></div>
+<div class="linenb">133</div><div class="codeline">	\input{content/99_postscript/eidesstattliche-erklaerung}</div><div class="clear"></div>
+<div class="linenb">134</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">135</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden. Suggestions: [lebt, legt, lud, lädt, rät, red, sät, lest, Jet, Met, Set, et, leb, leg, lägt, der, und, den, des, ist] (1282) [lt:de:GERMAN_SPELLER_RULE]">let</span>\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1286) [lt:de:GERMAN_SPELLER_RULE]">cleardoublepage</span>\relax</div><div class="clear"></div>
+<div class="linenb">136</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">137</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">138</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">139</div><div class="codeline">	\addcontentsline{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1319) [lt:de:GERMAN_SPELLER_RULE]"></span>toc}{chapter}{Abkürzungsverzeichnis}</div><div class="clear"></div>
+<div class="linenb">140</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">141</div><div class="codeline">	\settowidth{\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1357) [lt:de:GERMAN_SPELLER_RULE]"></span>nomlabelwidth}{API}</div><div class="clear"></div>
+<div class="linenb">142</div><div class="codeline">	\printnomenclature{}</div><div class="clear"></div>
+<div class="linenb">143</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">144</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">145</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">146</div><div class="codeline">	\addcontentsline{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1388) [lt:de:GERMAN_SPELLER_RULE]"></span>toc}{chapter}{Abbildungsverzeichnis}</div><div class="clear"></div>
+<div class="linenb">147</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">148</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1426) [lt:de:GERMAN_SPELLER_RULE]"></span>listoffigures</div><div class="clear"></div>
+<div class="linenb">149</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">150</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">151</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">152</div><div class="codeline">	\addcontentsline{<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1451) [lt:de:GERMAN_SPELLER_RULE]"></span>toc}{chapter}{Tabellenverzeichnis}</div><div class="clear"></div>
+<div class="linenb">153</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">154</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1487) [lt:de:GERMAN_SPELLER_RULE]"></span>listoftables</div><div class="clear"></div>
+<div class="linenb">155</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">156</div><div class="codeline">	\<span class="highlight" title="Möglicher Rechtschreibfehler gefunden (1506) [lt:de:GERMAN_SPELLER_RULE]"></span>lstlistoflistings</div><div class="clear"></div>
+<div class="linenb">157</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">158</div><div class="codeline">	<span class="highlight-sh" title="If you are writing a research paper, do not force page breaks. [sh:nonp]">\newpage</span>{}</div><div class="clear"></div>
+<div class="linenb">159</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">160</div><div class="codeline">	\bibliographystyle{my-alphadin}</div><div class="clear"></div>
+<div class="linenb">161</div><div class="codeline">	\bibliography{bib}</div><div class="clear"></div>
+<div class="linenb">162</div><div class="codeline"><span class="keyword2">\end{document}</span></div><div class="clear"></div>
+</div>
+<h2 class="filename">content/99_postscript/anhang.tex</h2>
+
+<p>Found 0 warning(s)</p>
+<div class="original-file">
+<div class="linenb">1</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+</div>
+<h2 class="filename">content/04_erstellung-poc/erstellung-poc.tex</h2>
+
+<p>Found 12 warning(s)</p>
+<div class="original-file">
+<div class="linenb">&nbsp;1</div><div class="codeline"><span class="comment"><span class="comment">% \chapter{Erstellung Proof-of-Concept}</span></span></div><div class="clear"></div>
+<div class="linenb">&nbsp;2</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;3</div><div class="codeline"><span class="keyword1">\section</span>{Kriterien}</div><div class="clear"></div>
+<div class="linenb">&nbsp;4</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;5</div><div class="codeline">	<span class="keyword1">\textit</span>{Hier soll definiert werden, welche Kriterien der PoC erfüllen soll und wenn möglich sollen zusätzlich Möglichkeiten zur Überprüfung dieser Kriterien definiert werden.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;6</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">&nbsp;7</div><div class="codeline">	<span class="keyword1">\textit</span>{Es ist zu beschreiben, wie diese Kriterien/Anforderungen zustande gekommen sind und welche Bedeutung sie für den Erfolg der Lösung besitzen.}</div><div class="clear"></div>
+<div class="linenb">&nbsp;8</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">&nbsp;9</div><div class="codeline"><span class="keyword1">\section</span>{Vorstellung der Demoanwendung}</div><div class="clear"></div>
+<div class="linenb">10</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">11</div><div class="codeline">	<span class="keyword1">\textit</span>{In diesem Abschnitt soll die Demoanwendung vorgestellt werden, anhand dessen das Proof-of-Concept erstellt wird. Damit das Proof-of-Concept erstellt werden kann, muss die Demoanwendung die zuvor beschriebenen Probleme aufweisen, hierbei sollen die Probleme möglichst realitätsnah sein und nicht frei erfunden.}</div><div class="clear"></div>
+<div class="linenb">12</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">13</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 20 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span>{Konzept}</div><div class="clear"></div>
+<div class="linenb">14</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">15</div><div class="codeline">	\<span class="highlight-sh" title="Avoid stacked headings, i.e. consecutive headings without text in between. [sh:stacked]">subsection</span>{Architektur}</div><div class="clear"></div>
+<div class="linenb">16</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">17</div><div class="codeline">	<span class="keyword1">\textit</span>{Hier soll die grobe Architektur geplant werden, welche Komponente es gibt und wie diese kommunizieren sollen.}</div><div class="clear"></div>
+<div class="linenb">18</div><div class="codeline">	</div><div class="clear"></div>
+<div class="linenb">19</div><div class="codeline">	\<span class="highlight-sh" title="This subsection is very short (about 37 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{Datenverarbeitung}</div><div class="clear"></div>
+<div class="linenb">20</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">21</div><div class="codeline">		\<span class="highlight-sh" title="Avoid stacked headings, i.e. consecutive headings without text in between. [sh:stacked]">subsubsection</span>{Erhebung}</div><div class="clear"></div>
+<div class="linenb">22</div><div class="codeline">		<span class="keyword1">\textit</span>{<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [wie] (862) [lt:de:DE_CASE]">Wie</span> werden die Daten erhoben (Nennung der verwendeten Methoden!)?}</div><div class="clear"></div>
+<div class="linenb">23</div><div class="codeline">		<span class="keyword1">\textit</span>{Wie gelangen die Daten an eine auswertende Komponente?}</div><div class="clear"></div>
+<div class="linenb">24</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">25</div><div class="codeline">		<span class="keyword1">\subsubsection</span>{Auswertung}</div><div class="clear"></div>
+<div class="linenb">26</div><div class="codeline">		<span class="keyword1">\textit</span>{<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [wie] (1007) [lt:de:DE_CASE]">Wie</span> werden die Daten zusammengefasst und ausgewertet?}</div><div class="clear"></div>
+<div class="linenb">27</div><div class="codeline">		<span class="keyword1">\textit</span>{Wie gelangt das Ergebnis an die darstellende Komponente?}</div><div class="clear"></div>
+<div class="linenb">28</div><div class="codeline">		</div><div class="clear"></div>
+<div class="linenb">29</div><div class="codeline">		\<span class="highlight-sh" title="This subsubsection is very short (about 9 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsubsection</span>{Visualisierung}</div><div class="clear"></div>
+<div class="linenb">30</div><div class="codeline">		<span class="keyword1">\textit</span>{<span class="highlight" title="Außer am Satzanfang werden nur Nomen und Eigennamen großgeschrieben. Suggestions: [wie] (1146) [lt:de:DE_CASE]">Wie</span> werden den Stakeholdern die Informationen präsentiert?}</div><div class="clear"></div>
+<div class="linenb">31</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">32</div><div class="codeline">	\<span class="highlight-sh" title="This subsection is very short (about 28 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{Technologie-Stack}</div><div class="clear"></div>
+<div class="linenb">33</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">34</div><div class="codeline">	<span class="keyword1">\textit</span>{Welche Technologien werden eingesetzt, um die Architektur umzusetzen und zu erfüllen?}</div><div class="clear"></div>
+<div class="linenb">35</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">36</div><div class="codeline">	\<span class="highlight-sh" title="This subsection is very short (about 36 words). You should consider merging it with another section or make it longer. [sh:seclen]">subsection</span>{Übertragbarkeit}</div><div class="clear"></div>
+<div class="linenb">37</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">38</div><div class="codeline">	<span class="keyword1">\textit</span>{Eignet sich das Konzept in Hinsicht auf Übertragbarkeit auf andere Softwareprojekte?}</div><div class="clear"></div>
+<div class="linenb">39</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">40</div><div class="codeline">	<span class="keyword1">\textit</span>{Dieser Punkt wird in Kapitel 5 erneut betrachtet und es wird versucht die tatsächliche Übertragbarkeit der erstellten Lösung zu erörtern.}</div><div class="clear"></div>
+<div class="linenb">41</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">42</div><div class="codeline">\<span class="highlight-sh" title="This section is very short (about 11 words). You should consider merging it with another section or make it longer. [sh:seclen]"><span class="highlight-sh" title="This section is very short (about 11 words). You should consider merging it with another section or make it longer. [sh:seclen]">section</span></span>{Implementierung}</div><div class="clear"></div>
+<div class="linenb">43</div><div class="codeline">&nbsp;</div><div class="clear"></div>
+<div class="linenb">44</div><div class="codeline">	<span class="keyword1">\textit</span>{Auf Basis des Konzeptes soll nun eine Implementierung erfolgen.}</div><div class="clear"></div>
+</div>
+<hr/>
+Output produced by TeXtidote v0.8.2, &copy; 2018-2020 Sylvain Hall&eacute; - All rights reserved.<br/>
+See the <a href="https://sylvainhalle.github.io/textidote">TeXtidote website</a> for more information.
+</body>
+</html>

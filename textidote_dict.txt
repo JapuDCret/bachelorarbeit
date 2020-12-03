@@ -1,0 +1,104 @@
+Clientbasiert
+Clientbasierte
+Clientbasierten
+Clientseitiges
+Tracing
+Trace
+Tracen
+Span
+Spans
+OpenTracing
+Application
+Synthetic Monitoring
+Error
+Error Monitoring
+Session-Replay
+OpenTelemetry
+OTel
+OpenCensus
+Cloud Native Computing Foundation
+CNCF
+APM
+RUM
+New Relic
+Dynatrace
+OneAgent
+Enhanced Tracking Protetion
+OnPremise
+Sentry
+LogRocket
+Redux
+React
+MobX
+Vuex
+ngrx
+React Native
+Vue.js
+Vuejs
+Vue
+Angular
+AngularJS
+Splunk
+Honeycomb
+Jaeger
+AppDynamics, DataDog
+Airbrake
+Instabug
+Rollbar
+Bugsnag
+TrackJS
+Google Cloud Trace
+Zipkin
+Bug-Bounty-Projekt
+Whitehat
+cross-origin
+application/x-www-form-urlencoded
+multipart/form-data
+text/plain
+CSP
+Content-Security-Policy
+XSS
+Cross-Site-Scripting
+Content Delivery Network
+Härtungsmaßnahmen
+Log
+Logdatenerhebung
+Debugging
+Mosaic
+Browsermarkt
+Cross-Browser-Incompatibilities
+Cross-Browser-Inkompatibilität
+Cross-Browser-Inkompatibilitäten
+XBI
+XBIs
+NetScape
+Statista
+Browserengine
+COORS
+Cross-Origin Resource Sharing
+Asynchronous JavaScript and XML
+World Wide Web Consortium
+XMLHttpRequest
+domänenfremder
+Rendering
+branchenneutral
+branchenneutraler
+branchenneutrales
+Open Knowledge
+Open
+Knowledge
+Proof-of-Concept
+Proof-of-Concepts
+PoC
+Demoanwendung
+Single-Page-Application
+SPA
+SPAs
+Javaland
+Mobile
+Browserhistorie
+Browserkompatiblität
+Google Scholar
+Browserbedingt
+Browserbedingte
+Verständnisgewinnung
