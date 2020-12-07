@@ -74,7 +74,7 @@ XBIs
 NetScape
 Statista
 Browserengine
-COORS
+CORS
 Cross-Origin Resource Sharing
 Asynchronous JavaScript and XML
 World Wide Web Consortium

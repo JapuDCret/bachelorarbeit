@@ -14,44 +14,60 @@
 
 	Auf Basis der zuvor vorgestellten Methoden und Praktiken wird nun eine sinnvolle Kombination konzeptioniert, die als Ziel hat, die Nachvollziehbarkeit nachhaltig zu erhöhen. Es werden die Disziplinen Datenerhebung, -auswertung und -visualisierung unterschieden und nacheinander beschrieben. Danach und darauf aufbauend wird eine grobe Architektur vorgestellt, die diese Ansätze in ein Gesamtbild bringt.
 		
-		\subsubsection{Erhebung}
+	\subsubsection{Erhebung}
 		
-		Im Standardfall erhalten Betreiber und Entwickler, bis auf die Kommunikation dessen mit Partnersystemen, keine Informationen von einer SPA. Deswegen sollen zunächst Loginformationen des Frontends erhoben und an ein weiteres System gesendet werden. Hierbei ist eine Unterscheidung sinnvoll, welche Logmeldungen tatsächlich gesendet werden sollen (bspw. anhand des Log Kritikalität). Diese Unterscheidung sollte konfigurativ änderbar sein. Dieser Datenstrom wird wenig 
+	Im Standardfall erhalten Betreiber und Entwickler, bis auf die Kommunikation mit Partnersystemen, keine Informationen von einer SPA. Deswegen sollen zunächst Loginformationen des Frontends erhoben und an ein weiteres System gesendet werden. Hierbei ist eine Unterscheidung sinnvoll, welche Logmeldungen tatsächlich gesendet werden sollen (bspw. anhand des Log Kritikalität). Diese Unterscheidung sollte konfigurativ änderbar sein. Dieser Datenstrom wird erfahrungsgemäß unregelmäßig aber doch schon sehr häufig mit Daten befüllt, um eine gute Nachvollziehbarkeit zu erreichen.
 		
-		Neben den Loginformationen sollten nicht gefangene Fehler und optional gefangene Fehler an ein weiteres System weitergeleitet werden. Dabei sollen alle relevanten und zugreifbaren Informationen mitgesendet werden.
+	Neben den Loginformationen sollten nicht gefangene Fehler und optional gefangene Fehler an ein weiteres System weitergeleitet werden. Dabei sollen alle relevanten und zugreifbaren Informationen mitgesendet werden.
 		
-		Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird um bspw. Klickpfade zu optimieren um festzustellen wie lange sich Nutzer auf einer Seite aufhalten. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung Seitens des Nutzers erfolgen oder bei speziellen Umgebungen automatisch (bspw. eine Staging-Umgebung).
+	Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird um bspw. Klickpfade zu optimieren um festzustellen wie lange sich Nutzer auf einer Seite aufhalten. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung Seitens des Nutzers erfolgen oder bei speziellen Umgebungen automatisch (bspw. eine Staging-Umgebung). Weiterhin könnten die Loginformationen nach dieser Einwilligung auch feingranularer übertragen werden, bspw. ohne Einwilligung würden Logs der Kritikalität INFO und höher übertragen werden und mit Einwilligung auch Logs der Kritikalität DEBUG und höher.
 		
-		Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Bei könnten wichtige Verarbeitungsmethoden auch im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll wenn möglich auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch bei Logdaten. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
+	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Bei könnten wichtige Verarbeitungsmethoden auch im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll wenn möglich auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch bei Logdaten. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
 		
-		Alle gesendeten Datensätze sollen möglichst mit Metadaten angereichert werden, die einerseits den Nutzer, die Umgebung und die Anwendung identifizieren. Diese umfassen u. A.: Zeitstempel, Session-Id, User-Agent, IP, Hostsystem, Version.
+	Alle gesendeten Datensätze sollen möglichst mit Metadaten angereichert werden, die einerseits den Nutzer, die Umgebung und die Anwendung identifizieren. Diese umfassen u. A.: Zeitstempel, Session-Id, User-Agent, IP, Hostsystem, Version.
 		
-		\subsubsection{Auswertung}
+	\subsubsection{Auswertung}
 		
-		Bei der Auswertung der Daten soll hauptsächlich auf bestehende Technologien gesetzt werden, wie z.B. die Technologien, die in \autoref{sec:werkzeuge-und-technologien} evaluiert wurden. Das heißt im Konzept kann nicht im Detail darauf eingegangen werden, wie diese Daten tatsächlich verarbeitet werden und ist auch nicht direkt von Relevanz. Eine Beschreibung folgt im \autoref{sec:technologie-stack} sowie beim Einsatz von den Technologien selbst.
+	Bei der Auswertung der Daten soll hauptsächlich auf bestehende Technologien gesetzt werden, wie z.B. die Technologien, die in \autoref{sec:werkzeuge-und-technologien} evaluiert wurden. Das heißt im Konzept kann nicht im Detail darauf eingegangen werden, wie diese Daten tatsächlich verarbeitet werden und ist auch nicht direkt von Relevanz. Eine Beschreibung folgt im \autoref{sec:technologie-stack} sowie beim Einsatz von den Technologien selbst.
 		
-		Lediglich bei der Vorverarbeitung des Tracings im Client kann nun bereits eine Aussage getroffen werden. Wird hierbei nämlich, wie gewünscht, auf OTel gesetzt, dann erfolgt eine Vorverarbeitung von den Komponenten von OTel selbst. Dabei werden die u. A. Spankontexte fürs Tracing und die Beziehung zwischen den Spans gepflegt.
+	Lediglich bei der Vorverarbeitung des Tracings im Client kann nun bereits eine Aussage getroffen werden. Wird hierbei nämlich, wie gewünscht, auf OTel gesetzt, dann erfolgt eine Vorverarbeitung von den Komponenten von OTel selbst. Dabei werden die u. A. Spankontexte fürs Tracing und die Beziehung zwischen den Spans gepflegt.
 		
-		\subsubsection{Visualisierung}
+	\subsubsection{Visualisierung}
 		
-		Wie bei der Auswertung wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
+	Wie bei der Auswertung wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
 		
+	\begin{itemize}
+		\item Die Logdaten sollen abrufbar sein und filterbar sein.
+		\item Fehlerinformationen sollen gesondert der Logdaten dargestellt werden.
 		\begin{itemize}
-			\item Die Logdaten sollen abrufbar sein und filterbar sein.
-			\item Fehlerinformationen sollen gesondert der Logdaten dargestellt werden.
-			\begin{itemize}
-				\item Fehler sollen gruppiert werden, um gleiche Fehlerbilder zusammenzufassen.
-				\item Zu den Fehlerbildern sollen übergreifende Informationen dargestellt werden.
-				\item Es lassen sich auch einzelne Fehler einer Fehlergruppe anzeigen.
-			\end{itemize}
-			\item Für einen ausgewählten Trace soll ein Trace-Wasserfallgraph dargestellt werden (vgl. \autoref{sec:tracing})
-			\item Die beispielhaften Metriken soll visuell dargestellt werden.
-			\item Die Daten zum Session-Replay sollen, wenn vorhanden, visuell dargestellt werden, sodass die Interaktionen des Nutzers nachzuvollziehen sind.
+			\item Fehler sollen gruppiert werden, um gleiche Fehlerbilder zusammenzufassen.
+			\item Zu den Fehlerbildern sollen übergreifende Informationen dargestellt werden.
+			\item Es lassen sich auch einzelne Fehler einer Fehlergruppe anzeigen.
 		\end{itemize}
+		\item Für einen ausgewählten Trace soll ein Trace-Wasserfallgraph dargestellt werden (vgl. \autoref{sec:tracing})
+		\item Die beispielhaften Metriken soll visuell dargestellt werden.
+		\item Die Daten zum Session-Replay sollen, wenn vorhanden, visuell dargestellt werden, sodass die Interaktionen des Nutzers nachzuvollziehen sind.
+	\end{itemize}
 	
 	\subsection{Architektur}
 
-	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, soll nun eine grobe Architektur daraus konzeptioniert werden. Hierbei sollen die einzelnen notwendigen Datenkanäle sichtbar gemacht werden.
+	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponente verwenden. Dieser Aufbau lässt sich in \autoref{fig:grobe-architektur} betrachten.
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{img/loesungsansatz/konzept-simple.png}
+	\caption{Grobe Architektur}
+	\label{fig:grobe-architektur}
+\end{figure}
+
+Wie in der Datenerfassung erwähnt, besitzen werden die einzelnen Datentypen unterschiedlich erhoben und haben auch eine andere Eigenschaften. Wie IBM bei Big Data definiert \cite{ZikopoulosUnderstandingBigData}, lassen sich auch hier die Eigenschaften Volume, Velocity und Variety identifizieren. Der Aspekt Volume ist weniger präsent, denn die Datenmengen sind nicht vergleichbar mit echten Big-Data-Anwendungen. Genau ist dies nicht prognostizierbar, aber in der Evaluierung des Stands der Technik, ließ sich ein Datendurchsatz von 1 MB/min feststellen - somit stellt dies im Frontend keine Herausforderung dar, jedoch in den verarbeitenden Systemen kann dies natürlich durch eine große Menge an Frontends multipliziert werden, was jedoch nicht im Fokus der Arbeit steht. Eine gewisse Variety der Daten, also Unterschiedlichkeit der Datenstruktur, ist definitiv vorhanden und entspringt den verschiedenen Funktionsgebieten. Auch innerhalb derselben Datenströme kann eine Variety identifiziert werden, denn bspw. sind Logmeldungen sehr individuell, sie folgen meist nicht streng einem Format und enthalten unterschiedliche Menge an Informationen. Der Aspekt des Volumes ist zudem auch sehr wichtig und eine Visualisierung dessen für das vorhergehende Konzept findet sich in \autoref{fig:grobe-architektur-datendurchsatz}.
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{img/loesungsansatz/konzept-datendurchsatz.png}
+	\caption{Grobe Architektur mit Datendurchsatz}
+	\label{fig:grobe-architektur-datendurchsatz}
+\end{figure}
 
 	\subsection{Technologie-Stack}
 	\label{sec:technologie-stack}
