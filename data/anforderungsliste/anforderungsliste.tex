@@ -2,6 +2,11 @@
 \subsubsection{Grundanforderungen}
 
 
+\begin{anf}{anf:10}{10}{nan}{B}{f}{A}
+\multicolumn{5}{|p{14.05cm}|}{nan} \\
+\hline
+\end{anf}
+
 \subsubsection{Funktionsumfang}
 
 
@@ -15,8 +20,18 @@
 \hline
 \end{anf}
 
+\begin{anf}{anf:1020}{1020}{Fehler-Monitoring}{B}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Tritt ein Fehler auf, der nicht gefangen wurde, so soll dieser automatisch erfasst werden und um weitere Attribute ergänzt werden.\par Sonstige Fehler können auch erfasst werden, aber hierbei Bedarf es einem manuellen Aufruf einer Schnittstelle} \\
+\hline
+\end{anf}
+
 \begin{anf}{anf:1100}{1100}{Logübertragung}{B}{f}{S}
 \multicolumn{5}{|p{14.05cm}|}{Ausgewählte Logmeldungen sollen an ein Partnersystem weitergeleitet werden. Die Auswahl könnte über die Kritikalität, also dem Log-Level, der Logmeldung erfolgen.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:1101}{1101}{Fehlerübertragung}{B}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Sämtliche erfassten Fehler sollen an ein Partnersystem weitergeleitet werden.} \\
 \hline
 \end{anf}
 
@@ -34,3 +49,49 @@
 \end{anf}
 
 \subsubsection{Partnersysteme}
+
+
+\begin{anf}{anf:4010}{4010}{Partnersystem "Log-Management"}{B}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Logmeldungen weitergeleitet werden. Dieses System soll die Logmeldungen speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Logmeldungen bieten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4020}{4020}{Partnersystem "Error-Monitoring"}{B}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Fehler weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Fehler bieten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4021}{4021}{Visualisierung "Error-Monitoring"}{L}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Fehler weitergeleitet werden, soll diese grafisch darstellen können.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4021}{4021}{Alerting  "Error-Monitoring"}{S}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Fehler weitergeleitet werden, soll bei Auftreten von bestimmten Fehlern oder Fehleranzahlen eine Meldung erzeugen (per E-Mail, Slack, o. Ä.).} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4030}{4030}{Partnersystem "Tracing"}{B}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Tracingdaten weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Tracingdaten bieten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4031}{4031}{Visualisierung "Tracing"}{B}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Tracingdaten weitergeleitet werden, soll diese grafisch als Tracing-Wasserfallgraph darstellen können.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4030}{4030}{Partnersystem "Metriken"}{L}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Metriken weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Metriken bieten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4031}{4031}{Visualisierung "Metriken"}{L}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Metriken weitergeleitet werden, soll diese grafisch darstellen können.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:4032}{4032}{Alerting "Metriken"}{S}{f}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Metriken weitergeleitet werden, soll bei Auftreten von bestimmten Metrikwerten oder Überschreitungen von Schwellen eine Meldung erzeugen (per E-Mail, Slack, o. Ä.).} \\
+\hline
+\end{anf}
