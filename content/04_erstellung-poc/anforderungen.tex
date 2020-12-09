@@ -5,10 +5,10 @@
 	
 Um die Anforderungen systematisch zu kategorisieren, werden folgend zwei Modelle vorgestellt, mit denen die Anforderungen kategorisiert werden.
 
-Beim ersten handelt es sich um das Kano-Modell \cite{KanoModell} der Kundenzufriedenheit kategorisiert (vgl. \autoref{tab:merkmale-nach-dem-kano-modell}).
+Beim ersten Modell handelt es sich um das Kano-Modell \cite{KanoModell} der Kundenzufriedenheit kategorisiert (vgl. \autoref{tab:merkmale-nach-dem-kano-modell}).
 	
 \begin{table}[H]
-\begin{tabular}{ |p{1.2cm}|p{2.75cm}|p{9.55cm}| }
+\begin{tabular}{ |p{1.15cm}|p{2.75cm}|p{9.6cm}| }
 	\hline
 	Kürzel & Titel & Beschreibung \\
 	\hline
@@ -31,7 +31,7 @@ Beim ersten handelt es sich um das Kano-Modell \cite{KanoModell} der Kundenzufri
 Neben der Unterscheidung nach dem Kano-Modell werden die Anforderungen in funktionale und nicht-funktionale Anforderungen \cite{FunktionaleUndNichtFunktionaleAnforderungen} aufgeteilt (vgl. \autoref{tab:kategorien-der-anforderungsliste}).
 
 \begin{table}[H]
-\begin{tabular}{ |p{1.25cm}|p{3cm}|p{9.25cm}| }
+\begin{tabular}{ |p{1.15cm}|p{2.75cm}|p{9.6cm}| }
 	\hline
 	Kürzel & Titel & Beschreibung \\
 	\hline
@@ -49,21 +49,44 @@ Neben der Unterscheidung nach dem Kano-Modell werden die Anforderungen in funkti
 
 \textit{Wie werden die Anforderungen erhoben?}
 
-Die primäre Quelle von Anforderungen, stellen die Stakeholder selbst dar. Die Stakeholder dieser Arbeit sind Christian Wansart und Stephan Müller von Open Knowledge. Sie betreuen die Arbeit und haben ein starkes Interesse, dass ein sinnvolles und übertragbares Ergebnis aus der Arbeit entspringt, um es z.B. bei Kunden anwenden zu können.
+Die primäre Quelle von Anforderungen, stellen die Stakeholder selbst dar. Die Stakeholder dieser Arbeit sind Christian Wansart und Stephan Müller von Open Knowledge. Sie betreuen die Arbeit und haben ein starkes Interesse, dass ein sinnvolles und übertragbares Ergebnis aus der Arbeit entspringt, um es z.B. bei Kunden anwenden zu können. Mit den beiden Stakeholdern wurde sich mindestens wöchentlich zu einer (virtuellen) Diskussionsrunde getroffen, um die bisherigen Ergebnisse zusammenzutragen, das weitere Vorgehen zu besprechen und auch um Lösungsansätze zu diskutieren.
 
-\textit{{\color{red}Hier: Erstellung von einer Klassifizierung der Anforderungsquellen}}
+In der Motivation wurde ein Kunde der Open Knowledge beschrieben, welcher von den Ergebnissen dieser Arbeit profitieren könnte. Die beiden Stakeholder arbeiten u. A. auch für diesen Kunden und brachten Wünsche und betriebliche Gegebenheiten des Kunden in die wöchentlichen Diskussionsrunden mit ein. Diese indirekte Kommunikation stellt die zweite Quelle an Anforderungen dar.
+
+\begin{table}[H]
+\begin{tabular}{ |p{1.15cm}|p{1.9cm}|p{10.45cm}| }
+	\hline
+	Kürzel & Titel & Beschreibung \\
+	\hline
+	S & Stakeholder & Die beiden Stakeholder Christian Wansart und Stephan Müller \\
+	\hline
+	K & Kunde & Ein Kunde der Open Knowledge, ein Direktversicherer. \\
+	\hline
+\end{tabular}
+ \captionsetup{justification=centering}
+  \caption{Quellen der Anforderungen}
+   \label{tab:quellen-der-anforderungen}
+\end{table}
 	
 \subsection{Anforderungsliste}
 
-\textit{Was sind die Anforderungen?}
+Um die Anforderungen strukturiert zu erfassen, werden sie ähnlich einer Karteikarte, wie in \autoref{tab:beispiel-anforderung} zu sehen, dargestellt. Hierbei erhält jede Anforderung eine Kategorisierung nach dem Kano-Modell, ob sie funktional oder nicht-funktional ist und aus welcher Anforderungsquelle sie entstammt. Jede Anforderung erhält zudem eine eindeutige Id, die nachfolgend in der Arbeit referenziert werden kann.
 
 \begin{table}[H]
 \begin{tabular}{ |p{1.25cm}|p{5.5cm}|p{2.25cm}|p{2.1cm}|p{1.25cm}| }
 \hline
-Id           & Name         & Kano-Modell  & Funktionsart & Quelle       \\
-\textit{1234} & \textit{Dummy} & \textit{Dummy} & \textit{nf} & \textit{S} \\
+Id            & Name          & Kano-Modell   & Funktionsart  & Quelle        \\
+\textit{1234} & \textit{Dummy} & \textit{S} & \textit{nf} & \textit{S} \\
 \hline
-\multicolumn{5}{|l|}{\textit{Hier soll eine Beschreibung hin.}} \\
+\multicolumn{5}{|l|}{\textit{Hier wird die Anforderung beschrieben.}} \\
 \hline
 \end{tabular}
+ \captionsetup{justification=centering}
+  \caption{Beispiel einer Anforderung}
+   \label{tab:beispiel-anforderung}
 \end{table}
+
+% use generated list
+\input{data/anforderungsliste/anforderungsliste.tex}
+
+\textit{\color{red}TODO: what about structured/unstructed logs?}

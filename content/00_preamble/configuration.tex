@@ -83,3 +83,30 @@
 \newcommand{\etal}{\textit{et al}}
 \newcommand{\citationneeded}{{\color{red}[cite]}}
 \newcommand{\source}[1]{\vspace{-0.75\baselineskip}\caption*{Quelle: {#1}} }
+
+% see https://tex.stackexchange.com/a/160035/221944
+%\newcommand{\anforderung}[1]{%
+%   \protected@write \@auxout {}{\string \newlabel {#1}{{#1}{\thepage}{#1}{Anforderung}{}} }%
+%   \hypertarget{#1}{#1}
+%}
+
+\newcounter{anfcounter}
+\renewcommand{\theanfcounter}{\arabic{anfcounter}}
+
+\makeatletter
+\newenvironment{anf}[6]{%
+\refstepcounter{anfcounter}%
+\protected@edef\@currentlabel{Anforderung #2}
+\label{#1}%
+	\begin{table}[H]
+	\begin{tabular}{ |p{1.25cm}|p{5.5cm}|p{2.25cm}|p{2.1cm}|p{1.25cm}| }
+\hline
+Id   & Name          & Kano-Modell  & Funktionsart & Quelle       \\
+#2 & #3 & #4 & #5 & #6 \\
+\hline
+}%
+{
+	\end{tabular}
+	\end{table}%
+}%
+\makeatother

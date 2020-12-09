@@ -1,0 +1,36 @@
+
+\subsubsection{Grundanforderungen}
+
+
+\subsubsection{Funktionsumfang}
+
+
+\begin{anf}{anf:1010}{1010}{Schnittstellen-Logging}{B}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Das Aufrufen von Schnittstellen soll mittels einer Logmeldung notiert werden. Hierbei sollen relevante Informationen wie Aufrufparameter mit notiert werden.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:1011}{1011}{Use-Case-Logging}{B}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Tritt ein Use-Case auf, soll dieser im Log notiert werden. Beispielsweise soll notiert werden, dass ein Nutzer einen neuen Datensatz angelegt möchte und wenn der diesen anlegt.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:1100}{1100}{Logübertragung}{B}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Ausgewählte Logmeldungen sollen an ein Partnersystem weitergeleitet werden. Die Auswahl könnte über die Kritikalität, also dem Log-Level, der Logmeldung erfolgen.} \\
+\hline
+\end{anf}
+
+\subsubsection{Eigenschaften}
+
+
+\begin{anf}{anf:2010}{2010}{Resilienz der Übertragung}{S}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Daten die der Nachvollziehbarkeit dienen, sollen wenn möglich bei einer fehlgeschlagenen Verbindung nicht verworfen werden. Sie sollen mindestens 120s vorgehalten werden und in dieser Zeit sollen wiederholt Verbindungsversuche unternommen werden.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:2020}{2020}{Batchverarbeitung}{S}{f}{S}
+\multicolumn{5}{|p{14.05cm}|}{Daten, die der Nachvollziehbarkeit dienen, sollen wenn möglich gruppiert an externe Systeme gesendet werden. Hierbei ist eine kurze Aggregationszeit von bis zu 10s akzeptabel.} \\
+\hline
+\end{anf}
+
+\subsubsection{Partnersysteme}
