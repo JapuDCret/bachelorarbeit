@@ -41,7 +41,25 @@ Mit den Ergebnissen lassen sich wiederum Rückschlüsse zur Softwareeigenschaft 
 
 Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei können einerseits die Kommunikationsflüsse innerhalb einer Applikation oder innerhalb eines Systems erfasst werden, aber auch andererseits die Kommunikationsflüsse bei verteilten Systemen erfasst werden, um diese meist komplexen Zusammenhänge zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
-{\color{red}\textit{Beschreibung von OpenTracing und der Bedeutung von Spans und Traces}}
+OpenTracing definiert zwei grundlegende Objekte: Traces und Spans. Ein Trace ist eine Menge an Events, die über eine einzelne logische Aktion - wie z. B. den Druck eines Knopfes - ausgelöst wurden oder resultieren. Spans besitzen den Namen einer Methode oder Operation, welche der Span umschließt. Wird in der Methode oder Operation eine weitere Methode oder Operation aufgerufen, welche von einem Span umschlossen ist, so ist dies nun ein Kindspan des ursprünglichen Spans. Spans haben einen Start- sowie einen Endzeitpunkt und sie speichern die Beziehung zu ihrem Elternspan (außer es handelt sich um den ``root``-Span). Sie können darüber hinaus Attribute enthalten, sowie eingetretene Events.
+
+Traces werden bei OpenTracing implizit über ihre Spans definiert. Ein Trace kann als ein gerichteter Graph ohne Zyklus verstanden werden, wobei die Knoten hierbei die Spans darstellen und die Kanten die Eltern-/Kindbeziehung veranschaulichen \cite{OpenTracingSpecification}. Ein beispielhafter Trace mit seinen Spans und deren Beziehungen kann in \autoref{fig:otel-causal-relationship} betrachtet werden. Die zeitliche Reihenfolge der Spans kann auch eine hilfreiche Visualisierung sein, vgl. \autoref{fig:otel-temporal-relationship}. Diese Definition wurde in den Nachfolgestandard OpenTelemetry aufgenommen, welcher an späterer Stelle erläutert wird.
+
+Ein verteilter Trace, oftmals ``Distributed Trace`` genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus gehen \cite{OpenTracingSpecification}.
+
+\begin{minipage}{.47\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/otel_causal-relationship.png}
+	\captionof{figure}{Kausale Beziehung zwischen Spans. Eigene Darstellung.}
+	\label{fig:otel-causal-relationship}
+\end{minipage}%
+\hspace{.06\textwidth}
+\begin{minipage}{.47\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/otel_temporal-relationship}
+	\captionof{figure}{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
+	\label{fig:otel-temporal-relationship}
+\end{minipage}
 
 \subsection{Fehlerberichte}
 
@@ -59,7 +77,7 @@ Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch Mängel bei der Ef
 
 Hinzukommend muss man beachten, dass die User Experience negativ beeinflusst werden kann, wenn ein Nutzer einen Dialog mit einem Aufruf für einen Fehlerbericht erhält - gerade wenn der Fehler ihn selbst nicht eingeschränkt hat.
 
-\section{Praktiken aus der Fachpraxis}
+\section{Praktiken aus der Wirtschaft}
 
 In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, die eine verbesserte Nachvollziehbarkeit als Ziel haben. Neben den zuvor vorgestellten Methoden, haben sich einige Praktiken entwickelt, die diese Technologien benutzen, um ihr Ziel zu erreichen. Diese Praktiken werden folgend vorgestellt.
 
@@ -190,9 +208,18 @@ Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. ``B
 
 \subsubsection{Jaeger}
 
-Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing von der Datensammlung bis hin zur Visualisierung, es unterstützt und implementiert den Standard OpenTracing.  Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing und erlaubt auch das Konsumieren von Zipkin Daten, einem Konkurrenzprodukt. Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
 
-Jaeger wurde nicht aufgesetzt, sondern über Dokumentation und Kommunikation mit Kollegen der Open Knowledge evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger sehr auf Tracing, aber kann sich dafür auf dieses Gebiet spezialisieren und bietet eine gesamte Infrastruktur.
+\begin{wrapfigure}[12]{r}{0.45\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/03_methoden/redhat_jaeger-ui_trace-detail-view.png}
+\caption{Schaubild einer Lösung auf Basis von OTel {\color{red}Todo: Eigenes Schaubild oder Credit}}
+% von https://developers.redhat.com/blog/2018/04/03/istio-tracing-monitoring/
+\label{fig:jaeger-ui_trace-detail-view}
+\end{wrapfigure}
+
+Jaeger wurde nicht aufgesetzt, sondern hauptsächlich über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger sehr auf Tracing, aber kann sich dafür auf dieses Gebiet spezialisieren und bietet eine gesamte Infrastruktur. Jaeger stellt die gesammelten Traces in Wasserfallgraphen dar, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist.
 
 \subsubsection{Weiteres}
 
@@ -204,7 +231,7 @@ Bei meiner Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbare
 	\item Tracing: Google Cloud Trace, Zipkin
 \end{itemize}
 
-Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und eine vorherige Betrachtung ist nicht als direkte Empfehlung zu verstehen.
+Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
 
 \subsection{Literatur}
 
