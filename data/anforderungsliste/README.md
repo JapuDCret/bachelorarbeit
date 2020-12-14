@@ -1,3 +1,7 @@
+# Purpose
+
+The included Python script converts the excel file to a latex file, that will then be imported in the bachelor's thesis.
+
 # Install Requirements
 
 ```bash
