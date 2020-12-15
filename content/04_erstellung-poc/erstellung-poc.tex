@@ -21,9 +21,9 @@
 		
 	Neben den Loginformationen sollten nicht gefangene Fehler und optional gefangene Fehler an ein weiteres System weitergeleitet werden. Dabei sollen alle relevanten und zugreifbaren Informationen mitgesendet werden.
 		
-	Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird um bspw. Klickpfade zu optimieren um festzustellen wie lange sich Nutzer auf einer Seite aufhalten. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung Seitens des Nutzers erfolgen oder bei speziellen Umgebungen automatisch (bspw. eine Staging-Umgebung). Weiterhin könnten die Loginformationen nach dieser Einwilligung auch feingranularer übertragen werden, bspw. ohne Einwilligung würden Logs der Kritikalität INFO und höher übertragen werden und mit Einwilligung auch Logs der Kritikalität DEBUG und höher.
+	Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird um bspw. Klickpfade zu optimieren, um festzustellen wie lange sich Nutzer auf einer Seite aufhalten. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung seitens des Nutzers erfolgen oder bei speziellen Umgebungen automatisch (bspw. eine Staging-Umgebung). Weiterhin könnten die Loginformationen nach dieser Einwilligung auch feingranularer übertragen werden, bspw. ohne Einwilligung würden Logs der Kritikalität INFO und höher übertragen werden und mit Einwilligung auch Logs der Kritikalität DEBUG und höher.
 		
-	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Bei könnten wichtige Verarbeitungsmethoden auch im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll wenn möglich auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch bei Logdaten. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
+	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Hierbei könnten auch wichtige Verarbeitungsmethoden im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll wenn möglich auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch bei Logdaten. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
 		
 	Alle gesendeten Datensätze sollen möglichst mit Metadaten angereichert werden, die einerseits den Nutzer, die Umgebung und die Anwendung identifizieren. Diese umfassen u. A.: Zeitstempel, Session-Id, User-Agent, IP, Hostsystem, Version.
 		
@@ -54,7 +54,7 @@
 
 	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponente verwenden. Dieser Aufbau lässt sich auf der linken Seite der \autoref{fig:grobe-architektur} betrachten.
 	
-	Für die Datenverarbeitung, -analyse und -visualisierung von Logs, Fehlern und Metriken soll eine einzelnes System zuständig sein. Denn für die Bewältigung dieser verschiedenen Kategorien sind ähnliche Disziplinen notwendig, wodurch ein einzelnes System ausreichen sollte. Grundlegende Funktionen dieses Systems belaufen sich auf die Langzeitspeicherung, eine performante Suche und die Visualisierung in Graphen.
+	Es wurde nach \autoref{anf:3100} versucht die Anzahl der Partnersysteme gering zu halten. Für die Datenverarbeitung, -analyse und -visualisierung von Logs, Fehlern und Metriken soll eine einzelnes System zuständig sein. Denn für die Bewältigung dieser verschiedenen Kategorien sind ähnliche Disziplinen notwendig, wodurch ein einzelnes System ausreichen sollte. Grundlegende Funktionen dieses Systems belaufen sich auf die Langzeitspeicherung, eine performante Suche und die Visualisierung in Graphen.
 	
 	Für Tracing wird ein zweites System benötigt, hauptsächlich weil in der Evaluation kein Werkzeug identifiziert werden konnte, welches neben den zuvor genannten 3 Datenkategorien auch Tracingdaten gut unterstützt. Tracingdaten sind zudem anders, dadurch dass sie einen hohen Datendurchsatz aufweisen und zudem eine große Menge darstellen.
 	
@@ -62,7 +62,7 @@
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-simple.png}
+	\includegraphics[width=0.65\linewidth]{img/04_erstellung-poc/konzept-simple.png}
 	\caption{Grobe Architektur}
 	\label{fig:grobe-architektur}
 \end{figure}
@@ -80,10 +80,21 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 	\label{fig:grobe-architektur-datendurchsatz}
 \end{figure}
 
+\pagebreak
+
 	\subsection{Technologie-Stack}
 	\label{sec:technologie-stack}
 
-	\textit{Welche Technologien werden eingesetzt, um die Architektur umzusetzen und zu erfüllen?}
+	Im Frontend selber sollen für den Logger und den Error-Handler keine speziellen Technologien verwendet werden. Hierbei soll auf die bestehende Demoanwendung aufgesetzt werden und so die Loginformationen und Fehler adaptiert werden. \textit{\color{red}Was für ein Logger?}. Da die Demoanwendung in Angular geschrieben ist, soll ein Angular ErrorHandler implementiert werden, welche die Information dann weiterleitet. Die Tracing- und Metrikdaten werden mit OpenTelemetry JavaScript-Komponenten erfasst und an ein Partnersystem. Für die Session-Replay-Daten wird jedoch auf eine proprietäre Komponente gesetzt, denn bei der Evaluierung wurde festgestellt, dass alle Werkzeuge zum Session-Replay nur proprietäre Datenerhebung unterstützen.
+	
+	\textit{\color{red}Beschreibung zu den Partnersystemen (Splunk, Jaeger, LogRocket)}
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-technologien.png}
+	\caption{Architektur mit speziellen Technologien}
+	\label{fig:architektur-technologien}
+\end{figure}
 
 	\subsection{Übertragbarkeit}
 
