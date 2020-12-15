@@ -1,18 +1,26 @@
 % \chapter{Methoden und Praktiken}
 
-\textit{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webapplikationen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}
+%\textit{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webapplikationen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}
 % \textit{Hier könnte unter anderem \textbf{OpenTelemetry} betrachtet werden.}
+
+\vspace{-\baselineskip}
 
 \section{Methoden}
 
 \subsection{Logging}
 
-\textit{Folgende Fragen sollen zur Methode beantwortet werden}
-\begin{enumerate}
-	\item \textit{Gibt es Besonderheiten zu Logging in anderen Projekten (Backend vs. Frontend)?}
-	\item \textit{Wie können Logs an einen auswertenden Stakeholder gelangen?}
-	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
-\end{enumerate}
+%\textit{Folgende Fragen sollen zur Methode beantwortet werden}
+%\begin{enumerate}
+%	\item \textit{Gibt es Besonderheiten zu Logging in anderen Projekten (Backend vs. Frontend)?}
+%	\item \textit{Wie können Logs an einen auswertenden Stakeholder gelangen?}
+%	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
+%\end{enumerate}
+
+Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen. Mithilfe von Logs, also Protokollen, kann Betreibern und Entwicklern ermöglicht werden, dass sie das Anwendungsverhalten nachvollziehen können. Beispielsweise ist es sinnvoll einen fehlgeschlagenen Login eines Nutzers zu loggen, dabei ist es hilfreich, wenn viele Kontextinformationen mitgeloggt werden. % Nah verwandt mit oder basierend auf Logging sind die Teilgebiete Auditing, Monitoring, Tracing und Operations-Monitoring.
+
+Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \autoref{sec:logdaten} geschildert, müssen die Logs an ein Partnersystem weitergeleitet werden.
+
+\subsubsection{Structured Logging}
 
 %\subsection{Monitoring}
 %
@@ -22,19 +30,18 @@
 %	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
 %\end{enumerate}
 
+Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun jedoch Informationen aus einer großen Menge von Logs extrahiert werden sollen, ist so ein simples Format hinderlich. Hierbei kommt Structured Logging ins Spiel, bei dem zwar auch menschenlesbare Logmeldungen produziert werden, aber das Format ist fest definiert und erlaubt einer anderen Software Informationen einfacher zu extrahieren.
+
 \subsection{Metriken}
 
-Mit Metriken versucht man Softwareeigenschaften in Zahlenwerten abzubilden. Diese Zahlenwerte werden über Messungen ermittelt.
-
-Beispiele für Metriken sind:
+Mit Metriken versucht man Softwareeigenschaften in Zahlenwerten abzubilden. Diese Zahlenwerte werden über Messungen ermittelt. Beispiele für Metriken sind:
 
 \begin{enumerate}
 	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage
-	\item Ein Zähler, der die Anzahl an Netzwerkanfragen zählt
-	\item Eine Messung, der CPU Auslastung
+	\item Eine Messung der CPU Auslastung
 \end{enumerate}
 
-Mit den Ergebnissen lassen sich wiederum Rückschlüsse zur Softwareeigenschaft ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere ``gleichwertige`` Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können so unerwünschte Abweichungen aufdecken.
+Mit den Ergebnissen lassen sich wiederum Rückschlüsse zur Softwareeigenschaft ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere ``gleichwertige`` Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
 
 \subsection{Tracing}
 \label{sec:tracing}

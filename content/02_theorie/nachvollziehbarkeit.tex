@@ -1,10 +1,10 @@
 Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{EnablingEventDrivenObservability} lässt sich diese Definition auch auf Softwaresysteme übertragen.
 	
-In dieser Arbeit wird sich mit der Nachvollziehbarkeit in speziellen Situation befasst, nämlich wenn die Stakeholder das Verhalten einer Webapplikation und die Interaktionen eines Nutzers verstehen möchten.% Dies bedeutet auch, dass keine allgemeine Nachvollziehbarkeit das Ziel ist, denn z.B. das Nutzer die internen Zustände eines Systems nachvollziehen können, ist nicht das Ziel.
+In dieser Arbeit wird sich mit der Nachvollziehbarkeit in speziellen Situation befasst, nämlich wenn die Betreiber und Entwickler das Verhalten einer Webapplikation und die Interaktionen eines Nutzers verstehen möchten.% Dies bedeutet auch, dass keine allgemeine Nachvollziehbarkeit das Ziel ist, denn z.B. das Nutzer die internen Zustände eines Systems nachvollziehen können, ist nicht das Ziel.
 	
 \subsection{Nutzen}
 	
-Tritt beispielsweise ein Softwarefehler (Bug) bei einem Nutzer auf, aber die Stakeholder erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder gering priorisiert und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und diesen bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
+Tritt beispielsweise ein Softwarefehler (Bug) bei einem Nutzer auf, aber die Betreiber erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder gering priorisiert und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und diesen bei Facebooks Bug-Bounty-Projekt Whitehat meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Informationen abgelehnt:
 	
 \begin{quotation}
 Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
@@ -14,7 +14,7 @@ Durch den Bug konnte Shreateh auf die private Profilseite von Nutzern schreiben,
 	
 \subsection{Nachvollziehbarkeit bei SPAs}
 	
-Wie zuvor in \autoref{sec:clientbased-webapps} ``\nameref{sec:clientbased-webapps}`` geschildert, gibt es bei Webapplikationen und insbesondere Singe-Page-Applications besondere Barrikaden, die es den Stakeholdern erschwert das Verhalten einer Applikation und die Interaktionen eines Nutzers nachzuvollziehen.
+Wie zuvor in \autoref{sec:clientbased-webapps} ``\nameref{sec:clientbased-webapps}`` geschildert, gibt es bei Webapplikationen und insbesondere Singe-Page-Applications besondere Barrikaden, die es den Betreibern und Entwicklern erschwert das Verhalten einer Applikation und die Interaktionen eines Nutzers nachzuvollziehen.
 	
 Bei SPAs ist die Hauptursache, dass die eigentliche Applikation nur beim Client läuft und nur gelegentlich mit einem Backend kommuniziert.
 	
@@ -78,13 +78,14 @@ Eine Content-Security-Policy (CSP) definiert, welche Funktionalitäten einer Web
 %\end{quotation}
 
 \subsection{Logdaten}
+\label{sec:logdaten}
 
 Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und der Zugriff darauf sowie die Funktionen dessen können je nach Browser variieren. Deswegen kann in den meisten Fällen nicht darauf gehofft werden, dass die Nutzer dieses Log bereitstellen. Zusätzlich ist es durch die zuvor beschrieben Härtungsmaßnahmen von Browsern nicht möglich das Log in eine Datei zu schreiben.
 
-Eine Automatisierung der Logdatenerhebung ist zudem auch nicht trivial, denn die Daten, welche in die Ausgabe geschrieben werden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Hierbei besteht aber weiterhin die Hürde, wie die Daten an die Stakeholder gelangen.
+Eine Automatisierung der Logdatenerhebung ist zudem auch nicht trivial, denn die Daten, welche in die Ausgabe geschrieben werden, sind nicht aus der JavaScript Umgebung aus lesbar. Alternativ können die Daten selber erhoben oder abgefangen werden. Hierbei besteht aber weiterhin die Hürde, wie die Daten an ein Partnersystem gelangen.
 
 \subsection{Fernzugriff}
 
-Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist dass die Stakeholder sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen ginge dies vielleicht, aber wenn eine Webapplikation für den offenen Markt geschaffen ist, sind die Nutzer zahlreich und unbekannt.
+Ein weiterer Punkt, der die Umgebung ``Browser`` von anderen unterscheidet, ist dass die Betreiber und Entwickler sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen ginge dies vielleicht, aber wenn eine Webapplikation für den offenen Markt geschaffen ist, sind die Nutzer zahlreich und unbekannt.
 
 Weiterhin gibt es standardmäßig keine Funktionalität wie z. B. das Remote Application Debugging \cite{JavaDebugWireProtocol}, welches Java unterstützt.
