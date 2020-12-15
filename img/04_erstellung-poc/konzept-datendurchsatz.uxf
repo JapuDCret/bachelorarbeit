@@ -81,8 +81,8 @@ Logger</panel_attributes>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-fg=#efb08c
-lw=3
+fg=#e8c48d
+lw=2
 &lt;&lt;HTTP&gt;&gt;
 Logs</panel_attributes>
     <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
@@ -132,8 +132,8 @@ Session-Replay</panel_attributes>
       <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-fg=#e8c48d
-lw=2
+fg=#efb08c
+lw=3
 &lt;&lt;HTTP&gt;&gt;
 Trace Data</panel_attributes>
     <additional_attributes>610.0;170.0;160.0;170.0;160.0;10.0;10.0;10.0</additional_attributes>

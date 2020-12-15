@@ -7,6 +7,8 @@
 
 	\textit{In diesem Abschnitt soll die Demoanwendung vorgestellt werden, anhand dessen das Proof-of-Concept erstellt wird. Damit das Proof-of-Concept erstellt werden kann, muss die Demoanwendung die zuvor beschriebenen Probleme aufweisen, hierbei sollen die Probleme möglichst realitätsnah sein und nicht frei erfunden.}
 	
+\newpage
+	
 \section{Konzept}
 	
 	\subsection{Datenverarbeitung}
@@ -50,23 +52,31 @@
 	
 	\subsection{Architektur}
 
-	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponente verwenden. Dieser Aufbau lässt sich in \autoref{fig:grobe-architektur} betrachten.
+	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponente verwenden. Dieser Aufbau lässt sich auf der linken Seite der \autoref{fig:grobe-architektur} betrachten.
 	
+	Für die Datenverarbeitung, -analyse und -visualisierung von Logs, Fehlern und Metriken soll eine einzelnes System zuständig sein. Denn für die Bewältigung dieser verschiedenen Kategorien sind ähnliche Disziplinen notwendig, wodurch ein einzelnes System ausreichen sollte. Grundlegende Funktionen dieses Systems belaufen sich auf die Langzeitspeicherung, eine performante Suche und die Visualisierung in Graphen.
 	
+	Für Tracing wird ein zweites System benötigt, hauptsächlich weil in der Evaluation kein Werkzeug identifiziert werden konnte, welches neben den zuvor genannten 3 Datenkategorien auch Tracingdaten gut unterstützt. Tracingdaten sind zudem anders, dadurch dass sie einen hohen Datendurchsatz aufweisen und zudem eine große Menge darstellen.
+	
+	Ein drittes System soll die Funktionalität rund um Session-Replay übernehmen. Hierbei liegt auch der Grund darin, dass kein Werkzeug identifiziert werden konnte, welches neben Session-Replay auch andere Disziplinen erfüllen kann. Weiterhin sind, wie beim Tracing, die Eigenschaften der Daten anders, denn hier werden nahezu konstant Daten versendet, um alle Benutzerinteraktionen und das Anwendungsverhalten nachstellen zu können.
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{img/loesungsansatz/konzept-simple.png}
+	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-simple.png}
 	\caption{Grobe Architektur}
 	\label{fig:grobe-architektur}
 \end{figure}
 
-Wie in der Datenerfassung erwähnt, werden die einzelnen Datentypen unterschiedlich erhoben und besitzen somit auch eine andere Eigenschaften. Wie IBM bei Big Data definiert \cite{ZikopoulosUnderstandingBigData}, lassen sich auch hier die Eigenschaften Volume, Velocity und Variety identifizieren. Der Aspekt Volume ist weniger präsent, denn die Datenmengen sind nicht vergleichbar mit echten Big-Data-Anwendungen. Genau ist dies nicht prognostizierbar, aber in der Evaluierung des Stands der Technik, ließ sich ein Datendurchsatz von 1 MB/min feststellen - somit stellt dies im Frontend keine Herausforderung dar, jedoch in den verarbeitenden Systemen kann dies natürlich durch eine große Menge an Frontends multipliziert werden, was jedoch nicht im Fokus der Arbeit steht. Eine gewisse Variety der Daten, also Unterschiedlichkeit der Datenstruktur, ist definitiv vorhanden und entspringt den verschiedenen Funktionsgebieten. Auch innerhalb derselben Datenströme kann eine Variety identifiziert werden, denn bspw. sind Logmeldungen sehr individuell, sie folgen meist nicht streng einem Format und enthalten unterschiedliche Menge an Informationen. Der Aspekt des Volumes ist zudem auch sehr wichtig und eine Visualisierung dessen für das vorhergehende Konzept findet sich in \autoref{fig:grobe-architektur-datendurchsatz}.
+Wie in der Datenerfassung erwähnt, werden die einzelnen Datentypen unterschiedlich erhoben und besitzen somit auch eine andere Eigenschaften. Wie IBM bei Big Data definiert \cite{ZikopoulosUnderstandingBigData}, lassen sich auch hier die Eigenschaften Volume, Velocity und Variety identifizieren. Der Aspekt Volume ist weniger präsent, denn die Datenmengen sind nicht vergleichbar mit echten Big-Data-Anwendungen. Genau ist dies nicht prognostizierbar, aber in der Evaluierung des Stands der Technik, ließ sich ein Datendurchsatz von 1 MB/min feststellen - somit stellt dies im Frontend keine Herausforderung dar, jedoch in den verarbeitenden Systemen kann dies natürlich durch eine große Menge an Frontends multipliziert werden, was jedoch nicht im Fokus der Arbeit steht.
+
+Eine Variety der Daten, also Unterschiedlichkeit der Datenstruktur, ist definitiv vorhanden und entspringt den verschiedenen Funktionsgebieten. Auch innerhalb derselben Datenströme kann eine Variety identifiziert werden, denn bspw. sind Logmeldungen sehr individuell, sie folgen meist nicht streng einem Format und enthalten unterschiedliche Menge an Informationen.
+
+Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dessen für das vorhergehende Konzept findet sich in \autoref{fig:grobe-architektur-datendurchsatz}.
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{img/loesungsansatz/konzept-datendurchsatz.png}
-	\caption{Grobe Architektur mit Datendurchsatz}
+	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-datendurchsatz.png}
+	\caption{Grobe Architektur mit hervorgehobenem Datendurchsatz}
 	\label{fig:grobe-architektur-datendurchsatz}
 \end{figure}
 
