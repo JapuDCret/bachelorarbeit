@@ -1,3 +1,5 @@
+Dipl.
+Inf.
 Clientbasiert
 Clientbasierte
 Clientbasierten
@@ -26,6 +28,8 @@ OneAgent
 Enhanced Tracking Protetion
 OnPremise
 Sentry
+Issue
+Issue-Management
 LogRocket
 Redux
 React
@@ -33,14 +37,23 @@ MobX
 Vuex
 ngrx
 React Native
+Native
 Vue.js
 Vuejs
 Vue
 Angular
 AngularJS
 Splunk
+Splunks
 Honeycomb
 Jaeger
+Go
+Python
+Java
+Ruby
+Rails
+Exporter
+User-Agent
 AppDynamics, DataDog
 Airbrake
 Instabug
@@ -76,6 +89,10 @@ Statista
 Browserengine
 CORS
 Cross-Origin Resource Sharing
+Cross-Origin
+Resource
+Sharing
+Use-Case
 Asynchronous JavaScript and XML
 World Wide Web Consortium
 XMLHttpRequest
@@ -92,6 +109,7 @@ Proof-of-Concepts
 PoC
 Demoanwendung
 Single-Page-Application
+Single-Page-Applications
 SPA
 SPAs
 Javaland
@@ -102,3 +120,18 @@ Google Scholar
 Browserbedingt
 Browserbedingte
 Verständnisgewinnung
+Volume
+Variety
+Velocity
+Logger
+Error-Handler
+section
+subsection
+subsubsection
+etal
+lipsum
+rekreieren
+Rich-
+Fat-Client
+Kano-Modell
+Id

@@ -32,11 +32,11 @@
 	Bei der Auswertung der Daten soll hauptsächlich auf bestehende Technologien gesetzt werden, wie z.B. die Technologien, die in \autoref{sec:werkzeuge-und-technologien} evaluiert wurden. Das heißt im Konzept kann nicht im Detail darauf eingegangen werden, wie diese Daten tatsächlich verarbeitet werden und ist auch nicht direkt von Relevanz. Eine Beschreibung folgt im \autoref{sec:technologie-stack} sowie beim Einsatz von den Technologien selbst.
 		
 	Lediglich bei der Vorverarbeitung des Tracings im Client kann nun bereits eine Aussage getroffen werden. Wird hierbei nämlich, wie gewünscht, auf OTel gesetzt, dann erfolgt eine Vorverarbeitung von den Komponenten von OTel selbst. Dabei werden die u. A. Spankontexte fürs Tracing und die Beziehung zwischen den Spans gepflegt.
-		
+	
 	\subsubsection{Visualisierung}
 		
 	Wie bei der Auswertung wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
-		
+	
 	\begin{itemize}
 		\item Die Logdaten sollen abrufbar sein und filterbar sein.
 		\item Fehlerinformationen sollen gesondert der Logdaten dargestellt werden.
@@ -52,7 +52,7 @@
 	
 	\subsection{Architektur}
 
-	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponente verwenden. Dieser Aufbau lässt sich auf der linken Seite der \autoref{fig:grobe-architektur} betrachten.
+	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponenten verwenden. Dieser Aufbau lässt sich auf der linken Seite der \autoref{fig:grobe-architektur} betrachten.
 	
 	Es wurde nach \autoref{anf:3100} versucht die Anzahl der Partnersysteme gering zu halten. Für die Datenverarbeitung, -analyse und -visualisierung von Logs, Fehlern und Metriken soll eine einzelnes System zuständig sein. Denn für die Bewältigung dieser verschiedenen Kategorien sind ähnliche Disziplinen notwendig, wodurch ein einzelnes System ausreichen sollte. Grundlegende Funktionen dieses Systems belaufen sich auf die Langzeitspeicherung, eine performante Suche und die Visualisierung in Graphen.
 	
