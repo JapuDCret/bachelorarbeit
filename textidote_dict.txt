@@ -135,3 +135,5 @@ Rich-
 Fat-Client
 Kano-Modell
 Id
+Slack
+Staging
