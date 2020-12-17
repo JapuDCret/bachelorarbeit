@@ -229,16 +229,27 @@ Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \en
 
 Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing und erlaubt auch das Konsumieren von Zipkin Daten, einem Konkurrenzprodukt. Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
 
-\begin{wrapfigure}[12]{r}{0.45\textwidth}
+\begin{wrapfigure}[11]{r}{0.45\textwidth}
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/03_methoden/redhat_jaeger-ui_trace-detail-view.png}
-\caption{Schaubild einer Lösung auf Basis von OTel {\color{red}Todo: Eigenes Schaubild oder Credit}}
+\caption{Trace-Detailansicht. Quelle: Don Schenck \cite{JaegerIstioTracing}}
 % von https://developers.redhat.com/blog/2018/04/03/istio-tracing-monitoring/
 \label{fig:jaeger-ui_trace-detail-view}
 \end{wrapfigure}
 
-Jaeger wurde nicht aufgesetzt, sondern hauptsächlich über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger sehr auf Tracing, aber kann sich dafür auf dieses Gebiet spezialisieren und bietet eine gesamte Infrastruktur. Jaeger stellt die gesammelten Traces in Wasserfallgraphen dar, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. \textit{\color{red}Ggf. Beispiel von Jaegers Infrastruktur Graphen.}
+Jaeger wurde nicht aufgesetzt, sondern über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger auf Tracing, aber spezialisiert sich dafür auf dieses Gebiet und bietet eine gesamte Infrastruktur zur Tracespeicherung und -analyse. Die Traces sind als Wasserfallgraphen dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert.
+
+\begin{wrapfigure}[8]{r}{0.45\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/03_methoden/medium_jaeger-ui_dependency-graph.png}
+\caption{Dienst-Abhängigkeits-Graph. Quelle: Yuri Shkuro \cite{JaegerTakeOpenTracingForARide}}
+% von https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
+\label{fig:jaeger-ui_dependency-graph}
+\end{wrapfigure}
+
+Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. In \autoref{fig:jaeger-ui_dependency-graph} kann so eine Darstellung betrachtet werdenx, hierbei sieht mehrere Microservices und Datenbanken.
 
 \subsubsection{Weiteres}
 \label{sec:weitere-werkzeuge}
@@ -248,7 +259,7 @@ Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren W
 \begin{itemize}
 	\item APM \& RUM: AppDynamics, DataDog
 	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
-	\item Tracing: Google Cloud Trace, Zipkin
+	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
 \end{itemize}
 
 Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
