@@ -41,6 +41,9 @@ Mit Metriken versucht man Softwareeigenschaften in Zahlenwerten abzubilden. Dies
 	\item Eine Messung der CPU-Auslastung
 \end{enumerate}
 
+\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
+\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.} 
+
 Mit den Ergebnissen lassen sich wiederum Rückschlüsse zur Softwareeigenschaft ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
 
 \subsection{Tracing}
@@ -87,6 +90,16 @@ Hinzukommend muss man beachten, dass die User Experience negativ beeinflusst wer
 \section{Praktiken aus der Wirtschaft}
 
 In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, die eine verbesserte Nachvollziehbarkeit als Ziel haben. Neben den zuvor vorgestellten Methoden haben sich bei Technologien einige Praktiken entwickelt, die teilweise auf den Methoden aufbauen oder neue Konzepte darstellen, um ihr Ziel zu erreichen. Diese Praktiken werden folgend vorgestellt.
+
+\subsection{Observability}
+
+Observability ist der Oberbegriff, der sich in der Wirtschaft entwickelt hat, um Werkzeuge zu beschreiben, die eine bessere Nachvollziehbarkeit versprechen. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability enstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
+
+%Observability hat allgemeiner als Ziel, dass Anwendungen und Systeme exakt betrachtet werden können, um den Verantwortlichen zu ermöglichen, dass  \cite{DistributedSystemsObservability}.
+
+\begin{quotation}
+Ziel ist es, Anwendungen und Systeme exakt zu beobachten, Informationen über technische Fehlfunktionen zu erhalten und schnell an die Verantwortlichen zu übermitteln. Logfiles, Informationen zur Ressourcennutzung und Anwendungs-Traces sollen den Administratoren und Entwicklern dabei helfen, die Fehlerursachen zu erkennen, die Probleme zu beheben und künftige Ausfälle nach Möglichkeit zu vermeiden \cite{DistributedSystemsObservability}.
+\end{quotation}
 
 \subsection{System Monitoring}
 
@@ -260,6 +273,7 @@ Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren W
 	\item APM \& RUM: AppDynamics, DataDog
 	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
 	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
+	\item APM \& RUM: AppDynamics, DataDog
 \end{itemize}
 
 Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
@@ -303,3 +317,21 @@ Vor der Arbeit an TraVista hat Vastaav Anand mit Matheus Stolet an einem weitere
 Mit Joseph Wonsil hat Anand an einem weiteren Tool rund ums Tracing gearbeitet: Tracey \cite{TraceyPaper}. Es ist ebenso auf GitHub veröffentlicht \url{https://github.com/vaastav/Tracey}. Es beschäftigt sich mit der Aggregration von Tracingdaten, denn derzeitige Technologien beschäftigen sich hauptsächlich mit der Darstellung von einem einzelnen Trace. In diesem Bericht sind erneut Grundbausteine zu erkennen, die Anand wahrscheinlich bei TraVista anwenden konnte.
 
 Sowohl TraViz als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden.
+
+\subsubsection{\enquote{Bedeutung von Telemetry für den SDLC}}
+
+\nomenclature[Fachbegriff]{SDLC}{Software-Development-Life-Cycle}
+
+Neben TraVista wurde die im 2. Quartal 2020 erstellte Bachelorarbeit von Michael Graf bei der Recherche gefunden \cite{MichaelGrafBA}. Grafs Arbeit handelt über die \enquote{Bedeutung von Telemetrie für den Software Development Cycle}. In der Arbeit beschäftigt er sich mit der Software-Telemetrie als solche, aber legt den aktuellen Stand am Projekt OpenTelemetry dar. OpenTelemetry erhält enorme Bedeutung in der Arbeit und wird von Grund auf erläutert, betrachtet und analysiert.
+
+Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfür Aussehen. Speziell wird der DevOps Ansatz beschrieben, bei dem eine kontinuierliche Weiterentwicklung des Produktes im Vordergrund steht.
+
+Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperablität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können.
+
+\subsubsection{FAME}
+
+see \url{file:///C:/Users/Marvin\%20Kienitz/Documents/Recherche/Oriol2018_FAME\%20Supporting\%20Continuous\%20Requirements\%20Elicitation\%20by\%20Combining\%20User\%20Feedback\%20and\%20Monitoring.pdf}
+
+\subsubsection{\enquote{Interactive Record/Replay}}
+
+see \url{file:///C:/Users/Marvin\%20Kienitz/Documents/Recherche/Burg2013UIST_Timelapse.pdf}
