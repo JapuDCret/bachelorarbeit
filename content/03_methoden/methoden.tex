@@ -50,7 +50,7 @@ Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbe
 
 OpenTracing definiert zwei grundlegende Objekte: Traces und Spans. Ein Trace ist eine Menge an Events, die über eine einzelne logische Aktion - wie z. B. den Druck eines Knopfes - ausgelöst wurde oder resultiert. Spans besitzen den Namen einer Methode oder Operation, welche der Span umschließt. Wird in der Methode oder Operation eine weitere Methode oder Operation aufgerufen, welche von einem Span umschlossen ist, so ist dies nun ein Kindspan des ursprünglichen Spans. Spans haben einen Start- sowie einen Endzeitpunkt und sie speichern die Beziehung zu ihrem Elternspan (außer es handelt sich um den \enquote{root}-Span). Sie können darüber hinaus Attribute enthalten, sowie eingetretene Events.
 
-OpenTracing definiert Traces implizit über ihre Spans. Ein Trace ist damit ein gerichteter Graph ohne Zyklus, wobei die Knoten hierbei die Spans darstellen und die Kanten die Eltern-/Kindbeziehung veranschaulichen \cite{OpenTracingSpecification}. Ein beispielhafter Trace mit seinen Spans und deren Beziehungen ist in \autoref{fig:otel-causal-relationship} zu betrachten. Die zeitliche Reihenfolge der Spans kann auch eine hilfreiche Visualisierung sein, um die Entwicklung der Spans zueinander zu verstehen (vgl. \autoref{fig:otel-temporal-relationship}). Diese Definition wurde in den Nachfolgestandard OpenTelemetry aufgenommen und an späterer Stelle erläutert.
+OpenTracing definiert Traces implizit über ihre Spans. Ein Trace ist damit ein gerichteter Graph ohne Zyklus, wobei die Knoten hierbei die Spans darstellen und die Kanten die Eltern-/Kindbeziehung veranschaulichen \cite{OpenTracingSpecification}. Ein beispielhafter Trace mit seinen Spans und deren Beziehungen ist in \autoref{fig:otel-causal-relationship} zu betrachten. Die zeitliche Reihenfolge der Spans kann auch eine hilfreiche Visualisierung sein, um die Entwicklung der Spans zu verstehen \citationneeded (vgl. \autoref{fig:otel-temporal-relationship}). Diese Definition wurde in den Nachfolgestandard OpenTelemetry aufgenommen und an späterer Stelle erläutert.
 
 Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus gehen \cite{OpenTracingSpecification}.
 
@@ -217,7 +217,7 @@ Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unte
 
 Splunks kostenlose Version der SaaS und der OnPremise-Lösung wurden evaluiert. Hierbei wurde zunächst festgestellt, dass das Daten senden vom Browserkontext zu Splunk nicht direkt möglich ist, da Splunk mit ablehnenden CORS-Headern antwortet. Hierfür wurde ein extra Dienst geschrieben, der die Daten vom Frontend annimmt und an Splunk weitersendet. Weiterhin konnten hierdurch Daten wie den User-Agent und die IP vom Client ermittelt und an die Datensätze angehangen werden.
 
-An Splunk wurden über dieselbe Schnittstelle Log- und Errorinformationen gesendet. Hierbei konnte Splunk gut das Logmanagement erfüllen, denn Logeinträge ließen sich einfach filtern und auch zu Graphen aufbereiten. Weiterhin ist das Error Monitoring auch zufriedenstellend und enthält alle Daten, die auch bspw. bei Sentry vorhanden sind - hierbei fehlt jedoch ein Issue-Management, welches Sentry bereitstellt. Lediglich Tracing lässt sich nicht zufriedenstellend mit Splunk realisieren. Denn hier können lediglich die Daten konsumiert werden, aber eine verständliche Darstellung mittels Trace Wasserfalldiagrammen fehlt gänzlich. Hiermit lassen sich keine spezialisierten Tracing-Werkzeuge ersetzen.
+An Splunk wurden über dieselbe Schnittstelle Log- und Errorinformationen gesendet. Hierbei konnte Splunk gut das Logmanagement erfüllen, denn Logeinträge ließen sich einfach filtern und auch zu Graphen aufbereiten. Weiterhin ist das Error Monitoring auch zufriedenstellend und enthält alle Daten, die auch bspw. bei Sentry vorhanden sind - hierbei fehlt jedoch ein Issue-Management, welches Sentry bereitstellt. Lediglich Tracing lässt sich nicht zufriedenstellend mit Splunk realisieren. Denn hier können lediglich die Daten konsumiert werden, aber eine verständliche Darstellung mittels Trace-Gantt-Diagrammen fehlt gänzlich. Hiermit lassen sich keine spezialisierten Tracing-Werkzeuge ersetzen.
 
 \subsubsection{Honeycomb}
 
@@ -238,7 +238,7 @@ Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein S
 \label{fig:jaeger-ui_trace-detail-view}
 \end{wrapfigure}
 
-Jaeger wurde nicht aufgesetzt, sondern über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger auf Tracing, aber spezialisiert sich dafür auf dieses Gebiet und bietet eine gesamte Infrastruktur zur Tracespeicherung und -analyse. Die Traces sind als Wasserfallgraphen dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert.
+Jaeger wurde nicht aufgesetzt, sondern über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger auf Tracing, aber spezialisiert sich dafür auf dieses Gebiet und bietet eine gesamte Infrastruktur zur Tracespeicherung und -analyse. Die Traces sind als Gantt-Diagramme dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert.
 
 \begin{wrapfigure}[8]{r}{0.45\textwidth}
 \centering
@@ -266,14 +266,40 @@ Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Te
 
 \subsection{Literatur}
 
-\begin{enumerate}
-	\item \textit{Gibt es hierzu Ansätze in der Literatur?}
-	\item \textit{Wie sehen diese aus, welchen Zweck erfüllen sie?}
-	\item \textit{Sind sie vergleichbar mit Ansätzen aus der Fachpraxis?}
-\end{enumerate}
+In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen, die eine Methode, ein Werkzeug oder eine Technologie umfassen, welche die Nachvollziehbarkeit direkt oder indirekt verbessern.
 
-{\color{red}
-\begin{enumerate}
-	\item TraVista: https://arxiv.org/pdf/2010.13681.pdf
-\end{enumerate}
-}
+%\begin{enumerate}
+%	\item \textit{Gibt es hierzu Ansätze in der Literatur?}
+%	\item \textit{Wie sehen diese aus, welchen Zweck erfüllen sie?}
+%	\item \textit{Sind sie vergleichbar mit Ansätzen aus der Fachpraxis?}
+%\end{enumerate}
+
+\subsubsection{TraVista}
+
+Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista von Anand \etal \cite{TraVistaPaper}. Es wurde bisher nicht veröffentlicht. TraVista beschäftigt sich mit dem Visualisieren von Tracedaten. Hierbei setzten sie auf den bestehenden Ansatz der Gantt-Diagramme auf, um Traces zu visualisieren. Die Gantt-Diagramme wurden jedoch um einige zusätzliche Informationen erweitert, wie in \autoref{fig:travista_extended-gantt} zu sehen ist.
+
+\begin{wrapfigure}[8]{r}{0.3\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/03_methoden/travista_extended-gantt_zoomed-in.png}
+\caption{Zoom von \autoref{fig:travista_extended-gantt}, Abbildung aus \cite{TraVistaPaper}}
+% von https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
+\label{fig:travista_extended-gantt_zoomed-in}
+\end{wrapfigure}
+
+Innerhalb eines Spans sind aufgetretene Events dargestellt, standardmäßig als weißer Balken oder bei selten auftretenden Events als schwarzer Balken (vgl. \circled{7} in \autoref{fig:travista_extended-gantt_zoomed-in}). Beziehungen \circled{6} zwischen den Spans werden visualisiert. Bei \circled{2} sind Histogramme zu sehen, die aus den gesammelten Metriken innerhalb der Traces, erstellt sind. Die Metrikwerte des aktuellen Trace sind blau hervorgehoben und erlauben hier auch eine visuelle Probe auf Ausreißer.
+
+Es lässt sich abschließend sagen, dass TraVista eine vielversprechende Visualisierung bietet. Jedoch wurde ein eigenes simples Backend entwickelt, welches nur mit einer vergleichsweise geringen Datenmenge getestet wurde (22.286 Traces, 147.812 Spans). Die Autoren selbst sehen Probleme bei der Skalierung, aber nannten auch, dass sie TraVista weiterentwickeln wollen, um ein neues Backend zu entwickeln.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.81\linewidth]{img/03_methoden/travista_extended-gantt.png}
+	\caption{TraVistas Gantt-Diagramm, Abbildung aus \cite{TraVistaPaper}}
+	\label{fig:travista_extended-gantt}
+\end{figure}
+
+Vor der Arbeit an TraVista hat Vastaav Anand mit Matheus Stolet an einem weiteren Visualisierungstool für Traces gearbeitet: TraViz \cite{TraVizPaper}. Es ist auf GitHub veröffentlicht \url{https://github.com/vaastav/TraViz}. In TraViz lassen sich Grundbausteine von TraVista erkennen, u. A. wird hier bereits auf mehrere Traces gesetzt, um dem Entwickler zu ermöglichen Ausreißer zu identifizieren. Die Visualisierung ist jedoch noch rudimentär im Vergleich zu TraVista.
+
+Mit Joseph Wonsil hat Anand an einem weiteren Tool rund ums Tracing gearbeitet: Tracey \cite{TraceyPaper}. Es ist ebenso auf GitHub veröffentlicht \url{https://github.com/vaastav/Tracey}. Es beschäftigt sich mit der Aggregration von Tracingdaten, denn derzeitige Technologien beschäftigen sich hauptsächlich mit der Darstellung von einem einzelnen Trace. In diesem Bericht sind erneut Grundbausteine zu erkennen, die Anand wahrscheinlich bei TraVista anwenden konnte.
+
+Sowohl TraViz als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden.

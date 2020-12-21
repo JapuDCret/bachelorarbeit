@@ -114,3 +114,6 @@ Id   & Name          & Kano-Modell  & Funktionsart & Quelle       \\
 % allow breaking of urls
 % see https://tex.stackexchange.com/a/344711/221944
 \def\UrlBreaks{\do\/\do-}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
