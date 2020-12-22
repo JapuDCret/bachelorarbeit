@@ -273,14 +273,13 @@ Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren W
 	\item APM \& RUM: AppDynamics, DataDog
 	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
 	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
-	\item APM \& RUM: AppDynamics, DataDog
 \end{itemize}
 
 Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
 
 \subsection{Literatur}
 
-In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen, die eine Methode, ein Werkzeug oder eine Technologie umfassen, welche die Nachvollziehbarkeit direkt oder indirekt verbessern.
+In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen: Interessante Publikationen, die auf eine verbesserte Nachvollziehbarkeit abzielen.
 
 %\begin{enumerate}
 %	\item \textit{Gibt es hierzu Ansätze in der Literatur?}
@@ -290,14 +289,13 @@ In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetra
 
 \subsubsection{TraVista}
 
-Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista von Anand \etal \cite{TraVistaPaper}. Es wurde bisher nicht veröffentlicht. TraVista beschäftigt sich mit dem Visualisieren von Tracedaten. Hierbei setzten sie auf den bestehenden Ansatz der Gantt-Diagramme auf, um Traces zu visualisieren. Die Gantt-Diagramme wurden jedoch um einige zusätzliche Informationen erweitert, wie in \autoref{fig:travista_extended-gantt} zu sehen ist.
+Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista von Anand \etal \cite{TraVistaPaper}. Es basiert auf einem vorhergehenden Projekt von Anand, TraViz, welches nachgehend erläutert wird. TraVista beschäftigt sich mit dem Visualisieren von Tracedaten. Hierbei setzten sie auf den bestehenden Ansatz der Gantt-Diagramme auf, um Traces zu visualisieren. Die Gantt-Diagramme wurden jedoch um einige zusätzliche Informationen erweitert, wie in \autoref{fig:travista_extended-gantt} zu sehen ist.
 
 \begin{wrapfigure}[8]{r}{0.3\textwidth}
 \centering
-\vspace{-\baselineskip}
+\vspace{-1.5\baselineskip}
 \includegraphics[width=\linewidth]{img/03_methoden/travista_extended-gantt_zoomed-in.png}
 \caption{Zoom von \autoref{fig:travista_extended-gantt}, Abbildung aus \cite{TraVistaPaper}}
-% von https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
 \label{fig:travista_extended-gantt_zoomed-in}
 \end{wrapfigure}
 
@@ -307,16 +305,16 @@ Es lässt sich abschließend sagen, dass TraVista eine vielversprechende Visuali
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.81\linewidth]{img/03_methoden/travista_extended-gantt.png}
+	\includegraphics[width=0.815\linewidth]{img/03_methoden/travista_extended-gantt.png}
 	\caption{TraVistas Gantt-Diagramm, Abbildung aus \cite{TraVistaPaper}}
 	\label{fig:travista_extended-gantt}
 \end{figure}
 
-Vor der Arbeit an TraVista hat Vastaav Anand mit Matheus Stolet an einem weiteren Visualisierungstool für Traces gearbeitet: TraViz \cite{TraVizPaper}. Es ist auf GitHub veröffentlicht \url{https://github.com/vaastav/TraViz}. In TraViz lassen sich Grundbausteine von TraVista erkennen, u. A. wird hier bereits auf mehrere Traces gesetzt, um dem Entwickler zu ermöglichen Ausreißer zu identifizieren. Die Visualisierung ist jedoch noch rudimentär im Vergleich zu TraVista.
+Vor der Arbeit an TraVista hat Vastaav Anand mit Matheus Stolet an einem weiteren Visualisierungstool für Traces gearbeitet: TraViz \cite{TraVizPaper}. Es ist auf GitHub veröffentlicht \url{https://github.com/vaastav/TraViz}. TraViz bildet das Grundgerüst für die spätere Arbeit an TraVista und ist zudem das Backend für TraVista. Im Genaueren bedeutet dies, dass TraVista ein neuer Visualisierungsansatz für das Backend von TraViz ist. Die meisten funktionalen Eigenschaften von TraVista lassen sich ebenso auf das Backend von TraViz zurückverfolgen.
 
 Mit Joseph Wonsil hat Anand an einem weiteren Tool rund ums Tracing gearbeitet: Tracey \cite{TraceyPaper}. Es ist ebenso auf GitHub veröffentlicht \url{https://github.com/vaastav/Tracey}. Es beschäftigt sich mit der Aggregration von Tracingdaten, denn derzeitige Technologien beschäftigen sich hauptsächlich mit der Darstellung von einem einzelnen Trace. In diesem Bericht sind erneut Grundbausteine zu erkennen, die Anand wahrscheinlich bei TraVista anwenden konnte.
 
-Sowohl TraViz als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden.
+Sowohl TraViz (und TraVista) als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden. Aufgrund dieser fehlenden Weiterentwicklung und den Skalierungsproblemen des Backends ist TraVista für diese Arbeit nicht von Relevanz. % Sollten sich jedoch in den nächsten Monaten und Jahren weitere Entwicklungen hier ergeben, könnte dieser Ansatz Früchte tragen.
 
 \subsubsection{\enquote{Bedeutung von Telemetry für den SDLC}}
 
@@ -328,10 +326,34 @@ Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfü
 
 Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observabilitydaten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
 
+Grafs Arbeit dient somit als Vorbereitung für einen Lösungsansatz mit OpenTelemetry, bietet aber selbst keine neuen Ansätze.
+
+\subsubsection{Timelapse}
+
+Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webapplikationen aufzunehmen und wiederabzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
+
+\begin{wrapfigure}[8]{r}{0.35\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure5.png}
+\caption{Mitschneiden von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+\label{fig:timelapse_figure5}
+\end{wrapfigure}
+
+Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeit die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos}.
+
+\begin{wrapfigure}[8]{r}{0.35\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure6.png}
+\caption{Abspielen von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+\label{fig:timelapse_figure6}
+\end{wrapfigure}
+
+Dolos schneidet interne DOM-Events sowie die Antworten von äußeren Schnittstellen mit (vgl. \autoref{fig:timelapse_figure5}). Beim Abspielen werden DOM-Events und äußere Aufrufe in derselben Reihenfolge der Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Hierbei wird die Eventloop von anderen Einflüssen abgeschottet, sodass eine exakte Rekonstruktion erfolgen kann. Bei der Rekonstruktion ist es von enormer Bedeutung nicht-deterministische Eingaben korrekt zu simulieren, also Tastatureingaben, Netzwerkanfragen aber auch interne Ressourcen wie Zufallswerte und die aktuelle Zeit.
+
+Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die es mit der in dieser Arbeit angestrebten Lösung inkompatibel machen. Es benötigt eine tiefe Integration in den Browser, speziell wird eine gepatchte Version von WebKit benötigt. Dies ist einerseits aufwändig, aber in diesem Projektumfeld quasi unmöglich, da die Nutzer als vielzählig und unbekannt gelten und genau diese Nutzersitzungen sollten nachvollziehbar gemacht werden. Weiterhin unterstützt das Projekt nur den Safari und Google Chrome Browser, wahrscheinlich aber auch nicht die aktuellen, denn es wird seit mehr als 5 Jahren nicht mehr weiterentwickelt. Der Quellcode findet sich jedoch auf GitHub \url{https://github.com/burg/replay-staging/}. Insgesamt ist das Projekt somit ungeeignet für eine die angestrebte Lösung.
+
 \subsubsection{FAME}
 
 see \url{file:///C:/Users/Marvin\%20Kienitz/Documents/Recherche/Oriol2018_FAME\%20Supporting\%20Continuous\%20Requirements\%20Elicitation\%20by\%20Combining\%20User\%20Feedback\%20and\%20Monitoring.pdf}
-
-\subsubsection{\enquote{Interactive Record/Replay}}
-
-see \url{file:///C:/Users/Marvin\%20Kienitz/Documents/Recherche/Burg2013UIST_Timelapse.pdf}
