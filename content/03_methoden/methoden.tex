@@ -279,7 +279,7 @@ Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Te
 
 \subsection{Literatur}
 
-In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen: Interessante Publikationen, die auf eine verbesserte Nachvollziehbarkeit abzielen.
+In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen: Verwandte Publikationen, die auf eine verbesserte Nachvollziehbarkeit abzielen.
 
 %\begin{enumerate}
 %	\item \textit{Gibt es hierzu Ansätze in der Literatur?}
@@ -356,4 +356,19 @@ Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die 
 
 \subsubsection{FAME}
 
-see \url{file:///C:/Users/Marvin\%20Kienitz/Documents/Recherche/Oriol2018_FAME\%20Supporting\%20Continuous\%20Requirements\%20Elicitation\%20by\%20Combining\%20User\%20Feedback\%20and\%20Monitoring.pdf}
+2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
+
+\begin{wrapfigure}[10]{r}{0.4\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/fame_overview.png}
+\caption{Übersicht des FAME, Abb. aus \cite{FamePaper}}
+\label{fig:fame_overview}
+\end{wrapfigure}
+
+Mit FAME wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Nach den Autoren ist dieser Ansatz neu, denn in der Literatur wurde zuvor hauptsächlich auf das Nutzerfeedback gesetzt um neue Anforderungen zu identifizieren. Dies ist aber von Problemen geplagt, wie bspw. dem Verständnis des Problems oder auch wie relevant dieses Problem für die gesamte Nutzerschaft ist. Mithilfe von der Addition von Monitoring sollen einige dieser Einschränkungen begegnet werden, indem bspw. Funktionsgebiete über Metriken abgebildet werden und wenn ein negatives Feedback eines Nutzers zu diesem Gebiet aufkommt, kann in der Metrik abgelesen werden, ob das Verhalten von anderen Nutzern sich geändert hat. Eine abstrakte Übersicht des FAME-Frameworks kann in \autoref{fig:fame_overview} betrachtet werden.
+
+Das FAME-Framework definiert detailliert Komponenten, wie die Disziplin des Monitoring und der Feedbackeinholung gelöst werden können, und wie dies in einer möglichst modularen Infrastruktur umgesetzt werden kann. Für die Kombination der Monitoring- und Feedbackdaten werden zudem Mechanismen geschaffen, dass effiziente Queries diese beide zusammen verbunden ausgeben. Diese Ansätze wurden mit der SEnerCon GmbH in einem Workshop auf die Probe gestellt und konnten dem Requirements-Engineer dabei unterstützen, neue Anforderungen zu identifizieren und irrelevante Anforderungen auszuschließen. Es konnte ein Mehrwert für die SEnerCon GmbH identifiziert werden.
+
+Das Framework FAME gehört zum größeren Projekt SUPERSEDE, welches von der EU gesponsert ist. Das Framework ist quelloffen unter GitHub verfügbar: \url{https://github.com/supersede-project/monitor_feedback}. Seit Ende 2018 wird es jedoch \textit{de facto} nicht mehr gewartet.
+
+Das Projekt wird jedoch nicht bei der angestrebten Lösung verwendet. Zum Einen, weil das Ziel des Projektes nicht direkt auf Nachvollziehbarkeit von Nutzerinteraktionen und Anwendungsverhalten abzielt. Zu Anderem aber auch aufgrund der fehlenden Weiterentwicklung und Wartung. Dennoch sind die Erkenntnisse, dass eine Kombination aus unterschiedlichen Daten neue Sichtweisen ermöglicht, vielversprechend.
