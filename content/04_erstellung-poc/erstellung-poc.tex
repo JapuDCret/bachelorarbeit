@@ -85,13 +85,31 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 	\subsection{Technologie-Stack}
 	\label{sec:technologie-stack}
 
-	Im Frontend selber sollen für den Logger und den Error-Handler keine speziellen Technologien verwendet werden. Hierbei soll auf die bestehende Demoanwendung aufgesetzt werden und so die Loginformationen und Fehler adaptiert werden. \textit{\color{red}Was für ein Logger?}. Da die Demoanwendung in Angular geschrieben ist, soll ein Angular ErrorHandler implementiert werden, welche die Information dann weiterleitet. Die Tracing- und Metrikdaten werden mit OpenTelemetry JavaScript-Komponenten erfasst und an ein Partnersystem. Für die Session-Replay-Daten wird jedoch auf eine proprietäre Komponente gesetzt, denn bei der Evaluierung wurde festgestellt, dass alle Werkzeuge zum Session-Replay nur proprietäre Datenerhebung unterstützen.
+	Im Frontend sind für den Logger und den Error-Handler keine speziellen Technologien zu verwenden, es soll somit auf die bestehende Demoanwendung aufgesetzt werden. Da die Demoanwendung in Angular geschrieben ist, soll ein ErrorHandler implementiert werden, welcher die Information dann weiterleitet. Die Tracing- und Metrikdaten werden mit OpenTelemetry JavaScript-Komponenten erfasst und an ein Partnersystem gesendet. Für die Session-Replay-Daten wird jedoch auf eine proprietäre Komponente gesetzt, denn bei der Evaluierung konnte keine quelloffene Datenerhebung identifiziert werden.
 	
-	Als Log- und Monitoringsystem soll Splunk zum Einsatz kommen. Nach der Evaluation von Splunk lassen sich hiermit gut die drei Datenkategorien Logs, Metriken und Fehler speichern, analysieren und visualisieren. Alternativen wären u. A. Dynatrace und New Relic, diese basieren jedoch zu sehr auf ihrer proprietären Datenerhebung. Sowie bieten sie eher ausgefertigte Dashboards und Graphen, jedoch mit zu wenig Flexibilität in dem, was man mit den Daten anstellen kann. Honeycomb wäre zudem auch eine Alternative, jedoch eignet es sich weniger für strikte Logdaten. Weiterhin werden die Daten bei Honeycomb auch nur für 60 Tage gespeichert. Somit blieb Splunk als einziger Kandidat, der den gewünschten Rahmen erfüllt. Es sollten jedoch auch andere Werkzeuge Splunk ersetzen können, bspw. der Elastic Stack könnte hierfür auch sehr geeignet sein, wurde jedoch nicht evaluiert.
+	Als Log- und Monitoringsystem soll Splunk zum Einsatz kommen. Nach der Evaluation von Splunk lassen sich hiermit gut die drei Datenkategorien Logs, Metriken und Fehler speichern, analysieren und visualisieren. Alternativen wären u. A. Dynatrace und New Relic, basieren jedoch auf einer proprietären Datenerhebung. Diese bieten eher ausgefertigte Dashboards und Graphen, mit zu weniger Flexibilität zur Datenvisualisierung. Honeycomb wäre zudem auch eine Alternative, eignet sich aber weniger für strikte Logdaten. Unter anderem werden die Daten bei Honeycomb nur für 60 Tage gespeichert. Somit blieb Splunk als einziger Kandidat, der den gewünschten Rahmen erfüllt. Es sollten jedoch auch andere Werkzeuge Splunk ersetzen können, bspw. der Elastic Stack könnte hierfür auch geeignet sein, dieser wurde jedoch nicht zuvor evaluiert.
 	
-	Für das Partnersystem zwecks Session-Replay wurde nur ein Werkzeug evaluiert, LogRocket. Somit wird auch LogRocket in der Lösung verwendet, aber auch wie Splunk sollte LogRocket nicht zwingend vorgeschrieben sein, sondern müsste einfach austauschbar gegen ein äquivalentes Werkzeug sein (vgl. \autoref{sec:weitere-werkzeuge}). LogRocket kann jedoch auch überzeugen, dass es Funktionen bietet, um datenschutzkritische Aspekte zu beachten aber auch um die Performanz der eigentlichen Anwendung nicht zu stark einzuschränken. So wird LogRockets eigentliche Logik erst nach dem Seitenladen dynamisch nachgeladen und die Hauptarbeit findet generell in Worker-Threads statt, nicht im Hauptthread \cite{LogRocketPerformance}. Des Weiteren schränkt LogRocket die Aufnahmequalität ein, wenn eine unzureichende Bandbreite bemerkt wird. Allgemein werden zudem Daten nicht in JSON kommuniziert, sondern mit Google protobufs (protocol buffers) \cite{GoogleProtobufs}, welche effizienter sind \cite{ComparisonDataSerializationFormats}.
+	Für das Partnersystem, welches Session-Replay übernimmt, wurde nur ein Werkzeug evaluiert, nämlich LogRocket. Da diese Art von Software als sehr zielführend empfunden wurde, wird LogRocket somit in der Lösung verwendet. Jedoch ist anzumerken, dass ähnlich wie bei Splunk, LogRocket nicht zwingend vorgeschrieben ist, sondern gegen ein äquivalentes Werkzeug austauschbar ist (vgl. \autoref{sec:weitere-werkzeuge}). LogRocket kann jedoch auch überzeugen, denn es bietet Funktionen, um datenschutzkritische Aspekte zu beachten aber auch um die Performanz der eigentlichen Anwendung nicht zu stark einzuschränken. So wird LogRockets eigentliche Logik erst nach dem Seitenladen dynamisch nachgeladen und die Hauptarbeit findet generell in Worker-Threads statt, nicht im Hauptthread \cite{LogRocketPerformance}. Des Weiteren schränkt LogRocket die Aufnahmequalität ein, wenn eine unzureichende Bandbreite bemerkt wird.
+
+\begin{wrapfigure}[9]{r}{0.4\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/04_erstellung-poc/ComparisonDataSerializationFormats_figure4.png}
+\caption{Serialisierte Datengröße je Format \cite{ComparisonDataSerializationFormats}}
+\label{fig:serialized-data-size}
+\end{wrapfigure}
 	
-	\textit{\color{red}Beschreibung zu den Partnersystemen (Jaeger)}
+	Allgemein werden bei LogRocket zudem Daten nicht im JSON-Format kommuniziert, sondern mit Google Protobufs (protocol buffers) \cite{GoogleProtobufs}, welche effizienter sind (siehe \autoref{fig:serialized-data-size}). Die Verwendung von Protobufs könnte ggf. auch interessant sein bei der Datenübertragung der anderen Datenkategorien, jedoch wird sich an dieser Stelle nicht darauf festgelegt. Sollte eine hohe Übertragungseffizienz tatsächlich von Nöten sein, so werden Protobufs ggf. näher betrachtet.
+
+\begin{wrapfigure}[9]{r}{0.4\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/04_erstellung-poc/jaeger_architecture-v1_edited.png}
+\caption{Architektur von Jaeger, angepasst \cite{JaegerArchitecture}}
+\label{fig:jaeger_architecture}
+\end{wrapfigure}
+	
+	Um die Tracingdaten zu beleuchten und so Einblick in den architektonischen Verlauf eines Aufrufs zu erhalten, wird Jaeger verwendet. Jaeger bietet jene Tracing-Visualisierungen, die Splunk fehlen und ist zudem darauf spezialisiert Tracingdaten zu speichern und zu analysieren. Um diese Funktionen anzubieten und eine schnelle Datenabfrage zu gewährleisten, besitzt Jaeger eine darauf konzipierte Infrastruktur (vgl. \autoref{fig:jaeger_architecture}). Die verwendete Datenbank ist Cassandra und für Analyse- und Verarbeitungszwecke wird Apache Spark benutzt.
+	
+	Die geplante Architektur ist in \autoref{fig:architektur-technologien} zu betrachten.
 	
 \begin{figure}[H]
 	\centering
