@@ -375,13 +375,30 @@ Das Projekt wird jedoch nicht bei der angestrebten Lösung verwendet. Zum Einen,
 
 \subsubsection{The Kaiju Project}
 
-\begin{wrapfigure}[10]{r}{0.45\textwidth}
+Scrocca \etal \cite{TheKaijuProjectPaper} identifizierten 2020 eine Lücke im Gebiet der Observability, nämlich fehlt ein Werkzeug, welches die unterschiedlichen Datentypen Logs, Traces und Metriken kombiniert sammeln und aufbereiten kann und dies in quasi-Echtzeit. Aus diesem Grund wurde ein Konzept und ein Prototyp entwickelt, die darauf abzielen diese Lücke auszufüllen. Zunächst wird jedoch das Forschungsfeld und die Fachpraxis rund um die Observability aufgearbeitet. Hierbei definieren Scrocca \etal zwei Forschungsfragen, die es im Bericht zu beantworten gilt:
+
+\begin{itemize}
+	\item Wie können wir das Systemverhalten enthüllen?
+	\item Wie können wir Sinn aus dem Systemverhalten gewinnen?
+\end{itemize}
+
+\begin{wrapfigure}[13]{r}{0.45\textwidth}
 \centering
 \includegraphics[width=\linewidth]{img/03_methoden/kaiju_architecture.png}
 \caption{Kaiju Architektur, Abb. aus \cite{TheKaijuProjectPaper}}
 \label{fig:kaiju_architecture}
 \end{wrapfigure}
 
-Scrocca \etal \cite{TheKaijuProjectPaper} \textit{\color{red} TODO}.
+Um diese Forschungsfragen zu beantworten, wurde ein Konzept erstellt, wie die Datentypen Logs, Traces und Metriken zusammen erhoben und kombiniert analysiert werden können. Es basiert auf einer allgemeinen Datenverarbeitung mittels einem Event-Stream-Processor (ESP). Das Kernmodul stellt somit das \enquote{kaiju-hl} dar, welches in der Architektur in \autoref{fig:kaiju_architecture} zu betrachten ist. Das Hauptmodul besteht selber aus mehreren Subkomponenten, die spezielle analytische Aufgaben übernehmen. Der Prototyp wurde mit der quelloffenen ESP-Engine Esper \cite{Esper} umgesetzt.
 
-Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden.
+\nomenclature[Fachbegriff]{ESP}{Event-Stream-Processor}
+
+Aus den analysierten Daten erstellt Kaiju angereicherte und in der Struktur homogenisierte Daten, sogenannte High-Level-Events. Diese sind dann von weiteren Komponenten zu konsumieren. Diese praktische Weiterverarbeitung der gewonnenen Daten wurde jedoch nicht näher beleuchtet.
+
+Nach der Entwicklung des Prototypen wurde aber in Zusammenarbeit mit der italienischen IT Dienstleistungsfirma SighUp dieser evaluiert. Es konnte festgestellt werden, dass abgeleitete High-Level Events, durch zuvor definierte Szenarien erstellt werden und Informationen beinhalten, die für die Problemfindung in diesen Szenarien hilfreich ist.
+
+Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden. Auch wenn Kaiju kein praktisches Werkzeug für die Lösung in dieser Arbeit darstellt, so wird ein gutes Bild über die technische Seite der Nachvollziehbarkeit vermittelt sowie wird zuvor der Forschungsstand erläutert.
+
+\subsubsection{Fazit zur Literatur}
+
+Wie auch in den verschiedenen beleuchteten Berichten und Arbeiten zu lesen ist, von denen drei in \textit{2020} veröffentlicht wurden, ist das Forschungsfeld der Nachvollziehbarkeit bzw. der Observability bisher nur spärlich untersucht worden. Es konnte ein Konsens identifiziert werden, dass dieses Forschungsfeld einen wichtigen Mehrwert darstellt, speziell bei komplexen Microservice-Architekturen.

@@ -69,8 +69,8 @@
 \renewcommand\appendixname{Anhang}
 
 \addto\captionsngerman{
-	\renewcommand{\figurename}{Abb.}
-	\renewcommand{\tablename}{Tab.}
+	\renewcommand{\figurename}{Abb.\@}
+	\renewcommand{\tablename}{Tab.\@}
 }
 
 % Listing defintion for JavaScript and ECMAScript2015 (ES6)
@@ -80,7 +80,7 @@
 \input{content/00_preamble/java_listing.tex}
 
 % own commands
-\newcommand{\etal}{\textit{et al}}
+\newcommand{\etal}{\textit{et al.\@ }}
 \newcommand{\citationneeded}{{\color{red}[cite]}}
 \newcommand{\source}[1]{\vspace{-0.75\baselineskip}\caption*{Quelle: {#1}} }
 
