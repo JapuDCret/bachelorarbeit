@@ -9,6 +9,8 @@ jobs:
     name: A job to Compile Latex file
     steps:
     - uses: actions/checkout@v1
+      with:
+        submodules: true
     - name: Compile LaTeX document
       uses: xu-cheng/latex-action@v2
       env:
