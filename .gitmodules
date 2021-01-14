@@ -1,0 +1,3 @@
+[submodule "content/04_erstellung-poc/warenkorb-gherkin"]
+	path = content/04_erstellung-poc/warenkorb-gherkin
+	url = https://github.com/cwansart/warenkorb-gherkin.git
