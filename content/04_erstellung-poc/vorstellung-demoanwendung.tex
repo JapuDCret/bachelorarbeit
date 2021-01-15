@@ -3,7 +3,9 @@
 
 Wie in \autoref{anf:1020} beschrieben, ist eine Demoanwendung zu erstellen, auf Basis dessen das Konzept anzuwenden ist und somit praktisch umgesetzt werden kann. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung und der repräsentativen Aufgabe, die diese übernimmt.
 
-In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine , wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene teils dynamische Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert. Um die gewünschte Demoanwendung zu definieren, wird im folgenden Abschnitt das Verhalten festgelegt.
+In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine , wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene teils dynamische Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
+
+Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und dies soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
@@ -44,7 +46,30 @@ captionpos = b,
      label = lst:demoanwendung-gherkin-bestellung_abschließen
 ]{content/04_erstellung-poc/warenkorb-gherkin/5-bestellung_abschließen.feature}
 
+Neben des eigentlichen User-Interfaces soll auch ein Backend teil der Demoanwendung sein. Hierfür wurde auf Basis der Verhaltensdefinition eine Architektur entworfen, die im folgenden Abschnitt näher beschrieben wird.
+
+\subsection{Backend}
+
+Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des OpenKnowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm.
+
+Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation erfolgen. Speziell wird bei einer solchen Architektur Tracing hilfreicher, um die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
+
+% Die einzelnen Dienste sind als Java EE Microservices umgesetzt worden und dabei minimal gehalten worden. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{img/04_erstellung-poc/demoanwendung_k8s-deployment.png}
+	\caption{Demoanwendung: Kubernetes-Architektur-Diagramm, Quelle: Eigene Darstellung}
+	\label{fig:demoanwendung_k8s-deployment}
+\end{figure}
+
 \subsection{Frontend}
+
+Das Frontend stellt das Herzstück der Demoanwendung dar und wurde auf Basis der Verhaltensdefinition erstellt. Wie beim Direktversicherer wurde es mit Angular erstellt und als zustandsreiche SPA umgesetzt. Genauere Implementierungsdetails werden jedoch nicht behandelt, außer sie sind relevant für die Lösung oder die Lösungsüberprüfung.
+
+Das Frontend sowie das Backend wurden mit einigen Fehlern implementiert. Hintergrund ist, dass bei der Betrachtung der Lösung solche Fehler notwendig sind, um diese zu bewerten. Diese Fehler werden näher im \autoref{subsec:fehlerszenarien} betrachtet.
+
+Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und das Layout verknüpft diese Seiten in einem blätternden Format, bei dem man vor- und zurückspringen kann. Dies kann in den folgenden 6 Abbildungen betrachtet werden.
 
 \begin{figure}[H]
 	\centering
@@ -88,11 +113,69 @@ captionpos = b,
 	\label{fig:demoanwendung_vorstellung_06-bestellbestaetigung}
 \end{figure}
 
-\subsection{Backend}
+\subsection{Fehlerszenarien}
+\label{subsec:fehlerszenarien}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.0\linewidth]{img/04_erstellung-poc/demoanwendung_k8s-deployment.png}
-	\caption{Demoanwendung: Kubernetes-Architektur-Diagramm, Quelle: Eigene Darstellung}
-	\label{fig:demoanwendung_k8s-deployment}
-\end{figure}
+Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich aufgetretene Probleme einzubauen.
+
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von ungewünscht harscher Validierung, über  bis hin zu ineffizienter Datenverarbeitung. Sie werden werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
+
+\subsubsection{\enquote{Keine Übersetzungen}}
+
+\begin{wrapfigure}[6]{r}{0.33\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/04_erstellung-poc/demoanwendung_fehlerszenario-uebersetzungen}
+\caption{Fehlende Texte}
+\label{fig:demoanwendung_fehlerszenario-uebersetzungen}
+\end{wrapfigure}
+
+- Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
+
+- Ursache: Einer der \enquote{localization-svc} Pods hat eine defekte Konfiguration, dieser ist in \autoref{fig:demoanwendung_k8s-deployment} visuell hervorgehoben. Wird man durch den LoadBalancer mit diesem Pod verbunden tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
+
+\subsubsection{\enquote{Gültige Straßen sind ungültig}}
+
+- Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise die Eingabe \enquote{Ährenweg} führt zu einem Fehler.
+
+- Ursache: Der \enquote{address-validation-svc} validiert Straßen mit dem Regex \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
+
+\subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
+
+- Problem: Nutzer berichten, dass Hausnummern die nicht nur aus Zahlen bestehen zum Fehler führen.
+
+- Ursache: Der \enquote{address-validation-svc} validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
+
+\subsubsection{\enquote{Gültige Städte sind ungültig}}
+
+- Problem: Nutzer aus Gießen berichten, dass Sie das Formular zur Rechnungsadresse nicht ausfüllen können
+
+- Ursache: Der \enquote{address-validation-svc} meldet die Stadt \enquote{Gießen} als ungültig, weil sie nicht in der lokalen Tabelle vorhanden ist.
+
+\subsubsection{\enquote{Ungültige Adressen sind gültig}}
+
+- Problem: Nutzer können in den Lieferdaten ungültige Eingaben tätigen und absenden, bei der Bestellaufgabe kommt es zu einem Fehler.
+
+- Ursache: Das Frontend überprüft lediglich die Rechnungsadresse, aber nicht die Lieferadresse
+
+\subsubsection{\enquote{Vor- und Nachnamen werden abgeschnitten"}}
+
+- Problem: Nutzer berichten, dass in der Bestellbestätigung Ihre Vor- und Nachnamen abgeschnitten dargestellt werden.
+
+- Ursache: Der \enquote{order-svc} begrenzt den Vor- sowie den Nachnamen auf 20 Zeichen.
+
+\subsubsection{\enquote{Falsche Zahlungsart}}
+
+- Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
+
+- Ursache: Das Frontend sendet alle Formulardaten an \enquote{order-svc}, dieser aber an, dass alle nicht ausgewählten Formulare \texttt{null} sind.
+
+\subsubsection{\enquote{Lange Verarbeitung}}
+
+- Problem: Beim Absenden des Formulars auf der Seite \enquote{Warenkorb} kommt es zu einer unerwünschten Wartezeit (von min. 6-10s).
+
+- Ursache: Dies ist eine simulierte Wartezeit im Frontend je nach Anzahl der Positionen (2s pro Position), um eine ineffiziente Verarbeitung nachzuahmen.
+
+\subsection{Repräsentation}
+
+Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und größtenteils clientbasierten SPA, . Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
