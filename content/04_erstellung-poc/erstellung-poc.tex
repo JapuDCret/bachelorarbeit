@@ -22,7 +22,7 @@
 		
 	Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird, um bspw. Klickpfade zu optimieren oder um festzustellen wie lange ein Nutzer sich auf einer Seite aufhielt. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung seitens des Nutzers erfolgen oder bei speziellen Umgebungen automatisch (bspw. einer Staging-Umgebung). Weiterhin könnten die Loginformationen nach dieser Einwilligung auch feingranularer übertragen werden, bspw. ohne Einwilligung würden Logs der Kritikalität INFO und höher übertragen werden und mit Einwilligung auch Logs der Kritikalität DEBUG und höher.
 		
-	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Hierbei könnten auch wichtige Verarbeitungsmethoden im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll wenn möglich auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch für Logdaten möglich. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
+	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Hierbei könnten auch wichtige Verarbeitungsmethoden im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll, wenn möglich, auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch für Logdaten möglich. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
 		
 	Alle gesendeten Datensätze sollen möglichst mit Metadaten angereichert werden, die einerseits den Nutzer, die Umgebung und die Anwendung identifizieren. Diese umfassen u. A.: Zeitstempel, Session-Id, User-Agent, IP, Hostsystem, Version.
 		
@@ -34,7 +34,7 @@
 	
 	\subsubsection{Visualisierung}
 		
-	Wie bei der Auswertung, wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
+	Wie bei der Auswertung wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
 	
 	\begin{itemize}
 		\item Die Logdaten sollen abrufbar sein und filterbar sein.
@@ -97,7 +97,7 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 \label{fig:serialized-data-size}
 \end{wrapfigure}
 	
-	Allgemein werden bei LogRocket zudem Daten nicht im JSON-Format kommuniziert, sondern mit Google Protobufs (protocol buffers) \cite{GoogleProtobufs}, welche effizienter sind (siehe \autoref{fig:serialized-data-size}). Die Verwendung von Protobufs könnte ggf. auch interessant sein bei der Datenübertragung der anderen Datenkategorien, jedoch wird sich an dieser Stelle nicht darauf festgelegt. Sollte eine hohe Übertragungseffizienz tatsächlich von Nöten sein, so werden Protobufs ggf. näher betrachtet.
+	Allgemein werden bei LogRocket zudem Daten nicht im JSON-Format kommuniziert, sondern mit Google Protobufs (protocol buffers) \cite{GoogleProtobufs}, welche effizienter sind (siehe \autoref{fig:serialized-data-size}). Die Verwendung von Protobufs könnte ggf. auch interessant sein bei der Datenübertragung der anderen Datenkategorien, jedoch wird sich an dieser Stelle nicht darauf festgelegt. Sollte eine hohe Übertragungseffizienz tatsächlich vonnöten sein, so werden Protobufs ggf. näher betrachtet.
 
 \begin{wrapfigure}[9]{r}{0.4\textwidth}
 \centering
@@ -123,7 +123,7 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 	
 	Da das Konzept nicht eine Basisstruktur darstellt, auf das man ein Projekt basieren kann, sondern viel eher ein bestehendes Projekt erweitert, lässt sich das Konzept bei reellen Projekten in verschiedensten Phasen integrieren. Weiterhin wurden die Grundkonzepte, wie die Erhebung von Tracingdaten, nicht auf etablierte Technologien basiert, sondern viel eher auf die zugrundeliegenden Disziplinen. Deswegen sind alle vorgeschlagenen Technologien und Partnersysteme austauschbar, um verschiedene Projekt- und Unternehmensvorgaben zu erfüllen. Hinzukommend ist das Konzept modular zu verstehen, denn einzelne Disziplinen werden von spezialisierten Systemen gehandelt und sind somit auch entfernbar. Diese Flexibilität der Auswahl an Komponenten und der Zusammensetzung verspricht Projektteams eine reell umsetzbare Lösung.
 
-	Ein identifizierbares Manko ist jedoch die Menge an Partnersystemen, die die Lösung vorschlägt. Dies kann aus Wartungs- oder Kostengründen nicht für jedes Projektteam attraktiv sein, jedoch konnte leider keine weitere Verringerung der Partnersysteme erzielt werden. Wenn man aber auf einer der Datenkategorien verzichten kann, dann ließe sich ggf. auch ein Partnersystem entfernen. Sollte aber eine Technologie existieren oder sich über Zeit entwickeln, welche mehrere Disziplinen löst, so kann die Anzahl ebenso verringert werden. Dabei anzumerken ist aber auch, dass damit eine gewisse Flexibilität verloren geht. Es lässt sich aber nicht definitiv eine Bewertung hierzu erstellen, da eben solch eine Technologie nicht gefunden werden k1onnte.
+	Ein identifizierbares Manko ist jedoch die Menge an Partnersystemen, die die Lösung vorschlägt. Dies kann aus Wartungs- oder Kostengründen nicht für jedes Projektteam attraktiv sein, jedoch konnte leider keine weitere Verringerung der Partnersysteme erzielt werden. Wenn man aber auf einer der Datenkategorien verzichten kann, dann ließe sich ggf. auch ein Partnersystem entfernen. Sollte aber eine Technologie existieren oder sich über Zeit entwickeln, welche mehrere Disziplinen löst, so kann die Anzahl ebenso verringert werden. Dabei anzumerken ist aber auch, dass damit eine gewisse Flexibilität verloren geht. Es lässt sich aber nicht definitiv eine Bewertung hierzu erstellen, da eben solch eine Technologie nicht gefunden werden konnte.
 	
 	Alles in Allem, sollte das vorgeschlagene Konzept aber für den Großteil von Softwareprojekten in der Frontendentwicklung adaptierbar sein. Eine tiefergehende Betrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, auf Basis der tatsächlichen Implementierung. Diese Übertragbarkeit wird wahrscheinlich nicht gleich bleiben, denn die Implementierung wird bspw. einige spezifische Entscheidungen beinhalten, die eine Übertragbarkeit behindern könnten.
 

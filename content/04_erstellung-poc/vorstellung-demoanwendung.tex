@@ -3,13 +3,13 @@
 
 Wie in \autoref{anf:1020} beschrieben, ist eine Demoanwendung zu erstellen, auf Basis dessen das Konzept anzuwenden ist und somit praktisch umgesetzt werden kann. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung und der repräsentativen Aufgabe, die diese übernimmt.
 
-In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine , wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene teils dynamische Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
+In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine mdoerne Webanwendung darstellt, wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene teils dynamische Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
 
 Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und dies soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
-Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior Driven Development (BDD). Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin \cite{Gherkin} Syntax geschrieben. Die Syntax ist natürlich zu lesen, und folgend werden alle gewünschen Features der Demoanwendung in der Gherkin-Syntax beschrieben.
+Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behaviour Driven Development (BDD). Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin \cite{Gherkin} Syntax geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax beschrieben.
 
 \lstinputlisting[
   language = gherkin,
@@ -50,7 +50,7 @@ Neben des eigentlichen User-Interfaces soll auch ein Backend teil der Demoanwend
 
 \subsection{Backend}
 
-Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des OpenKnowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm.
+Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm.
 
 Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation erfolgen. Speziell wird bei einer solchen Architektur Tracing hilfreicher, um die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
 
@@ -118,7 +118,7 @@ Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und 
 
 Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich aufgetretene Probleme einzubauen.
 
-Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von ungewünscht harscher Validierung, über  bis hin zu ineffizienter Datenverarbeitung. Sie werden werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht harscher Validierung, über  bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
 
 \subsubsection{\enquote{Keine Übersetzungen}}
 
@@ -138,11 +138,11 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von ungew
 
 - Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise die Eingabe \enquote{Ährenweg} führt zu einem Fehler.
 
-- Ursache: Der \enquote{address-validation-svc} validiert Straßen mit dem Regex \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
+- Ursache: Der \enquote{address-validation-svc} validiert Straßen mit dem RegEx \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
 
 \subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
 
-- Problem: Nutzer berichten, dass Hausnummern die nicht nur aus Zahlen bestehen zum Fehler führen.
+- Problem: Nutzer berichten, dass Hausnummern, die nicht nur aus Zahlen bestehen, zum Fehler führen.
 
 - Ursache: Der \enquote{address-validation-svc} validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
 
@@ -158,7 +158,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von ungew
 
 - Ursache: Das Frontend überprüft lediglich die Rechnungsadresse, aber nicht die Lieferadresse
 
-\subsubsection{\enquote{Vor- und Nachnamen werden abgeschnitten"}}
+\subsubsection{\enquote{Vor- und Nachnamen werden abgeschnitten}}
 
 - Problem: Nutzer berichten, dass in der Bestellbestätigung Ihre Vor- und Nachnamen abgeschnitten dargestellt werden.
 
@@ -178,4 +178,6 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von ungew
 
 \subsection{Repräsentation}
 
-Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und größtenteils clientbasierten SPA, . Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
+Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und größtenteils clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
+
+\textit{\color{red}TODO: Expand this}

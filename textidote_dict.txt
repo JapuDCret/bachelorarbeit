@@ -3,6 +3,9 @@ Inf.
 Clientbasiert
 Clientbasierte
 Clientbasierten
+clientbasiert
+clientbasierte
+clientbasierten
 Clientseitiges
 Tracing
 Trace
@@ -25,7 +28,7 @@ RUM
 New Relic
 Dynatrace
 OneAgent
-Enhanced Tracking Protetion
+Enhanced Tracking Protection
 OnPremise
 Sentry
 Issue
@@ -43,9 +46,15 @@ Vuejs
 Vue
 Angular
 AngularJS
+Ember
+Gatsby
 Splunk
 Splunks
 Honeycomb
+Hound
+Technology
+Inc.
+Beelines
 Jaeger
 Go
 Python
@@ -54,12 +63,16 @@ Ruby
 Rails
 Exporter
 User-Agent
-AppDynamics, DataDog
+AppDynamics
+DataDog
 Airbrake
 Instabug
 Rollbar
 Bugsnag
 TrackJS
+AdBlocker
+AdBlockern
+NPM
 Google Cloud Trace
 Zipkin
 Bug-Bounty-Projekt
@@ -73,6 +86,7 @@ Content-Security-Policy
 XSS
 Cross-Site-Scripting
 Content Delivery Network
+Preflighted
 Härtungsmaßnahmen
 Log
 Logdatenerhebung
@@ -137,3 +151,50 @@ Kano-Modell
 Id
 Slack
 Staging
+Klickpfade
+Metrikdaten
+Hostsystem
+Tracing
+Tracing-
+Haupt-Thread
+Workerthread
+Protobufs
+Cassandra
+Spark
+Wansart
+Behaviour
+Driven
+Development
+Gherkin
+Gherkin-Syntax
+Frontend
+Frontends
+Backend
+Backends
+zustandsreiche
+zustandsreichen
+RegEx
+menschenlesbar
+menschenlesbaren
+Structured
+Structured Logging
+Distributed
+Trace
+Traces
+Kindspan
+Span
+Spans
+Kindbeziehung
+Browserkonsole
+Observability
+TraVista
+TraViz
+Tracey
+Timelapse
+Eventloop
+Breakpoints
+SEnerCon
+FAME
+Feedback Acquisition and Monitoring Enabler
+SUPERSEDE
+Kaiju

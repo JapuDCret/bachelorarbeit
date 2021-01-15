@@ -55,7 +55,7 @@ OpenTracing definiert zwei grundlegende Objekte: Traces und Spans. Ein Trace ist
 
 OpenTracing definiert Traces implizit über ihre Spans. Ein Trace ist damit ein gerichteter Graph ohne Zyklus, wobei die Knoten hierbei die Spans darstellen und die Kanten die Eltern-/Kindbeziehung veranschaulichen \cite{OpenTracingSpecification}. Ein beispielhafter Trace mit seinen Spans und deren Beziehungen ist in \autoref{fig:otel-causal-relationship} zu betrachten. Die zeitliche Reihenfolge der Spans kann auch eine hilfreiche Visualisierung sein, um die Entwicklung der Spans zu verstehen \citationneeded (vgl. \autoref{fig:otel-temporal-relationship}). Diese Definition wurde in den Nachfolgestandard OpenTelemetry aufgenommen und an späterer Stelle erläutert.
 
-Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus gehen \cite{OpenTracingSpecification}.
+Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinausgehen \cite{OpenTracingSpecification}.
 
 \begin{minipage}{.47\textwidth}
 	\centering
@@ -105,13 +105,13 @@ Ziel ist es, Anwendungen und Systeme exakt zu beobachten, Informationen über te
 
 System Monitoring beschäftigt sich mit der Überwachung der notwendigen Systeme und Dienste in Bezug auf Hardware- und Softwareressourcen. Es handelt sich hierbei um ein projektunabhängiges Monitoring, welches sicherstellen soll, dass die Infrastruktur funktionstüchtig bleibt.
 
-Ein Beispiel für System Monitoring wäre u. A., wenn man ein Menge an Systemen auf die Festplatten- und CPU-Auslastung hin kontrolliert und überwacht. Es können weitere Aspekte überwacht werden, aber im Regelfall hat die Überwachung selbst nichts mit einem eigentlichen Projekt zu tun, außer dass die Infrastruktur hierfür sichergestellt wird.
+Ein Beispiel für System Monitoring wäre u. A., wenn man eine Menge an Systemen auf die Festplatten- und CPU-Auslastung hin kontrolliert und überwacht. Es können weitere Aspekte überwacht werden, aber im Regelfall hat die Überwachung selbst nichts mit einem eigentlichen Projekt zu tun, außer dass die Infrastruktur hierfür sichergestellt wird.
 
 \subsection{Log Management}
 
 Log Management umfasst die Erfassung, Speicherung, Verarbeitung und Analyse von Logdaten von Anwendungen. Weiterhin bieten Werkzeuge hierbei oftmals fundierte Such- und Meldefunktionen. Um die Daten aus einer Anwendung heraus zu exportieren, werden oftmals eine Vielzahl an Integrationen für Frameworks und Logbibliotheken angeboten.
 
-Einer der wichtigsten Punkte im Log Management, ist der Umgang mit großen Datenmengen und die gewünschten Operationen, die Nutzer damit durchführen möchten.
+Einer der wichtigsten Punkte beim Log Management, ist der Umgang mit großen Datenmengen und die gewünschten Operationen, die Nutzer damit durchführen möchten.
 
 \subsection{Application Performance Monitoring (APM)}
 
@@ -193,7 +193,7 @@ New Relic gibt an, dass Daten nach dem OpenTelemetry Standard selber erfasst und
 
 Dynatrace \cite{Dynatrace} ist ein SaaS des gleichnamigen Unternehmens, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem \enquote{OneAgent}. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
 
-Bei Dynatrace wurde die 14-tägige Testversion aufgesetzt und evaluiert. Wie zuvor genannt, erfolgt die Datenerhebung über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. Die Oberfläche von Dynatrace stellt auch ungefähr dieselben Informationen dar wie New Relic, wobei Dynatrace das Ganze visuell ansprechender darstellt. Dynatrace bietet auch die Funktionalität vom Error Monitoring aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
+Bei Dynatrace wurde die 14-tägige Testversion aufgesetzt und evaluiert. Wie zuvor genannt, erfolgt die Datenerhebung über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. Die Oberfläche von Dynatrace stellt auch ungefähr dieselben Informationen dar wie New Relic, wobei Dynatrace das Ganze visuell ansprechender darstellt. Dynatrace bietet zudem auch die Funktionalität des Error Monitoring, aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
 
 Der Dynatrace OneAgent, wird standardmäßig von AdBlockern blockiert, aber nicht wie New Relic von der \enquote{Enhanced Tracking Protection} des Mozilla Firefox. Dynatrace kann zudem damit punkten, dass es als OnPremise-Lösung verfügbar ist, sodass Kunden genau bestimmen können, wo die Daten verarbeitet und gespeichert werden.
 
@@ -226,7 +226,7 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 \subsubsection{Splunk}
 
-Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Splunk bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Splunk wird klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
+Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
 
 Splunks kostenlose Version der SaaS und der OnPremise-Lösung wurden evaluiert. Hierbei wurde zunächst festgestellt, dass das Daten senden vom Browserkontext zu Splunk nicht direkt möglich ist, da Splunk mit ablehnenden CORS-Headern antwortet. Hierfür wurde ein extra Dienst geschrieben, der die Daten vom Frontend annimmt und an Splunk weitersendet. Weiterhin konnten hierdurch Daten wie den User-Agent und die IP vom Client ermittelt und an die Datensätze angehangen werden.
 
@@ -324,13 +324,13 @@ Neben TraVista wurde die im 2. Quartal 2020 erstellte Bachelorarbeit von Michael
 
 Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfür Aussehen. Speziell wird der DevOps Ansatz beschrieben, bei dem eine kontinuierliche Weiterentwicklung des Produktes im Vordergrund steht. Hierbei bewertet Graf die Fähigkeit von Observability-Ansätzen nach ihrem tatsächlichen Nutzen und ihrer Übertragbarkeit. Dies erfolgt, wie zuvor beschrieben, am Beispiel von OpenTelemetry. Evaluiert wird das Ganze durch das Aufsetzen von Jaeger mit einer Demoanwendung, durch das der Tracingaspekt von Observability realisiert wird.
 
-Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observabilitydaten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
+Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observability-Daten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
 
 Grafs Arbeit dient somit als Vorbereitung für einen Lösungsansatz mit OpenTelemetry, bietet aber selbst keine neuen Ansätze.
 
 \subsubsection{Timelapse}
 
-Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webapplikationen aufzunehmen und wiederabzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
+Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webapplikationen aufzunehmen und wieder abzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
 
 \begin{wrapfigure}[8]{r}{0.35\textwidth}
 \centering
@@ -340,7 +340,7 @@ Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es er
 \label{fig:timelapse_figure5}
 \end{wrapfigure}
 
-Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeit die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos} genannt.
+Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeitet die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos} genannt.
 
 \begin{wrapfigure}[8]{r}{0.35\textwidth}
 \centering
@@ -365,7 +365,7 @@ Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die 
 \label{fig:fame_overview}
 \end{wrapfigure}
 
-Mit FAME wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Nach den Autoren ist dieser Ansatz neu, denn in der Literatur wurde zuvor hauptsächlich auf das Nutzerfeedback gesetzt um neue Anforderungen zu identifizieren. Dies ist aber von Problemen geplagt, wie bspw. dem Verständnis des Problems oder auch wie relevant dieses Problem für die gesamte Nutzerschaft ist. Mithilfe von der Addition von Monitoring sollen einige dieser Einschränkungen begegnet werden, indem bspw. Funktionsgebiete über Metriken abgebildet werden und wenn ein negatives Feedback eines Nutzers zu diesem Gebiet aufkommt, kann in der Metrik abgelesen werden, ob das Verhalten von anderen Nutzern sich geändert hat. Eine abstrakte Übersicht des FAME-Frameworks kann in \autoref{fig:fame_overview} betrachtet werden.
+Mit FAME wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Nach den Autoren ist dieser Ansatz neu, denn in der Literatur wurde zuvor hauptsächlich auf das Nutzerfeedback gesetzt, um neue Anforderungen zu identifizieren. Dies ist aber von Problemen geplagt, wie bspw. dem Verständnis des Problems oder auch wie relevant dieses Problem für die gesamte Nutzerschaft ist. Mithilfe von der Addition von Monitoring sollen einige dieser Einschränkungen begegnet werden, indem bspw. Funktionsgebiete über Metriken abgebildet werden und wenn ein negatives Feedback eines Nutzers zu diesem Gebiet aufkommt, kann in der Metrik abgelesen werden, ob das Verhalten von anderen Nutzern sich geändert hat. Eine abstrakte Übersicht des FAME-Frameworks kann in \autoref{fig:fame_overview} betrachtet werden.
 
 Das FAME-Framework definiert detailliert Komponenten, wie die Disziplinen des Monitoring und der Feedbackeinholung gelöst werden können, und wie dies in einer möglichst modularen Infrastruktur umgesetzt werden kann. Für die Kombination der Monitoring- und Feedbackdaten werden zudem Mechanismen geschaffen, dass effiziente Queries diese beide zusammen verbunden ausgeben. Diese Ansätze wurden mit der SEnerCon GmbH in einem Workshop auf die Probe gestellt und konnten dem Requirements-Engineer dabei unterstützen, neue Anforderungen zu identifizieren und irrelevante Anforderungen auszuschließen. Es konnte ein Mehrwert für die SEnerCon GmbH identifiziert werden.
 
@@ -397,7 +397,7 @@ Aus den analysierten Daten erstellt Kaiju angereicherte und in der Struktur homo
 
 Nach der Entwicklung des Prototypen wurde aber in Zusammenarbeit mit der italienischen IT Dienstleistungsfirma SighUp dieser evaluiert. Es konnte festgestellt werden, dass abgeleitete High-Level Events, durch zuvor definierte Szenarien erstellt werden und Informationen beinhalten, die für die Problemfindung in diesen Szenarien hilfreich ist.
 
-Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden. Auch wenn Kaiju kein praktisches Werkzeug für die Lösung in dieser Arbeit darstellt, so wird ein gutes Bild über die technische Seite der Nachvollziehbarkeit vermittelt sowie wird zuvor der Forschungsstand erläutert.
+Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden. Auch wenn Kaiju kein praktisches Werkzeug für die Lösung in dieser Arbeit darstellt, so wird ein gutes Bild über die technische Seite der Nachvollziehbarkeit vermittelt, sowie wird zuvor der Forschungsstand erläutert.
 
 \subsubsection{Fazit zur Literatur}
 
