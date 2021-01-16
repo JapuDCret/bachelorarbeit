@@ -3,13 +3,13 @@
 
 Wie in \autoref{anf:1020} beschrieben, ist eine Demoanwendung zu erstellen, auf Basis dessen das Konzept anzuwenden ist und somit praktisch umgesetzt werden kann. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung und der repräsentativen Aufgabe, die diese übernimmt.
 
-In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine mdoerne Webanwendung darstellt, wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene teils dynamische Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
+In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung darstellt, wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene, teils dynamische, Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
 
 Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und dies soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
-Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behaviour Driven Development (BDD). Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin \cite{Gherkin} Syntax geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax beschrieben.
+Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behaviour Driven Development (BDD). Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin \cite{Gherkin} Syntax geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
 
 \lstinputlisting[
   language = gherkin,
@@ -50,7 +50,7 @@ Neben des eigentlichen User-Interfaces soll auch ein Backend teil der Demoanwend
 
 \subsection{Backend}
 
-Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm.
+Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
 
 Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation erfolgen. Speziell wird bei einer solchen Architektur Tracing hilfreicher, um die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
 
@@ -67,7 +67,7 @@ Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation 
 
 Das Frontend stellt das Herzstück der Demoanwendung dar und wurde auf Basis der Verhaltensdefinition erstellt. Wie beim Direktversicherer wurde es mit Angular erstellt und als zustandsreiche SPA umgesetzt. Genauere Implementierungsdetails werden jedoch nicht behandelt, außer sie sind relevant für die Lösung oder die Lösungsüberprüfung.
 
-Das Frontend sowie das Backend wurden mit einigen Fehlern implementiert. Hintergrund ist, dass bei der Betrachtung der Lösung solche Fehler notwendig sind, um diese zu bewerten. Diese Fehler werden näher im \autoref{subsec:fehlerszenarien} betrachtet.
+Das Frontend sowie das Backend wurden mit einigen Fehlern implementiert. Hintergrund ist, dass bei der Betrachtung der Lösung solche Fehler notwendig sind, um diese zu bewerten. Diese Fehler werden näher im nachfolgenden \autoref{subsec:fehlerszenarien} betrachtet.
 
 Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und das Layout verknüpft diese Seiten in einem blätternden Format, bei dem man vor- und zurückspringen kann. Dies kann in den folgenden 6 Abbildungen betrachtet werden.
 
@@ -116,9 +116,9 @@ Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und 
 \subsection{Fehlerszenarien}
 \label{subsec:fehlerszenarien}
 
-Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich aufgetretene Probleme einzubauen.
+Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
 
-Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht harscher Validierung, über  bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht harscher Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
 
 \subsubsection{\enquote{Keine Übersetzungen}}
 
@@ -168,7 +168,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
 
-- Ursache: Das Frontend sendet alle Formulardaten an \enquote{order-svc}, dieser aber an, dass alle nicht ausgewählten Formulare \texttt{null} sind.
+- Ursache: Das Frontend sendet alle Formulardaten an \enquote{order-svc}, dieser nimmt aber an, dass alle nicht ausgewählten Formulare \texttt{null} sind.
 
 \subsubsection{\enquote{Lange Verarbeitung}}
 
@@ -180,4 +180,8 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und größtenteils clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
 
-\textit{\color{red}TODO: Expand this}
+Weiterhin ist durch die nicht simple Backend-Architektur auch eine realitätsnähere Infrastruktur gegeben. Die Microservice-orientierte Architektur stellt zudem einen modernen Ansatz dar \cite{MicroserviceArchitecture}.
+
+Dennoch muss gesagt werden, dass die Demoanwendung eine sehr vereinfachte Form einer modernen Webanwendung darstellt. Viel spezifischer in der Implementierung kann die Webanwendung jedoch auch nicht erstellt werden, da so die Übertragbarkeit zu anderen Projekten verloren ginge.
+
+Nun da die Demoanwendung beschrieben ist, wird das Konzept erstellt, welches letztendlich auf die Demoanwendung anzuwenden ist. Das Konzept selber ist jedoch losgelöst von der Demoanwendung zu verstehen.
