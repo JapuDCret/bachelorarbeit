@@ -106,7 +106,7 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 \label{fig:jaeger_architecture}
 \end{wrapfigure}
 	
-	Um die Tracingdaten zu beleuchten und so Einblick in den architektonischen Verlauf eines Aufrufs zu erhalten, wird Jaeger verwendet. Jaeger bietet jene Tracing-Visualisierungen, die Splunk fehlen und ist zudem darauf spezialisiert Tracingdaten zu speichern und zu analysieren. Um diese Funktionen anzubieten und eine schnelle Datenabfrage zu gewährleisten, besitzt Jaeger eine darauf konzipierte Infrastruktur (vgl. \autoref{fig:jaeger_architecture}). Die verwendete Datenbank ist Cassandra und für Analyse- und Verarbeitungszwecke wird Apache Spark benutzt.
+	Um die Tracingdaten zu beleuchten und so Einblick in den architektonischen Verlauf eines Aufrufs zu erhalten, wird Jaeger verwendet. Jaeger bietet jene Tracing-Visualisierungen, die Splunk fehlen und ist zudem darauf spezialisiert Tracingdaten zu speichern und zu analysieren. Um diese Funktionen anzubieten und eine schnelle Datenabfrage zu gewährleisten, besitzt Jaeger eine darauf konzipierte Infrastruktur (vgl. \autoref{fig:jaeger_architecture}). Jaeger unterstützt die beiden NoSQL Datenbanken Cassandra und ElasticSearch und für Analyse- und Verarbeitungszwecke wird Apache Spark eingesetzt.
 	
 	Somit ergibt sich durch den definierten Technologiestack die in \autoref{fig:architektur-technologien} zu betrachtende Architektur.
 	
