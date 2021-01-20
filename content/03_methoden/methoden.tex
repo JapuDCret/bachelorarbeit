@@ -1,6 +1,6 @@
 % \chapter{Methoden und Praktiken}
 
-%\textit{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webapplikationen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}
+%\textit{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webanwendungen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}
 % \textit{Hier könnte unter anderem \textbf{OpenTelemetry} betrachtet werden.}
 
 \vspace{-\baselineskip}
@@ -20,7 +20,7 @@ Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozess
 
 Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \autoref{sec:logdaten} geschildert, müssen die Logs an ein Partnersystem weitergeleitet werden.
 
-\subsubsection{Structured Logging}
+\subsection{Structured Logging}
 
 %\subsection{Monitoring}
 %
@@ -83,17 +83,15 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 
 Fehlerberichte sind ein klassisches Mittel, um den Nutzer selber aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin kann die Intention des Nutzers ermittelt werden, vorausgesetzt er gibt dies an.
 
-Bettenburg \etal \cite{WhatMakesAGoodBugReport} fanden jedoch Mängel bei der Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis vom System vorweisen.
+Konträr zu den genannten  stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis vom System vorweisen.
 
-Hinzukommend muss man beachten, dass die User Experience negativ beeinflusst werden kann, wenn ein Nutzer einen Dialog mit einem Aufruf für einen Fehlerbericht erhält - gerade wenn der Fehler ihn selbst nicht eingeschränkt hat.
+\section{Praktiken}
 
-\section{Praktiken aus der Wirtschaft}
-
-In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, die eine verbesserte Nachvollziehbarkeit als Ziel haben. Neben den zuvor vorgestellten Methoden haben sich bei Technologien einige Praktiken entwickelt, die teilweise auf den Methoden aufbauen oder neue Konzepte darstellen, um ihr Ziel zu erreichen. Diese Praktiken werden folgend vorgestellt.
+In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, welche die Nachvollziehbarkeit von Anwendungsverhalten und Nutzerinteraktion ermöglichen oder verbessern. Auf Basis der zuvor vorgestellten Methoden und teils neuen Ansätze haben sich in der Wirtschaft einige Praktiken entwickelt. Diese werden folgend näher beleuchtet.
 
 \subsection{Observability}
 
-Observability ist der Oberbegriff, der sich in der Wirtschaft entwickelt hat, um Werkzeuge zu beschreiben, die eine bessere Nachvollziehbarkeit versprechen. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability enstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
+In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert,    um diese zu beschreiben. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability enstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
 
 %Observability hat allgemeiner als Ziel, dass Anwendungen und Systeme exakt betrachtet werden können, um den Verantwortlichen zu ermöglichen, dass  \cite{DistributedSystemsObservability}.
 
@@ -109,39 +107,57 @@ Ein Beispiel für System Monitoring wäre u. A., wenn man eine Menge an Systemen
 
 \subsection{Log Management}
 
-Log Management umfasst die Erfassung, Speicherung, Verarbeitung und Analyse von Logdaten von Anwendungen. Weiterhin bieten Werkzeuge hierbei oftmals fundierte Such- und Meldefunktionen. Um die Daten aus einer Anwendung heraus zu exportieren, gibt es meist eine Vielzahl an Integrationen für Frameworks und Logbibliotheken.
+Log Management umfasst die Erfassung, Speicherung, Verarbeitung und Analyse von Logdaten von Anwendungen. Neben den datenspezifischen Funktionen bieten solche Werkzeuge oftmals fundierte Suchfunktionen und Visualisierungsmöglichkeiten. Um die Daten aus einer Anwendung heraus zu exportieren, gibt es meist eine Vielzahl an Integrationen für Frameworks und Logbibliotheken.
 
 Einer der wichtigsten Punkte beim Log Management, ist der Umgang mit großen Datenmengen und die gewünschten Operationen, die Nutzer damit durchführen möchten.
 
 \subsection{Application Performance Monitoring (APM)}
 
-Beim Application Performance Monitoring werden Daten innerhalb von Applikationen gesammelt, die Rückschlüsse auf die Performanz von bspw. Transaktionen geben sollen \cite{StudyingTheEffectivenessOfAPMTools}. Mit diesen Daten können dann Regressionen der Performanz, in Aspekten wie Zeitaufwand oder Ressourcennutzung, festgestellt werden.
+Beim Application Performance Monitoring werden Messdaten innerhalb von Anwendungen gesammelt, um das Anwendungsverhalten nachvollziehbar zu gestalten \cite{StudyingTheEffectivenessOfAPMTools}. Auf Basis der Daten lassen sich u. A. Abweichungen von der Norm feststellen, von einzelnen Systemen oder vom aktuellen Gesamtsystem zu einem vorherigen Zeitpunkt.
 
-Neben allgemeinen Aspekten, die sich auf den Prozess- oder Ausführungskontext beziehen, können aber auch spezifische Faktoren, wie die Ausführungszeit einer wichtigen Methode, veranschaulicht werden. APM wird zum Großteil mit Metriken realisiert, welche die zu untersuchenden Aspekte in numerischen Werten wiedergeben.
+Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcennutzung, überprüfen aber auch spezielle Faktoren, wie die Ausführungszeit einer wichtigen Methoden, lassen sich so beleuchten. Die zu veranschaulichenden Aspekte werden zum Großteil über Metriken in numerische Werte abgebildet.
 
 \subsection{Real User Monitoring (RUM)}
 
-Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen mit bspw. einer Webapplikation. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann dazu verwendet werden um Herauszufinden, wie ein Nutzer zu einem Zustand gelangt ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX Verbesserungen vorgenommen werden.
+\nomenclature[Fachbegriff]{UI}{User-Interface}
 
-Häufig wird RUM aber nicht verwendet, um einzelne Nutzerinteraktionen nachvollziehbar zu machen, sondern es werden oft gruppierte Verhaltensweisen erfasst, um allgemeine Schlüsse über eine Anwendung ziehen zu können.
+Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Webanwendung \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX Verbesserungen vorgenommen werden.
+
+Weiterhin ist es beim RUM auch üblich Nutzerinteraktionen gruppierte zu analysieren, um verbreitete und unübliche Sitzungen zu identifizieren. Hiermit wird die Nutzerschaft und ihre Verhaltensweisen nachvollziehbarer gemacht.
 
 \subsection{Synthetic Monitoring}
 
-Beim Synthetic Monitoring werden Endnutzerszenarien simuliert, um zu prüfen und sicherzustellen, dass diese Szenarien wie gewünscht ablaufen. Hierbei kann auf Aspekte wie Funktionalität, Verfügbarkeit und auch verstrichene Zeit kontrolliert werden.
+Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionalität oder Verfügbarkeit zu verifizieren \cite{IdentifyingWebPerformanceDegradations}. Hierbei können Werkzeuge zur Browserautomatisierung eine echte Benutzung einer Webanwendung simulieren. Des Weiteren ist aber auch eine Nachstellung des Verhaltens der Webanwendung eine Option, indem z. B. Aufrufe zu Partnersystemen simuliert werden.
 
 \subsection{Error/Crash Monitoring}
 
-Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern. Es werden oftmals neben dem eigentlichen Fehler auch Aspekte vom RUM und Logging gemeldet, um mehr Kontextinformationen zu liefern.
-
-Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, da aufgetretene Fehler meist zu einem Issue werden oder werden sollten und eine Nachverfolgbarkeit der Fehlerbehebung hierbei Sinn macht.
+Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern, werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, da aufgetretene Fehler und deren Behebungen zu verfolgen sind \cite{CrashbinCrashMonitoring}.
 
 \subsection{Session-Replay}
 
-Session-Replay bedeutet, dass eine Sitzung eines Nutzers nachgestellt wird, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf, bei dem die tatsächliche zeitliche Abfolge von Kommunikationen nachzuvollziehen sind. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Simulation und entsprechend hilfreich ist sie beim Nachvollziehen.
+Session-Replay beschreibt das Vorgehen, eine Sitzung eines Nutzers nachzustellen, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf oder die DOM-Manipulationen. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Nachstellung und entsprechend hilfreich ist sie beim Nachvollziehen.
 
-Session-Replay nimmt so eine enorme Datenmenge für jede Nutzersitzung auf und benötigt so ein gutes Konzept im Datenmangement, aber besonders bei Browsern wird eine effiziente Kommunikation benötigt.
+Realitätsnahes Session-Replay nimmt so eine enorme Datenmenge für jede Nutzersitzung auf und benötigt besonders bei Browsern eine effiziente Kommunikation, um die UX nicht negativ zu beeinflussen.
 
-\newpage
+\begin{wrapfigure}[10]{r}{0.40\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure5.png}
+\caption{Mitschneiden von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+\label{fig:timelapse_figure5}
+\end{wrapfigure}
+
+Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelapse} ein Framework, um Benutzersitzungen bei Webanwendungen aufzunehmen und wiederzugeben. Timelapse unterscheidet sich zu gängigen Session-Replay-Ansätzen dahingehend, dass die Wiedergabe keine vereinfachte Nachstellung der Anwendung ist. Stattdessen wird die JavaScript-Eventloop abgekapselt und es werden die Aufrufe von und zu der Eventloop mitgeschnitten (vgl. \autoref{fig:timelapse_figure5}).
+
+\begin{wrapfigure}[10]{r}{0.40\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure6.png}
+\caption{Abspielen von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+\label{fig:timelapse_figure6}
+\end{wrapfigure}
+
+Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in der selben Umgebung möglich, und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session-Replay im Allgemeinen dar.
+
+\footnotetext{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}
 
 \section{Werkzeuge und Technologien}
 \label{sec:werkzeuge-und-technologien}
@@ -152,11 +168,15 @@ Session-Replay nimmt so eine enorme Datenmenge für jede Nutzersitzung auf und b
 %
 %\textit{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „Fat-Client“-Lösungen (also nicht SPAs) angegangen werden, und kann man hier vielleicht etwas lernen oder übertragen (und wenn nicht, warum nicht)?}
 
-\subsection{Fachpraxis}
+%\subsection{Fachpraxis}
 
-Bei der Recherche zu Werkzeugen und Technologien aus der Fachpraxis wurden einige Produkte näher betrachtet. Folgend werden die Ergebnisse beschrieben, welche aber nicht als Vergleich oder Produktbeschreibung dienen, sondern eher, um ein grobes Verständnis der Fachpraxis zu vermitteln, um im Verlauf der Arbeit darauf zurückgreifen zu können. Bei der Recherche kam wiederholt der Begriff OpenTelemetry auf, deswegen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
+Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung in Frage kommen. Folgend werden die einzelnen Technologien vorgestellt, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
 
-\subsubsection{OpenTelemetry}
+Des Weiteren kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, deswegen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
+
+\newpage
+
+\subsection{OpenTelemetry}
 
 \begin{wrapfigure}[19]{r}{0.35\textwidth}
 \centering
@@ -166,7 +186,9 @@ Bei der Recherche zu Werkzeugen und Technologien aus der Fachpraxis wurden einig
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, sie zu verarbeiten, zu analysieren und zu visualisieren. Der Standard fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwicklertools und -werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu betrachten. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwicklertools und -werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu betrachten. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+
+In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Software-Development-Life-Cycle} \cite{MichaelGrafBA} beschäftigt sich Graf intensiv mit dem Einfluss und dem Nutzen von Telemetrie in modernen Softwareprojekten. Speziell beschreibt er den OTel Standard und seine Bedeutung im aktuellen Gebiet der Telemetrie. Er bewertet die Entwicklung des Standards positiv, besonders auf Basis der Aspekte Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und keine Prognosen über den Erfolg gemacht werden können. Grafs Arbeit sichert somit zu, dass OpenTelemetry ein, nicht zu vernachlässigender, Standard im Gebiet der Observability darstellt.
 
 \nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
 \nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
@@ -179,17 +201,19 @@ OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder her
 	\label{fig:otel-components}
 \end{figure}
 
-\subsubsection{New Relic}
+\subsection{New Relic}
 
 New Relic \cite{NewRelic} ist ein Software-as-a-Service (SaaS) der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen. Neben den Kernfunktionalitäten unterstützt New Relic auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
 
 \nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}
 
-Bei New Relic wurde die kostenlose Version aufgesetzt und evaluiert. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen sind jedoch nicht möglich, wahrscheinlich u. A. aus Aspekten des Datenschutzes. Im Fehlerfall gibt es jedoch mehr Informationen, denn hier werden spezifische Daten (Stacktrace, genaue Browserversion, Uhrzeit, ...) zum Fehler sowie zum Client erhoben und in der Oberfläche dargestellt. Diese Informationen sind gut zum Nachvollziehen, dass ein Fehler aufgetreten ist und was die Rahmenbedingungen sind - jedoch sind die Informationen nicht ausreichend, um ein klares Bild des Fehlers zu erhalten. Dies könnte mit dem Log-Management von New Relic komplementiert werden, jedoch wären diese selber zu erheben und an einen eigenen Server zu senden, um dann die Logs an New Relic weiterzuleiten. Des Weiteren wird der Agent standardmäßig von AdBlockern blockiert, sowie von der \enquote{Enhanced Tracking Protection} im Mozilla Firefox. Es ist nicht möglich New Relics Dienst selber zu hosten, es ist also eine sog. \enquote{OnPremise}-Lösung nicht möglich. Des Weiteren wird auch eine Weiterleitung über einen eigens bereitgestellten Proxy nicht unterstützt.
+New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version aber benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen jedoch mehr Informationen, wie Stacktrace, genaue Browserversion, Uhrzeit zur Verfügung und in der Oberfläche dargestellt.
 
-New Relic gibt an, dass Daten nach dem OpenTelemetry Standard selber erfasst und an New Relic gesendet werden können, ohne eine proprietäre Software \cite{NewRelicAnnoundOTelBetaSupport}. Leider ist dieses Feature in der Testversion, die zum Evaluieren benutzt wurde, nicht enthalten und kann somit nicht bestätigt werden. Es sind jedoch offizielle und quelloffen veröffentlichte Exporter für New Relic verfügbar für .NET, Python und Java \cite{OpenTelemetryRegistry}.
+Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Jedoch geben diese Informationen nicht darüber Aufschluss, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
 
-\subsubsection{Dynatrace}
+New Relic bietet darüber hinaus eine Unterstützung von OTel-Daten  \cite{NewRelicAnnoundOTelBetaSupport}, welches jedoch nicht mit evaluiert werden konnte, da es in der kostenlosen Version nicht enthalten war. Auf der offiziellen Seite von OTel werden jedoch  öffentliche Exporter für New Relic angeboten \cite{OpenTelemetryRegistry}.
+
+\subsection{Dynatrace}
 
 Dynatrace \cite{Dynatrace} ist ein SaaS des gleichnamigen Unternehmens, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem \enquote{OneAgent}. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
 
@@ -200,7 +224,7 @@ Der Dynatrace OneAgent, wird standardmäßig von AdBlockern blockiert, aber nich
 Dynatrace ist dem OpenTelemetry Team beigetreten und hat angegeben, an der Weiterentwicklung mitzuhelfen \cite{DynatraceJoinOTelProject}. Eine Integration des Dienstes Dynatrace ins Ökosystem von OTel gibt es jedoch noch nicht.
 
 \vspace{-0.5\baselineskip}
-\subsubsection{Sentry}
+\subsection{Sentry}
 
 Sentry \cite{Sentry} ist ein SaaS Produkt der Functional Software Inc., welcher sich auf das Error Monitoring spezialisiert. Deshalb beschränken sich die Kernfunktionalitäten auf das Error Monitoring, auch wenn von anderen Gebieten einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
 
@@ -210,7 +234,7 @@ Gemeldete Fehler werden in \enquote{Issues} umgewandelt, welche einem Fehlertick
 
 Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auch eine OnPremise-Lösung, basierend auf Docker, angeboten \cite{SentrySelfHosted}.
 
-\subsubsection{LogRocket}
+\subsection{LogRocket}
 
 LogRocket \cite{LogRocket} ist ein SaaS Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme zu identifizieren, zu nachvollziehen und lösen zu können. Session-Replay ist auch die einzig identifizierbare Kernfunktionalität, die LogRocket aufweist.
 
@@ -225,7 +249,7 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 	\label{fig:logrocket-session-replay-example}
 \end{figure}
 
-\subsubsection{Splunk}
+\subsection{Splunk}
 
 Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
 
@@ -233,13 +257,13 @@ Splunks kostenlose Version der SaaS und der OnPremise-Lösung wurden evaluiert. 
 
 An Splunk wurden über dieselbe Schnittstelle Log- und Errorinformationen gesendet. Hierbei konnte Splunk gut das Logmanagement erfüllen, denn Logeinträge ließen sich einfach filtern und auch zu Graphen aufbereiten. Weiterhin ist das Error Monitoring auch zufriedenstellend und enthält alle Daten, die auch bspw. bei Sentry vorhanden sind - hierbei fehlt jedoch ein Issue-Management, welches Sentry bereitstellt. Lediglich Tracing lässt sich nicht zufriedenstellend mit Splunk realisieren. Denn hier können lediglich die Daten konsumiert werden, aber eine verständliche Darstellung mittels Trace-Gantt-Diagrammen fehlt gänzlich. Hiermit lassen sich keine spezialisierten Tracing-Werkzeuge ersetzen.
 
-\subsubsection{Honeycomb}
+\subsection{Honeycomb}
 
 Honeycomb \cite{Honeycomb} ist ein SaaS der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und darauf basierend effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
 
 Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \enquote{Beelines} an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind aber nur für Node.js, Go, Python, Java, Ruby und Rails verfügbar, aber nicht JavaScript im Browser. Deshalb wurden zur Evaluierung Werkzeuge von OpenTelemetry hinzugezogen und zusätzlich musste nur noch ein Exporter für Honeycomb geschrieben werden. Honeycomb wirkt komplett anders als New Relic und Dynatrace, denn es ist nicht ausgefertigt mit konkreten Graphen und Darstellungen, sondern bietet eine Oberfläche mit dem man auf Basis der Daten selber Abfragen, Graphen und andere Darstellungen selber erstellen kann. Auch ist es nicht mit Jaeger, welches gleich näher betrachtet wird, vergleichbar, denn es bietet deutlich mehr Möglichkeiten als striktes Tracing.
 
-\subsubsection{Jaeger}
+\subsection{Jaeger}
 
 Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing und erlaubt auch das Konsumieren von Zipkin Daten, einem Konkurrenzprodukt. Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
 
@@ -265,7 +289,7 @@ Jaeger wurde nicht aufgesetzt, sondern über einen Arbeitskollegen bei der Open 
 
 Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. In \autoref{fig:jaeger-ui_dependency-graph} kann so eine Darstellung betrachtet werden, hierbei sieht mehrere Microservices und Datenbanken.
 
-\subsubsection{Weiteres}
+\subsection{Weiteres}
 \label{sec:weitere-werkzeuge}
 
 Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren Werkzeuge und Technologien tiefergehend betrachtet. Deshalb werden weitere Funde, die nicht betrachtet wurden, hier kurz notiert:
@@ -288,7 +312,7 @@ In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetra
 %	\item \textit{Sind sie vergleichbar mit Ansätzen aus der Fachpraxis?}
 %\end{enumerate}
 
-\subsubsection{TraVista}
+\subsection{TraVista}
 
 Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista von Anand \etal \cite{TraVistaPaper}. Es basiert auf einem vorhergehenden Projekt von Anand, TraViz, welches nachgehend erläutert wird. TraVista beschäftigt sich mit dem Visualisieren von Tracedaten. Hierbei setzten sie auf den bestehenden Ansatz der Gantt-Diagramme auf, um Traces zu visualisieren. Die Gantt-Diagramme wurden jedoch um einige zusätzliche Informationen erweitert, wie in \autoref{fig:travista_extended-gantt} zu sehen ist.
 
@@ -317,45 +341,45 @@ Mit Joseph Wonsil hat Anand an einem weiteren Tool rund ums Tracing gearbeitet: 
 
 Sowohl TraViz (und TraVista) als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden. Aufgrund dieser fehlenden Weiterentwicklung und den Skalierungsproblemen des Backends ist TraVista für diese Arbeit nicht von Relevanz. % Sollten sich jedoch in den nächsten Monaten und Jahren weitere Entwicklungen hier ergeben, könnte dieser Ansatz Früchte tragen.
 
-\subsubsection{\enquote{Bedeutung von Telemetry für den SDLC}}
+%\subsection{\enquote{Bedeutung von Telemetry für den SDLC}}
+%
+%\nomenclature[Fachbegriff]{SDLC}{Software-Development-Life-Cycle}
+%
+%Neben TraVista wurde die im 2. Quartal 2020 erstellte Bachelorarbeit von Michael Graf bei der Recherche gefunden \cite{MichaelGrafBA}. Grafs Arbeit handelt über die \enquote{Bedeutung von Telemetrie für den Software Development Cycle (SDLC)}. In der Arbeit beschäftigt er sich mit der Software-Telemetrie als solche, aber legt den aktuellen Stand am Projekt OpenTelemetry dar. OpenTelemetry erhält enorme Bedeutung in der Arbeit und wird von Grund auf erläutert, betrachtet und analysiert.
+%
+%Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfür Aussehen. Speziell wird der DevOps Ansatz beschrieben, bei dem eine kontinuierliche Weiterentwicklung des Produktes im Vordergrund steht. Hierbei bewertet Graf die Fähigkeit von Observability-Ansätzen nach ihrem tatsächlichen Nutzen und ihrer Übertragbarkeit. Dies erfolgt, wie zuvor beschrieben, am Beispiel von OpenTelemetry. Evaluiert wird das Ganze durch das Aufsetzen von Jaeger mit einer Demoanwendung, durch das der Tracingaspekt von Observability realisiert wird.
+%
+%Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observability-Daten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
+%
+%Grafs Arbeit dient somit als Vorbereitung für einen Lösungsansatz mit OpenTelemetry, bietet aber selbst keine neuen Ansätze.
 
-\nomenclature[Fachbegriff]{SDLC}{Software-Development-Life-Cycle}
+%\subsection{Timelapse}
+%
+%Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webanwendungen aufzunehmen und wieder abzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
+%
+%\begin{wrapfigure}[8]{r}{0.35\textwidth}
+%\centering
+%\vspace{-\baselineskip}
+%\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure5.png}
+%\caption{Mitschneiden von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+%\label{fig:timelapse_figure5}
+%\end{wrapfigure}
+%
+%Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeitet die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos} genannt.
+%
+%\begin{wrapfigure}[8]{r}{0.35\textwidth}
+%\centering
+%\vspace{-\baselineskip}
+%\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure6.png}
+%\caption{Abspielen von DOM-Events, Abb. aus \cite{TimelapsePaper}}
+%\label{fig:timelapse_figure6}
+%\end{wrapfigure}
+%
+%Dolos schneidet interne DOM-Events sowie die Antworten von äußeren Schnittstellen mit (vgl. \autoref{fig:timelapse_figure5}). Beim Abspielen werden DOM-Events und äußere Aufrufe in derselben Reihenfolge der Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Hierbei wird die Eventloop von anderen Einflüssen abgeschottet, sodass eine exakte Rekonstruktion erfolgen kann. Bei der Rekonstruktion ist es von enormer Bedeutung nicht-deterministische Eingaben korrekt zu simulieren, also Tastatureingaben, Netzwerkanfragen aber auch interne Ressourcen wie Zufallswerte und die aktuelle Zeit.
+%
+%Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die es mit der in dieser Arbeit angestrebten Lösung inkompatibel machen. Es benötigt eine tiefe Integration in den Browser, speziell wird eine gepatchte Version von WebKit benötigt. Dies ist einerseits aufwändig, aber in diesem Projektumfeld quasi unmöglich, da die Nutzer als vielzählig und unbekannt gelten und genau diese Nutzersitzungen sollten nachvollziehbar gemacht werden. Weiterhin unterstützt das Projekt nur den Safari und Google Chrome Browser, wahrscheinlich aber auch nicht die aktuellen, denn es wird seit mehr als 5 Jahren nicht mehr weiterentwickelt. Der Quellcode findet sich jedoch auf GitHub \url{https://github.com/burg/replay-staging/}. Insgesamt ist das Projekt somit ungeeignet für eine die angestrebte Lösung.
 
-Neben TraVista wurde die im 2. Quartal 2020 erstellte Bachelorarbeit von Michael Graf bei der Recherche gefunden \cite{MichaelGrafBA}. Grafs Arbeit handelt über die \enquote{Bedeutung von Telemetrie für den Software Development Cycle (SDLC)}. In der Arbeit beschäftigt er sich mit der Software-Telemetrie als solche, aber legt den aktuellen Stand am Projekt OpenTelemetry dar. OpenTelemetry erhält enorme Bedeutung in der Arbeit und wird von Grund auf erläutert, betrachtet und analysiert.
-
-Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfür Aussehen. Speziell wird der DevOps Ansatz beschrieben, bei dem eine kontinuierliche Weiterentwicklung des Produktes im Vordergrund steht. Hierbei bewertet Graf die Fähigkeit von Observability-Ansätzen nach ihrem tatsächlichen Nutzen und ihrer Übertragbarkeit. Dies erfolgt, wie zuvor beschrieben, am Beispiel von OpenTelemetry. Evaluiert wird das Ganze durch das Aufsetzen von Jaeger mit einer Demoanwendung, durch das der Tracingaspekt von Observability realisiert wird.
-
-Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observability-Daten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
-
-Grafs Arbeit dient somit als Vorbereitung für einen Lösungsansatz mit OpenTelemetry, bietet aber selbst keine neuen Ansätze.
-
-\subsubsection{Timelapse}
-
-Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webapplikationen aufzunehmen und wieder abzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
-
-\begin{wrapfigure}[8]{r}{0.35\textwidth}
-\centering
-\vspace{-\baselineskip}
-\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure5.png}
-\caption{Mitschneiden von DOM-Events, Abb. aus \cite{TimelapsePaper}}
-\label{fig:timelapse_figure5}
-\end{wrapfigure}
-
-Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeitet die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos} genannt.
-
-\begin{wrapfigure}[8]{r}{0.35\textwidth}
-\centering
-\vspace{-\baselineskip}
-\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure6.png}
-\caption{Abspielen von DOM-Events, Abb. aus \cite{TimelapsePaper}}
-\label{fig:timelapse_figure6}
-\end{wrapfigure}
-
-Dolos schneidet interne DOM-Events sowie die Antworten von äußeren Schnittstellen mit (vgl. \autoref{fig:timelapse_figure5}). Beim Abspielen werden DOM-Events und äußere Aufrufe in derselben Reihenfolge der Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Hierbei wird die Eventloop von anderen Einflüssen abgeschottet, sodass eine exakte Rekonstruktion erfolgen kann. Bei der Rekonstruktion ist es von enormer Bedeutung nicht-deterministische Eingaben korrekt zu simulieren, also Tastatureingaben, Netzwerkanfragen aber auch interne Ressourcen wie Zufallswerte und die aktuelle Zeit.
-
-Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die es mit der in dieser Arbeit angestrebten Lösung inkompatibel machen. Es benötigt eine tiefe Integration in den Browser, speziell wird eine gepatchte Version von WebKit benötigt. Dies ist einerseits aufwändig, aber in diesem Projektumfeld quasi unmöglich, da die Nutzer als vielzählig und unbekannt gelten und genau diese Nutzersitzungen sollten nachvollziehbar gemacht werden. Weiterhin unterstützt das Projekt nur den Safari und Google Chrome Browser, wahrscheinlich aber auch nicht die aktuellen, denn es wird seit mehr als 5 Jahren nicht mehr weiterentwickelt. Der Quellcode findet sich jedoch auf GitHub \url{https://github.com/burg/replay-staging/}. Insgesamt ist das Projekt somit ungeeignet für eine die angestrebte Lösung.
-
-\subsubsection{FAME}
+\subsection{FAME}
 
 2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
 
@@ -374,7 +398,7 @@ Das Framework FAME gehört zum größeren Projekt SUPERSEDE, welches von der EU 
 
 Das Projekt wird nicht bei der angestrebten Lösung verwendet. Zum Einen, weil das Ziel des Projektes nicht direkt auf Nachvollziehbarkeit von Nutzerinteraktionen und Anwendungsverhalten abzielt. Zum Anderen aber auch aufgrund der fehlenden Weiterentwicklung und Wartung. Dennoch sind die Erkenntnisse, dass eine Kombination aus unterschiedlichen Daten neue Sichtweisen ermöglicht, vielversprechend.
 
-\subsubsection{The Kaiju Project}
+\subsection{The Kaiju Project}
 
 Scrocca \etal \cite{TheKaijuProjectPaper} identifizierten 2020 eine Lücke im Gebiet der Observability, nämlich fehlt ein Werkzeug, welches die unterschiedlichen Datentypen Logs, Traces und Metriken kombiniert sammeln und aufbereiten kann und dies in quasi-Echtzeit. Aus diesem Grund wurde ein Konzept und ein Prototyp entwickelt, die darauf abzielen diese Lücke auszufüllen. Zunächst wird jedoch das Forschungsfeld und die Fachpraxis rund um die Observability aufgearbeitet. Hierbei definieren Scrocca \etal zwei Forschungsfragen, die es im Bericht zu beantworten gilt:
 
@@ -400,7 +424,7 @@ Nach der Entwicklung des Prototypen wurde aber in Zusammenarbeit mit der italien
 
 Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden. Auch wenn Kaiju kein praktisches Werkzeug für die Lösung in dieser Arbeit darstellt, so wird ein gutes Bild über die technische Seite der Nachvollziehbarkeit vermittelt, sowie wird zuvor der Forschungsstand tiefgehend und verständlich erläutert.
 
-\subsubsection{Fazit zur Literatur}
+\subsection{Fazit zur Literatur}
 
 Wie in den verschiedenen beleuchteten Berichten und Arbeiten zu lesen ist, von denen drei in \textit{2020} veröffentlicht wurden, ist das Forschungsfeld der Nachvollziehbarkeit bzw. der Observability bisher nur spärlich untersucht worden. Eigene Recherchen ergaben das gleiche Ergebnis, das Feld enthält wenige konkrete Veröffentlichungen. Speziell zur Nachvollziehbarkeit im Bereich der Frontend-Entwicklung konnte keine Arbeit gefunden werden.
 
