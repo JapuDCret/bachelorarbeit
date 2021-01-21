@@ -58,9 +58,9 @@ Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.0\linewidth]{img/04_erstellung-poc/demoanwendung_k8s-deployment.png}
-	\caption{Demoanwendung: Kubernetes-Architektur-Diagramm, Quelle: Eigene Darstellung}
-	\label{fig:demoanwendung_k8s-deployment}
+	\includegraphics[width=1.0\linewidth]{img/04_erstellung-poc/demoanwendung_deployment.png}
+	\caption{Demoanwendung: Deployment-Diagramm, Quelle: Eigene Darstellung}
+	\label{fig:demoanwendung_deployment}
 \end{figure}
 
 \subsection{Frontend}
@@ -118,7 +118,7 @@ Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und 
 
 Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
 
-Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht harscher Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
 
 \subsubsection{\enquote{Keine Übersetzungen}}
 
@@ -132,25 +132,25 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
 
-- Ursache: Einer der \enquote{localization-svc} Pods hat eine defekte Konfiguration, dieser ist in \autoref{fig:demoanwendung_k8s-deployment} visuell hervorgehoben. Wird man durch den LoadBalancer mit diesem Pod verbunden tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
+- Ursache: Die Pods, die den Übersetzungsdienst enthalten werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, dieser ist in \autoref{fig:demoanwendung_k8s-deployment} visuell hervorgehoben. Wird man durch den LoadBalancer mit diesem Pod verbunden tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
 
 \subsubsection{\enquote{Gültige Straßen sind ungültig}}
 
 - Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise die Eingabe \enquote{Ährenweg} führt zu einem Fehler.
 
-- Ursache: Der \enquote{address-validation-svc} validiert Straßen mit dem RegEx \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
+- Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem RegEx \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
 
 \subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
 
 - Problem: Nutzer berichten, dass Hausnummern, die nicht nur aus Zahlen bestehen, zum Fehler führen.
 
-- Ursache: Der \enquote{address-validation-svc} validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
+- Ursache: Der Adressvalidierungsdienst validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
 
 \subsubsection{\enquote{Gültige Städte sind ungültig}}
 
 - Problem: Nutzer aus Gießen berichten, dass Sie das Formular zur Rechnungsadresse nicht ausfüllen können
 
-- Ursache: Der \enquote{address-validation-svc} meldet die Stadt \enquote{Gießen} als ungültig, weil sie nicht in der lokalen Tabelle vorhanden ist.
+- Ursache: Der Adressvalidierungsdienst meldet die Stadt \enquote{Gießen} als ungültig, weil sie nicht in der lokalen Tabelle vorhanden ist.
 
 \subsubsection{\enquote{Ungültige Adressen sind gültig}}
 
@@ -162,13 +162,13 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass in der Bestellbestätigung Ihre Vor- und Nachnamen abgeschnitten dargestellt werden.
 
-- Ursache: Der \enquote{order-svc} begrenzt den Vor- sowie den Nachnamen auf 20 Zeichen.
+- Ursache: Der Bestelldienst begrenzt den Vor- sowie den Nachnamen auf 20 Zeichen.
 
 \subsubsection{\enquote{Falsche Zahlungsart}}
 
 - Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
 
-- Ursache: Das Frontend sendet alle Formulardaten an \enquote{order-svc}, dieser nimmt aber an, dass alle nicht ausgewählten Formulare \texttt{null} sind.
+- Ursache: Das Frontend sendet alle Formulardaten an Bestelldienst, dieser nimmt aber an, dass alle nicht ausgewählten Formulare \texttt{null} sind.
 
 \subsubsection{\enquote{Lange Verarbeitung}}
 

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>333</x>
+      <y>369</y>
+      <w>216</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Pod&gt;&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>342</x>
+      <y>405</y>
+      <w>189</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Java Runtime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>351</x>
+      <y>459</y>
+      <w>162</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+backend4frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1206</x>
+      <y>243</y>
+      <w>225</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Pod&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1215</x>
+      <y>279</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Java Runtime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1224</x>
+      <y>333</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Warenkorb</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>774</x>
+      <y>576</y>
+      <w>225</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Pod&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>783</x>
+      <y>612</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Java Runtime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>792</x>
+      <y>666</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Bestellungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>774</x>
+      <y>756</y>
+      <w>225</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Pod&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>783</x>
+      <y>792</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Java Runtime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>792</x>
+      <y>846</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Übersetzungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1206</x>
+      <y>432</y>
+      <w>225</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Pod&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1215</x>
+      <y>468</y>
+      <w>198</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;execution environment&gt;&gt;
+Java Runtime</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1224</x>
+      <y>522</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Addressvalidierung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>342</y>
+      <w>738</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;HTTP&gt;&gt;
+</panel_attributes>
+    <additional_attributes>800.0;10.0;190.0;10.0;190.0;190.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>522</y>
+      <w>738</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;HTTP&gt;&gt;
+</panel_attributes>
+    <additional_attributes>800.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>567</y>
+      <w>306</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;HTTP&gt;&gt;
+</panel_attributes>
+    <additional_attributes>320.0;140.0;210.0;140.0;210.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>603</y>
+      <w>306</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;HTTP&gt;&gt;
+</panel_attributes>
+    <additional_attributes>320.0;300.0;170.0;300.0;170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1134</x>
+      <y>351</y>
+      <w>108</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>549</y>
+      <w>288</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>300.0;10.0;230.0;10.0;230.0;170.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1134</x>
+      <y>531</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>customelement=
+drawArc(0,0,20,20,270,180,true) transparency=0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>540</y>
+      <w>207</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>210.0;10.0;210.0;160.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1071</x>
+      <y>666</y>
+      <w>63</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;HTTP&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1098</x>
+      <y>684</y>
+      <w>63</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;HTTP&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
