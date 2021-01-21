@@ -201,94 +201,6 @@ In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Softwa
 	\label{fig:otel-components}
 \end{figure}
 
-\subsection{New Relic}
-
-New Relic \cite{NewRelic} ist ein Software-as-a-Service (SaaS) der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen. Neben den Kernfunktionalitäten unterstützt New Relic auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
-
-\nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}
-
-New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version aber benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen jedoch mehr Informationen, wie Stacktrace, genaue Browserversion, Uhrzeit zur Verfügung und in der Oberfläche dargestellt.
-
-Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Jedoch geben diese Informationen nicht darüber Aufschluss, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
-
-New Relic bietet darüber hinaus eine Unterstützung von OTel-Daten  \cite{NewRelicAnnoundOTelBetaSupport}, welches jedoch nicht mit evaluiert werden konnte, da es in der kostenlosen Version nicht enthalten war. Auf der offiziellen Seite von OTel werden jedoch  öffentliche Exporter für New Relic angeboten \cite{OpenTelemetryRegistry}.
-
-\subsection{Dynatrace}
-
-Dynatrace \cite{Dynatrace} ist ein SaaS des gleichnamigen Unternehmens, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen, dem \enquote{OneAgent}. Ganz ähnlich wie New Relic unterstützt Dynatrace neben den Kernfunktionalitäten auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
-
-Bei Dynatrace wurde die 14-tägige Testversion aufgesetzt und evaluiert. Wie zuvor genannt, erfolgt die Datenerhebung über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. Die Oberfläche von Dynatrace stellt auch ungefähr ähnliche Daten dar wie New Relic, wobei Dynatrace diese visuell ansprechender darstellt. Dynatrace bietet zudem auch die Funktionalität des Error Monitoring, aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
-
-Der Dynatrace OneAgent, wird standardmäßig von AdBlockern blockiert, aber nicht wie New Relic von der \enquote{Enhanced Tracking Protection} des Mozilla Firefox. Dynatrace kann zudem damit punkten, dass es als OnPremise-Lösung verfügbar ist, sodass Kunden genau bestimmen können, wo die Daten verarbeitet und gespeichert werden.
-
-Dynatrace ist dem OpenTelemetry Team beigetreten und hat angegeben, an der Weiterentwicklung mitzuhelfen \cite{DynatraceJoinOTelProject}. Eine Integration des Dienstes Dynatrace ins Ökosystem von OTel gibt es jedoch noch nicht.
-
-\vspace{-0.5\baselineskip}
-\subsection{Sentry}
-
-Sentry \cite{Sentry} ist ein SaaS Produkt der Functional Software Inc., welcher sich auf das Error Monitoring spezialisiert. Deshalb beschränken sich die Kernfunktionalitäten auf das Error Monitoring, auch wenn von anderen Gebieten einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
-
-Für Sentry wurde die kostenlose Version aufgesetzt und evaluiert. Sentry bietet bei NPM quelloffene Pakete an \cite{SentryJSGithub}, um Fehler zu erfassen und an Sentry zu melden. Es werden Pakete für folgende Frameworks bereitgestellt: JavaScript, Angular, AngularJS, Backbone, Ember, Gatsby, React und Vue. Das Aufsetzen stellt sich einfach dar und ermöglicht einige Konfigurations- und Verarbeitungsoptionen, bspw. können sensible Daten aus den Datenpaketen entfernt werden oder weitere Informationen gemeldet werden. Anders als bei den beiden vorherigen Tools wird zu Sentry nur kommuniziert, wenn ein Fehler auftritt. Hierbei werden dafür aber umso mehr Daten erhoben: Detaillierte Klickpfade des Nutzers, Logmeldungen der Browserkonsole sowie die Informationen, die auch die anderen Tools bereitstellen.
-
-Gemeldete Fehler werden in \enquote{Issues} umgewandelt, welche einem Fehlerticket entsprechen und in der Oberfläche Funktionen zum Zuweisen und zum Nachhalten der Behebung bieten. Sentry versucht die eingetroffenen Fehler in bestehenden Issues zu gruppieren, sodass jeweils zusammengehörige Fehler auch zusammen behandelt werden. Bei Sentry fehlt jedoch die ganzheitliche Nachvollziehbarkeit, also das auch nicht im Fehlerfall nachzuvollziehen ist, was geschehen ist. Dafür sind die gesammelten Fehlerinformationen zahlreich und helfen beim Nachvollziehen besser als die vorhergegangenen Werkzeuge.
-
-Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auch eine OnPremise-Lösung, basierend auf Docker, angeboten \cite{SentrySelfHosted}.
-
-\subsection{LogRocket}
-
-LogRocket \cite{LogRocket} ist ein SaaS Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme zu identifizieren, zu nachvollziehen und lösen zu können. Session-Replay ist auch die einzig identifizierbare Kernfunktionalität, die LogRocket aufweist.
-
-Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mithilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt, hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Nachstellung wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
-
-Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch einige Integrationen für andere Tools, wie z. B. Sentry. Die Integration mit Sentry wurde ebenso evaluiert, hierdurch wurde ermöglicht, dass von einem Sentry Issue direkt auf das Session-Replay des konkreten Fehlerfalls in LogRocket gesprungen werden konnte.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example.png}
-	\caption{Beispiel eines Session-Replays bei LogRocket}
-	\label{fig:logrocket-session-replay-example}
-\end{figure}
-
-\subsection{Splunk}
-
-Splunk \cite{Splunk} ist ein Softwareprodukt und ein SaaS des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
-
-Splunks kostenlose Version der SaaS und der OnPremise-Lösung wurden evaluiert. Hierbei wurde zunächst festgestellt, dass das Daten senden vom Browserkontext zu Splunk nicht direkt möglich ist, da Splunk mit ablehnenden CORS-Headern antwortet. Hierfür wurde ein extra Dienst geschrieben, der die Daten vom Frontend annimmt und an Splunk weitersendet. Weiterhin konnten hierdurch Daten wie den User-Agent und die IP vom Client ermittelt und an die Datensätze angehangen werden.
-
-An Splunk wurden über dieselbe Schnittstelle Log- und Errorinformationen gesendet. Hierbei konnte Splunk gut das Logmanagement erfüllen, denn Logeinträge ließen sich einfach filtern und auch zu Graphen aufbereiten. Weiterhin ist das Error Monitoring auch zufriedenstellend und enthält alle Daten, die auch bspw. bei Sentry vorhanden sind - hierbei fehlt jedoch ein Issue-Management, welches Sentry bereitstellt. Lediglich Tracing lässt sich nicht zufriedenstellend mit Splunk realisieren. Denn hier können lediglich die Daten konsumiert werden, aber eine verständliche Darstellung mittels Trace-Gantt-Diagrammen fehlt gänzlich. Hiermit lassen sich keine spezialisierten Tracing-Werkzeuge ersetzen.
-
-\subsection{Honeycomb}
-
-Honeycomb \cite{Honeycomb} ist ein SaaS der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und darauf basierend effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
-
-Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \enquote{Beelines} an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind aber nur für Node.js, Go, Python, Java, Ruby und Rails verfügbar, aber nicht JavaScript im Browser. Deshalb wurden zur Evaluierung Werkzeuge von OpenTelemetry hinzugezogen und zusätzlich musste nur noch ein Exporter für Honeycomb geschrieben werden. Honeycomb wirkt komplett anders als New Relic und Dynatrace, denn es ist nicht ausgefertigt mit konkreten Graphen und Darstellungen, sondern bietet eine Oberfläche mit dem man auf Basis der Daten selber Abfragen, Graphen und andere Darstellungen selber erstellen kann. Auch ist es nicht mit Jaeger, welches gleich näher betrachtet wird, vergleichbar, denn es bietet deutlich mehr Möglichkeiten als striktes Tracing.
-
-\subsection{Jaeger}
-
-Jaeger wurde 2017 als ein Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing und erlaubt auch das Konsumieren von Zipkin Daten, einem Konkurrenzprodukt. Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
-
-\begin{wrapfigure}[11]{r}{0.45\textwidth}
-\centering
-\vspace{-\baselineskip}
-\includegraphics[width=\linewidth]{img/03_methoden/redhat_jaeger-ui_trace-detail-view.png}
-\caption{Trace-Detailansicht. Quelle: Don Schenck \cite{JaegerIstioTracing}}
-% von https://developers.redhat.com/blog/2018/04/03/istio-tracing-monitoring/
-\label{fig:jaeger-ui_trace-detail-view}
-\end{wrapfigure}
-
-Jaeger wurde nicht aufgesetzt, sondern über einen Arbeitskollegen bei der Open Knowledge veranschaulicht und darauf basierend evaluiert. Wie zuvor bei Honeycomb beschrieben, beschränkt sich Jaeger auf Tracing, aber spezialisiert sich dafür auf dieses Gebiet und bietet eine gesamte Infrastruktur zur Tracespeicherung und -analyse. Die Traces sind als Gantt-Diagramme dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert.
-
-\begin{wrapfigure}[8]{r}{0.45\textwidth}
-\centering
-\vspace{-\baselineskip}
-\includegraphics[width=\linewidth]{img/03_methoden/medium_jaeger-ui_dependency-graph.png}
-\caption{Dienst-Abhängigkeits-Graph. Quelle: Yuri Shkuro \cite{JaegerTakeOpenTracingForARide}}
-% von https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
-\label{fig:jaeger-ui_dependency-graph}
-\end{wrapfigure}
-
-Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. In \autoref{fig:jaeger-ui_dependency-graph} kann so eine Darstellung betrachtet werden, hierbei sieht mehrere Microservices und Datenbanken.
-
 \subsection{Weiteres}
 \label{sec:weitere-werkzeuge}
 
@@ -302,19 +214,101 @@ Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren W
 
 Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
 
-\subsection{Literatur}
+\subsection{New Relic}
 
-In diesem Abschnitt sind die Ergebnisse aus der Literaturrecherche zusammengetragen: Verwandte Publikationen, die auf eine verbesserte Nachvollziehbarkeit abzielen.
+New Relic \cite{NewRelic} ist eine Software-as-a-Service (SaaS) der gleichnamigen Firma, welcher Betreiber von Softwareprojekten dabei unterstützt das Verhalten ihrer Anwendungen zu überwachen. Der Dienst konzentriert sich auf System Monitoring, APM und RUM und erfasst die notwendigen Daten mit proprietären Lösungen. Neben den Kernfunktionalitäten unterstützt New Relic auch Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
 
-%\begin{enumerate}
-%	\item \textit{Gibt es hierzu Ansätze in der Literatur?}
-%	\item \textit{Wie sehen diese aus, welchen Zweck erfüllen sie?}
-%	\item \textit{Sind sie vergleichbar mit Ansätzen aus der Fachpraxis?}
-%\end{enumerate}
+\nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}
+
+New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version aber benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen jedoch mehr Informationen, wie Stacktrace, genaue Browserversion, Uhrzeit zur Verfügung und in der Oberfläche dargestellt.
+
+Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Jedoch geben diese Informationen nicht darüber Aufschluss, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
+
+New Relic bietet darüber hinaus eine Unterstützung von OTel-Daten  \cite{NewRelicAnnoundOTelBetaSupport}, welches jedoch nicht mit evaluiert werden konnte, da es in der kostenlosen Version nicht enthalten war. Auf der offiziellen Seite von OTel werden jedoch  öffentliche Exporter für New Relic angeboten \cite{OpenTelemetryRegistry}.
+
+\subsection{Dynatrace}
+
+Dynatrace \cite{Dynatrace} ist eine SaaS-Lösung des gleichnamigen Unternehmens und ähnelt im Funktionsumfang stark New Relic. Es werden wie bei New Relic die Kernfunktionalitäten APM und RUM, sowie die Disziplinen Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
+
+Dynatrace bietet neben dem kostenpflichtigen Dienst eine 14-tägige Testversion dessen, welche im Rahmen dieser Arbeit verwendet wurde. Die Datenerhebung erfolgt über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. In der Oberfläche von Dynatrace sind ähnliche Datenkategorien zu finden, wie bei New Relic, wobei Dynatrace diese visuell ansprechender darstellt. Dynatrace bietet zudem auch die Funktionalität des Error Monitoring, aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
+
+Dynatrace ist zudem dem OpenTelemetry Team beigetreten und hat angegeben, an der Weiterentwicklung mitzuhelfen \cite{DynatraceJoinOTelProject}. Eine Integration des Dienstes Dynatrace ins Ökosystem von OTel gibt es jedoch noch nicht.
+
+\subsection{Sentry}
+
+Sentry \cite{Sentry} ist ein SaaS-Produkt der Functional Software Inc., welcher sich auf das Error Monitoring spezialisiert. Die Kernfunktionalitäten beschränken sich auf das Error Monitoring, auch wenn von anderen Praktiken einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
+
+Neben einer kommerziellen Version, bietet Sentry auch eine unbegrenzte kostenlose Version bereit, welche im Rahmen dieser Arbeit evaluiert wurde. Um von Webanwendungen Fehler zu erfassen und an Sentry zu melden, bietet Sentry bei NPM quelloffene Pakete an \cite{SentryJSGithub}. Dabei werden Pakete für folgende Frameworks bereitgestellt: JavaScript, Angular, AngularJS, Backbone, Ember, Gatsby, React und Vue.
+
+Anders als bei den beiden vorherigen Tools wird zu Sentry nur kommuniziert, wenn ein Fehler auftritt. Hierbei werden dafür aber umso mehr Daten erhoben: Detaillierte Klickpfade des Nutzers, Logmeldungen der Browserkonsole sowie die Informationen, die auch die anderen Tools bereitstellen.
+
+In der Oberfläche von Sentry werden die gemeldeten Fehler in sogenannten \enquote{Issues} zusammengefasst. Diese entsprechen Fehlertickets und die Oberfläche erlaubt eine Zuweisung dieser Tickets sowie ein detailliertes Nachhalten der Fehlerbehebung.
+
+Die angeboten Fehlerinformationen von Sentry sind zahlreich und helfen beim Nachvollziehen besser als die vorher beleuchteten Werkzeuge, jedoch mangelt es an einer ganzheitlichen Nachvollziehbarkeit auch in nicht Problemszenarien.
+
+Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auch eine OnPremise-Lösung, basierend auf Docker, angeboten \cite{SentrySelfHosted}.
+
+\subsection{LogRocket}
+
+LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme identifizieren, nachvollziehen und lösen zu können.
+
+LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an
+Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mithilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
+
+Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch Integration für andere Tools, wie z. B. Sentry. Bei der Integration zu Sentry wird bei einem gemeldeten Fehler direkt auf das \enquote{Video} in LogRocket verlinkt, sodass der Fehler genau betrachtet werden kann.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example.png}
+	\caption{Beispiel eines Session-Replays bei LogRocket}
+	\label{fig:logrocket-session-replay-example}
+\end{figure}
+
+\subsection{Splunk}
+
+Splunk \cite{Splunk} ist ein Softwareprodukt und eine SaaS-Lösung des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
+
+Splunk bietet neben kostenpflichtigen Versionen der SaaS- und OnPremise-Lösung jeweils kostenlose Varianten an, welche in dieser Arbeit zur Evaluierung herangezogen wurden. Splunk selber bietet keine JavaScript-Pakete an, um Daten von einer Webanwendung an Splunk zu senden. Jedoch ist eine HTTP-Schnittstelle vorhanden mit der eigene Datensätze in Splunk gespeichert werden können.
+
+Über diese HTTP-Schnittstelle wurden aus der Webanwendung einerseits Loginformationen gesendet, aber auch Fehlerdaten, wie man sie z. B. bei Sentry finden konnte. Die Daten ließen sich effizient in Splunk manuell durchsuchen, filtern, und visualisieren. Durch den Fakt, dass Splunk als dieselbe Datensenke für Fehler- und Loginformationen agierte, erlaubte die Kombination aus diesen beiden Datenkategorien. Speziell heißt dies, dass man bei Fehlerfällen direkt zu den Loginformationen zur selben Sitzung wechseln konnte.
+
+Jedoch ist das Error-Monitoring nicht vergleichbar gut wie das von Sentry, da die Funktionalität des Issue-Managements nicht vorhanden ist. Weiterhin wurde evaluiert, ob auch Tracingdaten in Splunk aufgenommen werden können, aber hierbei besitzt Splunk keine gängigen Visualisierungen, wie ein Trace-Gantt-Diagramme.
+
+\subsection{Honeycomb}
+
+Honeycomb \cite{Honeycomb} ist eine SaaS-Lösung der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und darauf basierend effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
+
+Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \enquote{Beelines} an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind für Node.js, Go, Python, Java, Ruby und Rails verfügbar. Da keine Beelines für JavaScript in Browsern verfügbar ist, wurden die Daten mit OTel-Komponenten erhoben und ein eigener Exporter für Honeycomb entwickelt.
+
+Honeycomb konzentriert sich auf die Datenkategorien Tracing und Metriken, ähnlich wie der Standard OpenTelemetry. Dabei bietet Honeycomb in der Oberfläche Möglichkeiten selber Graphen auf Basis der Daten zu erstellen. Somit ist dies keine ausgefertigte Lösung, wie es teils bei New Relic und Dynatrace zu finden ist und kann somit auf die Anforderungen des Projektes besser angepasst werden. Jedoch ist dieser Ansatz mit einem höheren Aufwand und einer notwendigen Expertise verbunden.
+
+\subsection{Jaeger}
+
+Jaeger wurde 2017 als ein OpenSource-Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing, unterstützt aber auch Datenformate anderer Hersteller (wie z. B. Zipkin). Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+
+\begin{wrapfigure}[13]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/redhat_jaeger-ui_trace-detail-view.png}
+\caption{Trace-Detailansicht. Quelle: Don Schenck \cite{JaegerIstioTracing}}
+% von https://developers.redhat.com/blog/2018/04/03/istio-tracing-monitoring/
+\label{fig:jaeger-ui_trace-detail-view}
+\end{wrapfigure}
+
+Jaeger spezialisiert sich auf Tracing und bietet hierfür eine skalierbare Infrastruktur zur Speicherung und Analyse der Daten. Die Traces werden als angereicherte Trace-Gantt-Diagramme dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert. Wie bei OpenTracing und OpenTelemetry besteht ein Trace aus mehreren Spans, welche meist eine Methode umschließen. Zu den einzelnen Spans lassen sich weitere Informationen anzeigen, wenn vorhanden, wie bspw. Logmeldungen oder Kontextinformationen.
+
+\begin{wrapfigure}[10]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/medium_jaeger-ui_dependency-graph.png}
+\caption{Dienst-Abhängigkeits-Graph. Quelle: Yuri Shkuro \cite{JaegerTakeOpenTracingForARide}}
+% von https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941
+\label{fig:jaeger-ui_dependency-graph}
+\end{wrapfigure}
+
+Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. In \autoref{fig:jaeger-ui_dependency-graph} kann so eine Darstellung betrachtet werden.
 
 \subsection{TraVista}
 
-Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista von Anand \etal \cite{TraVistaPaper}. Es basiert auf einem vorhergehenden Projekt von Anand, TraViz, welches nachgehend erläutert wird. TraVista beschäftigt sich mit dem Visualisieren von Tracedaten. Hierbei setzten sie auf den bestehenden Ansatz der Gantt-Diagramme auf, um Traces zu visualisieren. Die Gantt-Diagramme wurden jedoch um einige zusätzliche Informationen erweitert, wie in \autoref{fig:travista_extended-gantt} zu sehen ist.
+Passend zu Jaeger konnte in der Literatur ein Werkzeug identifiziert worden, welches auf bestehende Visualisierungen mittels Trace-Gantt-Diagrammen aufsetzt und diese erweitert. Anand \etal \cite{TraVistaPaper} argumentieren in ihrem Bericht, dass Visualisierungen rund ums Tracing zu strikt die unterschiedlichen Daten einer Anwendung trennen, statt diese zu kombinieren und strukturiert zu veranschaulichen. Mit TraVista haben die Autoren Visualisierungen erstellt, die genau diese Verknüpfung der unterschiedlichen Datentypen versuchen.
 
 \begin{wrapfigure}[8]{r}{0.3\textwidth}
 \centering
@@ -324,9 +318,11 @@ Ein erstes Werkzeug, welches in der Literatur identifiziert wurde, ist TraVista 
 \label{fig:travista_extended-gantt_zoomed-in}
 \end{wrapfigure}
 
-Innerhalb eines Spans sind aufgetretene Events dargestellt, standardmäßig als weißer Balken oder bei selten auftretenden Events als schwarzer Balken (vgl. \circled{7} in \autoref{fig:travista_extended-gantt_zoomed-in}). Beziehungen \circled{6} zwischen den Spans werden visualisiert. Bei \circled{2} sind Histogramme zu sehen, die aus den gesammelten Metriken innerhalb der Traces, erstellt sind. Die Metrikwerte des aktuellen Trace sind blau hervorgehoben und erlauben hier eine visuelle Probe auf Ausreißer.
+In der Oberfläche von TraVista werden Metriken, Events sowie Tracedaten simultan dargestellt, um dem Nutzer ein komplementäres Bild des eigentlichen Traceverlaufs zu präsentieren. Diese Visualisierung kann in \autoref{fig:travista_extended-gantt} betrachtet werden, und ein Zoom ist bei \autoref{fig:travista_extended-gantt_zoomed-in} zu finden. Das Trace-Gantt-Diagramm wurde u. A. bei \circled{2} um einige Metriken erweitert, wobei der aktuelle Trace hervorgehoben im Vergleich zu anderen Traces dargestellt wird. Weiterhin lassen sich im Zoom bei \circled{7} aufgetretene Events als Balken betrachten, wobei selten aufgetretene Events schwarz hervorgehoben werden.
 
-Es lässt sich abschließend sagen, dass TraVista eine vielversprechende Visualisierung bietet. Jedoch wurde ein eigenes simples Backend entwickelt, welches nur mit einer vergleichsweise geringen Datenmenge getestet wurde (22.286 Traces, 147.812 Spans). Die Autoren selbst sehen Probleme bei der Skalierung, aber nannten auch, dass sie TraVista weiterentwickeln wollen, u. A. soll das Backend erweitert werden.
+Leider ist TraVista keine ausgereifte Software und wird seit einigen Monaten nicht mehr weiterentwickelt\footnotemark{}. Aufgrund dessen wird es in dieser Arbeit nicht verwendet, dennoch zeigt sich durch den Bericht, dass bestehende und etablierte Produkte wie Jaeger und Zipkin ein Verbesserungspotenzial aufweisen.
+
+\footnotetext{TraVista auf GitHub: \url{https://github.com/vaastav/TraViz}}
 
 \begin{figure}[H]
 	\centering
@@ -335,99 +331,28 @@ Es lässt sich abschließend sagen, dass TraVista eine vielversprechende Visuali
 	\label{fig:travista_extended-gantt}
 \end{figure}
 
-Vor der Arbeit an TraVista hat Vastaav Anand mit Matheus Stolet an einem weiteren Visualisierungstool für Traces gearbeitet: TraViz \cite{TraVizPaper}. Es ist auf GitHub veröffentlicht \url{https://github.com/vaastav/TraViz}. TraViz bildet das Grundgerüst für die spätere Arbeit an TraVista und ist zudem das Backend für TraVista. Im Genaueren bedeutet dies, dass TraVista ein neuer Visualisierungsansatz für das Backend von TraViz ist. Viele Eigenschaften von TraVista lassen sich auf das Backend von TraViz zurückverfolgen.
-
-Mit Joseph Wonsil hat Anand an einem weiteren Tool rund ums Tracing gearbeitet: Tracey \cite{TraceyPaper}. Es ist ebenso auf GitHub veröffentlicht \url{https://github.com/vaastav/Tracey}. Es beschäftigt sich mit der Aggregration von Tracingdaten, denn derzeitige Technologien beschäftigen sich hauptsächlich mit der Darstellung von einem einzelnen Trace. In diesem Bericht sind erneut Grundbausteine zu erkennen, die Anand wahrscheinlich bei TraVista anwenden konnte.
-
-Sowohl TraViz (und TraVista) als auch Tracey werden jedoch seit Mai 2020 nicht mehr aktualisiert. Eine Nutzerschafft konnte auch nicht gefunden werden, da auf GitHub beide Projekte Null Mal favorisiert und Null Mal geklont wurden. Auch Issues oder Pull-Requests sind nicht vorhanden. Aufgrund dieser fehlenden Weiterentwicklung und den Skalierungsproblemen des Backends ist TraVista für diese Arbeit nicht von Relevanz. % Sollten sich jedoch in den nächsten Monaten und Jahren weitere Entwicklungen hier ergeben, könnte dieser Ansatz Früchte tragen.
-
-%\subsection{\enquote{Bedeutung von Telemetry für den SDLC}}
-%
-%\nomenclature[Fachbegriff]{SDLC}{Software-Development-Life-Cycle}
-%
-%Neben TraVista wurde die im 2. Quartal 2020 erstellte Bachelorarbeit von Michael Graf bei der Recherche gefunden \cite{MichaelGrafBA}. Grafs Arbeit handelt über die \enquote{Bedeutung von Telemetrie für den Software Development Cycle (SDLC)}. In der Arbeit beschäftigt er sich mit der Software-Telemetrie als solche, aber legt den aktuellen Stand am Projekt OpenTelemetry dar. OpenTelemetry erhält enorme Bedeutung in der Arbeit und wird von Grund auf erläutert, betrachtet und analysiert.
-%
-%Die Arbeit beschäftigt sich zunächst mit SDLC und wie moderne Ansätze hierfür Aussehen. Speziell wird der DevOps Ansatz beschrieben, bei dem eine kontinuierliche Weiterentwicklung des Produktes im Vordergrund steht. Hierbei bewertet Graf die Fähigkeit von Observability-Ansätzen nach ihrem tatsächlichen Nutzen und ihrer Übertragbarkeit. Dies erfolgt, wie zuvor beschrieben, am Beispiel von OpenTelemetry. Evaluiert wird das Ganze durch das Aufsetzen von Jaeger mit einer Demoanwendung, durch das der Tracingaspekt von Observability realisiert wird.
-%
-%Abschließend bewertet Graf OpenTelemetry positiv in den Punkten Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und darauf basierend keine Prognosen über den Erfolg gemacht werden können. Graf sieht zudem Observability-Daten als eine gute Möglichkeit, um die Qualitätssicherung und -verbesserung zu unterstützen.
-%
-%Grafs Arbeit dient somit als Vorbereitung für einen Lösungsansatz mit OpenTelemetry, bietet aber selbst keine neuen Ansätze.
-
-%\subsection{Timelapse}
-%
-%Burg \etal \cite{TimelapsePaper} entwickelten 2013 eine neue Software, die es erlaubt das Anwendungsverhalten von Webanwendungen aufzunehmen und wieder abzuspielen: \enquote{Timelapse}. Timelapse erlaubt es direkt im selben Browser Nutzersitzungen aufzunehmen und wieder abzuspielen, sodass die simulierten Aktionen im Browser geschehen. Dies bedeutet, dass Entwickler und Betreiber gleichzeitig den DOM inspizieren können und auch Breakpoints im JavaScript-Code verwenden können.
-%
-%\begin{wrapfigure}[8]{r}{0.35\textwidth}
-%\centering
-%\vspace{-\baselineskip}
-%\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure5.png}
-%\caption{Mitschneiden von DOM-Events, Abb. aus \cite{TimelapsePaper}}
-%\label{fig:timelapse_figure5}
-%\end{wrapfigure}
-%
-%Das Grundprinzip von Timelapse basiert darauf, dass die Browserumgebung gekapselt ist; sie lässt sich von außen nur über vordefinierte Schnittstellen ansprechen. Intern arbeitet die Browserumgebung mit einem einzigen Thread indem eine Eventloop die Logik ausführt. Um nun die Aufnahme-/Abspielfunktionalität zu ermöglichen wird ein eigens entwickeltes Framework hinzugezogen, \enquote{Dolos} genannt.
-%
-%\begin{wrapfigure}[8]{r}{0.35\textwidth}
-%\centering
-%\vspace{-\baselineskip}
-%\includegraphics[width=\linewidth]{img/03_methoden/timelapse_figure6.png}
-%\caption{Abspielen von DOM-Events, Abb. aus \cite{TimelapsePaper}}
-%\label{fig:timelapse_figure6}
-%\end{wrapfigure}
-%
-%Dolos schneidet interne DOM-Events sowie die Antworten von äußeren Schnittstellen mit (vgl. \autoref{fig:timelapse_figure5}). Beim Abspielen werden DOM-Events und äußere Aufrufe in derselben Reihenfolge der Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Hierbei wird die Eventloop von anderen Einflüssen abgeschottet, sodass eine exakte Rekonstruktion erfolgen kann. Bei der Rekonstruktion ist es von enormer Bedeutung nicht-deterministische Eingaben korrekt zu simulieren, also Tastatureingaben, Netzwerkanfragen aber auch interne Ressourcen wie Zufallswerte und die aktuelle Zeit.
-%
-%Das Projekt ist sehr vielversprechend, besitzt jedoch einige Eigenschaften, die es mit der in dieser Arbeit angestrebten Lösung inkompatibel machen. Es benötigt eine tiefe Integration in den Browser, speziell wird eine gepatchte Version von WebKit benötigt. Dies ist einerseits aufwändig, aber in diesem Projektumfeld quasi unmöglich, da die Nutzer als vielzählig und unbekannt gelten und genau diese Nutzersitzungen sollten nachvollziehbar gemacht werden. Weiterhin unterstützt das Projekt nur den Safari und Google Chrome Browser, wahrscheinlich aber auch nicht die aktuellen, denn es wird seit mehr als 5 Jahren nicht mehr weiterentwickelt. Der Quellcode findet sich jedoch auf GitHub \url{https://github.com/burg/replay-staging/}. Insgesamt ist das Projekt somit ungeeignet für eine die angestrebte Lösung.
-
 \subsection{FAME}
 
-2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
+2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME\footnotemark{} genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
 
-\begin{wrapfigure}[10]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=\linewidth]{img/03_methoden/fame_overview.png}
-\caption{Übersicht von FAME, Abb. aus \cite{FamePaper}}
-\label{fig:fame_overview}
-\end{wrapfigure}
+\footnotetext{FAME auf GitHub: \url{https://github.com/supersede-project/monitor_feedback}}
 
-Mit FAME wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Nach den Autoren ist dieser Ansatz neu, denn in der Literatur wurde zuvor hauptsächlich auf das Nutzerfeedback gesetzt, um neue Anforderungen zu identifizieren. Dies ist aber von Problemen geplagt, wie bspw. dem Verständnis des Problems oder auch wie relevant dieses Problem für die gesamte Nutzerschaft ist. Mithilfe von der Addition von Monitoring sollen einige dieser Einschränkungen begegnet werden, indem bspw. Funktionsgebiete über Metriken abgebildet werden und wenn ein negatives Feedback eines Nutzers zu diesem Gebiet aufkommt, kann in der Metrik abgelesen werden, ob das Verhalten von anderen Nutzern sich geändert hat. Eine abstrakte Übersicht des FAME-Frameworks kann in \autoref{fig:fame_overview} betrachtet werden.
-
-Das FAME-Framework definiert detailliert Komponenten, wie die Disziplinen des Monitoring und der Feedbackeinholung gelöst werden können, und wie dies in einer möglichst modularen Infrastruktur umgesetzt werden kann. Für die Kombination der Monitoring- und Feedbackdaten werden zudem Mechanismen geschaffen, dass effiziente Queries diese beide zusammen verbunden ausgeben. Diese Ansätze wurden mit der SEnerCon GmbH in einem Workshop auf die Probe gestellt und konnten dem Requirements-Engineer dabei unterstützen, neue Anforderungen zu identifizieren und irrelevante Anforderungen auszuschließen. Es konnte ein Mehrwert für die SEnerCon GmbH identifiziert werden.
-
-Das Framework FAME gehört zum größeren Projekt SUPERSEDE, welches von der EU unterstützt wird \cite{EUSponsorshipFAME}. Das Framework ist quelloffen unter GitHub verfügbar: \url{https://github.com/supersede-project/monitor_feedback}. Seit Ende 2018 wird es jedoch \textit{de facto} nicht mehr gewartet.
-
-Das Projekt wird nicht bei der angestrebten Lösung verwendet. Zum Einen, weil das Ziel des Projektes nicht direkt auf Nachvollziehbarkeit von Nutzerinteraktionen und Anwendungsverhalten abzielt. Zum Anderen aber auch aufgrund der fehlenden Weiterentwicklung und Wartung. Dennoch sind die Erkenntnisse, dass eine Kombination aus unterschiedlichen Daten neue Sichtweisen ermöglicht, vielversprechend.
+In dem Bericht wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Auf Basis dieser Forschungsfrage wurde das Framework erstellt und es konnte am Ende ein Mehrwert für die SEnerCon GmbH identifiziert werden.
 
 \subsection{The Kaiju Project}
 
-Scrocca \etal \cite{TheKaijuProjectPaper} identifizierten 2020 eine Lücke im Gebiet der Observability, nämlich fehlt ein Werkzeug, welches die unterschiedlichen Datentypen Logs, Traces und Metriken kombiniert sammeln und aufbereiten kann und dies in quasi-Echtzeit. Aus diesem Grund wurde ein Konzept und ein Prototyp entwickelt, die darauf abzielen diese Lücke auszufüllen. Zunächst wird jedoch das Forschungsfeld und die Fachpraxis rund um die Observability aufgearbeitet. Hierbei definieren Scrocca \etal zwei Forschungsfragen, die es im Bericht zu beantworten gilt:
+Scrocca \etal \cite{TheKaijuProjectPaper} identifizierten 2020 eine Lücke im Gebiet der Observability, nämlich fehlt ein Werkzeug, welches die unterschiedlichen Datentypen Logs, Traces und Metriken kombiniert sammeln und aufbereiten kann und dies in quasi-Echtzeit. Aus diesem Mangel ergab sich die Forschungsfrage, ob eine Kombination dieser Datenkategorien einen Mehrwehrt für die Nachvollziehbarkeit bedeuten kann.
 
-\begin{itemize}
-	\item Wie können wir das Systemverhalten enthüllen?
-	\item Wie können wir Sinn aus dem Systemverhalten gewinnen?
-\end{itemize}
+Um die Forschungsfrage zu beantworten wurde ein Prototyp konzipiert, welcher genau diese Datenkategorien aggregiert und diese zu High-Level-Events zusammenfasst. Bei der Evaluierung mit der IT Dienstleistungsfirma SighUp konnte festgestellt werden, dass die resultierenden High-Level-Events hilfreiche Informationen zur Problemfindung beinhalten.
 
-\begin{wrapfigure}[13]{r}{0.45\textwidth}
-\centering
-\includegraphics[width=\linewidth]{img/03_methoden/kaiju_architecture.png}
-\caption{Kaiju Architektur, Abb. aus \cite{TheKaijuProjectPaper}}
-\label{fig:kaiju_architecture}
-\end{wrapfigure}
+Das Projekt Kaiju hat bisher nicht die Phase des Prototypen verlassen und wird seit einigen Monaten auch nicht weiterentwickelt\footnotemark{}. Jedoch ist die Erkenntnis, dass die Kombination von Daten unterschiedlicher Quellen und Kategorien einen Mehrwert bietet, eine wegbereitende für diese Arbeit und die angestrebte Lösung. Somit wird in der hier angestrebten Lösung auch versucht unterschiedliche Kategorien miteinander zu verknüpfen, um Synergieeffekte für die Betreiber und Entwickler zu erzeugen. Folgend wird mit der Konzeption und Erstellung des Proof-of-Conceptes fortgesetzt.
 
-Um diese Forschungsfragen zu beantworten, wurde ein Konzept erstellt, wie die Datentypen Logs, Traces und Metriken zusammen erhoben und kombiniert analysiert werden können. Es basiert auf einer allgemeinen Datenverarbeitung mittels einem Event-Stream-Processor (ESP). Das Kernmodul stellt somit das \enquote{kaiju-hl} dar, welches in der Architektur in \autoref{fig:kaiju_architecture} zu betrachten ist. Das Hauptmodul besteht selber aus mehreren Subkomponenten, die spezielle analytische Aufgaben übernehmen. Der Prototyp wurde mit der quelloffenen ESP-Engine Esper \cite{Esper} umgesetzt.
+\footnotetext{Kaiju auf GitHub: \url{https://github.com/marioscrock/Kaiju}}
 
-\nomenclature[Fachbegriff]{ESP}{Event-Stream-Processor}
-
-Aus den analysierten Daten erstellt Kaiju angereicherte und in der Struktur homogenisierte Daten, sogenannte High-Level-Events. Diese sind dann von weiteren Komponenten zu konsumieren. Diese praktische Weiterverarbeitung der gewonnenen Daten wurde jedoch nicht näher beleuchtet.
-
-Nach der Entwicklung des Prototypen wurde aber in Zusammenarbeit mit der italienischen IT Dienstleistungsfirma SighUp dieser evaluiert. Es konnte festgestellt werden, dass abgeleitete High-Level Events, durch zuvor definierte Szenarien erstellt werden und Informationen beinhalten, die für die Problemfindung in diesen Szenarien hilfreich ist.
-
-Der entwickelte Prototyp ist quelloffen unter \url{https://github.com/marioscrock/Kaiju} verfügbar. Dieser wurde aber seit Juli 2020, dem Zeitpunkt der Veröffentlichung des Papers, nicht mehr aktualisiert. Weiterhin lässt sich auch kein Folgeprojekt finden. Auch wenn Kaiju kein praktisches Werkzeug für die Lösung in dieser Arbeit darstellt, so wird ein gutes Bild über die technische Seite der Nachvollziehbarkeit vermittelt, sowie wird zuvor der Forschungsstand tiefgehend und verständlich erläutert.
-
-\subsection{Fazit zur Literatur}
-
-Wie in den verschiedenen beleuchteten Berichten und Arbeiten zu lesen ist, von denen drei in \textit{2020} veröffentlicht wurden, ist das Forschungsfeld der Nachvollziehbarkeit bzw. der Observability bisher nur spärlich untersucht worden. Eigene Recherchen ergaben das gleiche Ergebnis, das Feld enthält wenige konkrete Veröffentlichungen. Speziell zur Nachvollziehbarkeit im Bereich der Frontend-Entwicklung konnte keine Arbeit gefunden werden.
-
-Es konnte jedoch ein Konsens identifiziert werden, dass dieses Forschungsfeld einen wichtigen Mehrwert darstellt, speziell bei komplexen Microservice-Architekturen. Weiterhin lässt sich ein steigender Trend in konkreten Lösungsansätzen im Forschungsfeld identifizieren, wie u. A. die in dieser Arbeit näher betrachteten Veröffentlichungen. Diese Entwicklung geht einher mit den Standardisierungsbemühungen aus der Wirtschaft rund um OpenTelemetry.
-
-Nun da die theoretische Seite der Nachvollziehbarkeit beleuchtet wurde, wird sich nun mit der Erstellung eines eigenen Konzeptes und der Anwendung dessen beschäftigt.
+%\subsection{Fazit zur Literatur}
+%
+%Wie in den verschiedenen beleuchteten Berichten und Arbeiten zu lesen ist, von denen drei in \textit{2020} veröffentlicht wurden, ist das Forschungsfeld der Nachvollziehbarkeit bzw. der Observability bisher nur spärlich untersucht worden. Eigene Recherchen ergaben das gleiche Ergebnis, das Feld enthält wenige konkrete Veröffentlichungen. Speziell zur Nachvollziehbarkeit im Bereich der Frontend-Entwicklung konnte keine Arbeit gefunden werden.
+%
+%Es konnte jedoch ein Konsens identifiziert werden, dass dieses Forschungsfeld einen wichtigen Mehrwert darstellt, speziell bei komplexen Microservice-Architekturen. Weiterhin lässt sich ein steigender Trend in konkreten Lösungsansätzen im Forschungsfeld identifizieren, wie u. A. die in dieser Arbeit näher betrachteten Veröffentlichungen. Diese Entwicklung geht einher mit den Standardisierungsbemühungen aus der Wirtschaft rund um OpenTelemetry.
+%
+%Nun da die theoretische Seite der Nachvollziehbarkeit beleuchtet wurde, wird sich nun mit der Erstellung eines eigenen Konzeptes und der Anwendung dessen beschäftigt.
