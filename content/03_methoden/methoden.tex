@@ -20,7 +20,7 @@ Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozess
 
 Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \autoref{sec:logdaten} geschildert, müssen die Logs an ein Partnersystem weitergeleitet werden.
 
-\subsection{Structured Logging}
+\subsubsection{Structured Logging}
 
 %\subsection{Monitoring}
 %
@@ -121,7 +121,7 @@ Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcen
 
 \nomenclature[Fachbegriff]{UI}{User-Interface}
 
-Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Webanwendung \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX Verbesserungen vorgenommen werden.
+Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Webanwendung \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX-Verbesserungen vorgenommen werden.
 
 Weiterhin ist es beim RUM auch üblich Nutzerinteraktionen gruppierte zu analysieren, um verbreitete und unübliche Sitzungen zu identifizieren. Hiermit wird die Nutzerschaft und ihre Verhaltensweisen nachvollziehbarer gemacht.
 
@@ -133,11 +133,11 @@ Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionali
 
 Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern, werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, da aufgetretene Fehler und deren Behebungen zu verfolgen sind \cite{CrashbinCrashMonitoring}.
 
-\subsection{Session-Replay}
+\subsection{Session Replay}
 
-Session-Replay beschreibt das Vorgehen, eine Sitzung eines Nutzers nachzustellen, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf oder die DOM-Manipulationen. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Nachstellung und entsprechend hilfreich ist sie beim Nachvollziehen.
+Session Replay beschreibt das Vorgehen, eine Sitzung eines Nutzers nachzustellen, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf oder die DOM-Manipulationen. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Nachstellung und entsprechend hilfreich ist sie beim Nachvollziehen.
 
-Realitätsnahes Session-Replay nimmt so eine enorme Datenmenge für jede Nutzersitzung auf und benötigt besonders bei Browsern eine effiziente Kommunikation, um die UX nicht negativ zu beeinflussen.
+Realitätsnahes Session Replay nimmt somit eine enorme Datenmenge für jede Nutzersitzung auf und benötigt besonders bei Browsern eine effiziente Kommunikation, um die UX nicht negativ zu beeinflussen.
 
 \begin{wrapfigure}[10]{r}{0.40\textwidth}
 \centering
@@ -146,7 +146,7 @@ Realitätsnahes Session-Replay nimmt so eine enorme Datenmenge für jede Nutzers
 \label{fig:timelapse_figure5}
 \end{wrapfigure}
 
-Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelapse} ein Framework, um Benutzersitzungen bei Webanwendungen aufzunehmen und wiederzugeben. Timelapse unterscheidet sich zu gängigen Session-Replay-Ansätzen dahingehend, dass die Wiedergabe keine vereinfachte Nachstellung der Anwendung ist. Stattdessen wird die JavaScript-Eventloop abgekapselt und es werden die Aufrufe von und zu der Eventloop mitgeschnitten (vgl. \autoref{fig:timelapse_figure5}).
+Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelapse} ein Framework, um Benutzersitzungen bei Webanwendungen aufzunehmen und wiederzugeben. Timelapse unterscheidet sich zu gängigen Session Replay-Ansätzen dahingehend, dass die Wiedergabe keine vereinfachte Nachstellung der Anwendung ist. Stattdessen wird die JavaScript-Eventloop abgekapselt und es werden die Aufrufe von und zu der Eventloop mitgeschnitten (vgl. \autoref{fig:timelapse_figure5}).
 
 \begin{wrapfigure}[10]{r}{0.40\textwidth}
 \centering
@@ -155,7 +155,7 @@ Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelaps
 \label{fig:timelapse_figure6}
 \end{wrapfigure}
 
-Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in der selben Umgebung möglich, und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session-Replay im Allgemeinen dar.
+Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in der selben Umgebung möglich, und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
 
 \footnotetext{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}
 
@@ -170,9 +170,9 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 
 %\subsection{Fachpraxis}
 
-Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung in Frage kommen. Folgend werden die einzelnen Technologien vorgestellt, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
+Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung in Frage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
 
-Des Weiteren kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, deswegen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
+Des Weiteren kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, aufgrund dessen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
 
 \newpage
 
@@ -186,7 +186,7 @@ Des Weiteren kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry}
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwicklertools und -werkzeuge benutzen können, ohne jedesmal eine hochspezifische Anbindung schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu betrachten. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standardkomponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
 
 In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Software-Development-Life-Cycle} \cite{MichaelGrafBA} beschäftigt sich Graf intensiv mit dem Einfluss und dem Nutzen von Telemetrie in modernen Softwareprojekten. Speziell beschreibt er den OTel Standard und seine Bedeutung im aktuellen Gebiet der Telemetrie. Er bewertet die Entwicklung des Standards positiv, besonders auf Basis der Aspekte Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und keine Prognosen über den Erfolg gemacht werden können. Grafs Arbeit sichert somit zu, dass OpenTelemetry ein, nicht zu vernachlässigender, Standard im Gebiet der Observability darstellt.
 
@@ -250,18 +250,18 @@ Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auc
 
 \subsection{LogRocket}
 
-LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme identifizieren, nachvollziehen und lösen zu können.
+LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session Replay von JavaScript-basierten Clientanwendungen, um Probleme identifizieren, nachvollziehen und lösen zu können.
 
 LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an
-Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mithilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
+Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mithilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-Session Replay-example}).
 
 Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch Integration für andere Tools, wie z. B. Sentry. Bei der Integration zu Sentry wird bei einem gemeldeten Fehler direkt auf das \enquote{Video} in LogRocket verlinkt, sodass der Fehler genau betrachtet werden kann.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example.png}
-	\caption{Beispiel eines Session-Replays bei LogRocket}
-	\label{fig:logrocket-session-replay-example}
+	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_Session Replay-example.png}
+	\caption{Beispiel eines Session Replays bei LogRocket}
+	\label{fig:logrocket-Session Replay-example}
 \end{figure}
 
 \subsection{Splunk}
