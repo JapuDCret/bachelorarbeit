@@ -45,7 +45,7 @@ Client PC</panel_attributes>
       <w>230</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>Log- and Monitoring-Platform</panel_attributes>
+    <panel_attributes>Log- und Monitoringplattform</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -131,7 +131,7 @@ Session-Replay</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Trace Data</panel_attributes>
+Traces</panel_attributes>
     <additional_attributes>610.0;170.0;160.0;170.0;160.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -168,7 +168,7 @@ Java Runtime</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-&gt;&gt;
 &lt;&lt;HTTP&gt;&gt;
-Data</panel_attributes>
+Daten</panel_attributes>
     <additional_attributes>180.0;10.0;90.0;10.0;90.0;60.0;10.0;60.0</additional_attributes>
   </element>
   <element>
@@ -179,7 +179,7 @@ Data</panel_attributes>
       <w>230</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Tracing Service</panel_attributes>
+    <panel_attributes>Dienst für Tracing</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -202,7 +202,7 @@ Data</panel_attributes>
       <w>230</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Session-Replay Service</panel_attributes>
+    <panel_attributes>Dienst für Session-Replay</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -215,7 +215,7 @@ Data</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Error data</panel_attributes>
+Fehler</panel_attributes>
     <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
@@ -228,7 +228,7 @@ Error data</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Session-Replay Data</panel_attributes>
+Session-Replay-Daten</panel_attributes>
     <additional_attributes>610.0;330.0;130.0;330.0;130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -240,7 +240,7 @@ Session-Replay Data</panel_attributes>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;component&gt;&gt;
-Application</panel_attributes>
+Anwendung</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -301,7 +301,7 @@ Error Monitoring</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Metric Data</panel_attributes>
+Metriken</panel_attributes>
     <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>

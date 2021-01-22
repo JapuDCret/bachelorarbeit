@@ -45,7 +45,7 @@ Client PC</panel_attributes>
       <w>230</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>Log- and Monitoring-Platform</panel_attributes>
+    <panel_attributes>Splunk</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -131,7 +131,7 @@ Session-Replay</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Trace Data</panel_attributes>
+Traces</panel_attributes>
     <additional_attributes>730.0;140.0;160.0;140.0;160.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -215,7 +215,7 @@ Data</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Error data</panel_attributes>
+Fehler</panel_attributes>
     <additional_attributes>270.0;10.0;160.0;10.0;160.0;70.0;10.0;70.0</additional_attributes>
   </element>
   <element>
@@ -228,7 +228,7 @@ Error data</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Session-Replay Data</panel_attributes>
+Session-Replay-Daten</panel_attributes>
     <additional_attributes>730.0;240.0;130.0;240.0;130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
@@ -240,7 +240,7 @@ Session-Replay Data</panel_attributes>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;component&gt;&gt;
-Application</panel_attributes>
+Anwendung</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -296,12 +296,12 @@ Error Monitoring</panel_attributes>
     <coordinates>
       <x>610</x>
       <y>260</y>
-      <w>320</w>
+      <w>300</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Metric Data</panel_attributes>
+Metriken</panel_attributes>
     <additional_attributes>270.0;10.0;230.0;10.0;230.0;90.0;10.0;90.0</additional_attributes>
   </element>
   <element>
@@ -338,7 +338,7 @@ Splunk Proxy</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;HTTP&gt;&gt;
-Log-, Error-, Metric-Data</panel_attributes>
+Log-, Fehler-, Metrikdaten</panel_attributes>
     <additional_attributes>210.0;50.0;40.0;50.0;40.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

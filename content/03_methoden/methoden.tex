@@ -16,27 +16,13 @@
 %	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
 %\end{enumerate}
 
-Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war.
+Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
 
 Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \autoref{sec:logdaten} geschildert, müssen die Logs an ein Partnersystem weitergeleitet werden.
 
 \subsubsection{Structured Logging}
 
 Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun jedoch Informationen aus einer großen Menge von Logs zu extrahieren sind, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirke, kommt Structured Logging ins Spiel. Bei Structured Logging werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch eine menschenlesbare Logmeldung sein, oder auch die Logmeldung bspw. als JSON-Objekt definieren. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
-
-\subsection{Metriken}
-
-Mit Metriken versucht man Softwareeigenschaften in Zahlenwerten abzubilden. Diese Zahlenwerte werden über Messungen ermittelt. Beispiele für Metriken sind:
-
-\begin{enumerate}
-	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage
-	\item Eine Messung der CPU-Auslastung
-\end{enumerate}
-
-\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
-\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.} 
-
-Mit den Ergebnissen lassen sich wiederum Rückschlüsse zu Softwareeigenschaften ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
 
 \subsection{Tracing}
 \label{sec:tracing}
@@ -62,6 +48,20 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 	\captionof{figure}{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
 	\label{fig:otel-temporal-relationship}
 \end{minipage}
+
+\subsection{Metriken}
+
+Mit Metriken versucht man Softwareeigenschaften vergleichbar abzubilden. Hierfür werden einzelne Messungen durchgeführt, die dann mit anderen Messungen derselben Kategorie gegenübergestellt werden. Mit den Gegenüberstellungen lassen sich wiederum Rückschlüsse zu Softwareeigenschaften ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
+
+Beispiele für Metriken sind:
+
+\begin{enumerate}
+	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage
+	\item Eine Messung der CPU-Auslastung
+\end{enumerate}
+
+\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
+\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.}
 
 \subsection{Fehlerberichte}
 
@@ -151,6 +151,8 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 
 \footnotetext{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}
 
+\newpage
+
 \section{Werkzeuge und Technologien}
 \label{sec:werkzeuge-und-technologien}
 
@@ -164,7 +166,20 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 
 Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung in Frage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
 
-Des Weiteren kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, aufgrund dessen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
+\subsection{Weitere Werkzeuge}
+\label{sec:weitere-werkzeuge}
+
+Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren Werkzeuge und Technologien tiefergehend betrachtet. Deshalb werden weitere Funde, die nicht betrachtet wurden, hier kurz notiert:
+
+\begin{itemize}
+	\item APM \& RUM: AppDynamics, DataDog
+	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
+	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
+\end{itemize}
+
+Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
+
+Neben den Technologien kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, aufgrund dessen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
 
 \newpage
 
@@ -192,19 +207,6 @@ In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Softwa
 	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
 	\label{fig:otel-components}
 \end{figure}
-
-\subsection{Weiteres}
-\label{sec:weitere-werkzeuge}
-
-Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren Werkzeuge und Technologien tiefergehend betrachtet. Deshalb werden weitere Funde, die nicht betrachtet wurden, hier kurz notiert:
-
-\begin{itemize}
-	\item APM \& RUM: AppDynamics, DataDog
-	\item Error Monitoring: Airbrake, Instabug, Rollbar, Bugsnag, TrackJS
-	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
-\end{itemize}
-
-Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
 
 \subsection{New Relic}
 
@@ -324,6 +326,7 @@ Leider ist TraVista keine ausgereifte Software und wird seit einigen Monaten nic
 \end{figure}
 
 \subsection{FAME}
+\label{sec:fame}
 
 2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME\footnotemark{} genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
 
@@ -332,6 +335,7 @@ Leider ist TraVista keine ausgereifte Software und wird seit einigen Monaten nic
 In dem Bericht wurde erforscht, ob die kombinierten Daten aus Nutzerfeedback und Monitoring dabei helfen können, um neue Anforderungen zu ergründen. Auf Basis dieser Forschungsfrage wurde das Framework erstellt und es konnte am Ende ein Mehrwert für die SEnerCon GmbH identifiziert werden.
 
 \subsection{The Kaiju Project}
+\label{sec:kaiju}
 
 Scrocca \etal \cite{TheKaijuProjectPaper} identifizierten 2020 eine Lücke im Gebiet der Observability, nämlich fehlt ein Werkzeug, welches die unterschiedlichen Datentypen Logs, Traces und Metriken kombiniert sammeln und aufbereiten kann und dies in quasi-Echtzeit. Aus diesem Mangel ergab sich die Forschungsfrage, ob eine Kombination dieser Datenkategorien einen Mehrwehrt für die Nachvollziehbarkeit bedeuten kann.
 

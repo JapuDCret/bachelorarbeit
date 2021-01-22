@@ -12,52 +12,60 @@
 	
 	\subsection{Datenverarbeitung}
 
-	Auf Basis der zuvor vorgestellten Methoden und Praktiken wird nun eine sinnvolle Kombination für das Frontend konzeptioniert, die als Ziel hat, die Nachvollziehbarkeit nachhaltig zu erhöhen. Es werden die Disziplinen Datenerhebung, -auswertung und -visualisierung unterschieden und nacheinander beschrieben. Danach und darauf aufbauend wird eine grobe Architektur vorgestellt, die diese Ansätze in ein Gesamtbild bringt.
+	Auf Basis der zuvor vorgestellten Methoden und Praktiken wird nun eine sinnvolle Kombination für das Frontend konzeptioniert, die als Ziel hat, die Nachvollziehbarkeit nachhaltig zu erhöhen. Es werden die Grunddisziplinen Datenerhebung, -auswertung und -präsentation unterschieden und nacheinander beschrieben. Danach und darauf aufbauend wird eine grobe Architektur vorgestellt, die diese Ansätze in ein Gesamtbild bringt.
 		
 	\subsubsection{Erhebung}
-		
-	Im Standardfall erhalten Betreiber und Entwickler, bis auf die Kommunikation mit Partnersystemen, keine Informationen von einer SPA. Deswegen sollen zunächst Loginformationen des Frontends erhoben und an ein weiteres System gesendet werden. Hierbei ist eine Unterscheidung sinnvoll, welche Logmeldungen tatsächlich gesendet werden sollen (bspw. anhand der Log Kritikalität). Diese Unterscheidung sollte konfigurativ änderbar sein. Dieser Datenstrom wird erfahrungsgemäß unregelmäßig aber doch schon sehr häufig mit Daten befüllt, um eine gute Nachvollziehbarkeit zu erreichen.
-		
-	Neben den Loginformationen sollten nicht gefangene Fehler und optional gefangene Fehler an ein weiteres System weitergeleitet werden (vgl. \autoref{anf:2020}). Dabei sollen alle relevanten und zugreifbaren Informationen mitgesendet werden.
-		
-	Eine Datenerhebung wie beim Real-User-Monitoring, wo jede Benutzerinteraktion aufgezeichnet wird, um bspw. Klickpfade zu optimieren oder um festzustellen wie lange ein Nutzer sich auf einer Seite aufhielt, wird nicht umgesetzt. Jedoch ist ein Session-Replay Mechanismus enorm hilfreich und gewünscht, welcher ebenso jede Benutzerinteraktion aufzeichnen muss. Damit nicht zu viele Daten erhoben werden und damit nicht jede Nutzersitzung mitgeschnitten wird, soll die Aufzeichnung erst nach Einwilligung und Aktivierung seitens des Nutzers erfolgen oder bei speziellen Umgebungen ggf. automatisch (bspw. einer Staging-Umgebung). Weiterhin könnten die Loginformationen nach dieser Einwilligung auch feingranularer übertragen werden, bspw. ohne Einwilligung würden Logs der Kritikalität INFO und höher übertragen werden und mit Einwilligung auch Logs der Kritikalität DEBUG und höher.
-		
-	Des Weiteren soll ein Tracing der Kommunikation zwischen Frontend und Partnersystemen eingesetzt werden. Hierbei könnten auch wichtige Verarbeitungsmethoden des Frontends im Tracing erfasst werden, dies wird jedoch hier nicht definiert und ist Teil der eigentlichen Implementierung. Es soll, wenn möglich, auf den neuen Standard OpenTelemetry (OTel) aufgesetzt werden. Hierdurch wird das Erheben von Tracing- und Metrikdaten standardisiert und zukünftig auch für Logdaten möglich. Auf Basis von OTel sollen beispielhaft Metriken erfasst werden, um das Anwendungsverhalten nachzuhalten und zu überwachen. Durch diese Metriken können Aspekte eines Application Performance Monitorings erfüllt werden.
-		
-	Alle gesendeten Datensätze sollen möglichst mit Metadaten angereichert werden, die einerseits den Nutzer, die Umgebung und die Anwendung identifizieren. Diese Daten umfassen u. A.: Zeitstempel, Session-Id, User-Agent, IP, Hostsystem.
-		
+	
+	Wie zuvor in \autoref{sec:nachvollziehbarkeit-bei-spas} beschrieben, erhalten Betreiber und Entwickler im Normalfall nur unzureichende Information über das Anwendungsverhalten oder die getätigten Nutzerinteraktionen bei einer SPA. Aus diesem Grund sollen explizit weitere Daten erhoben werden, um die Nachvollziehbarkeit zu erhöhen.
+	
+	Wie aus den Erkenntnissen von FAME (\autoref{sec:fame}) und Kaiju (\autoref{sec:kaiju}) zu deuten ist, gibt es durch die Verknüpfung von verschiedenen Datenkategorien einen Mehrwert für die Verständnis von Betreibern und Entwicklern. Deshalb sollen in der Lösung die 4 Datenkategorien \enquote{Logs}, \enquote{Metriken}, \enquote{Traces} und \enquote{Fehler} erhoben und an Partnersysteme weitergeleitet werden.
+	
+	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefgehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein können. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht einen zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, soll die Aufzeichnung nicht standardmäßig aktiv sein.
+	
 	\subsubsection{Auswertung}
-		
-	Bei der Auswertung der Daten soll hauptsächlich auf bestehende Technologien aufgebaut werden, wie z.B. die Technologien, die in \autoref{sec:werkzeuge-und-technologien} evaluiert wurden. Das heißt im Konzept kann nicht im Detail darauf eingegangen werden, wie diese Daten tatsächlich verarbeitet werden und dies ist auch nicht direkt von Relevanz. Eine Beschreibung folgt im \autoref{sec:technologie-stack} sowie beim Einsatz von den Technologien selbst.
-		
-	Lediglich bei der Vorverarbeitung des Tracings im Client kann nun bereits eine Aussage getroffen werden. Wird hierbei nämlich, wie gewünscht, auf OTel gesetzt, dann erfolgt eine Vorverarbeitung von den Komponenten von OTel selbst. Dabei werden u. A. die Spankontexte fürs Tracing und die Beziehung zwischen den Spans gepflegt.
 	
-	\subsubsection{Visualisierung}
-		
-	Wie bei der Auswertung wird auch die Visualisierung stark abhängig von den eingesetzten Technologien sein. Nichtsdestotrotz können bereits hier gewünschte Ansichten/Funktionen definiert werden:
+	Die genaue Auswertung ist Teil der Implementierung und diese Disziplin sieht keine direkten Vorgaben vor. Jedoch sind die gemeldeten Daten mit Kontextinformationen anzureichern, wenn möglich. Diese umfassen bspw. Zeitstempel, Session-Id, User-Agent, IP, Hostsystem.
 	
-	\begin{itemize}
-		\item Die Logdaten sollen abrufbar sein und filterbar sein.
-		\item Fehlerinformationen sind gesondert der Logdaten darzustellen.
-		\begin{itemize}
-			\item Fehler sollen gruppiert werden, um gleiche Fehlerbilder zusammenzufassen.
-			\item Zu den Fehlerbildern sollen übergreifende Informationen dargestellt werden.
-			\item Es lassen sich auch einzelne Fehler einer Fehlergruppe anzeigen.
-		\end{itemize}
-		\item Für einen ausgewählten Trace soll ein Trace-Gantt-Diagramm dargestellt werden (vgl. \autoref{sec:tracing})
-		\item Die beispielhaften Metriken sind visuell darzustellen.
-		\item Die Daten zum Session-Replay sollen, wenn vorhanden, visuell dargestellt werden, sodass die Interaktionen des Nutzers nachzuvollziehen sind.
-	\end{itemize}
+	\subsubsection{Präsentation}
+	
+	Um ein zufriedenstellende Ergebnis zu gewährleisten, sollte die Lösung die Daten auf folgende Weise den Betreibern und Entwicklern präsentieren:
+	
+	\begin{enumerate}
+		\item Logdaten
+		\begin{enumerate}
+			\item Logdaten lassen sich einsehen.
+			\item Logdaten lassen sich basierend auf ihren Eigenschaften filtern.
+		\end{enumerate}
+		\item Fehler
+		\begin{enumerate}
+			\item Fehler lassen sich einsehen.
+			\item Fehler lassen sich basierend auf ihren Eigenschaften filtern.
+			\item Fehler lassen sich gruppieren.
+			\item Fehlergruppen lassen sich in Graphen visualisieren (bspw. Histogramm der Häufigkeit).
+		\end{enumerate}
+		\item Metriken
+		\begin{enumerate}
+			\item Metriken lassen sich in Graphen visualisieren.
+		\end{enumerate}
+		\item Traces
+		\begin{enumerate}
+			\item Traces lassen sich einsehen.
+			\item Traces lassen sich basierend auf ihren Eigenschaften filtern.
+			\item Traces lassen sich als ein Trace-Gantt-Diagramm darstellen.
+		\end{enumerate}
+		\item Session-Replay-Daten
+		\begin{enumerate}
+			\item Mithilfe der Session-Replay-Daten soll eine videoähnliche Nachstellung einer Sitzung erstellt werden.
+		\end{enumerate}
+	\end{enumerate}
 	
 	\subsection{Architektur}
-
-	Auf Basis der zuvor definierten Grundkonzepte zur Datenverarbeitung, wird nun eine grobe Architektur konzipiert. Im Allgemeinen sollen die Funktionsbereiche Log Management, Error Monitoring, Application Monitoring, Tracing sowie Session-Replay erfüllt werden. Im Client soll es für jeden Funktionsbereich eine eigene Komponente geben, die die jeweiligen Daten erfasst und an das entsprechende Partnersystem weiterleitet. Lediglich die Erfassung von Metriken und Tracing soll auf Basis von OpenTelemetry erfolgen und daher dieselben Komponenten verwenden. Dieser Aufbau lässt sich auf der linken Seite der \autoref{fig:grobe-architektur} betrachten.
 	
-	Es wurde nach \autoref{anf:3100} versucht die Anzahl der Partnersysteme gering zu halten. Für die Datenverarbeitung, -analyse und -visualisierung von Logs, Fehlern und Metriken soll ein einzelnes System zuständig sein. Denn für die Bewältigung dieser verschiedenen Kategorien sind ähnliche Disziplinen notwendig, wodurch ein einzelnes System ausreichen sollte. Grundlegende Funktionen dieses Systems belaufen sich auf die Langzeitspeicherung, eine performante Suche und die Visualisierung in Graphen.
+	Auf Basis der zuvor beschriebenen Grunddisziplinen wird nun eine beispielhafte Umsetzung dessen konzipiert. Genauer wird eine vorgeschlagen, die definiert welche Methoden und Praktiken anzuwenden sind, mit welchen Werkzeugen und wie die einzelnen Komponenten miteinander kommunizieren.
 	
-	Für Tracing wird ein zweites System benötigt, hauptsächlich weil in der Evaluation kein Werkzeug identifiziert werden konnte, welches neben den 3 zuvor genannten Datenkategorien auch Tracingdaten gut unterstützt. Tracingdaten sind zudem anders, dadurch dass sie einen hohen Datendurchsatz und ein hohes Volumen aufweisen.
+	 Die genaue Erhebung der Daten ist Teil der Implementierung und wird hier nicht näher bestimmt. Jedoch ergeben sich aus der zuvor definierten Erhebung daraus die Datenkategorien, welche von einem entsprechenden Partnersystem zu konsumieren und zu verarbeiten sind. In dieser Architekturdefinition wird nicht auf spezielle Werkzeuge oder Technologien eingegangen, sondern auf den zuvor identifizierten Funktionsgebieten werden allgemein Partnersysteme benannt. Hierbei wurde zudem versucht möglichst viele Funktionsgebiete über die gleichen Partnersysteme abzubilden (vgl. \autoref{anf:3100}), die Machbarkeit einer solchen Verknüpfung wurde auf den Ergebnissen von \autoref{chap:methoden-und-praktiken} basiert. So soll für die Verarbeitung von Fehler-, Log-, und Metrikdaten ein einzelnes Partnersystem verantwortlich sein, welches ermöglicht diese zu konsumieren, speichern, durchsuchen und diese zu visualisieren. In der \autoref{fig:grobe-architektur} ist dieses System als \enquote{Log- und Monitoringplattform} vorzufinden.
 	
-	Ein drittes System soll die Funktionalität rund um Session-Replay übernehmen. Hierbei liegt auch der Grund darin, dass kein Werkzeug identifiziert werden konnte, welches neben Session-Replay auch andere Disziplinen erfüllen kann. Weiterhin sind, wie beim Tracing, die Eigenschaften der Daten anders, denn hier werden nahezu konstant Daten versendet, um alle Benutzerinteraktionen und das Anwendungsverhalten nachstellen zu können.
+	Um Traces zu konsumieren und den Betreibern und Entwicklern aufbereitet zu visualisieren soll ein weiteres Partnersystem eingsetzt werden. Grund hierfür ist, dass kein Werkzeug identifiziert werden konnte, welches neben Traces noch andere Datenkategorien zufriedenstellend abdecken kann. Weiterhin ist ein drittes System notwendig, um die Funktionalität des Session-Replays einzubinden. Session-Replay ist ein spezielles und sehr konkretes Aufgabengebiet und es konnte kein Werkzeug identifiziert werden, welches sich nicht nur auf dieses Gebiet spezialisiert.
 	
 \begin{figure}[H]
 	\centering
@@ -66,49 +74,33 @@
 	\label{fig:grobe-architektur}
 \end{figure}
 
-Wie in der Datenerfassung erwähnt, werden die einzelnen Datentypen unterschiedlich erhoben und besitzen somit auch andere Eigenschaften. Wie bei Big Data \cite{ZikopoulosUnderstandingBigData}, lassen sich auch hier die Eigenschaften Volume, Velocity und Variety identifizieren. Der Aspekt Volume ist weniger präsent, denn die Datenmengen sind nicht vergleichbar mit echten Big-Data-Anwendungen. Genau ist dies nicht prognostizierbar, aber in der Evaluierung des Stands der Technik, ließ sich ein Datendurchsatz von 1 MB/min feststellen - somit stellt dies im Frontend keine Herausforderung dar, jedoch in den verarbeitenden Systemen kann dies natürlich durch eine große Menge an Frontends multipliziert werden, was jedoch nicht im Fokus der Arbeit steht.
-
-Eine Variety der Daten, also Unterschiedlichkeit der Datenstruktur, ist definitiv vorhanden und entspringt den verschiedenen Funktionsgebieten. Auch innerhalb derselben Datenströme kann eine Variety identifiziert werden, denn bspw. sind Logmeldungen sehr individuell, sie folgen meist nicht streng einem Format und enthalten unterschiedliche Mengen an Informationen.
-
-Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dessen für das vorhergehende Konzept findet sich in \autoref{fig:grobe-architektur-datendurchsatz}.
-	
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-datendurchsatz.png}
-	\caption{Grobe Architektur mit hervorgehobenem Datendurchsatz}
-	\label{fig:grobe-architektur-datendurchsatz}
-\end{figure}
+%Wie in der Datenerfassung erwähnt, werden die einzelnen Datentypen unterschiedlich erhoben und besitzen somit auch andere Eigenschaften. Wie bei Big Data \cite{ZikopoulosUnderstandingBigData}, lassen sich auch hier die Eigenschaften Volume, Velocity und Variety identifizieren. Der Aspekt Volume ist weniger präsent, denn die Datenmengen sind nicht vergleichbar mit echten Big-Data-Anwendungen. Genau ist dies nicht prognostizierbar, aber in der Evaluierung des Stands der Technik, ließ sich ein Datendurchsatz von 1 MB/min feststellen - somit stellt dies im Frontend keine Herausforderung dar, jedoch in den verarbeitenden Systemen kann dies natürlich durch eine große Menge an Frontends multipliziert werden, was jedoch nicht im Fokus der Arbeit steht.
+%
+%Eine Variety der Daten, also Unterschiedlichkeit der Datenstruktur, ist definitiv vorhanden und entspringt den verschiedenen Funktionsgebieten. Auch innerhalb derselben Datenströme kann eine Variety identifiziert werden, denn bspw. sind Logmeldungen sehr individuell, sie folgen meist nicht streng einem Format und enthalten unterschiedliche Mengen an Informationen.
+%
+%Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dessen für das vorhergehende Konzept findet sich in \autoref{fig:grobe-architektur-datendurchsatz}.
+%	
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-datendurchsatz.png}
+%	\caption{Grobe Architektur mit hervorgehobenem Datendurchsatz}
+%	\label{fig:grobe-architektur-datendurchsatz}
+%\end{figure}
 
 \pagebreak
 
 	\subsection{Technologie-Stack}
 	\label{sec:technologie-stack}
-
-	Im Frontend sind für den Logger und den Error-Handler keine speziellen Technologien zu verwenden, es soll somit auf die erstellte Demoanwendung aufgesetzt werden. Da die Demoanwendung in Angular geschrieben ist, soll ein ErrorHandler implementiert werden, welcher die Information dann weiterleitet. Die Tracing- und Metrikdaten werden mit OpenTelemetry JavaScript-Komponenten erfasst und an ein Partnersystem gesendet. Für die Session-Replay-Daten wird jedoch auf eine proprietäre Komponente gesetzt, denn bei der Evaluierung konnte keine quelloffene Datenerhebung identifiziert werden.
 	
-	Als Log- und Monitoringsystem soll Splunk zum Einsatz kommen. Nach der Evaluation von Splunk lassen sich hiermit gut die drei Datenkategorien Logs, Metriken und Fehler speichern, analysieren und visualisieren. Alternativen wären u. A. Dynatrace und New Relic, basieren jedoch auf einer proprietären Datenerhebung. Diese bieten eher ausgefertigte Dashboards und Graphen, mit zu weniger Flexibilität zur Datenvisualisierung. Honeycomb wäre zudem auch eine Alternative, eignet sich aber weniger für strikte Logdaten. Unter anderem werden die Daten bei Honeycomb nur für 60 Tage gespeichert. Somit blieb Splunk als einziger Kandidat, der den gewünschten Rahmen erfüllt. Es sollten jedoch auch andere Werkzeuge Splunk ersetzen können, bspw. der Elastic Stack könnte hierfür auch geeignet sein, dieser wurde jedoch nicht zuvor evaluiert.
+	Auf Basis der zuvor erstellten Architektur wird sich nun für spezielle Technologien entschieden, mit der diese Architektur umgesetzt werden soll. Weiterhin wird behandelt, wie die Daten vom Frontend aus erhoben werden sollen und wie sie an die Partnersysteme gelangen.
 	
-	Für das Partnersystem, welches Session-Replay übernimmt, wurde nur ein Werkzeug evaluiert, nämlich LogRocket. Da diese Art von Software als sehr zielführend empfunden wurde, wird LogRocket somit in der Lösung verwendet. Jedoch ist anzumerken, dass ähnlich wie bei Splunk, LogRocket nicht zwingend vorgeschrieben ist, sondern gegen ein äquivalentes Werkzeug austauschbar ist (vgl. \autoref{sec:weitere-werkzeuge}). LogRocket kann jedoch auch überzeugen, denn es bietet Funktionen, um datenschutzkritische Aspekte zu beachten aber auch um die Performanz der eigentlichen Anwendung nicht zu stark einzuschränken. So wird LogRockets eigentliche Logik erst nach dem Seitenladen dynamisch nachgeladen und die Hauptarbeit findet generell in Worker-Threads statt, nicht im Hauptthread \cite{LogRocketPerformance}. Des Weiteren schränkt LogRocket die Aufnahmequalität ein, wenn eine unzureichende Bandbreite bemerkt wird.
-
-\begin{wrapfigure}[9]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=\linewidth]{img/04_erstellung-poc/ComparisonDataSerializationFormats_figure4.png}
-\caption{Serialisierte Datengröße je Format \cite{ComparisonDataSerializationFormats}}
-\label{fig:serialized-data-size}
-\end{wrapfigure}
+	Für die \enquote{Log- und Monitoringplattform} wurde sich für Splunk entschieden, denn auf Basis der Evaluierung konnte festgestellt werden, dass Splunk die drei gewünschten Datenkategorien Logs, Metriken und Fehler zufriedenstellend unterstützt. Es wurde sich gegen New Relic und Dynatrace entschieden, da es diesen Werkzeugen an Flexibilität fehlt und sie viele Funktionen anbieten, die für die Lösung nicht notwendig sind. Eine weitere Alternative ist der Elastic Stack, welcher jedoch nicht näher evaluiert wurde. Somit wird Splunk eingesetzt, aber für eine äquivalente Lösung kann Splunk durch ein gleichwertiges Werkzeug ausgetauscht werden.
 	
-	Allgemein werden bei LogRocket zudem Daten nicht im JSON-Format kommuniziert, sondern mit Google Protobufs (protocol buffers) \cite{GoogleProtobufs}, welche effizienter sind (siehe \autoref{fig:serialized-data-size}). Die Verwendung von Protobufs könnte ggf. auch interessant sein bei der Datenübertragung der anderen Datenkategorien, jedoch wird sich an dieser Stelle nicht darauf festgelegt. Sollte eine hohe Übertragungseffizienz tatsächlich vonnöten sein, so werden Protobufs ggf. näher betrachtet.
-
-\begin{wrapfigure}[9]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=\linewidth]{img/04_erstellung-poc/jaeger_architecture-v1_edited.png}
-\caption{Architektur von Jaeger, angepasst \cite{JaegerArchitecture}}
-\label{fig:jaeger_architecture}
-\end{wrapfigure}
+	Für das Partnersystem, welches sich mit den Tracedaten befasst, wurde sich für Jaeger entschieden. Die Entscheidung wurde auf der Basis getroffen, dass Jaeger einen moderner Tracingdienst darstellt, welcher zudem quelloffen entwickelt wird. Weiterhin ist in Zukunft eine Unterstützung des OpenTelemetry-Standards geplant, was durch die standardisierte Schnittstelle die Anbindung an bestehende Systeme vereinfachen wird. Des Weiteren erfüllt Jaeger alle aufgestellten Kriterien und erzeugt zudem ein Abbild der Systemarchitektur auf Basis der Traces.
 	
-	Um die Tracingdaten zu beleuchten und so Einblick in den architektonischen Verlauf eines Aufrufs zu erhalten, wird Jaeger verwendet. Jaeger bietet jene Tracing-Visualisierungen, die Splunk fehlen und ist zudem darauf spezialisiert Tracingdaten zu speichern und zu analysieren. Um diese Funktionen anzubieten und eine schnelle Datenabfrage zu gewährleisten, besitzt Jaeger eine darauf konzipierte Infrastruktur (vgl. \autoref{fig:jaeger_architecture}). Jaeger unterstützt die beiden NoSQL Datenbanken Cassandra und ElasticSearch und für Analyse- und Verarbeitungszwecke wird Apache Spark eingesetzt.
+	Um die Session-Replay-Funktionalität einzubringen wird in diesem Konzept LogRocket vorgeschlagen. LogRockets Nachstellung einer Sitzung ist nicht nur wie gefordert video-ähnlich, sondern auch interaktiv. Die gesamte HTML-Struktur wird nachgestellt und kann so zu jedem Zeitpunkt begutachtet werden.
 	
-	Somit ergibt sich durch den definierten Technologiestack die in \autoref{fig:architektur-technologien} zu betrachtende Architektur.
+	Der sich daraus ergebende Technologiestack, angewandt auf die Architektur, ist in \autoref{fig:architektur-technologien} zu betrachten. Wie bei Splunk erwähnt sind auch die anderen Werkzeuge durch gleichwertige Werkzeuge ersetzbar, so können individuelle Anpassungen erfolgen und betriebliche Gegebenheiten zu berücksichtigen.
 	
 \begin{figure}[H]
 	\centering
@@ -119,13 +111,13 @@ Der Aspekt des Velocity ist zudem auch sehr wichtig und eine Visualisierung dess
 
 	\subsection{Übertragbarkeit}
 	
-	Übertragbarkeit beschäftigt sich mit der Eigenschaft eines Ansatzes oder Konzeptes auch für andere Softwareprojekte anwendbar zu sein. Grundlegend muss genannt werden, dass das Konzept sich auf Softwareprojekte, die JavaScript-basierte Webanwendungen enthalten, beschränkt. Somit wird auch die Übertragbarkeit auch nur für ähnliche Softwareprojekte bewertet.
+	Übertragbarkeit beschäftigt sich mit der Eigenschaft eines Ansatzes in verschiedene Situationen anwendbar zu sein. Ein Ansatz ist nicht übertragbar, wenn zu vielen Annahmen über die Situation getroffen werden.
 	
-	Da das Konzept nicht eine Basisstruktur darstellt, auf das man ein Projekt basieren kann, sondern viel eher ein bestehendes Projekt erweitert, lässt sich das Konzept bei reellen Projekten in verschiedensten Phasen integrieren. Weiterhin wurden die Grundkonzepte, wie die Erhebung von Tracingdaten, nicht auf etablierten Technologien basiert, sondern viel eher auf die zugrundeliegenden Disziplinen. Deswegen sind alle vorgeschlagenen Technologien und Partnersysteme austauschbar, um verschiedene Projekt- und Unternehmensvorgaben zu erfüllen. Hinzukommend ist das Konzept modular zu verstehen, denn einzelne Disziplinen werden von spezialisierten Systemen übernommen und sind somit auch austausch- oder entfernbar. Diese Flexibilität der Auswahl an Komponenten und der Zusammensetzung verspricht Projektteams eine reell umsetzbare Lösung.
-
-	Ein identifizierbares Manko ist jedoch die Menge an Partnersystemen, die die Lösung vorschlägt. Dies kann aus Wartungs- oder Kostengründen nicht für jedes Projektteam attraktiv sein, jedoch konnte leider keine weitere Verringerung der Partnersysteme erzielt werden. Wenn aber auf einer der Datenkategorien verzichtet werdem kann, dann ließe sich ggf. auch ein Partnersystem entfernen. Sollte aber eine Technologie existieren oder sich über Zeit entwickeln, welche mehrere Disziplinen löst, so kann die Anzahl ebenso verringert werden. Dabei ist aber auch anzumerken, dass damit eine gewisse Flexibilität verloren geht. Es lässt sich aber nicht definitiv eine Bewertung hierzu erstellen, da eben solch eine Technologie nicht gefunden werden konnte.
+	Das zuvor definierte Konzept wurde getrennt von der Demoanwendung erstellt und ist somit nicht auf dessen Eigenschaften beschränkt. Das Konzept nimmt jedoch dennoch an, dass es sich um eine Webanwendung handelt, auf das es anzuwenden ist. Weiterhin wird angenommen, dass Quellcodeänderungen vorgenommen werden können und das Partnersysteme hinzugefügt sowie angebunden werden können.
 	
-	Alles in Allem, sollte das vorgeschlagene Konzept aber für den Großteil von Softwareprojekten in der Frontendentwicklung adaptierbar sein. Eine tiefergehende Betrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, auf Basis der tatsächlichen Implementierung. Diese Übertragbarkeit wird wahrscheinlich nicht gleich bleiben, denn die Implementierung wird bspw. einige spezifische Entscheidungen beinhalten, die eine Übertragbarkeit behindern könnten.
+	Es wird jedoch nicht angenommen, dass die Partnersysteme exakt von den vorgeschlagenen Technologien realisiert werden. Vielmehr wurde die Funktionsgruppen definiert, zusammengefasst und darauf basierend eine Auswahl getroffen. Sowohl die Zusammenfassung der Funktionsgruppen als auch die Auswahl der eigentlichen Technologien sind individuell änderbar, sodass ein angepasstes aber äquivalent hilfreiches Konzept resultiert.
+	
+	Somit lässt sich abschließend betrachten, dass das Konzept eine akzeptable Übertragbarkeit aufweist. Eine tiefergehende Nachbetrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, im Anschluss an die Implementierung. Hierbei kann es zu Abweichungen zu dieser Bewertung der Übertragbarkeit kommen, aufgrund von Implementierungsdetails oder einem geänderten Vorgehen. Nun da das Konzept ausreichend beleuchtet wurde, wird sich im nächsten Abschnitt mit der eigentlichen Umsetzung dessen beschäftigt.
 
 \section{Implementierung}
 

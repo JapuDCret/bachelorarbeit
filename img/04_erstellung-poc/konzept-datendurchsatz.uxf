@@ -5,7 +5,7 @@
     <id>UMLDeployment</id>
     <coordinates>
       <x>200</x>
-      <y>120</y>
+      <y>130</y>
       <w>390</w>
       <h>340</h>
     </coordinates>
@@ -17,7 +17,7 @@ Browser</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>180</x>
-      <y>60</y>
+      <y>70</y>
       <w>440</w>
       <h>420</h>
     </coordinates>
@@ -29,7 +29,7 @@ Client PC</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1220</x>
-      <y>140</y>
+      <y>150</y>
       <w>260</w>
       <h>250</h>
     </coordinates>
@@ -41,18 +41,18 @@ Client PC</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1230</x>
-      <y>190</y>
+      <y>200</y>
       <w>230</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>Log- and Monitoring-Platform</panel_attributes>
+    <panel_attributes>Log- und Monitoringplattform</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>220</x>
-      <y>180</y>
+      <y>190</y>
       <w>340</w>
       <h>260</h>
     </coordinates>
@@ -64,7 +64,7 @@ Frontend</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>400</x>
-      <y>230</y>
+      <y>240</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
@@ -76,7 +76,7 @@ Logger</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>230</y>
+      <y>240</y>
       <w>630</w>
       <h>50</h>
     </coordinates>
@@ -91,7 +91,7 @@ Logs</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>400</x>
-      <y>330</y>
+      <y>340</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
@@ -103,7 +103,7 @@ Tracer</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>400</x>
-      <y>280</y>
+      <y>290</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
@@ -115,7 +115,7 @@ Error Handler</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>400</x>
-      <y>380</y>
+      <y>390</y>
       <w>140</w>
       <h>40</h>
     </coordinates>
@@ -127,7 +127,7 @@ Session-Replay</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>350</y>
+      <y>360</y>
       <w>630</w>
       <h>190</h>
     </coordinates>
@@ -135,14 +135,14 @@ Session-Replay</panel_attributes>
 fg=#efb08c
 lw=3
 &lt;&lt;HTTP&gt;&gt;
-Trace Data</panel_attributes>
+Traces</panel_attributes>
     <additional_attributes>610.0;170.0;160.0;170.0;160.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
       <x>790</x>
-      <y>30</y>
+      <y>40</y>
       <w>260</w>
       <h>180</h>
     </coordinates>
@@ -154,7 +154,7 @@ Trace Data</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>800</x>
-      <y>80</y>
+      <y>90</y>
       <w>230</w>
       <h>120</h>
     </coordinates>
@@ -166,7 +166,7 @@ Java Runtime</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>150</y>
+      <y>160</y>
       <w>200</w>
       <h>80</h>
     </coordinates>
@@ -174,25 +174,25 @@ Java Runtime</panel_attributes>
 fg=#5aa469
 lw=1
 &lt;&lt;HTTP&gt;&gt;
-Data</panel_attributes>
+Daten</panel_attributes>
     <additional_attributes>180.0;10.0;90.0;10.0;90.0;60.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1230</x>
-      <y>460</y>
+      <y>470</y>
       <w>230</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Tracing Service</panel_attributes>
+    <panel_attributes>Dienst für Tracing</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1220</x>
-      <y>610</y>
+      <y>620</y>
       <w>260</w>
       <h>180</h>
     </coordinates>
@@ -204,18 +204,18 @@ Data</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1230</x>
-      <y>660</y>
+      <y>670</y>
       <w>230</w>
       <h>120</h>
     </coordinates>
-    <panel_attributes>Session-Replay Service</panel_attributes>
+    <panel_attributes>Dienst für Session-Replay</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>280</y>
+      <y>290</y>
       <w>630</w>
       <h>50</h>
     </coordinates>
@@ -223,14 +223,14 @@ Data</panel_attributes>
 fg=#5aa469
 lw=1
 &lt;&lt;HTTP&gt;&gt;
-Error data</panel_attributes>
+Fehler</panel_attributes>
     <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>390</y>
+      <y>400</y>
       <w>630</w>
       <h>350</h>
     </coordinates>
@@ -238,26 +238,26 @@ Error data</panel_attributes>
 fg=#d35d6e
 lw=4
 &lt;&lt;HTTP&gt;&gt;
-Session-Replay Data</panel_attributes>
+Session-Replay-Daten</panel_attributes>
     <additional_attributes>610.0;330.0;130.0;330.0;130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>240</x>
-      <y>230</y>
+      <y>240</y>
       <w>140</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>&lt;&lt;component&gt;&gt;
-Application</panel_attributes>
+Anwendung</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>620</y>
+      <y>630</y>
       <w>210</w>
       <h>30</h>
     </coordinates>
@@ -270,7 +270,7 @@ konstanter Datenstrom</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>180</x>
-      <y>580</y>
+      <y>590</y>
       <w>310</w>
       <h>200</h>
     </coordinates>
@@ -282,7 +282,7 @@ Legende</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>660</y>
+      <y>670</y>
       <w>210</w>
       <h>30</h>
     </coordinates>
@@ -295,7 +295,7 @@ nahezu konstanter Datenstrom</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>700</y>
+      <y>710</y>
       <w>210</w>
       <h>30</h>
     </coordinates>
@@ -308,7 +308,7 @@ häufige Kommunikation</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>740</y>
+      <y>750</y>
       <w>210</w>
       <h>30</h>
     </coordinates>
@@ -321,7 +321,7 @@ Kommunikation bei Ereignis</panel_attributes>
     <id>UMLDeployment</id>
     <coordinates>
       <x>1220</x>
-      <y>410</y>
+      <y>420</y>
       <w>260</w>
       <h>180</h>
     </coordinates>
@@ -333,7 +333,7 @@ Kommunikation bei Ereignis</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1290</x>
-      <y>230</y>
+      <y>240</y>
       <w>150</w>
       <h>40</h>
     </coordinates>
@@ -345,7 +345,7 @@ Log Management</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1290</x>
-      <y>330</y>
+      <y>340</y>
       <w>150</w>
       <h>40</h>
     </coordinates>
@@ -357,7 +357,7 @@ Application Monitoring</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1290</x>
-      <y>280</y>
+      <y>290</y>
       <w>150</w>
       <h>40</h>
     </coordinates>
@@ -369,7 +369,7 @@ Error Monitoring</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>610</x>
-      <y>320</y>
+      <y>330</y>
       <w>630</w>
       <h>50</h>
     </coordinates>
@@ -377,14 +377,14 @@ Error Monitoring</panel_attributes>
 fg=#e8c48d
 lw=2
 &lt;&lt;HTTP&gt;&gt;
-Metric Data</panel_attributes>
+Metriken</panel_attributes>
     <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>810</x>
-      <y>130</y>
+      <y>140</y>
       <w>200</w>
       <h>60</h>
     </coordinates>
