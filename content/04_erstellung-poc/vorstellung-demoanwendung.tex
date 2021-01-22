@@ -3,13 +3,15 @@
 
 Wie in \autoref{anf:1020} beschrieben, ist eine Demoanwendung zu erstellen, auf Basis dessen das Konzept anzuwenden ist und somit praktisch umgesetzt werden kann. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung und der repräsentativen Aufgabe, die diese übernimmt.
 
-In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung darstellt, wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um eine mit Angular erstellte SPA, die den Nutzer verschiedene, teils dynamische, Formulare ausfüllen lässt und am Ende diese Daten an einen Dienst sendet und ein Ergebnis erhält, welches dargestellt wird. Während der Eingabe der Formulare werden einzelne Werte gegen Dienste validiert.
+In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung darstellt, wird sie in Grundzügen die Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um einen Wizard, also einer Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Die ist zum Großteil clientseitig abgebildet und eine mit Angular erstellte SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizard werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
 
 Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und dies soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
-Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behaviour Driven Development (BDD). Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin \cite{Gherkin} Syntax geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
+Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior-Driven Development (BDD). BDD wurde 2006 erstmals von Dan North benannt und definiert \cite{IntroducingBDD}. Bei BDD werden User-Stories aus der Sicht eines äußerlichen Betrachters entworfen und geschrieben. Dabei umfassen die User-Stories Beispiele, wie die Anwendung in diesen Szenarien sich verhalten soll.
+
+Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin-Syntax \cite{Gherkin} geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
 
 \lstinputlisting[
   language = gherkin,
@@ -50,7 +52,9 @@ Neben des eigentlichen User-Interfaces soll auch ein Backend teil der Demoanwend
 
 \subsection{Backend}
 
-Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_k8s-deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, dargestellt als Kubernetes \cite{KubernetesComponents} Deployment Diagramm. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
+Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
+
+Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersysteme ermöglicht und welches Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und dabei führt es weitere Datenabfragen und Validitätsüberprüfungen durch.
 
 Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation erfolgen. Speziell wird bei einer solchen Architektur Tracing hilfreicher, um die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
 
@@ -65,11 +69,9 @@ Durch diese recht komplexe Architektur kann eine realitätsnahe Repräsentation 
 
 \subsection{Frontend}
 
-Das Frontend stellt das Herzstück der Demoanwendung dar und wurde auf Basis der Verhaltensdefinition erstellt. Wie beim Direktversicherer wurde es mit Angular erstellt und als zustandsreiche SPA umgesetzt. Genauere Implementierungsdetails werden jedoch nicht behandelt, außer sie sind relevant für die Lösung oder die Lösungsüberprüfung.
+Wie beim Direktversicherer wurde ein Wizard auf Basis von Angular erstellt, welcher als zustandsreiche SPA umgesetzt ist. In den folgenden Abbildungen \autoref*{fig:demoanwendung_vorstellung_01-warenkorb}-\autoref*{fig:demoanwendung_vorstellung_06-bestellbestaetigung} wird das Frontend anhand einer Beispieldurchlaufs vorgestellt.
 
-Das Frontend sowie das Backend wurden mit einigen Fehlern implementiert. Hintergrund ist, dass bei der Betrachtung der Lösung solche Fehler notwendig sind, um diese zu bewerten. Diese Fehler werden näher im nachfolgenden \autoref{subsec:fehlerszenarien} betrachtet.
-
-Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und das Layout verknüpft diese Seiten in einem blätternden Format, bei dem man vor- und zurückspringen kann. Dies kann in den folgenden 6 Abbildungen betrachtet werden.
+Wie in \autoref{anf:1020} definiert wurden in das Frontend einige Fehler eingebaut, damit diese, mit der zu erstellenden Lösung, aufgedeckt werden können. Diese Fehler werden näher im nachfolgenden \autoref{subsec:fehlerszenarien} betrachtet.
 
 \begin{figure}[H]
 	\centering
@@ -116,9 +118,9 @@ Die einzelnen Features der Verhaltensdefinition wurden als Seiten umgesetzt und 
 \subsection{Fehlerszenarien}
 \label{subsec:fehlerszenarien}
 
-Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern erstellt und es wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
+Wie zuvor erwähnt und in \autoref{anf:1020} gewünscht, besitzt die Demoanwendung einige simulierte Fehler. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern konzipiert. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
 
-Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden mit Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches die Szenarien berichtet bekommen oder selbst notiert hat.
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden folgen in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
 \subsubsection{\enquote{Keine Übersetzungen}}
 
@@ -132,7 +134,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
 
-- Ursache: Die Pods, die den Übersetzungsdienst enthalten werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, dieser ist in \autoref{fig:demoanwendung_k8s-deployment} visuell hervorgehoben. Wird man durch den LoadBalancer mit diesem Pod verbunden tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
+- Ursache: Die Pods, die den Übersetzungsdienst enthalten werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, weswegen er keine Übersetzungen der Artikel enthält. Wird zu diesem Pod verbunden, tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
 
 \subsubsection{\enquote{Gültige Straßen sind ungültig}}
 
@@ -178,10 +180,10 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 \subsection{Repräsentation}
 
-Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und größtenteils clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
+Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für das Kundenprojekt und im Allgemeineren auch für SPAs ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und zu großen Teilen clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
 
-Weiterhin ist durch die nicht simple Backend-Architektur auch eine realitätsnähere Infrastruktur gegeben. Die Microservice-orientierte Architektur stellt zudem einen modernen Ansatz dar \cite{MicroserviceArchitecture}.
+Weiterhin ist durch die nicht simple Backend-Architektur auch eine realitätsnähere Infrastruktur gegeben. Eine Microservice-orientierte Architektur stellt einen modernen Ansatz in der Softwareentwicklung dar \cite{MicroserviceArchitecture}.
 
-Dennoch muss gesagt werden, dass die Demoanwendung eine sehr vereinfachte Form einer modernen Webanwendung darstellt. Viel spezifischer in der Implementierung kann die Webanwendung jedoch auch nicht erstellt werden, da so die Übertragbarkeit zu anderen Projekten verloren ginge.
+Dennoch ist anzumerken, dass die Demoanwendung nur ein Modell einer tatsächlichen Webanwendung darstellt. Wie jedes Modell können nicht alle Gegebenheiten des zu modellierenden Sachverhalts nachgestellt werden. Jedoch ist durch den allgemein gehaltenen Anwendungsfall und die moderne Umsetzung eine Übertragbarkeit zu ähnlichen Projekten durchaus vorhanden.
 
 Nun da die Demoanwendung beschrieben ist, wird das Konzept erstellt, welches letztendlich auf die Demoanwendung anzuwenden ist. Das Konzept selber ist jedoch losgelöst von der Demoanwendung zu verstehen.

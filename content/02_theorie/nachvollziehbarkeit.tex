@@ -54,7 +54,7 @@ Neben CORS gibt es im Browser eine Möglichkeit zu bestimmen, welche Funktionali
 \subsection{Logdaten}
 \label{sec:logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer eher unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Hinzukommend ist es, durch die zuvor beschrieben Härtungsmaßnahmen von Browsern, nicht möglich das Log direkt in eine Datei zu schreiben.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Hinzukommend ist es, durch die zuvor beschrieben Härtungsmaßnahmen von Browsern, nicht möglich das Log direkt in eine Datei zu schreiben.
 
 Um die Logdaten also zu erheben, gilt es entweder ein spezielles Log-Framework in der Webanwendung zu verwenden oder die bestehende Schnittstelle zu überschreiben oder zu wrappen. Nachdem die Datenerhebung gewährleistet ist, gilt es jedoch zudem die Daten an ein Partnersystem weiterzuleiten, welches die Beachtung der zuvor beschriebenen Einschränkungen erfordert. Alles in Allem stellt sich die Logdatenerhebung als nicht trivial dar, eine genauere Betrachtung erfolgt in der Untersuchung bestehender Lösungen.
 
