@@ -20,7 +20,7 @@
 	
 	Wie aus den Erkenntnissen von FAME (\autoref{sec:fame}) und Kaiju (\autoref{sec:kaiju}) zu deuten ist, gibt es durch die Verknüpfung von verschiedenen Datenkategorien einen Mehrwert für die Verständnis von Betreibern und Entwicklern. Deshalb sollen in der Lösung die 4 Datenkategorien \enquote{Logs}, \enquote{Metriken}, \enquote{Traces} und \enquote{Fehler} erhoben und an Partnersysteme weitergeleitet werden.
 	
-	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefgehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein können. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht einen zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, soll die Aufzeichnung nicht standardmäßig aktiv sein.
+	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefer gehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein können. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht einen zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, soll die Aufzeichnung nicht standardmäßig aktiv sein.
 	
 	\subsubsection{Auswertung}
 	
@@ -28,7 +28,7 @@
 	
 	\subsubsection{Präsentation}
 	
-	Um ein zufriedenstellende Ergebnis zu gewährleisten, sollte die Lösung die Daten auf folgende Weise den Betreibern und Entwicklern präsentieren:
+	Um ein zufriedenstellendes Ergebnis zu gewährleisten, sollte die Lösung die Daten auf folgende Weise den Betreibern und Entwicklern präsentieren:
 	
 	\begin{enumerate}
 		\item Logdaten
@@ -65,7 +65,7 @@
 	
 	 Die genaue Erhebung der Daten ist Teil der Implementierung und wird hier nicht näher bestimmt. Jedoch ergeben sich aus der zuvor definierten Erhebung daraus die Datenkategorien, welche von einem entsprechenden Partnersystem zu konsumieren und zu verarbeiten sind. In dieser Architekturdefinition wird nicht auf spezielle Werkzeuge oder Technologien eingegangen, sondern auf den zuvor identifizierten Funktionsgebieten werden allgemein Partnersysteme benannt. Hierbei wurde zudem versucht möglichst viele Funktionsgebiete über die gleichen Partnersysteme abzubilden (vgl. \autoref{anf:3100}), die Machbarkeit einer solchen Verknüpfung wurde auf den Ergebnissen von \autoref{chap:methoden-und-praktiken} basiert. So soll für die Verarbeitung von Fehler-, Log-, und Metrikdaten ein einzelnes Partnersystem verantwortlich sein, welches ermöglicht diese zu konsumieren, speichern, durchsuchen und diese zu visualisieren. In der \autoref{fig:grobe-architektur} ist dieses System als \enquote{Log- und Monitoringplattform} vorzufinden.
 	
-	Um Traces zu konsumieren und den Betreibern und Entwicklern aufbereitet zu visualisieren soll ein weiteres Partnersystem eingsetzt werden. Grund hierfür ist, dass kein Werkzeug identifiziert werden konnte, welches neben Traces noch andere Datenkategorien zufriedenstellend abdecken kann. Weiterhin ist ein drittes System notwendig, um die Funktionalität des Session-Replays einzubinden. Session-Replay ist ein spezielles und sehr konkretes Aufgabengebiet und es konnte kein Werkzeug identifiziert werden, welches sich nicht nur auf dieses Gebiet spezialisiert.
+	Um Traces zu konsumieren und den Betreibern und Entwicklern aufbereitet zu visualisieren soll ein weiteres Partnersystem eingesetzt werden. Grund hierfür ist, dass kein Werkzeug identifiziert werden konnte, welches neben Traces noch andere Datenkategorien zufriedenstellend abdecken kann. Weiterhin ist ein drittes System notwendig, um die Funktionalität des Session-Replays einzubinden. Session-Replay ist ein spezielles und sehr konkretes Aufgabengebiet und es konnte kein Werkzeug identifiziert werden, welches sich nicht nur auf dieses Gebiet spezialisiert.
 	
 \begin{figure}[H]
 	\centering
@@ -98,7 +98,7 @@
 	
 	Für das Partnersystem, welches sich mit den Tracedaten befasst, wurde sich für Jaeger entschieden. Die Entscheidung wurde auf der Basis getroffen, dass Jaeger einen moderner Tracingdienst darstellt, welcher zudem quelloffen entwickelt wird. Weiterhin ist in Zukunft eine Unterstützung des OpenTelemetry-Standards geplant, was durch die standardisierte Schnittstelle die Anbindung an bestehende Systeme vereinfachen wird. Des Weiteren erfüllt Jaeger alle aufgestellten Kriterien und erzeugt zudem ein Abbild der Systemarchitektur auf Basis der Traces.
 	
-	Um die Session-Replay-Funktionalität einzubringen wird in diesem Konzept LogRocket vorgeschlagen. LogRockets Nachstellung einer Sitzung ist nicht nur wie gefordert video-ähnlich, sondern auch interaktiv. Die gesamte HTML-Struktur wird nachgestellt und kann so zu jedem Zeitpunkt begutachtet werden.
+	Um die Session-Replay-Funktionalität einzubringen wird in diesem Konzept LogRocket vorgeschlagen. LogRockets Nachstellung einer Sitzung ist nicht nur wie gefordert videoähnlich, sondern auch interaktiv. Die gesamte HTML-Struktur wird nachgestellt und kann so zu jedem Zeitpunkt begutachtet werden.
 	
 	Der sich daraus ergebende Technologiestack, angewandt auf die Architektur, ist in \autoref{fig:architektur-technologien} zu betrachten. Wie bei Splunk erwähnt sind auch die anderen Werkzeuge durch gleichwertige Werkzeuge ersetzbar, so können individuelle Anpassungen erfolgen und betriebliche Gegebenheiten zu berücksichtigen.
 	

@@ -22,12 +22,12 @@ Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \
 
 \subsubsection{Structured Logging}
 
-Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun jedoch Informationen aus einer großen Menge von Logs zu extrahieren sind, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirke, kommt Structured Logging ins Spiel. Bei Structured Logging werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch eine menschenlesbare Logmeldung sein, oder auch die Logmeldung bspw. als JSON-Objekt definieren. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
+Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun jedoch Informationen aus einer großen Menge von Logs zu extrahieren sind, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured Logging ins Spiel. Bei Structured Logging werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch eine menschenlesbare Logmeldung sein oder auch die Logmeldung bspw. als JSON-Objekt definieren. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
 
 \subsection{Tracing}
 \label{sec:tracing}
 
-Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Applikation bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
+Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
 OpenTracing definiert zwei grundlegende Objekte: Traces und Spans. Ein Trace ist eine Menge an Events, die über eine einzelne logische Aktion - wie z. B. den Druck eines Knopfes - ausgelöst wurde oder resultiert. Spans besitzen den Namen einer Methode oder Operation, welche der Span umschließt. Wird in der Methode oder Operation eine weitere Methode oder Operation aufgerufen, welche von einem Span umschlossen ist, so ist dies nun ein Kindspan des ursprünglichen Spans. Spans haben einen Start- sowie einen Endzeitpunkt und sie speichern die Beziehung zu ihrem Elternspan (außer es handelt sich um den \enquote{root}-Span). Sie können darüber hinaus Attribute enthalten, sowie eingetretene Events.
 
@@ -83,7 +83,7 @@ In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und 
 
 \subsection{Observability}
 
-In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert,    um diese zu beschreiben. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability enstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
+In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert, um diese zu beschreiben. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability entstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
 
 %Observability hat allgemeiner als Ziel, dass Anwendungen und Systeme exakt betrachtet werden können, um den Verantwortlichen zu ermöglichen, dass  \cite{DistributedSystemsObservability}.
 
@@ -107,7 +107,7 @@ Einer der wichtigsten Punkte beim Log Management, ist der Umgang mit großen Dat
 
 Beim Application Performance Monitoring werden Messdaten innerhalb von Anwendungen gesammelt, um das Anwendungsverhalten nachvollziehbar zu gestalten \cite{StudyingTheEffectivenessOfAPMTools}. Auf Basis der Daten lassen sich u. A. Abweichungen von der Norm feststellen, von einzelnen Systemen oder vom aktuellen Gesamtsystem zu einem vorherigen Zeitpunkt.
 
-Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcennutzung, überprüfen aber auch spezielle Faktoren, wie die Ausführungszeit einer wichtigen Methoden, lassen sich so beleuchten. Die zu veranschaulichenden Aspekte werden zum Großteil über Metriken in numerische Werte abgebildet.
+Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcennutzung, überprüfen aber auch spezielle Faktoren, wie die Ausführungszeit einer wichtigen Methode, lassen sich so beleuchten. Die zu veranschaulichenden Aspekte werden zum Großteil über Metriken in numerische Werte abgebildet.
 
 \subsection{Real User Monitoring (RUM)}
 
@@ -123,7 +123,7 @@ Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionali
 
 \subsection{Error/Crash Monitoring}
 
-Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern, werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, da aufgetretene Fehler und deren Behebungen zu verfolgen sind \cite{CrashbinCrashMonitoring}.
+Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, da aufgetretene Fehler und deren Behebungen zu verfolgen sind \cite{CrashbinCrashMonitoring}.
 
 \subsection{Session Replay}
 
@@ -147,7 +147,7 @@ Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelaps
 \label{fig:timelapse_figure6}
 \end{wrapfigure}
 
-Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in der selben Umgebung möglich, und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
+Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in derselben Umgebung möglich und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
 
 \footnotetext{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}
 
@@ -164,7 +164,7 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 
 %\subsection{Fachpraxis}
 
-Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung in Frage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
+Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung infrage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
 
 \subsection{Weitere Werkzeuge}
 \label{sec:weitere-werkzeuge}
@@ -262,7 +262,7 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 Splunk \cite{Splunk} ist ein Softwareprodukt und eine SaaS-Lösung des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
 
-Splunk bietet neben kostenpflichtigen Versionen der SaaS- und OnPremise-Lösung jeweils kostenlose Varianten an, welche in dieser Arbeit zur Evaluierung herangezogen wurden. Splunk selber bietet keine JavaScript-Pakete an, um Daten von einer Webanwendung an Splunk zu senden. Jedoch ist eine HTTP-Schnittstelle vorhanden mit der eigene Datensätze in Splunk gespeichert werden können.
+Splunk bietet neben kostenpflichtigen Versionen der SaaS- und OnPremise-Lösung jeweils kostenlose Varianten an, welche in dieser Arbeit zur Evaluierung herangezogen wurden. Splunk selber bietet keine JavaScript-Pakete an, um Daten von einer Webanwendung an Splunk zu senden. Jedoch ist eine HTTP-Schnittstelle vorhanden, mit der eigene Datensätze in Splunk gespeichert werden können.
 
 Über diese HTTP-Schnittstelle wurden aus der Webanwendung einerseits Loginformationen gesendet, aber auch Fehlerdaten, wie man sie z. B. bei Sentry finden konnte. Die Daten ließen sich effizient in Splunk manuell durchsuchen, filtern, und visualisieren. Durch den Fakt, dass Splunk als dieselbe Datensenke für Fehler- und Loginformationen agierte, erlaubte die Kombination aus diesen beiden Datenkategorien. Speziell heißt dies, dass man bei Fehlerfällen direkt zu den Loginformationen zur selben Sitzung wechseln konnte.
 

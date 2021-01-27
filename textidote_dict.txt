@@ -198,3 +198,7 @@ FAME
 Feedback Acquisition and Monitoring Enabler
 SUPERSEDE
 Kaiju
+Pod
+Pods
+Kubernetes
+Docker
