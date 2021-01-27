@@ -18,20 +18,36 @@
 
 Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
 
-Logging bei Webfrontends stellt eine besondere Hürde dar, denn wie bereits in \autoref{sec:logdaten} geschildert, müssen die Logs an ein Partnersystem weitergeleitet werden.
+Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung im Produktivmodus nachvollziehen können \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, wie in \autoref{sec:logdaten} erläutert.
+
+Weiterhin bieten detaillierte Logs meist zu viele Informationen, um diese manuell zu analysieren. Um eine effiziente maschinenbasierte Analyse zu ermöglichen, wird Structured Logging verwendet.
 
 \subsubsection{Structured Logging}
 
 Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn ein Aggregator nun jedoch Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured Logging ins Spiel. Bei Structured Logging werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch menschenlesbar sein oder die Logmeldung wird bspw. als JSON-Objekt definieren. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
+
+Wird Structured Logging eingesetzt und ein System analysiert die Protokolldaten auf enthaltene Werte, so wird ermöglicht, dass auf diese Protokolle nicht nur manuell einzusehen sind, sondern dass auch auf Basis dessen komplexe Datenanalysen durchgeführt werden können. Mit diesen Datenanalysen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken. Weiterhin lassen sich so aus Logmeldungen auch spezielle Daten wie Metriken extrahieren.
+
+\subsection{Metriken}
+
+Mit Metriken versucht man Softwareeigenschaften vergleichbar abzubilden. Hierfür werden einzelne Messungen durchgeführt, die dann mit anderen Messungen derselben Kategorie gegenübergestellt werden. Mit den Gegenüberstellungen lassen sich wiederum Rückschlüsse zu Softwareeigenschaften ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
+
+Beispiele für Metriken sind:
+
+\begin{enumerate}
+	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage.
+	\item Eine Messung der CPU-Auslastung.
+\end{enumerate}
+
+\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
+\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.}
 
 \subsection{Tracing}
 \label{sec:tracing}
 
 Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
-OpenTracing definiert zwei grundlegende Objekte: Traces und Spans. Ein Trace ist eine Menge an Events, die über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurde oder resultiert. Spans besitzen den Namen einer Methode oder Operation, welche der Span umschließt. Wird in der Methode oder Operation eine weitere Methode oder Operation aufgerufen, welche von einem Span umschlossen ist, so ist dies nun ein Kindspan des ursprünglichen Spans. Spans haben einen Start- sowie einen Endzeitpunkt und sie speichern die Beziehung zu ihrem Elternspan (außer es handelt sich um den \enquote{root}-Span). Sie können darüber hinaus Attribute enthalten, sowie eingetretene Events.
-
-OpenTracing definiert Traces implizit über ihre Spans. Ein Trace ist damit ein gerichteter Graph ohne Zyklus, wobei die Knoten hierbei die Spans darstellen und die Kanten die Eltern-/Kindbeziehung veranschaulichen \cite{OpenTracingSpecification}. Ein beispielhafter Trace mit seinen Spans und deren Beziehungen ist in \autoref{fig:otel-causal-relationship} zu betrachten. Die zeitliche Reihenfolge der Spans kann auch eine hilfreiche Visualisierung sein, um die Entwicklung der Spans zu verstehen (vgl. \autoref{fig:otel-temporal-relationship}). Diese Definition wurde in den Nachfolgestandard OpenTelemetry aufgenommen, welcher an späterer Stelle erläutert wird.
+OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span ist besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methode. Ein Span kann Kindspans beinhalten, wenn in der Methode weitere Spans erzeugt wurden (z. B. durch einen Methodenaufruf). Ein Trace ist eine Menge von Span, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
 
 Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinausgehen \cite{OpenTracingSpecification}.
 
@@ -48,20 +64,6 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 	\captionof{figure}{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
 	\label{fig:otel-temporal-relationship}
 \end{minipage}
-
-\subsection{Metriken}
-
-Mit Metriken versucht man Softwareeigenschaften vergleichbar abzubilden. Hierfür werden einzelne Messungen durchgeführt, die dann mit anderen Messungen derselben Kategorie gegenübergestellt werden. Mit den Gegenüberstellungen lassen sich wiederum Rückschlüsse zu Softwareeigenschaften ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
-
-Beispiele für Metriken sind:
-
-\begin{enumerate}
-	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage
-	\item Eine Messung der CPU-Auslastung
-\end{enumerate}
-
-\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
-\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.}
 
 \subsection{Fehlerberichte}
 
@@ -83,13 +85,7 @@ In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und 
 
 \subsection{Observability}
 
-In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert, um diese zu beschreiben. Es kann mit \enquote{Beobachtbarkeit} übersetzt werden, aber ließe sich auch freier mit Nachvollziehbarkeit gleichsetzen. Observability entstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Graf \cite{MichaelGrafBA} definiert Observability wie folgt:
-
-%Observability hat allgemeiner als Ziel, dass Anwendungen und Systeme exakt betrachtet werden können, um den Verantwortlichen zu ermöglichen, dass  \cite{DistributedSystemsObservability}.
-
-\begin{quotation}
-Ziel ist es, Anwendungen und Systeme exakt zu beobachten, Informationen über technische Fehlfunktionen zu erhalten und schnell an die Verantwortlichen zu übermitteln. Logfiles, Informationen zur Ressourcennutzung und Anwendungs-Traces sollen den Administratoren und Entwicklern dabei helfen, die Fehlerursachen zu erkennen, die Probleme zu beheben und künftige Ausfälle nach Möglichkeit zu vermeiden \cite{DistributedSystemsObservability}.
-\end{quotation}
+In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert, um diese zu beschreiben. Wie in \autoref{sec:nachvollziehbarkeit} erwähnt, wird Nachvollziehbarkeit bei Softwaresystemen im Englischen in Literatur und Praxis auch mit Observability bezeichnet. Das Feld der Observability entstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Ziel der Observability ist es, Anwendungen und Systeme weitesgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können \cite{MichaelGrafBA}.
 
 \subsection{System Monitoring}
 
@@ -147,11 +143,7 @@ Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelaps
 \label{fig:timelapse_figure6}
 \end{wrapfigure}
 
-Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in derselben Umgebung möglich und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnotemark{}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
-
-\footnotetext{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}
-
-\newpage
+Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in derselben Umgebung möglich und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnote{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
 
 \section{Werkzeuge und Technologien}
 \label{sec:werkzeuge-und-technologien}
