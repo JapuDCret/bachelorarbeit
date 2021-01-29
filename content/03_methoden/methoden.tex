@@ -156,7 +156,7 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 
 %\subsection{Fachpraxis}
 
-Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung infrage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt jedoch erst ist \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
+Bei der Recherche zu Werkzeugen und Technologien wurden einige Produkte aus Fachpraxis und Literatur näher betrachtet. Hierbei wurden die Technologien dahingehend evaluiert, ob sie für eine angestrebte Lösung infrage kommen. Die Folgeabschnitte beschreiben die einzelnen Technologien, eine Auswahl erfolgt in \autoref{sec:technologie-stack}. Weiterhin ist bei dieser Vorstellung keine bewertende Gegenüberstellung das Ziel gewesen.
 
 \subsection{Weitere Werkzeuge}
 \label{sec:weitere-werkzeuge}
@@ -169,9 +169,9 @@ Bei der Recherche und Evaluierung wurden nicht alle auf dem Markt verfügbaren W
 	\item Tracing oder Observability: Google Cloud Trace, Zipkin, Logz.io, Lightstep
 \end{itemize}
 
-Auch diese Auflistung stellt nicht die komplette Bandbreite an Werkzeugen und Technologien dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
+Diese Auflistung stellt einen Ausschnitt der Werkzeuge und Technologien aus Fachpraxis und Literatur dar und die vorhergehende Betrachtung ist nicht als Empfehlung zu verstehen.
 
-Neben den Technologien kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, aufgrund dessen und aufgrund der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
+Neben den Technologien kam bei der Recherche wiederholt der Begriff \textbf{OpenTelemetry} auf, aufgrund dessen und wegen der Beziehung zu OpenTracing wird der Standard folgend kurz beschrieben.
 
 \newpage
 
@@ -185,13 +185,14 @@ Neben den Technologien kam bei der Recherche wiederholt der Begriff \textbf{Open
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ein erster Release ist für Ende 2020/Anfang 2021 geplant. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standardkomponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnotemark{} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standardkomponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
 
-In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Software-Development-Life-Cycle} \cite{MichaelGrafBA} beschäftigt sich Graf intensiv mit dem Einfluss und dem Nutzen von Telemetrie in modernen Softwareprojekten. Speziell beschreibt er den OTel Standard und seine Bedeutung im aktuellen Gebiet der Telemetrie. Er bewertet die Entwicklung des Standards positiv, besonders auf Basis der Aspekte Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und keine Prognosen über den Erfolg gemacht werden können. Grafs Arbeit sichert somit zu, dass OpenTelemetry ein, nicht zu vernachlässigender, Standard im Gebiet der Observability darstellt.
+In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Software-Development-Life-Cycle} \cite{MichaelGrafBA} beschäftigt sich Graf intensiv mit dem Einfluss und dem Nutzen von Telemetrie in modernen Softwareprojekten. Speziell beschreibt er den OTel-Standard und seine Bedeutung im aktuellen Gebiet der Telemetrie. Er bewertet die Entwicklung des Standards positiv, besonders auf Basis der Aspekte Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und keine Prognosen über den Erfolg gemacht werden können. Grafs Arbeit sichert somit zu, dass OpenTelemetry ein nicht zu vernachlässigenden Standard im Gebiet der Observability darstellt.
 
 \nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
 \nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
-\footnotetext{Logging ist noch nicht gut im OTel Standard definiert/aufgenommen \cite{OpenTelemetryLoggingSpecification}}
+\footnotetext{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.}
+\footnotetext{Logging ist noch nicht ausreichend im OTel Standard definiert \cite{OpenTelemetryLoggingSpecification}.}
 
 \begin{figure}[H]
 	\centering
@@ -206,17 +207,17 @@ New Relic \cite{NewRelic} ist eine Software-as-a-Service (SaaS) der gleichnamige
 
 \nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}
 
-New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version aber benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen jedoch mehr Informationen, wie Stacktrace, genaue Browserversion, Uhrzeit zur Verfügung und in der Oberfläche dargestellt.
+New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen aber mehr Informationen zur Verfügung, wie den Stacktrace, die genaue Browserversion und die Uhrzeit, welche die Oberfläche veranschaulicht.
 
-Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Jedoch geben diese Informationen nicht darüber Aufschluss, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
+Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Ein Manko ist aber, dass diese Informationen nicht Aufschluss darüber geben, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
 
-New Relic bietet darüber hinaus eine Unterstützung von OTel-Daten  \cite{NewRelicAnnoundOTelBetaSupport}, welches jedoch nicht mit evaluiert werden konnte, da es in der kostenlosen Version nicht enthalten war. Auf der offiziellen Seite von OTel werden jedoch  öffentliche Exporter für New Relic angeboten \cite{OpenTelemetryRegistry}.
+New Relic bietet darüber hinaus eine Unterstützung von OTel-Daten  \cite{NewRelicAnnoundOTelBetaSupport}, welches jedoch nicht mit evaluiert werden konnte, da es in der kostenlosen Version nicht enthalten war. Auf der offiziellen Seite von OTel werden hingegen zumindest öffentliche Exporter für New Relic angeboten \cite{OpenTelemetryRegistry}.
 
 \subsection{Dynatrace}
 
-Dynatrace \cite{Dynatrace} ist eine SaaS-Lösung des gleichnamigen Unternehmens und ähnelt im Funktionsumfang stark New Relic. Es werden wie bei New Relic die Kernfunktionalitäten APM und RUM, sowie die Disziplinen Log Management, Synthetic Monitoring, Tracing und Error Monitoring.
+Dynatrace \cite{Dynatrace} ist eine SaaS-Lösung des gleichnamigen Unternehmens und ähnelt im Funktionsumfang stark New Relic. Es werden wie bei New Relic die Kernfunktionalitäten APM und RUM, sowie die Disziplinen Log Management, Synthetic Monitoring, Tracing und Error Monitoring angeboten.
 
-Dynatrace bietet neben dem kostenpflichtigen Dienst eine 14-tägige Testversion dessen, welche im Rahmen dieser Arbeit verwendet wurde. Die Datenerhebung erfolgt über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. In der Oberfläche von Dynatrace sind ähnliche Datenkategorien zu finden, wie bei New Relic, wobei Dynatrace diese visuell ansprechender darstellt. Dynatrace bietet zudem auch die Funktionalität des Error Monitoring, aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
+Dynatrace bietet neben dem kostenpflichtigen Dienst eine 14-tägige Testversion dessen, welche im Rahmen dieser Arbeit verwendet wurde. Die Datenerhebung erfolgt über den Dynatrace OneAgent, welcher genauso wie New Relics Agent kontinuierlich Daten sendet. In der Oberfläche von Dynatrace sind die gleichen Datenkategorien zu finden, wie bei New Relic. Dynatrace bietet zudem auch die Funktionalität des Error Monitoring, aber leidet unter demselben Problem wie New Relic: zu wenig Kontextinformationen.
 
 Dynatrace ist zudem dem OpenTelemetry Team beigetreten und hat angegeben, an der Weiterentwicklung mitzuhelfen \cite{DynatraceJoinOTelProject}. Eine Integration des Dienstes Dynatrace ins Ökosystem von OTel gibt es jedoch noch nicht.
 
@@ -232,16 +233,15 @@ In der Oberfläche von Sentry werden die gemeldeten Fehler in sogenannten \enquo
 
 Die angeboten Fehlerinformationen von Sentry sind zahlreich und helfen beim Nachvollziehen besser als die vorher beleuchteten Werkzeuge, jedoch mangelt es an einer ganzheitlichen Nachvollziehbarkeit auch in nicht Problemszenarien.
 
-Der Quellcode von Sentry wurde veröffentlicht und weiterhin wird bei Sentry auch eine OnPremise-Lösung, basierend auf Docker, angeboten \cite{SentrySelfHosted}.
+Der Quellcode für das Backend von Sentry wurde veröffentlicht und weiterhin bietet Sentry auch eine OnPremise-Lösung, die auf Docker basiert \cite{SentrySelfHosted}.
 
 \subsection{LogRocket}
 
 LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session Replay von JavaScript-basierten Clientanwendungen, um Probleme identifizieren, nachvollziehen und lösen zu können.
 
-LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an
-Für die Evaluierung wurde die kostenlose Testversion von LogRocket verwendet. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen und nach der Initialisierung sammelt es eigenständig die notwendigen Daten. Mithilfe der gesammelten Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
+LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an, welche für die Evaluierung verwendet wurde. Zur Datenerhebung wurde das Paket \texttt{logrocket} von NPM hinzugezogen, welches nach der Initialisierung eigenständig die notwendigen Daten sammelt. Mithilfe dieser Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
 
-Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch Integration für andere Tools, wie z. B. Sentry. Bei der Integration zu Sentry wird bei einem gemeldeten Fehler direkt auf das \enquote{Video} in LogRocket verlinkt, sodass der Fehler genau betrachtet werden kann.
+Neben dem JavaScript-SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch eine Integration für andere Tools, wie z. B. Sentry. Bei der Sentry-Integration wird bei einem gemeldeten Fehler direkt auf das \enquote{Video} in LogRocket verlinkt, sodass der Fehler genau betrachtet werden kann.
 
 \begin{figure}[H]
 	\centering
@@ -254,17 +254,17 @@ Neben dem JavaScript SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 Splunk \cite{Splunk} ist ein Softwareprodukt und eine SaaS-Lösung des gleichnamigen Unternehmens. Splunk fungiert als eine universelle Datensenke, z. B. für Metriken und Logdaten. Es bietet Funktionen diese Daten zu durchsuchen, überwachen, analysieren und visualisieren. Weiterhin wird Splunk klassisch für Log Management eingesetzt, kann aber auch Aspekte von APM, RUM und Error Monitoring erfüllen.
 
-Splunk bietet neben kostenpflichtigen Versionen der SaaS- und OnPremise-Lösung jeweils kostenlose Varianten an, welche in dieser Arbeit zur Evaluierung herangezogen wurden. Splunk selber bietet keine JavaScript-Pakete an, um Daten von einer Webanwendung an Splunk zu senden. Jedoch ist eine HTTP-Schnittstelle vorhanden, mit der eigene Datensätze in Splunk gespeichert werden können.
+Splunk bietet neben kostenpflichtigen Versionen der SaaS- und OnPremise-Lösung jeweils kostenlose Varianten an, welche in dieser Arbeit zur Evaluierung herangezogen wurden. Splunk selber bietet keine JavaScript-Pakete an, um Daten von einer Webanwendung an Splunk zu senden. Hingegen wird aber eine REST-Schnittstelle angeboten, um eigene Datensätze in Splunk einzufügen.
 
-Über diese HTTP-Schnittstelle wurden aus der Webanwendung einerseits Loginformationen gesendet, aber auch Fehlerdaten, wie man sie z. B. bei Sentry finden konnte. Die Daten ließen sich effizient in Splunk manuell durchsuchen, filtern, und visualisieren. Durch den Fakt, dass Splunk als dieselbe Datensenke für Fehler- und Loginformationen agierte, erlaubte die Kombination aus diesen beiden Datenkategorien. Speziell heißt dies, dass man bei Fehlerfällen direkt zu den Loginformationen zur selben Sitzung wechseln konnte.
+Über diese einer-Schnittstelle wurden aus der Webanwendung einerseits Loginformationen gesendet, aber auch Fehlerdaten, wie man sie z. B. bei Sentry finden konnte. Die Daten ließen sich effizient in Splunk manuell durchsuchen, filtern, und visualisieren. Dadurch dass Splunk als dieselbe Datensenke für Fehler- und Loginformationen agierte, erlaubte die Kombination aus diesen beiden Datenkategorien. Speziell heißt dies, dass man bei Fehlerfällen direkt zu den Loginformationen zur selben Sitzung wechseln konnte.
 
 Jedoch ist das Error-Monitoring nicht vergleichbar gut wie das von Sentry, da die Funktionalität des Issue-Managements nicht vorhanden ist. Weiterhin wurde evaluiert, ob auch Tracingdaten in Splunk aufgenommen werden können, aber hierbei besitzt Splunk keine gängigen Visualisierungen, wie ein Trace-Gantt-Diagramme.
 
 \subsection{Honeycomb}
 
-Honeycomb \cite{Honeycomb} ist eine SaaS-Lösung der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und darauf basierend effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
+Honeycomb \cite{Honeycomb} ist eine SaaS-Lösung der Hound Technology Inc. und verspricht die Speicherung vieler (Tracing-)Daten und basierend darauf effiziente Abfragen zu ermöglichen. Es ist hauptsächlich als Tracingdienst anzusehen, womit jedoch auch Aspekte des APM, RUM und Error Monitoring mit abgebildet werden können.
 
-Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \enquote{Beelines} an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind für Node.js, Go, Python, Java, Ruby und Rails verfügbar. Da keine Beelines für JavaScript in Browsern verfügbar ist, wurden die Daten mit OTel-Komponenten erhoben und ein eigener Exporter für Honeycomb entwickelt.
+Honeycomb wurde mit der kostenlosen Version evaluiert. Honeycomb bietet sog. \enquote{Beelines} an, welche Werkzeuge zur automatischen Datenerfassung sind. Diese Beelines sind für Node.js, Go, Python, Java, Ruby und Rails verfügbar. Da keine Beelines für JavaScript in Browsern verfügbar sind, wurden die Daten mit OTel-Komponenten erhoben und ein eigener Exporter für Honeycomb entwickelt.
 
 Honeycomb konzentriert sich auf die Datenkategorien Tracing und Metriken, ähnlich wie der Standard OpenTelemetry. Dabei bietet Honeycomb in der Oberfläche Möglichkeiten selber Graphen auf Basis der Daten zu erstellen. Somit ist dies keine ausgefertigte Lösung, wie es teils bei New Relic und Dynatrace zu finden ist und kann somit auf die Anforderungen des Projektes besser angepasst werden. Jedoch ist dieser Ansatz mit einem höheren Aufwand und einer notwendigen Expertise verbunden.
 
@@ -320,7 +320,7 @@ Leider ist TraVista keine ausgereifte Software und wird seit einigen Monaten nic
 \subsection{FAME}
 \label{sec:fame}
 
-2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu Erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME\footnotemark{} genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
+2018 arbeiteten Oriol \etal \cite{FamePaper} mit der Firma SEnerCon GmbH zusammen, um ein Framework zu erstellen, welches Daten aus Nutzerfeedback und Monitoring kombiniert. SEnerCon wurde hinzugezogen, um das Framework zu evaluieren, die Entwicklung des Frameworks fand durch die Forscher selbst statt. Das Framework wurde FAME\footnotemark{} genannt und steht für \enquote{Feedback Acquisition and Monitoring Enabler}.
 
 \footnotetext{FAME auf GitHub: \url{https://github.com/supersede-project/monitor_feedback}}
 
