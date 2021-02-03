@@ -6,7 +6,7 @@
 \section{Vorstellung der Demoanwendung}
 \input{content/04_erstellung-poc/vorstellung-demoanwendung}
 	
-\newpage
+% \newpage
 	
 \section{Konzept}
 	
@@ -20,38 +20,42 @@
 	
 	Wie aus den Erkenntnissen von FAME (\autoref{sec:fame}) und Kaiju (\autoref{sec:kaiju}) zu deuten ist, gibt es durch die Verknüpfung von verschiedenen Datenkategorien einen Mehrwert für die Verständnis von Betreibern und Entwicklern. Deshalb sollen in der Lösung die 4 Datenkategorien \enquote{Logs}, \enquote{Metriken}, \enquote{Traces} und \enquote{Fehler} erhoben und an Partnersysteme weitergeleitet werden.
 	
-	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefer gehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein können. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht einen zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, soll die Aufzeichnung nicht standardmäßig aktiv sein.
+	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefer gehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein kann. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht ein zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, sollte sie standardmäßig abgeschaltet sein und nur auf expliziten Nutzerwunsch aktiviert werden.
 	
+	\vspace{-0.75\baselineskip}
 	\subsubsection{Auswertung}
+	\vspace{-0.50\baselineskip}
 	
-	Die genaue Auswertung ist Teil der Implementierung und diese Disziplin sieht keine direkten Vorgaben vor. Jedoch sind die gemeldeten Daten mit Kontextinformationen anzureichern, wenn möglich. Diese umfassen bspw. Zeitstempel, Session-Id, User-Agent, IP, Hostsystem.
+	Die genaue Auswertung ist Teil der Implementierung und diese Disziplin sieht keine direkten Vorgaben vor. Jedoch sind die gemeldeten Daten mit Kontextinformationen anzureichern, wenn möglich. Diese umfassen bspw. Session-Id, User-Agent, IP, Browser.
 	
+	\vspace{-0.75\baselineskip}
 	\subsubsection{Präsentation}
+	\vspace{-0.50\baselineskip}
 	
 	Um ein zufriedenstellendes Ergebnis zu gewährleisten, sollte die Lösung die Daten auf folgende Weise den Betreibern und Entwicklern präsentieren:
 	
 	\begin{enumerate}
-		\item Logdaten
+		\item Logdaten..
 		\begin{enumerate}
-			\item Logdaten lassen sich einsehen.
-			\item Logdaten lassen sich basierend auf ihren Eigenschaften filtern.
+			\item ..lassen sich einsehen.
+			\item ..lassen sich basierend auf ihren Eigenschaften filtern.
 		\end{enumerate}
-		\item Fehler
+		\item Fehler..
 		\begin{enumerate}
-			\item Fehler lassen sich einsehen.
-			\item Fehler lassen sich basierend auf ihren Eigenschaften filtern.
-			\item Fehler lassen sich gruppieren.
+			\item ..lassen sich einsehen,
+			\item ..lassen sich basierend auf ihren Eigenschaften filtern,
+			\item ..lassen sich gruppieren.
 			\item Fehlergruppen lassen sich in Graphen visualisieren (bspw. Histogramm der Häufigkeit).
 		\end{enumerate}
-		\item Metriken
+		\item Metriken..
 		\begin{enumerate}
-			\item Metriken lassen sich in Graphen visualisieren.
+			\item ..lassen sich in Graphen visualisieren.
 		\end{enumerate}
-		\item Traces
+		\item Traces..
 		\begin{enumerate}
-			\item Traces lassen sich einsehen.
-			\item Traces lassen sich basierend auf ihren Eigenschaften filtern.
-			\item Traces lassen sich als ein Trace-Gantt-Diagramm darstellen.
+			\item ..lassen sich einsehen,
+			\item ..lassen sich basierend auf ihren Eigenschaften filtern,
+			\item ..lassen sich als ein Trace-Gantt-Diagramm darstellen.
 		\end{enumerate}
 		\item Session-Replay-Daten
 		\begin{enumerate}
@@ -61,15 +65,19 @@
 	
 	\subsection{Architektur}
 	
-	Auf Basis der zuvor beschriebenen Grunddisziplinen wird nun eine beispielhafte Umsetzung dessen konzipiert. Genauer wird eine vorgeschlagen, die definiert welche Methoden und Praktiken anzuwenden sind, mit welchen Werkzeugen und wie die einzelnen Komponenten miteinander kommunizieren.
+	Auf Basis der zuvor beschriebenen Grunddisziplinen wird nun eine beispielhafte Umsetzung dessen konzipiert. Genauer wird eine Architektur vorgeschlagen, welche auf die zuvor betrachteten Methoden und Praktiken zurückgreift, um eine verbesserter Nachvollziehbarkeit zu erreichen. Speziell wird im Folgeabschnitt zudem vorgeschlagen, welche Werkzeuge oder Technologien zum Einsatz kommen sollen und wie diese Komponenten miteinander kommunizieren.
 	
-	 Die genaue Erhebung der Daten ist Teil der Implementierung und wird hier nicht näher bestimmt. Jedoch ergeben sich aus der zuvor definierten Erhebung daraus die Datenkategorien, welche von einem entsprechenden Partnersystem zu konsumieren und zu verarbeiten sind. In dieser Architekturdefinition wird nicht auf spezielle Werkzeuge oder Technologien eingegangen, sondern auf den zuvor identifizierten Funktionsgebieten werden allgemein Partnersysteme benannt. Hierbei wurde zudem versucht möglichst viele Funktionsgebiete über die gleichen Partnersysteme abzubilden (vgl. \autoref{anf:3100}), die Machbarkeit einer solchen Verknüpfung wurde auf den Ergebnissen von \autoref{chap:methoden-und-praktiken} basiert. So soll für die Verarbeitung von Fehler-, Log-, und Metrikdaten ein einzelnes Partnersystem verantwortlich sein, welches ermöglicht diese zu konsumieren, speichern, durchsuchen und diese zu visualisieren. In der \autoref{fig:grobe-architektur} ist dieses System als \enquote{Log- und Monitoringplattform} vorzufinden.
+	 Die genaue Erhebung der Daten ist Teil der Implementierung und wird hier nicht näher bestimmt. Jedoch ergeben sich aus der zuvor definierten Anforderungen zur Erhebung bereits Datenkategorien, welche von einem entsprechenden Partnersystem zu konsumieren und verarbeiten sind. Es wird zwar nicht auf spezielle Werkzeuge oder Technologien eingegangen, aber es lassen sich bereits Partnersysteme bestimmen, auf Basis der zuvor identifizierten Funktionsbereiche. Hierbei wurde zudem versucht möglichst viele Bereiche über die gleichen Partnersysteme abzubilden (vgl. \autoref{anf:3100}), die Machbarkeit einer solchen Verknüpfung basiert auf den Ergebnissen von \autoref{chap:methoden-und-praktiken}.
+	 
+	 So soll für die Verarbeitung von Fehler-, Log-, und Metrikdaten ein einzelnes Partnersystem verantwortlich sein, welches ermöglicht diese zu konsumieren, speichern, durchsuchen und diese zu visualisieren. Grund hierfür ist, dass die Daten gemeinsame Eigenschaften besitzen, die eine gemeinsame Verarbeitung erlauben. In der \autoref{fig:grobe-architektur} ist dieses System als \enquote{Log- und Monitoringplattform} vorzufinden.
 	
-	Um Traces zu konsumieren und den Betreibern und Entwicklern aufbereitet zu visualisieren soll ein weiteres Partnersystem eingesetzt werden. Grund hierfür ist, dass kein Werkzeug identifiziert werden konnte, welches neben Traces noch andere Datenkategorien zufriedenstellend abdecken kann. Weiterhin ist ein drittes System notwendig, um die Funktionalität des Session-Replays einzubinden. Session-Replay ist ein spezielles und sehr konkretes Aufgabengebiet und es konnte kein Werkzeug identifiziert werden, welches sich nicht nur auf dieses Gebiet spezialisiert.
+	Um Traces zu konsumieren und den Betreibern und Entwicklern aufbereitet zu visualisieren, soll ein weiteres Partnersystem eingesetzt werden. Dieses System wurde als notwendig empfunden, da kein Werkzeug identifiziert werden konnte, welches neben Traces noch andere Datenkategorien zufriedenstellend abdecken kann. Auf Basis von OpenTelemetry könnten sich jedoch in Zukunft Technologien entwickeln, welches alle 3 Datenkategorien von OpenTelemetry unterstützt: Metriken, Traces und Logs. Es wurde sich zudem gegen eine weitreichende Monitoringplattform, wie z. B. New Relic oder Dynatrace, entschieden, denn hier wurde identifiziert, dass diese nicht ausreichend flexibel für verschiedene Projekte sind und zudem auch nicht erlauben, dass einzelne Komponenten ausgetauscht oder entfernt werden können.
+	
+	Es ist zudem ein drittes System notwendig, um die gewünschte Funktionalität des Session-Replays einzubinden. Session-Replay ist ein spezielles und sehr konkretes Aufgabengebiet und es konnte kein Werkzeug identifiziert werden, welches sich nicht nur auf dieses Gebiet spezialisiert.
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.65\linewidth]{img/04_erstellung-poc/konzept-simple.png}
+	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/konzept-simple.png}
 	\caption{Grobe Architektur}
 	\label{fig:grobe-architektur}
 \end{figure}
@@ -87,8 +95,6 @@
 %	\label{fig:grobe-architektur-datendurchsatz}
 %\end{figure}
 
-\pagebreak
-
 	\subsection{Technologie-Stack}
 	\label{sec:technologie-stack}
 	
@@ -104,7 +110,7 @@
 	
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/konzept-technologien.png}
+	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/konzept-technologien.png}
 	\caption{Architektur mit speziellen Technologien}
 	\label{fig:architektur-technologien}
 \end{figure}
@@ -113,12 +119,13 @@
 	
 	Übertragbarkeit beschäftigt sich mit der Eigenschaft eines Ansatzes in verschiedene Situationen anwendbar zu sein. Ein Ansatz ist nicht übertragbar, wenn zu vielen Annahmen über die Situation getroffen werden.
 	
-	Das zuvor definierte Konzept wurde getrennt von der Demoanwendung erstellt und ist somit nicht auf dessen Eigenschaften beschränkt. Das Konzept nimmt jedoch dennoch an, dass es sich um eine Webanwendung handelt, auf das es anzuwenden ist. Weiterhin wird angenommen, dass Quellcodeänderungen vorgenommen werden können und das Partnersysteme hinzugefügt sowie angebunden werden können.
+	Das zuvor definierte Konzept wurde getrennt von der Demoanwendung erstellt und ist somit nicht auf dessen Eigenschaften beschränkt. Das Konzept nimmt dennoch an, dass es sich um eine Webanwendung handelt, auf das es anzuwenden ist. Weiterhin wird angenommen, dass Quellcodeänderungen vorgenommen werden können und das Partnersysteme hinzugefügt sowie angebunden werden können.
 	
 	Es wird jedoch nicht angenommen, dass die Partnersysteme exakt von den vorgeschlagenen Technologien realisiert werden. Vielmehr wurde die Funktionsgruppen definiert, zusammengefasst und darauf basierend eine Auswahl getroffen. Sowohl die Zusammenfassung der Funktionsgruppen als auch die Auswahl der eigentlichen Technologien sind individuell änderbar, sodass ein angepasstes aber äquivalent hilfreiches Konzept resultiert.
 	
-	Somit lässt sich abschließend betrachten, dass das Konzept eine akzeptable Übertragbarkeit aufweist. Eine tiefergehende Nachbetrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, im Anschluss an die Implementierung. Hierbei kann es zu Abweichungen zu dieser Bewertung der Übertragbarkeit kommen, aufgrund von Implementierungsdetails oder einem geänderten Vorgehen. Nun da das Konzept ausreichend beleuchtet wurde, wird sich im nächsten Abschnitt mit der eigentlichen Umsetzung dessen beschäftigt.
+	Somit lässt sich abschließend betrachten, dass das Konzept eine akzeptable Übertragbarkeit aufweist. Eine tiefergehende Nachbetrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, im Anschluss an die Implementierung. Hierbei kann es zu Abweichungen zu dieser Bewertung der Übertragbarkeit kommen, aufgrund von Implementierungsdetails oder einem geänderten Vorgehen. Auf Basis des beleuchteten Konzeptes, wird im nächsten Abschnitt die eigentliche Umsetzung beschrieben.
 
 \section{Implementierung}
+% \input{content/04_erstellung-poc/implementierung}
 
 	\textit{Auf Basis des Konzeptes soll nun eine Implementierung erfolgen.}
