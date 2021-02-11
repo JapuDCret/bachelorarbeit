@@ -20,13 +20,13 @@
 	
 	Wie aus den Erkenntnissen von FAME (\autoref{sec:fame}) und Kaiju (\autoref{sec:kaiju}) zu deuten ist, gibt es durch die Verknüpfung von verschiedenen Datenkategorien einen Mehrwert für die Verständnis von Betreibern und Entwicklern. Deshalb sollen in der Lösung die 4 Datenkategorien \enquote{Logs}, \enquote{Metriken}, \enquote{Traces} und \enquote{Fehler} erhoben und an Partnersysteme weitergeleitet werden.
 	
-	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefer gehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein kann. Jedoch wird beim Session-Replay jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht ein zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, sollte sie standardmäßig abgeschaltet sein und nur auf expliziten Nutzerwunsch aktiviert werden.
+	Neben diesen Daten sollen auch die Benutzerinteraktionen aufgezeichnet werden. Hierfür soll jedoch kein tiefer gehendes Real-User-Monitoring zur Verwendung kommen, stattdessen soll ein Session-Replay-Mechanismus eingesetzt werden. RUM wird nicht gefordert, da es für die Verständnisgewinnung der Benutzerinteraktionen weniger aussagekräftig ist als Session-Replay. Bei Session-Replay werden die Benutzerinteraktionen im Kontext dargestellt und nicht gesondert oder abstrahiert, was für eine Nachvollziehbarkeit hinderlich sein kann. Beim Session-Replay wird jedoch jedwede Ein- und Ausgaben der Webanwendung aufgezeichnet, damit dies nicht ein zu großes Datenvolumen erzeugt und um den Nutzer nicht konstant zu überwachen, sollte sie standardmäßig abgeschaltet sein und nur auf expliziten Nutzerwunsch aktiviert werden.
 	
 	\vspace{-0.75\baselineskip}
 	\subsubsection{Auswertung}
 	\vspace{-0.50\baselineskip}
 	
-	Die genaue Auswertung ist Teil der Implementierung und diese Disziplin sieht keine direkten Vorgaben vor. Jedoch sind die gemeldeten Daten mit Kontextinformationen anzureichern, wenn möglich. Diese umfassen bspw. Session-Id, User-Agent, IP, Browser.
+	Die genaue Auswertung ist Teil der Implementierung und diese Disziplin sieht keine direkten Vorgaben vor. Jedoch sind die gemeldeten Daten mit Kontextinformationen anzureichern, wenn möglich. Diese umfassen bspw. Zeitstempel, User-Agent, IP, Browser.
 	
 	\vspace{-0.75\baselineskip}
 	\subsubsection{Präsentation}
@@ -126,6 +126,6 @@
 	Somit lässt sich abschließend betrachten, dass das Konzept eine akzeptable Übertragbarkeit aufweist. Eine tiefergehende Nachbetrachtung der Übertragbarkeit erfolgt in \autoref{sec:uebertragbarkeit}, im Anschluss an die Implementierung. Hierbei kann es zu Abweichungen zu dieser Bewertung der Übertragbarkeit kommen, aufgrund von Implementierungsdetails oder einem geänderten Vorgehen. Auf Basis des beleuchteten Konzeptes, wird im nächsten Abschnitt die eigentliche Umsetzung beschrieben.
 
 \section{Implementierung}
-% \input{content/04_erstellung-poc/implementierung}
+\input{content/04_erstellung-poc/implementierung}
 
 	\textit{Auf Basis des Konzeptes soll nun eine Implementierung erfolgen.}

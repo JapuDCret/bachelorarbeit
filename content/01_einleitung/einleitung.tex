@@ -1,5 +1,5 @@
 % a hack, to make the Motivation fit into one page..
-\vspace{-\baselineskip}
+%\vspace{-\baselineskip}
 
 %In diesem Unterkapitel sollten folgende Punkte behandelt werden:
 %\begin{itemize}
@@ -7,6 +7,8 @@
 %	\item 	Problemgeschichte?
 %\end{itemize}
 \section{Motivation}
+
+%\vspace{-\baselineskip}
 
 Die Open Knowledge GmbH ist als branchenneutraler Softwaredienstleister in einer Vielzahl von Branchen wie Automotive, Logistik, Telekommunikation und Versicherungs- und Finanzwirtschaft aktiv. Zu den zahlreichen Kunden der Open Knowledge GmbH gehört auch ein führender deutscher Direktversicherer. 
 
@@ -16,7 +18,7 @@ Ein Direktversicherer bietet Versicherungsprodukte seinen Kunden ausschließlich
 \nomenclature[Fachbegriff]{Clientseitiges Rendering}{Der Server stellt dem Client lediglich die Logik und die notwendigen Daten bereit, die eigentliche Inhaltsgenerierung geschieht im Client. Für ein Beispiel siehe \autoref{subsec:singe-page-applications}}
 
 % i.d.R. getrennt: https://www.scribbr.de/wissenschaftliches-schreiben/abkuerzungen/
-Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigen Rendering realisiert wurden, sind heutzutage Javascript-basierte Webanwendung mit clientseitigem Rendering die Norm. Bei einer solchen Webanwendung befindet sich die gesamte Logik mit Ausnahme der Berechnung des Angebots und der Verarbeitung der Antragsdaten im Browser des Nutzers.
+Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigen Rendering realisiert wurden, sind heutzutage Javascript-basierte Webanwendungen mit clientseitigem Rendering die Norm \cite{ShiftToClientSideWebApplications}. Bei einer solchen Webanwendung befindet sich ein Großteil der Logik im Browser des Nutzers, bspw. wird der Nutzer durch einen komplexen Wizard geführt und erst bei Absenden des letzten Formulars geschieht eine Interaktion mit einem Server.
 
 Im produktiven Einsatz kommt es auch bei gut getesteten Webanwendungen hin und wieder vor, dass es zu unvorhergesehenen Fehlern in der Berechnung oder Verarbeitung kommt. Liegt die Ursache für den Fehler im Browser, z. B. aufgrund einer ungültigen Wertkombination, ist dies eine Herausforderung. Während bei Server-Anwendungen Fehlermeldungen in den Log-Dateien einzusehen sind, gibt es für den Betreiber der Anwendung i. d. R. keine Möglichkeit die notwendigen Informationen über den Nutzer und seine Umgebung abzurufen. Noch wichtiger ist, dass er mitbekommt, wenn ein Nutzer ein Problem bei der Bedienung der Anwendung hat. Ohne eine aktive Benachrichtigung durch den Nutzer, sowie detaillierte Informationen, ist es dem Betreiber nicht möglich, Kenntnis über das Problem zu erlangen, geschweige denn dieses nachzustellen.
 
@@ -29,17 +31,17 @@ Dies stellt ein Kernproblem von  Webanwendungen dar \cite{ClientSideMonitoringOf
 %\end{itemize}
 \section{Zielsetzung}
 
-Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScript-basierten Webanwendung die Möglichkeit zu geben das Verhalten ihrer Anwendung und die Interaktionen von Nutzern. Diese Nachvollziehbarkeit soll insbesondere bei Fehlerfällen u. Ä. gewährleistet sein, aber auch in sonstigen Fällen soll eine Nachvollziehbarkeit möglich sein. Eine vollständige Überwachung der Anwendung und des Nutzers (wie bspw. bei Werbe-Tracking) sind jedoch nicht vorgesehen. Daraus ergibt sich die Forschungsfrage:
+Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScript-basierten Webanwendung die Möglichkeit zu geben, das Verhalten ihrer Anwendung und die Interaktionen von Nutzer nachzuvollziehen. Diese Nachvollziehbarkeit soll insbesondere bei Fehlerfällen u. Ä. gewährleistet sein, ist aber auch in sonstigen Fällen zu erstreben, wie z. B. wenn die Betreiber nachvollziehen wollen, welche Interaktionen der Nutzer getätigt hat. Eine vollständige Überwachung der Anwendung und des Nutzers (wie bspw. bei Werbe-Tracking) sind jedoch nicht vorgesehen. Daraus ergibt sich die Forschungsfrage:
 
 \begin{quotation}
-	Wie sieht ein Ansatz aus, um bei clientseitigen JavaScript-basierten Webanwendung den Betreibern eine Nachvollziehbarkeit zu gewährleisten?
+	Wie sieht ein Ansatz aus, um den Betreibern von clientseitigen JavaScript-basierten Webanwendungen eine Nachvollziehbarkeit zu gewährleisten?
 \end{quotation}
 
 Vom Leser wird eine Grundkenntnis der Informatik in Theorie oder Praxis erwartet, aber es sollen keine detaillierten Erfahrungen in der Webentwicklung vom Leser erwartet werden. Daher sind das Projektumfeld und seine besonderen Eigenschaften zu erläutern.
 
 Die anzustrebende Lösung soll ein Proof-of-Concept sein, welches eine, zu erstellenden, Demoanwendung erweitert. Die Demoanwendung soll repräsentativ eine abgespeckte JavaScript-basierte Webanwendung darstellen, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.
 
-Vor der eigentlichen Lösungserstellung soll jedoch die theoretische Seite beleuchtet werden, indem die Nachvollziehbarkeit sowie Methoden und Praktiken zur Erreichung dieser beschrieben werden. Es gilt aktuelle Literatur und den Stand der Technik zu erörtern, in Bezug auf die Forschungsfrage. Beim Stand der Technik sind Technologien aus Fachpraxis und Literatur näher zu betrachten und zu beschreiben.
+%Vor der eigentlichen Lösungserstellung soll jedoch die theoretische Seite beleuchtet werden, indem die Nachvollziehbarkeit sowie Methoden und Praktiken zur Erreichung dieser beschrieben werden. Es gilt aktuelle Literatur und den Stand der Technik zu erörtern, in Bezug auf die Forschungsfrage. Beim Stand der Technik sind Technologien aus Fachpraxis und Literatur näher zu betrachten und zu beschreiben.
 
 Weiterhin gilt es zu beleuchten, wie die Auswirkungen für die Nutzer der Webanwendung sind. Wurde die Leistung der Webanwendung beeinträchtigt (erhöhte Ladezeit, erhöhte Datenlast)? Werden mehr Daten von ihm erhoben und zu welchem Zweck?
 
@@ -49,7 +51,7 @@ Am Ende der Ausarbeitung soll überprüft werden, ob und wie die Forschungsfrage
 
 \nomenclature[Fachbegriff]{PoC}{Proof-of-Concept}
 
-Die Demoanwendung wird als Single-Page-Application (SPA) realisiert, denn hier bewegt sich das Projektumfeld von der Open Knowledge GmbH. Bei der Datenerhebung und -verarbeitung sind datenschutzrechtliche Aspekte nicht näher zu betrachten. Bei der Betrachtung von Technologien aus der Wirtschaft ist eine bewertende Gegenüberstellung nicht das Ziel.
+Die Demoanwendung wird als Single-Page-Application (SPA) \cite{SinglePageApplication} realisiert, denn hier bewegt sich das Projektumfeld von der Open Knowledge GmbH. Bei der Datenerhebung und -verarbeitung sind datenschutzrechtliche Aspekte nicht näher zu betrachten. Bei der Betrachtung von Technologien aus der Wirtschaft ist eine bewertende Gegenüberstellung nicht das Ziel.
 
 \pagebreak
 

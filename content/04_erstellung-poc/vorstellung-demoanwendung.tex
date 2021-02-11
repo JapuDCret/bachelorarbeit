@@ -3,13 +3,13 @@
 
 Es wird eine Demoanwendung erstellt, welche die Konzepte anhand der \autoref{anf:1020} umsetzt. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung und der repräsentativen Aufgabe, die diese übernimmt.
 
-In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung darstellt, wird sie in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um einen Wizard, also einer Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizard werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
+In der Motivation wurde ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung darstellt, wird sie in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um einen Wizard, also einer Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizards werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
 
 Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und dies soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
-Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior-Driven Development (BDD). BDD wurde 2006 erstmals von Dan North benannt und definiert \cite{IntroducingBDD}. Bei BDD werden User-Stories aus der Sicht eines äußerlichen Betrachters entworfen und geschrieben. Dabei umfassen die User-Stories Beispiele, wie die Anwendung in diesen Szenarien sich verhalten soll.
+Mit den beiden Stakeholdern, also Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior-Driven Development (BDD). BDD wurde 2006 erstmals von Dan North benannt und definiert \cite{IntroducingBDD}. Bei BDD werden User-Stories aus der Sicht eines äußerlichen Betrachters entworfen und geschrieben. Dabei umfassen die User-Stories Beispiele, wie sich die Anwendung in diesen Szenarien verhalten soll.
 
 Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin-Syntax \cite{Gherkin} geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
 
@@ -48,13 +48,13 @@ captionpos = b,
      label = lst:demoanwendung-gherkin-bestellung_abschließen
 ]{content/04_erstellung-poc/warenkorb-gherkin/5-bestellung_abschließen.feature}
 
-Neben des eigentlichen User-Interfaces soll auch ein Backend Teil der Demoanwendung sein. Hierfür wurde auf Basis der Verhaltensdefinition eine Architektur entworfen, die im folgenden Abschnitt näher beschrieben wird.
+Neben dem eigentlichen User-Interface soll auch ein Backend Teil der Demoanwendung sein. Hierfür wurde auf Basis der Verhaltensdefinition eine Architektur entworfen, die im folgenden Abschnitt näher beschrieben wird.
 
 \subsection{Backend}
 
 Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
 
-Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersysteme ermöglicht sowie die Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
+Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersystemen ermöglicht sowie die Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
 Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine möglichst realitätsnahe Repräsentation zu erstellen. Speziell wird bei einer solchen Architektur der Nutzen von Tracing deutlicher, nämlich um z. B. die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
 
@@ -69,13 +69,11 @@ Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine 
 
 \subsection{Frontend}
 
-Wie beim Kunden wurde ein Wizard auf Basis von Angular erstellt, welcher als zustandsreiche SPA umgesetzt ist. In den folgenden Abbildungen \ref{fig:demoanwendung_vorstellung_01-warenkorb} -- \ref{fig:demoanwendung_vorstellung_06-bestellbestaetigung} wird das Frontend anhand eines Beispieldurchlaufs vorgestellt.
-
-\subsection{Seiten}
+Wie beim Kunden wurde ein Wizard auf Basis von Angular erstellt, welcher mehrere aufeinander folgende Formulare in derselben SPA enthält. In den folgenden Abschnitten wird das Frontend anhand eines Beispieldurchlaufs durch die einzelnen Seiten vorgestellt.
 
 \subsubsection{Warenkorb}
 
-\autoref{fig:demoanwendung_vorstellung_01-warenkorb} zeigt die Startseite, mit dem der Nutzer zuerst konfrontiert wird, wenn er die Demoanwendung aufruft. Hierbei wird simuliert, dass der Nutzer zuvor in einem Online-Obsthandel einige Produkte ausgewählt hat und sich nun auf der Ansichtsseite des Warenkorbs befindet. Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten. Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe einer zufällig generierten Warenkorb-Id. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert. Beim Starten des Bestellvorgangs wird keine Serverabruf durchgeführt, sondern in der SPA ein Seitenwechsel vorgenommen.
+\autoref{fig:demoanwendung_vorstellung_01-warenkorb} zeigt die Startseite, die der Nutzer sieht, wenn er die Demoanwendung aufruft. Hierbei wird simuliert, dass der Nutzer zuvor in einem Online-Obsthandel einige Produkte ausgewählt hat und sich nun auf der Ansichtsseite des Warenkorbs befindet. Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten. Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird keine Serverabruf durchgeführt, sondern in der SPA ein Seitenwechsel vorgenommen.
 
 \begin{figure}[H]
 	\centering
@@ -137,7 +135,7 @@ Da der Nutzer nun alle notwendigen Daten zur Bestellung eingegeben hat, wird auf
 
 In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt und nicht clientseitig gespeichert. Die anderen Daten sind nur clientseitig gespeichert und werden über eine übergreifende Komponente bereitgestellt. Weitere Eingaben sind auf dieser Seite vom Nutzer aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
 
-Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und die Id des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben und dies führt zu einem Seitenwechsel.
+Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der Identifier des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben und dies führt zu einem Seitenwechsel.
 
 \begin{figure}[H]
 	\centering
@@ -184,9 +182,9 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 \subsubsection{\enquote{Gültige Straßen sind ungültig}}
 
-- Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise die Eingabe \enquote{Ährenweg} führt zu einem Fehler.
+- Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise führt die Eingabe \enquote{Ährenweg} zu einem Fehler.
 
-- Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem RegEx \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
+- Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem Regular-Expression \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
 
 \subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
 
@@ -217,7 +215,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
 
-- Ursache: Das Frontend sendet alle Formulardaten jeder Rechnungsart an "order-svc". Dieser nimmt aber an, dass alle nicht ausgewählten Rechnungsarten statt Formulardaten nur \texttt{null} enthalten.
+- Ursache: Das Frontend sendet alle Formulardaten jeder Rechnungsart an den Dienst \enquote{Bestellungen}. Dieser nimmt aber an, dass alle nicht ausgewählten Rechnungsarten statt Formulardaten nur \texttt{null} enthalten.
 
 \subsubsection{\enquote{Lange Verarbeitung}}
 

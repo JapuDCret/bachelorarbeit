@@ -1,25 +1,27 @@
-Neben der Umgebung Browser beschäftigt sich die arbeit hauptsächlich mit der Nachvollziehbarkeit. Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{TheKaijuProjectPaper} lässt sich diese Definition auch auf Softwaresysteme übertragen und wird dabei mit \enquote{Observability} bezeichnet. Scrocca adaptiert dabei die von Majors genannte Definition:
+Neben der Umgebung Browser beschäftigt sich die Arbeit hauptsächlich mit der Nachvollziehbarkeit. Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{TheKaijuProjectPaper} lässt sich diese Definition auch auf Softwaresysteme übertragen und wird dabei mit \enquote{Observability} bezeichnet. Scrocca adaptiert dabei die von Majors \cite{MajorsObservability} genannte Definition:
 
 \begin{quotation}
-Observability for software is the property of knowing what is happening inside a distributed application at runtime by simply asking questions from the outside and without the need to modify its code to gain insights.
+\enquote{Observability for software is the property of knowing what is happening inside a distributed application at runtime by simply asking questions from the outside and without the need to modify its code to gain insights.}
 \end{quotation}
 
-\vspace{-0.5\baselineskip}
-\subsection{Nutzen}
+Insbesondere in der Wirtschaft hat sich der Begriff der Observability etabliert \cite{DynatraceObservability} \cite{NewRelicObservability}. Hierbei lässt sich die Observability als eine Weiterentwicklung des klassischen Monitoring von Software betrachten \cite{TheNewStackMonitoringAndObservability}. Ziel dabei ist es Anwendungen und Systeme weitesgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können \cite{MichaelGrafBA}.
 
-Tritt beispielsweise ein Softwarefehler (Bug) bei einem Nutzer auf, aber die Betreiber erhalten nicht ausreichende Informationen, so kann der Bug ignoriert werden oder gering priorisiert und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und diesen bei Facebooks Bug-Bounty-Projekt meldete \cite{FacebookBugBounyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Daten abgelehnt:
+%\vspace{-0.5\baselineskip}
+%\subsection{Nutzen}
+%
+%Tritt beispielsweise ein Softwarefehler (Bug) bei einem Nutzer auf, aber die Betreiber erhalten nicht ausreichende Informationen, so kann der Bug ignoriert oder gering priorisiert werden und in Vergessenheit geraten. Dies geschah im Jahr 2013, als Khalil Shreateh eine Sicherheitslücke bei Facebook fand und diese bei Facebooks Bug-Bounty-Projekt meldete \cite{FacebookBugBountyHunt}. Sein Fehlerreport wurde aufgrund mangelnder Daten abgelehnt:
+%
+%\begin{quotation}
+%\enquote{Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.}
+%\end{quotation}
+%
+%Durch den Bug konnte Shreateh auf die private Profilseite von Nutzern schreiben, ohne dass er mit ihnen vernetzt war. Um Aufmerksamkeit auf das Sicherheitsproblem zu erregen, hinterließ er eine Nachricht auf der Profilseite von Facebook Gründer und CEO Mark Zuckerberg. Erst danach nahm sich Facebooks Team dem Problem an.
 
-\begin{quotation}
-Unfortunately your report [...] did not have enough technical information for us to take action  on  it. We  cannot  respond  to  reports  which  do  not contain enough detail to allow us to reproduce an issue.
-\end{quotation}
-
-Durch den Bug konnte Shreateh auf die private Profilseite von Nutzern schreiben, ohne dass er mit ihnen vernetzt war. Um Aufmerksamkeit auf das Sicherheitsproblem zu erregen, hinterließ er eine Nachricht auf der Profilseite von Facebook Gründer und CEO Mark Zuckerberg. Erst danach nahm sich Facebooks Team dem Problem an.
-
-\vspace{-0.5\baselineskip}
+%\vspace{-0.5\baselineskip}
 \subsection{Nachvollziehbarkeit bei SPAs}
 \label{sec:nachvollziehbarkeit-bei-spas}
 
-Speziell in dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher betrachtet. Wie zuvor in \autoref{sec:clientbased-webapps} \enquote{\nameref{sec:clientbased-webapps}} geschildert, gibt es bei Webanwendungen und insbesondere Singe-Page-Applications besondere Eigenschaften, die es den Betreibern und Entwicklern erschwert das Verhalten einer Anwendung und die Interaktionen eines Nutzers nachzuvollziehen. Meist lassen sich aus Sicht der Betreiber nur die Kommunikationsaufrufe der Anwendung zum Backend nachvollziehen, aber nicht wie es dazu gekommen ist und wie diese Daten weiterverarbeitet werden. Somit ist eine gängige SPA nicht gut nachvollziehbar.
+Speziell in dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher betrachtet. Wie zuvor in \autoref{sec:single-page-applications} geschildert, gibt es bei Webanwendungen und insbesondere Singe-Page-Applications besondere Eigenschaften, die es den Betreibern und Entwicklern erschweren das Verhalten ihrer Anwendung und die Interaktionen eines Nutzers nachzuvollziehen. Meist lassen sich aus Sicht der Betreiber nur die Kommunikationsaufrufe der Anwendung zum Backend nachvollziehen, aber nicht wie es dazu gekommen ist und wie diese Daten weiterverarbeitet werden. Somit ist eine gängige SPA nicht gut nachvollziehbar.
 	
 % Im nächsten Kapitel werden Methoden und Konzepte beschrieben, wie man in Softwareprojekten die Nachvollziehbarkeit verbessern kann.
 
@@ -31,11 +33,11 @@ Speziell in dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher
 
 \subsubsection{Cross-Origin Resource Sharing (CORS)}
 
-Wie aus der Geschichte zu JavaScript zu sehen ist, entwickelte CORS sich aus dem Wunsch von Entwicklern, nicht auf einen einzelnen Webserver beschränkt zu sein. Diese Einschränkung existierte, um vor Nutzer vor Missbrauch zu schützen. CORS hebt diese Einschränkung teilweise auf, aber unter Berücksichtigung der sicherheitskritischen Aspekte. Das Konzept von CORS stellt sicher, dass aus einer JavaScript-Umgebung heraus keine Ressourcen von Webservern angefragt werden, welche nicht explizit der Anfrage zustimmen \cite{MDNCORS}.
+Wie aus der Geschichte zu JavaScript zu sehen ist, entwickelte CORS sich aus dem Wunsch von Entwicklern, nicht auf einen einzelnen Webserver beschränkt zu sein. Diese Einschränkung existierte, um Nutzer vor Missbrauch zu schützen. CORS hebt diese Einschränkung teilweise auf, aber unter Berücksichtigung der sicherheitskritischen Aspekte. Das Konzept von CORS stellt sicher, dass aus einer JavaScript-Umgebung heraus keine Ressourcen von Webservern angefragt werden, welche nicht explizit der Anfrage zustimmen \cite{MDNCORS}.
 
-Wie eine \enquote{cross-origin} Ajax-Anfrage nach dem Konzept von CORS gehandhabt wird, ist in \autoref{fig:cors-workflow} zu betrachten. Wenn eine HTTP-Anfrage nicht standardmäßig\footnotemark ist, führt der Browser einen sogenannten \enquote{Preflighted Request} aus, bei dem vor der eigentlicher Anfrage eine zusätzliche OPTIONS-Anfrage gesendet wird. Bestätigt nun der Webserver in seiner Antwort auf die OPTIONS-Anfrage, dass die Anfrage so erlaubt ist, wird auch die eigentliche Ajax-Anfrage ausgeführt. Ansonsten schlägt die Anfrage fehl und im JavaScript-Kontext ist lediglich der Fehlschlag zu sehen, ohne einen Hinweis auf die Diskrepanz bzgl. CORS.
+Wie eine \enquote{cross-origin} Ajax-Anfrage nach dem Konzept von CORS gehandhabt wird, ist in \autoref{fig:cors-workflow} zu betrachten. Wenn eine HTTP-Anfrage nicht \enquote{simple}\footnotemark ist, führt der Browser einen sogenannten \enquote{Preflighted Request} aus, bei dem vor der eigentlichen Anfrage eine zusätzliche OPTIONS-Anfrage gesendet wird. Bestätigt nun der Webserver in seiner Antwort auf die OPTIONS-Anfrage, dass die Anfrage so erlaubt ist, wird auch die eigentliche Ajax-Anfrage ausgeführt. Ansonsten schlägt die Anfrage fehl und im JavaScript-Kontext ist lediglich der Fehlschlag zu sehen, ohne einen Hinweis auf die Diskrepanz bzgl. CORS.
 
-\footnotetext{Standardmäßig ist eine Anfrage, wenn 1. die Methode GET, HEAD oder POST entspricht; 2. keine eigene Headern enthält; und 3. der \enquote{Content-Type} von POST-Anfragen einem der folgenden Werte entspricht: \enquote{application/x-www-form-urlencoded}, \enquote{multipart/form-data} oder \enquote{text/plain} \cite{MDNCORS}.}
+\footnotetext{Eine Anfrage ist \enquote{simple}, wenn 1. der Methode GET, HEAD oder POST entspricht; 2. sie keine eigene Header enthält; und 3. der \enquote{Content-Type} von POST-Anfragen einem der folgenden Werte entspricht: \enquote{application/x-www-form-urlencoded}, \enquote{multipart/form-data} oder \enquote{text/plain} \cite{MDNCORS}.}
 
 \begin{figure}[H]
 	\centering
@@ -55,10 +57,10 @@ Neben CORS gibt es im Browser eine Möglichkeit zu bestimmen, welche Funktionali
 \subsection{Logdaten}
 \label{sec:logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Hinzukommend ist es, durch die zuvor beschrieben Härtungsmaßnahmen von Browsern, nicht möglich das Log direkt in eine Datei zu schreiben.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Durch die zuvor beschrieben Härtungsmaßnahmen von Browsern ist es hinzukommend nicht möglich, das Log direkt in eine Datei zu schreiben.
 
 Um die Logdaten also zu erheben, gilt es entweder ein spezielles Log-Framework in der Webanwendung zu verwenden oder die bestehende Schnittstelle zu überschreiben oder zu wrappen. Nachdem die Datenerhebung gewährleistet ist, gilt es jedoch zudem die Daten an ein Partnersystem weiterzuleiten, welches die Beachtung der zuvor beschriebenen Einschränkungen erfordert. Alles in Allem stellt sich die Logdatenerhebung als nicht trivial dar, eine genauere Betrachtung erfolgt in der Untersuchung bestehender Lösungen.
 
 \subsection{Fernzugriff}
 
-Ein weiterer Punkt, der den \enquote{Browser} von anderen Umgebungen unterscheidet, ist, dass die Betreiber und Entwickler sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen, bei denen die Nutzerschaft bekannt ist, ließe sich solch eine Funktionalität ggf. realisieren. Es gibt jedoch keine standardmäßige Funktionalität auf das gesetzt werden kann, wie z. B. das Remote Application Debugging \cite{JavaDebugWireProtocol} von Java. Weiterhin sind bei einer Webanwendung, die für den offenen Markt geschaffen ist, hierbei sind die Nutzer zahlreich sowie unbekannt und so eine Funktionalität lässt sich nicht realistisch umsetzen.
+Ein weiterer Punkt, der den \enquote{Browser} von anderen Umgebungen unterscheidet, ist, dass die Betreiber und Entwickler sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen, bei denen die Nutzerschaft bekannt ist, ließe sich solch eine Funktionalität ggf. realisieren. Es gibt jedoch keine standardmäßige Funktionalität auf die gesetzt werden kann, wie z. B. das Remote Application Debugging \cite{JavaDebugWireProtocol} von Java. Weiterhin sind bei einer Webanwendung, die für den offenen Markt geschaffen ist, hierbei sind die Nutzer zahlreich sowie unbekannt und so eine Funktionalität lässt sich nicht realistisch umsetzen.

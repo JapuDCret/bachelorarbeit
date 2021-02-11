@@ -5,7 +5,7 @@
 
 \vspace{-\baselineskip}
 
-\section{Methoden}
+\section{Methoden für eine bessere Nachvollziehbarkeit}
 
 \subsection{Logging}
 
@@ -16,17 +16,15 @@
 %	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
 %\end{enumerate}
 
-Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
+Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen \cite{LearningToLog}. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
 
-Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung im Produktivmodus nachvollziehen können \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, wie in \autoref{sec:logdaten} erläutert.
+Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung im Produktivmodus nachvollziehen können \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit, die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, zu begründen, wie in \autoref{sec:logdaten} erläutert.
 
-Weiterhin bieten detaillierte Logs meist zu viele Informationen, um diese manuell zu analysieren. Um eine effiziente maschinenbasierte Analyse zu ermöglichen, wird Structured Logging verwendet.
+%Weiterhin bieten detaillierte Logs meist zu viele Informationen, um diese manuell zu analysieren. Um eine effiziente maschinenbasierte Analyse zu ermöglichen, wird Structured Logging verwendet.
 
-\subsubsection{Structured Logging}
+Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn ein Aggregator nun jedoch Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured Logging ins Spiel. Bei Structured Logging \cite{StructuredAndInteroperableLogging} werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch menschenlesbar sein oder definiert die Logmeldung bspw. als JSON-Objekt. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
 
-Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn ein Aggregator nun jedoch Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured Logging ins Spiel. Bei Structured Logging werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch menschenlesbar sein oder die Logmeldung wird bspw. als JSON-Objekt definieren. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
-
-Wird Structured Logging eingesetzt und ein System analysiert die Protokolldaten auf enthaltene Werte, so wird ermöglicht, dass auf diese Protokolle nicht nur manuell einzusehen sind, sondern dass auch auf Basis dessen komplexe Datenanalysen durchgeführt werden können. Mit diesen Datenanalysen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken. Weiterhin lassen sich so aus Logmeldungen auch spezielle Daten wie Metriken extrahieren.
+Wird Structured Logging eingesetzt und ein System analysiert die Protokolldaten auf enthaltene Werte, so wird ermöglicht, dass auf diese Protokolle nicht nur manuell einzusehen sind, sondern dass auch auf Basis dessen komplexe Datenanalysen durchgeführt werden können \cite{StructuredAndInteroperableLogging}. Mit diesen Datenanalysen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken \cite{StructuredLoggingCraftingUsefulMessageContent}. Weiterhin lassen sich so aus Logmeldungen auch spezielle Daten wie Metriken extrahieren.
 
 \subsection{Metriken}
 
@@ -45,11 +43,11 @@ Beispiele für Metriken sind:
 \subsection{Tracing}
 \label{sec:tracing}
 
-Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
+Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen \cite{TowardsPerformanceToolingInteroperability}. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
-OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span ist besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methode. Ein Span kann Kindspans beinhalten, wenn in der Methode weitere Spans erzeugt wurden (z. B. durch einen Methodenaufruf). Ein Trace ist eine Menge von Span, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
+OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span ist besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methode, bei einer Webanwendung kann dies eine Verarbeitung sein oder einen durch den Nutzer hervorgerufenen Eventfluss sein. Ein Span kann Kindspans beinhalten, wenn in der Methode weitere Spans erzeugt wurden (z. B. durch einen Methodenaufruf). Ein Trace ist eine Menge von Spans, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
 
-Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Events von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei beinhaltet der Trace Events, die über die Grenzen von Anwendungen, Prozessen und Netzwerken hinausgehen \cite{OpenTracingSpecification}.
+Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace, der sich aus den Spans von verschiedenen Systemen zusammensetzt, die miteinander kommunizieren. Hierbei werden die Traceinformationen oftmals über hinzugefügte Felder bei existierenden Aufrufen propagiert, wie z. B. dem Einfügen eines Trace-Headers. Die dann an ein Tracesystem gemeldeten Spans gehen somit über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus und bilden somit einen \enquote{Distributed Trace} \cite{OpenTracingSpecification}. Auf Basis von reellen Aufrufen können somit die tatsächlichen Zusammenhänge der einzelnen Systeme miteinander nachempfunden werden.
 
 \begin{minipage}{.47\textwidth}
 	\centering
@@ -75,17 +73,13 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 \label{fig:instagram-bug-report}
 \end{wrapfigure}
 
-Fehlerberichte sind ein klassisches Mittel, um den Nutzer selber aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin kann die Intention des Nutzers ermittelt werden, vorausgesetzt er gibt dies an.
+Fehlerberichte sind ein klassisches Mittel, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin kann die Intention des Nutzers ermittelt werden, vorausgesetzt er gibt dies an.
 
-Konträr zu den genannten  stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis vom System vorweisen.
+Konträr zu diesen Vorteilen stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
 
 \section{Praktiken}
 
-In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, welche die Nachvollziehbarkeit von Anwendungsverhalten und Nutzerinteraktion ermöglichen oder verbessern. Auf Basis der zuvor vorgestellten Methoden und teils neuen Ansätze haben sich in der Wirtschaft einige Praktiken entwickelt. Diese werden folgend näher beleuchtet.
-
-\subsection{Observability}
-
-In der Wirtschaft hat sich bei Werkzeugen, die auf eine verbesserte Nachvollziehbarkeit abzielen, der Begriff \enquote{Observability} etabliert, um diese zu beschreiben. Wie in \autoref{sec:nachvollziehbarkeit} erwähnt, wird Nachvollziehbarkeit bei Softwaresystemen im Englischen in Literatur und Praxis auch mit Observability bezeichnet. Das Feld der Observability entstand aus dem klassischen Monitoring von Software, aber beinhaltet neben Monitoring noch einige weitere Disziplinen, wie Logging, Tracing und Metriken. Ziel der Observability ist es, Anwendungen und Systeme weitesgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können \cite{MichaelGrafBA}.
+In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, welche die Nachvollziehbarkeit von Anwendungsverhalten und Nutzerinteraktion ermöglichen oder verbessern. Auf Basis der zuvor vorgestellten Methoden und teils neuer Ansätze haben sich in der Wirtschaft einige Praktiken entwickelt. Diese werden folgend näher beleuchtet.
 
 \subsection{System Monitoring}
 
@@ -109,23 +103,23 @@ Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcen
 
 \nomenclature[Fachbegriff]{UI}{User-Interface}
 
-Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Webanwendung \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX-Verbesserungen vorgenommen werden.
+Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Benutzeroberfläche \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX-Verbesserungen vorgenommen werden.
 
 Weiterhin ist es beim RUM auch üblich Nutzerinteraktionen gruppierte zu analysieren, um verbreitete und unübliche Sitzungen zu identifizieren. Hiermit wird die Nutzerschaft und ihre Verhaltensweisen nachvollziehbarer gemacht.
 
-\subsection{Synthetic Monitoring}
-
-Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionalität oder Verfügbarkeit zu verifizieren \cite{IdentifyingWebPerformanceDegradations}. Hierbei können Werkzeuge zur Browserautomatisierung eine echte Benutzung einer Webanwendung simulieren. Des Weiteren ist aber auch eine Nachstellung des Verhaltens der Webanwendung eine Option, indem z. B. Aufrufe zu Partnersystemen simuliert werden.
+%\subsection{Synthetic Monitoring}
+%
+%Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionalität oder Verfügbarkeit zu verifizieren \cite{IdentifyingWebPerformanceDegradations}. Hierbei können Werkzeuge zur Browserautomatisierung eine echte Benutzung einer Webanwendung simulieren. Des Weiteren ist aber auch eine Nachstellung des Verhaltens der Webanwendung eine Option, indem z. B. Aufrufe zu Partnersystemen simuliert werden.
 
 \subsection{Error/Crash Monitoring}
 
 Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, um aufgetretene Fehler und deren Behebung nachvollziehbar zu machen \cite{CrashbinCrashMonitoring}.
 
-\subsection{Session Replay}
+\subsection{Session-Replay}
 
-Session Replay beschreibt das Vorgehen, eine Sitzung eines Nutzers nachzustellen, so als ob sie gerade passiert. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf oder die DOM-Manipulationen. Desto mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Nachstellung und entsprechend hilfreich ist sie beim Nachvollziehen.
+Session-Replay beschreibt das Vorgehen, eine Sitzung eines Nutzers nachzustellen, so als ob sie gerade passiert \cite{NoBoundariesExfiltrationBySessionReplayScripts}. Hierbei können einzelne Aspekte der Anwendung nachgestellt werden, bspw. der Kommunikationsablauf oder die DOM-Manipulationen. Je mehr Aspekte nachgestellt werden, desto realitätsnaher ist die Nachstellung und entsprechend hilfreich ist sie beim Nachvollziehen.
 
-Realitätsnahes Session Replay nimmt somit eine enorme Datenmenge für jede Nutzersitzung auf und benötigt besonders bei Browsern eine effiziente Kommunikation, um die UX nicht negativ zu beeinflussen.
+Realitätsnahes Session-Replay nimmt somit eine enorme Datenmenge für jede Nutzersitzung auf und benötigt besonders bei Browsern eine effiziente Kommunikation, um die UX nicht negativ zu beeinflussen.
 
 \begin{wrapfigure}[10]{r}{0.40\textwidth}
 \centering
@@ -143,7 +137,7 @@ Bereits 2013 entwickelten Burg \etal \cite{TimelapsePaper} mit \enquote{Timelaps
 \label{fig:timelapse_figure6}
 \end{wrapfigure}
 
-Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in derselben Umgebung möglich und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit benötigt, somit auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnote{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
+Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop übergeben (vgl. \autoref{fig:timelapse_figure6}). Dies bedeutet es ist ein exaktes wiederholtes Ausführen in derselben Umgebung möglich und dies ermöglicht eine detaillierte Nachvollziehbarkeit des Anwendungsverhaltens. Leider wird für diesen Ansatz eine gepatchte Version von WebKit vorausgesetzt, somit wird auch Zugriff auf das Endnutzersystem benötigt. Aus diesem Grund und weil es sehr mehr als 5 Jahren nicht mehr gepflegt wird\footnote{Timelapse GitHub Repo \url{https://github.com/burg/replay-staging/}}, ist es ungeeignet für die hier angestrebte Lösung. Die vorgestellten Konzepte stellen jedoch nützliche Kernprinzipien für das Session Replay im Allgemeinen dar.
 
 \section{Werkzeuge und Technologien}
 \label{sec:werkzeuge-und-technologien}
@@ -177,26 +171,27 @@ Neben den Technologien kam bei der Recherche wiederholt der Begriff \textbf{Open
 
 \subsection{OpenTelemetry}
 
-\begin{wrapfigure}[19]{r}{0.35\textwidth}
+\begin{wrapfigure}[29]{r}{0.55\textwidth}
 \centering
-\vspace{-3\baselineskip}
+\vspace{-2\baselineskip}
 \includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection_2.png}
 \caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
 \label{fig:otel-unified-collection}
 \end{wrapfigure}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnotemark{} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standardkomponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnotemark{} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen. Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+
+\footnotetext{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.}
 
 In der Bachelorarbeit von Graf \enquote{Bedeutung von Telemetrie für den Software-Development-Life-Cycle} \cite{MichaelGrafBA} beschäftigt sich Graf intensiv mit dem Einfluss und dem Nutzen von Telemetrie in modernen Softwareprojekten. Speziell beschreibt er den OTel-Standard und seine Bedeutung im aktuellen Gebiet der Telemetrie. Er bewertet die Entwicklung des Standards positiv, besonders auf Basis der Aspekte Interoperabilität, Plattformunabhängigkeit und Erweiterbarkeit. Jedoch mahnt er zudem, dass das Projekt noch jung ist und keine Prognosen über den Erfolg gemacht werden können. Grafs Arbeit sichert somit zu, dass OpenTelemetry ein nicht zu vernachlässigenden Standard im Gebiet der Observability darstellt.
 
 \nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
 \nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
-\footnotetext{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.}
-\footnotetext{Logging ist noch nicht ausreichend im OTel Standard definiert \cite{OpenTelemetryLoggingSpecification}.}
+\footnotetext{Eine Entwicklung einer Definition zu Logging ist im Gange \cite{OpenTelemetryLoggingSpecification}.}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.55\linewidth]{img/03_methoden/dynatrace_otel-components.png}
+	\includegraphics[width=0.75\linewidth]{img/03_methoden/dynatrace_otel-components.png}
 	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
 	\label{fig:otel-components}
 \end{figure}
@@ -207,7 +202,7 @@ New Relic \cite{NewRelic} ist eine Software-as-a-Service (SaaS) der gleichnamige
 
 \nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}
 
-New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen aber mehr Informationen zur Verfügung, wie den Stacktrace, die genaue Browserversion und die Uhrzeit, welche die Oberfläche veranschaulicht.
+New Relic steht sowohl als kostenlose sowie als kommerzielle Lösung zur Verfügung. Da die kostenlose Version benötigte Features abdeckt, wurde diese im Rahmen der Arbeit eingesetzt. Der New Relic Agent, welcher die Daten beim Client sammelt, wird über ein Skript eingebunden und sendet in regelmäßigen Abständen Daten an New Relic. Über die Oberfläche von New Relic können dann allgemeine Charakteristika der Clients betrachtet werden, wie Ladezeiten, Browserhersteller, Ajax-Antwortzeiten. Spezielle Eigenschaften eines einzelnen Nutzers sind jedoch nicht möglich auszulesen. Im Fehlerfall stehen aber mehr Informationen zur Verfügung, wie der Stacktrace, die genaue Browserversion und die Uhrzeit, welche die Oberfläche veranschaulicht.
 
 Mithilfe dieser Informationen erhält ein Entwickler oder Betreiber einen guten Rahmen, um die Umgebung als solches zu verstehen und den eigentlichen Fehler einzusehen. Ein Manko ist aber, dass diese Informationen nicht Aufschluss darüber geben, wie es zu dem Fehler kam, also welche Ereignisse direkt dem Fehler vorgelagert waren - es sind unter anderem keine Logdaten einzusehen.
 
@@ -223,7 +218,7 @@ Dynatrace ist zudem dem OpenTelemetry Team beigetreten und hat angegeben, an der
 
 \subsection{Sentry}
 
-Sentry \cite{Sentry} ist ein SaaS-Produkt der Functional Software Inc., welcher sich auf das Error Monitoring spezialisiert. Die Kernfunktionalitäten beschränken sich auf das Error Monitoring, auch wenn von anderen Praktiken einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
+Sentry \cite{Sentry} ist ein SaaS-Produkt der Functional Software Inc., welches sich auf das Error Monitoring spezialisiert. Die Kernfunktionalitäten beschränken sich auf das Error Monitoring, auch wenn von anderen Praktiken einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
 
 Neben einer kommerziellen Version, bietet Sentry auch eine unbegrenzte kostenlose Version bereit, welche im Rahmen dieser Arbeit evaluiert wurde. Um von Webanwendungen Fehler zu erfassen und an Sentry zu melden, bietet Sentry bei NPM quelloffene Pakete an \cite{SentryJSGithub}. Dabei werden Pakete für folgende Frameworks bereitgestellt: JavaScript, Angular, AngularJS, Backbone, Ember, Gatsby, React und Vue.
 
@@ -231,7 +226,7 @@ Anders als bei den beiden vorherigen Tools wird zu Sentry nur kommuniziert, wenn
 
 In der Oberfläche von Sentry werden die gemeldeten Fehler in sogenannten \enquote{Issues} zusammengefasst. Diese entsprechen Fehlertickets und die Oberfläche erlaubt eine Zuweisung dieser Tickets sowie ein detailliertes Nachhalten der Fehlerbehebung.
 
-Die angeboten Fehlerinformationen von Sentry sind zahlreich und helfen beim Nachvollziehen besser als die vorher beleuchteten Werkzeuge, jedoch mangelt es an einer ganzheitlichen Nachvollziehbarkeit auch in nicht Problemszenarien.
+Die angebotenen Fehlerinformationen von Sentry sind zahlreich und helfen beim Nachvollziehen besser als die vorher beleuchteten Werkzeuge, jedoch mangelt es an einer ganzheitlichen Nachvollziehbarkeit, d. h. wenn kein Fehlerfall eingetreten ist, bietet Sentry hierfür auch keine Informationen.
 
 Der Quellcode für das Backend von Sentry wurde veröffentlicht und weiterhin bietet Sentry auch eine OnPremise-Lösung, die auf Docker basiert \cite{SentrySelfHosted}.
 
@@ -245,8 +240,8 @@ Neben dem JavaScript-SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example.png}
-	\caption{Beispiel eines Session Replays bei LogRocket}
+	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example-cropped.png}
+	\caption{Ausschnitt eines Session Replays bei LogRocket}
 	\label{fig:logrocket-session-replay-example}
 \end{figure}
 
@@ -270,7 +265,7 @@ Honeycomb konzentriert sich auf die Datenkategorien Tracing und Metriken, ähnli
 
 \subsection{Jaeger}
 
-Jaeger wurde 2017 als ein OpenSource-Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing, unterstützt aber auch Datenformate anderer Hersteller (wie z. B. Zipkin). Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+Jaeger wurde 2017 als ein OpenSource-Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing, unterstützt aber auch Datenformate anderer Hersteller (wie z. B. Zipkin \cite{Zipkin}). Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
 
 \begin{wrapfigure}[13]{r}{0.45\textwidth}
 \centering
