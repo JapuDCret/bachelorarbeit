@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>522</x>
+      <y>567</y>
+      <w>171</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+backend4frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>702</x>
+      <y>135</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Warenkorb</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>513</x>
+      <y>252</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Bestellungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>882</x>
+      <y>198</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Übersetzungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>324</x>
+      <y>81</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Addressvalidierung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>621</x>
+      <y>180</y>
+      <w>162</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;50.0;10.0;50.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>126</y>
+      <w>189</w>
+      <h>459</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0;190.0;330.0;190.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>297</y>
+      <w>72</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>180</y>
+      <w>189</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;300.0;10.0;300.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>639</x>
+      <y>243</y>
+      <w>342</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>360.0;10.0;360.0;260.0;10.0;260.0;10.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>414</x>
+      <y>126</y>
+      <w>162</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;160.0;80.0;160.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>522</x>
+      <y>792</y>
+      <w>171</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>621</y>
+      <w>72</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+</diagram>

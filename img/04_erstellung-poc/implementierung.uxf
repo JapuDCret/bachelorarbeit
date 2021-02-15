@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>531</x>
+      <y>567</y>
+      <w>171</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+backend4frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>711</x>
+      <y>135</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Warenkorb</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>522</x>
+      <y>252</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Bestellungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>891</x>
+      <y>198</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Übersetzungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>333</x>
+      <y>81</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Addressvalidierung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>180</y>
+      <w>162</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;50.0;10.0;50.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>126</y>
+      <w>189</w>
+      <h>459</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0;190.0;330.0;190.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>297</y>
+      <w>72</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>621</x>
+      <y>180</y>
+      <w>189</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;300.0;10.0;300.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>243</y>
+      <w>342</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>360.0;10.0;360.0;260.0;10.0;260.0;10.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>423</x>
+      <y>126</y>
+      <w>162</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;160.0;80.0;160.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1251</x>
+      <y>126</y>
+      <w>153</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+Jaeger</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1053</x>
+      <y>171</y>
+      <w>216</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>220.0;10.0;60.0;10.0;60.0;60.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>873</x>
+      <y>144</y>
+      <w>396</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>420.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>189</y>
+      <w>585</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>630.0;10.0;530.0;10.0;530.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>99</y>
+      <w>774</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>840.0;50.0;780.0;50.0;780.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>531</x>
+      <y>792</y>
+      <w>171</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1251</x>
+      <y>342</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+Splunk</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1251</x>
+      <y>549</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+LogRocket</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>378</y>
+      <w>576</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#f05922
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;480.0;10.0;480.0;260.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>603</x>
+      <y>621</y>
+      <w>72</w>
+      <h>189</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>585</y>
+      <w>576</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#040d97
+&lt;&lt;gRPC&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;550.0;10.0;550.0;270.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>207</y>
+      <w>576</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#040d97
+&lt;&lt;gRPC&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;580.0;10.0;580.0;160.0;440.0;160.0;440.0;420.0;10.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>621</x>
+      <y>711</y>
+      <w>45</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>bg=white
+layer=100
+transparency=1
+
+   3
+customelement=
+// Entity Symbol
+drawCircle(20, 30, 20) bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1143</x>
+      <y>774</y>
+      <w>45</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>bg=white
+layer=100
+transparency=1
+
+   4
+customelement=
+// Entity Symbol
+drawCircle(20, 30, 20) bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1134</x>
+      <y>387</y>
+      <w>45</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>bg=white
+layer=100
+transparency=1
+
+   2
+customelement=
+// Entity Symbol
+drawCircle(20, 30, 20) bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1125</x>
+      <y>108</y>
+      <w>45</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>bg=white
+layer=100
+transparency=1
+
+   1
+customelement=
+// Entity Symbol
+drawCircle(20, 30, 20) bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

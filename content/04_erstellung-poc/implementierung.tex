@@ -1,0 +1,117 @@
+\subsection{Backend}
+
+Wie in \autoref{subsec:demoanwendung-backend} beschrieben, wurden die Dienste mit Eclipse MicroProfile umgesetzt. Neben den standardmäßig enthaltenen Bibliotheken, gibt es hierbei aber auch unterstützte optionale Bibliotheken, wie Implementierungen von \texttt{OpenAPI}, \texttt{OpenTracing}, \texttt{Fault Tolerance} und vieler weiterer \cite{EclipseMicroprofile}.
+
+Um Traces von den Microservices zu sammeln, wurde die OpenTracing Implementierung sowie ein Jaeger-Client \cite{JaegerClient} zum Exportieren der Daten hinzugezogen. Mit dieser Anbindung lassen sich per Annotation (vgl. \autoref{lst:implementierung-traced-example}) alle zu tracenden Businessmethoden definieren, die dann automatisch getraced und über den Jaeger-Client an Jaeger gesendet werden. Bei jedem Microservice wurde diese Annotation dann an relevante Methoden geschrieben und der Jaeger-Client konfiguriert, was automatisch zu der Übertragung von verteilten Traces in Jaeger führte.
+
+\lstinputlisting[
+  language = java,
+     style = java-eclipse,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Beispielhafter Einsatz der @Traced-Annotation,
+captionpos = b,
+     label = lst:implementierung-traced-example
+]{content/04_erstellung-poc/implementierung-code/TracedExample_OrderService.java}
+
+\begin{wrapfigure}[8]{r}{0.45\textwidth}
+\centering
+\vspace{-\baselineskip}
+\includegraphics[width=\linewidth]{img/04_erstellung-poc/implementierung_jaeger-trace-example.png}
+\caption{Ausschnitt des Traces zu \autoref{lst:implementierung-traced-example}}
+\label{fig:implementierung_jaeger-trace-example}
+\end{wrapfigure}
+
+In Jaeger erzeugt der o. g. Quellcode die in \autoref{fig:implementierung_jaeger-trace-example} zu sehenden Spans. Neben den Traces werden keine weiteren Daten von Backend-Komponenten erhoben, da das Hauptaugenmerk der Arbeit im Frontend liegt.
+
+\subsection{Frontend}
+
+\subsubsection{Traces und Metriken}
+
+Das Frontend erhebt ebenso wie das Backend Traces, aber zusätzlich werden auch Metriken, Logmeldungen und Fehler erhoben und gemeldet. Traces und Metriken werden auf Basis von OpenTelemetry JavaScript Komponenten \cite{OpenTelemetryJS} erhoben. Genauer werden diese Komponenten in einem Angular Modul (siehe \autoref{lst:app-observability}) initialisiert und der restlichen Anwendung über \enquote{providers} zur Verfügung gestellt. Hierbei wird der SPA ein \texttt{Tracer} bereitgestellt, mit dem Spans aufgezeichnet werden können, ein \texttt{Meter}, welcher es erlaubt Metriken zu erstellen, und eine \texttt{requestCounter}-Metrik, welches die Aufzeichnung der Aufrufanzahl schnittstellenübergreifend erlaubt.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Quellcode des Moduls \enquote{app-observability.module.ts},
+captionpos = b,
+     label = lst:app-observability
+]{content/04_erstellung-poc/implementierung-code/app-observability.module.ts}
+
+Im \autoref{lst:shopping-cart-datasource} ist die Benutzung des zur Verfügung gestellten \texttt{Tracers} zu sehen, hierbei wird ein Span erstellt und bei Schnittstellenaufrufen an die jeweiligen Services übergeben.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Datenquelle zum Abrufen und Zusammenführen der Artikeldaten,
+captionpos = b,
+     label = lst:shopping-cart-datasource
+]{content/04_erstellung-poc/implementierung-code/tracing_shopping-cart-datasource.ts}
+
+Beispielhaft im Dienst zum Abrufen der Übersetzungsdaten (vgl. \autoref{lst:localization.service}) wird der übergebene Span als Elternspan benutzt. Bei dem eigentlichen HTTP-Aufruf wird zudem ein HTTP-Header \texttt{uber-trace-id} angereichert, den der dort laufende Jaeger-Client interpretiert \cite{JaegerClient} und daraus die Beziehung zu den Frontend-Spans herstellt. Zusätzlich zum Tracing wird hierbei auch die Metrik \texttt{requestCounter} inkrementiert.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Service zum Abrufen der Übersetzungsdaten,
+captionpos = b,
+     label = lst:localization.service
+]{content/04_erstellung-poc/implementierung-code/tracing_localization.service.ts}
+
+Es wurde sich für die OpenTelemetry Implementierung für Tracing und Metriken im Frontend entschieden, da wie in \autoref{subsec:opentelemetry} beschrieben, OpenTelemetry einen vielversprechenden Standard darstellt. Weiterhin konnte keine Bibliothek identifiziert werden, die die Traces erhebt und direkt nach Jaeger sendet. Es gibt zwar einen Jaeger-Client für Node.js\footnote{Jaeger-Client für Node.js: https://github.com/jaegertracing/jaeger-client-node}, jedoch befindet sich das browserkompatible Pendant\footnote{Jaeger-Client für Browser: https://github.com/jaegertracing/jaeger-client-javascript/} seit 2017 in den Startlöchern. Weiterhin existiert ein OTel Exporter für Jaeger\footnote{OTel Jaeger Exporter: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger}, welcher jedoch auch nur mit Node.js funktioniert.
+
+Die gesammelten OTel Tracingdaten werden über einen Standard-Exporter an das \enquote{Backend4Frontend} gesendet, welcher diese dann in ein Jaeger-konformes Format umwandelt und sie dann subsequent an Jaeger übertragt. Die Metrikdaten werden jedoch bereits im Frontend konvertiert, in ein Splunk-kompatibles Logformat. Nach der Konvertierung werden die Daten an den \texttt{SplunkForwardingService} übergeben, welcher im folgenden Abschnitt näher beschrieben wird.
+
+\subsubsection{Logging}
+
+Das Logging im Frontend wurde über das npm \cite{npm} Paket \texttt{ngx-logger}\footnote{ngx-logger auf GitHub: https://github.com/dbfannin/ngx-logger} realisiert, welches eine speziell an Angular angepasste Logging-Lösung darstellt. Da dieses Pakete extra an Angular angepasst ist, lässt es sich ohne großen Aufwand als Modul einbinden, vgl. \autoref{lst:logging_app.module}.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Ausschnitt des Hauptmoduls \texttt{app.module.ts},
+captionpos = b,
+     label = lst:logging_app.module
+]{content/04_erstellung-poc/implementierung-code/logging_app.module.ts}
+
+Wie in den vorherigen Codebeispielen zum Tracing zu sehen war, kann ein \texttt{NGXLogger} im Konstruktor von Komponenten und Diensten injected werden. Logmeldungen die hiermit erfasst werden, werden je nach Konfiguration und Loglevel der jeweiligen Meldung in die Browserkonsole geschrieben. Über einen \texttt{NGXLoggerMonitor} lassen sich die Logmeldungen anzapfen, wie in \autoref{lst:splunk-logging-monitor} zu sehen ist. Hierbei werden die Logmeldungen in ein Splunkformat übertragen und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} übertragen. Eine direkte Übertragung an Splunk ist nicht möglich, da Splunk nicht mit kompatiblen CORS-Headern antwortet. Das Backend4Frontend reichert neben dem Weiterleiten auch die Meldungen mit Kontextinformationen, wie der User-IP, der Browserversion usw. an.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Implementierung des \texttt{NGXLoggerMonitor}-Interfaces,
+captionpos = b,
+     label = lst:splunk-logging-monitor
+]{content/04_erstellung-poc/implementierung-code/splunk-logging-monitor.ts}
+
+\subsubsection{Fehler}
+
+Die ErrorHandler-Hook von Angular übermittelt aufgetretene und unbehandelte Fehler an den \texttt{SplunkForwardingErrorHandler}. Weiterhin ist der ErrorHandler \texttt{Injectable} in andere SPA Klassen, wo er bspw. bei den Schnittstellen dazu benutzt wird, dass auch behandelte Fehler an Splunk zu übermitteln.
+
+Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunkdatensatz konvertiert und dann über den zuvor behandelten \texttt{SplunkForwardingService} an Splunk weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = ErrorHandler zum Abfangen und Weiterleiten von aufgetretenen Fehlern,
+captionpos = b,
+     label = lst:splunk-forwarding-error-handler
+]{content/04_erstellung-poc/implementierung-code/splunk-forwarding-error-handler.ts}
+
+\subsubsection{Session-Replay}
+
+LogRocket wird standardmäßig nicht aktiv, außer wenn der Nutzer explizit der Aufzeichnung zustimmt \citationneeded{}. Dies bedeutet jedoch auch, dass bis zur Zustimmung keine Sitzungsdaten aufgenommen wurden. Wenn der Nutzer zustimmt, wird, wie im \autoref{lst:session-replay_checkout.component} zu sehen ist, LogRocket initialisiert und mit identifizierenden Daten angereichert. Nach dem Warenkorbdialog und nach der Eingabe der Rechnungsadresse werden zudem weitere identifizierende Daten an LogRocket übermittelt. Die Aufnahme der Sitzung läuft größtenteils autonom, lediglich behandelte Fehler müssen LogRocket manuell übermittelt werden.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Initialisierung von LogRocket in der Hauptkomponente,
+captionpos = b,
+     label = lst:session-replay_checkout.component
+]{content/04_erstellung-poc/implementierung-code/session-replay_checkout.component.ts}
