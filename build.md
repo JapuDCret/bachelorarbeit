@@ -11,7 +11,10 @@
 
 ### Texmaker
 
- 1. Das Kommando "makeindex" muss auf folgenden Wert gesetzt werden
+ 1. PDF Shellescape muss aktiviert werden, dafür das "PdfLaTeX" Kommando austauschen zum
+	`pdflatex -synctex=1 -shell-escape --extra-mem-bot=10000000 -interaction=nonstopmode %.tex`
+
+ 2. Das Kommando "makeindex" muss auf folgenden Wert gesetzt werden
 	`makeindex %.nlo -s nomencl.ist -o %.nls`
 
 

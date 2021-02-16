@@ -28,7 +28,13 @@
 % see https://tex.stackexchange.com/questions/1460/script-to-automate-externalizing-tikz-graphics
 \usetikzlibrary{external}
 \tikzexternalize[prefix=tikz-figures/]
+% see https://tex.stackexchange.com/questions/7953/how-to-expand-texs-main-memory-size-pgfplots-memory-overload
+\usepgfplotslibrary{external}
 
 \usepackage{tabularx}
 \usepackage{makecell}
 \usepackage{csquotes}
+
+% allow rotation of boxes (like a table)
+% see https://tex.stackexchange.com/a/133744/221944
+\usepackage{hvfloat}
