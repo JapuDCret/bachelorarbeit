@@ -1,0 +1,64 @@
+%\section{Werkzeuge und Technologien}
+%\label{sec:werkzeuge-und-technologien}
+
+%\textit{Basierend auf dem Grundwissen über die Methoden und Praktiken, soll nun der Stand der Technik erörtert werden. Hierbei sollen Werkzeuge und Technologien und ihre Ansätze hervorgehoben werden und mit Hilfe welcher Methoden sie welches Ziel erreichen.}
+%
+%\textit{Wie in der Zielsetzung definiert sollen hier zwei bis drei Technologien näher vorgestellt werden.}
+%
+%\textit{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „Fat-Client“-Lösungen (also nicht SPAs) angegangen werden, und kann man hier vielleicht etwas lernen oder übertragen (und wenn nicht, warum nicht)?}
+
+Um die gewünschte Lösung, also ein Proof-of-Concept, zu erstellen, ist zuvor der Stand der Technik zu erörtern. In diesem Abschnitt wird versucht einen repräsentativen Durchschnitt aktueller Technologien vorzustellen, diese zu kategorisieren und dann auf zuvor definierten Kriterien zu bewerten.
+
+\subsection{Technologien}
+
+\subsubsection{Recherche}
+
+Um einen repräsentativen Durchschnitt aktueller Technologien zu erhalten, wurde neben verfügbarer Literatur auch auf etablierte Plattformen im Gebiet der Gegenüberstellung von Technologien. Speziell wurden hierbei Gartner\footnote{Gartner ist eine global agierende Forschungs- und Beratungsunternehmen im Bereich der IT \cite{GartnerDefinition}} sowie StackShare\footnote{StackShare (\url{https://stackshare.io}) ist eine Vergleichsseite für Entwicklerwerkzeuge und Technologien, die auf Basis von Nutzereingaben Vergleiche erzeugt \cite{StackshareDefinition}} herangezogen. Die identifizierten Technologie werden im nachfolgenden Abschnitt näher betrachtet und kategorisiert. 
+
+Mithilfe von Gartners \enquote{Magic Quadrant for APM} \cite{GartnerMagicQuadrantForAPM} konnte festgestellt werden, dass folgende APM-Werkzeuge zu den führenden Technologien ihrer Kategorie angehören: AppDynamics \cite{AppDynamics}, Dynatrace \cite{Dynatrace}, New Relic \cite{NewRelic}, Broadcom DX APM \cite{BroadcomDXAPM}, Splunk APM \cite{SplunkAPM} sowie Datadog\cite{Datadog}. Bestätigt werden einige dieser Nennungen in der Bewertung bei StackShare \cite{StackShareAPM}, insbesondere New Relic und Datadog werden oft eingesetzt und positiv bewertet.
+
+Neben Splunks akquirierte APM-Lösung (ehemals SignalFX), ist Splunk für sein Log-Management-Produkt Splunk Enterprise \cite{SplunkEnterprise} bekannt, welches ebenso Erwähnung in der Bewertung bei StackShare erhielt. Zu den weit verbreitetsten Monitoring-Lösungen bei StackShare \cite{StackShareMonitoring} gehören die Komponenten des Elastic Stacks \cite{ElasticStack} (ehemals ELK-Stack): Elasticsearch, Kibana, Beats und Logstash. In der Gegenüberstellungen von Log-Management-Lösungen bei StackShare \cite{StackShareLogManagement} finden sich neben Splunk und dem Elastic Stack zudem Papertrail \cite{Papertrail}, Fluentd \cite{Fluentd} und Graylog \cite{Graylog}.
+
+Mart{\'i}nez \etal \cite{ComparisonOfE2ETestingToolsForMicroservices} fanden in Ihrer Evaluierung von Werkzeugen bei der Unterstützung von E2E-Tests, dass die beiden OpenSource-Technologien Jaeger \cite{Jaeger} und Zipkin \cite{Zipkin} aktiv dabei helfen können Fehlerszenarien in Microservice-Architekturen besser nachzuvollziehen. Li \etal \cite{ServiceMeshChallengesStateOfTheArt} beschreiben, wie mit Prometheus \cite{Prometheus}, Jaeger, Zipkin und Fluentd \cite{Fluentd} eine Datenanalyse von Microservices ermöglicht werden kann. Weiterhin beschreiben Picoreti \etal \cite{MultilevelObservabilityInCloudOrchestration} eine Observability-Architektur, die auf Fluentd, Prometheus und Zipkin basiert.
+
+Bei StackShares Gegenüberstellung von Error-Monitoring-Produkten \cite{StackShareExceptionMonitoring} stehen drei Technologie hervor: Sentry \cite{Sentry}, TrackJS \cite{TrackJS} sowie Rollbar \cite{Rollbar}. Sentry und TrackJS waren zudem auch bei der Gegenüberstellung der Monitoring-Lösungen \cite{StackShareMonitoring} gelistet.
+
+StackShare bezeichnet Session-Replay als \enquote{User-Feedback-as-a-Service} und hierbei \cite{StackShareUserFeedbackAsAService} lassen sich ebenfalls drei etablierte Produkte identifizieren: Inspectlet \cite{Inspectlet}, FullStory \cite{FullStory} und LogRocket \cite{LogRocket}. Während jedoch Inspectlet und FullStory hauptsächlich drauf abzielen, dass die User-Experience nachvollzogen werden kann, konzentriert sich LogRocket auf technische Informationen, die für Entwickler von Bedeutung sind \cite{Webalyt}. Gartner bietet eine Übersicht \cite{GartnerWebAndMobileAppAnalytics} über Produkte im \enquote{Web and Mobile App Analytics Market} an, hierbei findet sich Google Analytics \cite{GoogleAnalytics}, Adobe Analytics \cite{AdobeAnalytics} sowie LogRocket auf den obersten Positionen.
+
+\subsubsection{Übersicht}
+
+Folgend in Tabellen \autoref*{tab:technologie-uebersicht-teil1} und \autoref*{tab:technologie-uebersicht-teil2} werden die gefundenen Technologien näher veranschaulicht. Hierbei wird untersucht, welche Funktionalitäten die jeweilige Technologie vorweist, auf Basis der Produktbeschreiben der Hersteller. Genauer werden folgende Funktionalitäten unterschieden und den Technologien zugeordnet: APM, RUM, Error-Monitoring, Log-Management, Tracing sowie Session-Replay.
+
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_uebersicht.tex}
+
+\subsubsection{Kategorisierung}
+
+\textit{Beschreibung zur Kategorisierung}
+
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_kategorisierung.tex}
+
+\subsubsection{Bewertung}
+
+Um in dem Proof-of-Concept auf die hier vorgestellten Technologien zurückgreifen zu können, werden diese auf Basis verschiedener Kriterien bewertet. Diese Kriterien reichen von objektiven Eigenschaften bis hin zu subjektiven Einschätzungen, die bei der jeweiligen Evaluierung entstanden sind. Die Kriterien werden folgend näher beschrieben.
+
+\subsubsection{Funktionalitäten}
+
+Das Kriterium \enquote{Funktionalitäten} befasst sich damit, welche Probleme diese Technologie lösen kann. Hierbei ist zu bewerten, welche der folgenden Funktionalitäten die Technologie  besitzt: Tracing, Erhebung von Fehlerberichten von Nutzern, System Monitoring, Log Management, APM, RUM, Error Monitoring oder Session-Replay.
+
+\subsubsection{Open Source}
+
+Zunächst soll bewertet werden, ob und wie die einzelnen Komponenten der jeweiligen Technologie quelloffen veröffentlicht wurden. Dabei ist zu beleuchten, ob mit außenstehenden Entwicklern diese Komponenten weiterentwickelt werden oder ob die quelloffene Veröffentlichung lediglich einen Spiegelung der internen Entwicklung darstellt.
+
+%\subsubsection{Kosten}
+%
+%Da einzelne Technologien in produktiven Umgebungen spezielle Lizenzen benötigen und diese Arbeit mit dem Kunden von Open Knowledge einen kommerzielles Beispiel besitzt, werden auch die Kosten der einzelnen Technologien näher betrachtet. Die Evaluierung wird jedoch nur auf Basis kostenloser Versionen durchgeführt.
+
+\subsubsection{Standardisierung}
+
+Bei dem Kriterium \enquote{Standardisierung} wird bewertet, wie sehr die Technologie auf Standards wie OpenTelemetry o. Ä. setzt. Beispielsweise ist zu bewerten, ob die Daten auf eine Weise erhoben werden, die solchen Standards entsprechen oder ob auch Komponenten ausgetauscht werden können.
+
+\subsubsection{Flexibilität}
+
+Unterschiedliche betriebliche Bedingungen erfordern meist eine hohe \enquote{Flexiblität} von einer neuen Technologie, damit diese ohne hohen Aufwand in ein bestehendes System integriert werden kann. Hierbei ist unter anderem zu bewerten, wie ein Unternehmen die Technologie aufsetzen kann - ist eine \enquote{OnPremise}-Lösung möglich, also ein Aufsetzen in der eigenen Infrastruktur, oder existiert sie nur als Software-as-a-Service (SaaS). Weiterhin ist zu bewerten, ob die Technologie auch anpassungsfähig ist auf Änderungswünsche, wenn bspw. neue Sichten zu den bestehenden Daten gefordert werden.
+
+\nomenclature[Fachbegriff]{SaaS}{Software-as-a-Service}

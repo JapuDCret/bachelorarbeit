@@ -8,16 +8,30 @@ The included Python script converts the excel file to a latex file, that will th
 pip install -r requirements.txt
 ```
 
-# Convert Excel File to LaTeX
+# Generate Overview from Excel File
 
 ## Dry Run
 
 ```bash
-python convert-Tools-und-Werkzeuge.py
+python convert-TuW-to-overview.py
 ```
 
 ## Write to file
 
 ```bash
-python convert-Tools-und-Werkzeuge.py > tools-und-werkzeuge.tex
+python convert-TuW-to-overview.py > tools-und-werkzeuge_uebersicht.tex
+```
+
+# Generate Grouping from Excel File
+
+## Dry Run
+
+```bash
+python convert-TuW-to-grouping.py
+```
+
+## Write to file
+
+```bash
+python convert-TuW-to-grouping.py > tools-und-werkzeuge_kategorisierung.tex
 ```
