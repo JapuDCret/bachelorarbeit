@@ -51,8 +51,9 @@ captionpos = b,
 Neben dem eigentlichen User-Interface soll auch ein Backend Teil der Demoanwendung sein. Hierfür wurde auf Basis der Verhaltensdefinition eine Architektur entworfen, die im folgenden Abschnitt näher beschrieben wird.
 
 \subsection{Backend}
+\label{subsec:demoanwendung-backend}
 
-Das Backend wurde als Microservice-Architektur konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
+Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
 
 Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersystemen ermöglicht sowie die Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
@@ -64,6 +65,10 @@ Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine 
 	\caption{Demoanwendung: Deployment-Diagramm, Quelle: Eigene Darstellung}
 	\label{fig:demoanwendung_deployment}
 \end{figure}
+
+Die einzelnen Dienste wurden mit Eclipse MicroProfile \cite{EclipseMicroprofile} umgesetzt. MicroProfile ist eine Kollektion von verschiedener Java EE Frameworks und Technologien zur Umsetzung von Microservices und zielt darauf ab diese weiterzuentwickeln und zu standardisieren. Speziell wurden die Dienste auf Basis von JAX-RS als REST-Services umgesetzt. 
+
+Danach wurden die einzelnen Dienste in jeweils eigene Docker Images \cite{Docker} verpackt, um eine einheitliche Umgebung auch auf unterschiedlichen Rechnern zu gewährleisten. Diese Images wurden dann mit Kubernetes \cite{Kubernetes} aufgesetzt und miteinander verbunden.
 
 \newpage
 
@@ -178,7 +183,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
 
-- Ursache: Die Pods, die den Übersetzungsdienst enthalten werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, weswegen er keine Übersetzungen der Artikel enthält. Wird zu diesem Pod verbunden, tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
+- Ursache: Die Pods, die den Übersetzungsdienst enthalten, werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, weswegen er keine Übersetzungen der Artikel enthält. Wird zu diesem Pod verbunden, tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
 
 \subsubsection{\enquote{Gültige Straßen sind ungültig}}
 
@@ -186,11 +191,12 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem Regular-Expression \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
 
-\subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
-
-- Problem: Nutzer berichten, dass Hausnummern, die nicht nur aus Zahlen bestehen, zum Fehler führen.
-
-- Ursache: Der Adressvalidierungsdienst validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
+% rausgenommen, zu viel Dopplung
+%\subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
+%
+%- Problem: Nutzer berichten, dass Hausnummern, die nicht nur aus Zahlen bestehen, zum Fehler führen.
+%
+%- Ursache: Der Adressvalidierungsdienst validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
 
 \subsubsection{\enquote{Gültige Städte sind ungültig}}
 
@@ -223,11 +229,11 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Ursache: Dies ist eine simulierte Wartezeit im Frontend je nach Anzahl der Positionen (2s pro Position), um eine ineffiziente Verarbeitung nachzuahmen.
 
-\subsection{Repräsentation}
-
-Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für die Webanwendung des Kunden ist und im Allgemeineren auch für moderne Webanwendungen ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und zu großen Teilen clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
-
-Das Backend ist in dem Sinne repräsentativ, dass es auf keiner stark vereinfachten Infrastruktur basiert, sondern gewollt an die Situation des Open Knowledge Kunden abbildet. Des Weiteren stellt die gewählte Architektur einen modernen Ansatz dar, denn die Architektur ist Microservice-orientiert \cite{MicroserviceArchitecture}.
+%\subsection{Repräsentation}
+%
+%Eine wichtige Eigenschaft der Demoanwendung sollte sein, dass sie repräsentativ für die Webanwendung des Kunden ist und im Allgemeineren auch für moderne Webanwendungen ist. Durch den groben Aufbau der Demoanwendung, also einer zustandsreichen und zu großen Teilen clientbasierten SPA, stellt die Demoanwendung eine moderne Webanwendung dar. Auch die Verwendung von Angular ist repräsentativ, denn Angular ist eines der meist verwendeten Frontend-Frameworks \cite{TheStateOfJavaScript2020}.
+%
+%Das Backend ist in dem Sinne repräsentativ, dass es auf keiner stark vereinfachten Infrastruktur basiert, sondern gewollt an die Situation des Open Knowledge Kunden abbildet. Des Weiteren stellt die gewählte Architektur einen modernen Ansatz dar, denn die Architektur ist Microservice-orientiert \cite{MicroserviceArchitecture}.
 
 Dennoch ist anzumerken, dass die Demoanwendung nur ein Modell einer tatsächlichen Webanwendung darstellt. Wie jedes Modell können nicht alle Gegebenheiten des zu modellierenden Sachverhalts nachgestellt werden. Jedoch ist durch den allgemein gehaltenen Anwendungsfall und die moderne Umsetzung eine Übertragbarkeit zu ähnlichen Projekten durchaus vorhanden.
 

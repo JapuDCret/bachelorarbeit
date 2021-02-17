@@ -60,13 +60,15 @@ captionpos = b,
      label = lst:localization.service
 ]{content/04_erstellung-poc/implementierung-code/tracing_localization.service.ts}
 
-Es wurde sich für die OpenTelemetry Implementierung für Tracing und Metriken im Frontend entschieden, da wie in \autoref{subsec:opentelemetry} beschrieben, OpenTelemetry einen vielversprechenden Standard darstellt. Weiterhin konnte keine Bibliothek identifiziert werden, die die Traces erhebt und direkt nach Jaeger sendet. Es gibt zwar einen Jaeger-Client für Node.js\footnote{Jaeger-Client für Node.js: https://github.com/jaegertracing/jaeger-client-node}, jedoch befindet sich das browserkompatible Pendant\footnote{Jaeger-Client für Browser: https://github.com/jaegertracing/jaeger-client-javascript/} seit 2017 in den Startlöchern. Weiterhin existiert ein OTel Exporter für Jaeger\footnote{OTel Jaeger Exporter: https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger}, welcher jedoch auch nur mit Node.js funktioniert.
+Es wurde sich für die OpenTelemetry Implementierung für Tracing und Metriken im Frontend entschieden, da wie in \autoref{subsec:opentelemetry} beschrieben, OpenTelemetry einen vielversprechenden Standard darstellt. Weiterhin konnte keine Bibliothek identifiziert werden, die die Traces erhebt und direkt nach Jaeger sendet. Es gibt zwar einen Jaeger-Client für Node.js\footnote{Jaeger-Client für Node.js: \url{https://github.com/jaegertracing/jaeger-client-node}}, jedoch befindet sich das browserkompatible Pendant\footnote{Jaeger-Client für Browser: \url{https://github.com/jaegertracing/jaeger-client-javascript/}} seit 2017 in den Startlöchern. Weiterhin existiert ein OTel Exporter für Jaeger\footnote{OTel Jaeger Exporter: \url{https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger}}, welcher jedoch auch nur mit Node.js funktioniert. Grund hierfür ist, dass das zugrundeliegende Protokoll gRPC \cite{grpc} nicht komplett aus einer Browserumgebung aus unterstützt wird \cite{grpcWebLimitations}.
+
+\nomenclature[Fachbegriff]{gRPC}{gRPC Remote-Procedure-Call}
 
 Die gesammelten OTel Tracingdaten werden über einen Standard-Exporter an das \enquote{Backend4Frontend} gesendet, welcher diese dann in ein Jaeger-konformes Format umwandelt und sie dann subsequent an Jaeger übertragt. Die Metrikdaten werden jedoch bereits im Frontend konvertiert, in ein Splunk-kompatibles Logformat. Nach der Konvertierung werden die Daten an den \texttt{SplunkForwardingService} übergeben, welcher im folgenden Abschnitt näher beschrieben wird.
 
 \subsubsection{Logging}
 
-Das Logging im Frontend wurde über das npm \cite{npm} Paket \texttt{ngx-logger}\footnote{ngx-logger auf GitHub: https://github.com/dbfannin/ngx-logger} realisiert, welches eine speziell an Angular angepasste Logging-Lösung darstellt. Da dieses Pakete extra an Angular angepasst ist, lässt es sich ohne großen Aufwand als Modul einbinden, vgl. \autoref{lst:logging_app.module}.
+Das Logging im Frontend wurde über das npm \cite{npm} Paket \texttt{ngx-logger}\footnote{ngx-logger auf GitHub: \url{https://github.com/dbfannin/ngx-logger}} realisiert, welches eine speziell an Angular angepasste Logging-Lösung darstellt. Da dieses Pakete extra an Angular angepasst ist, lässt es sich ohne großen Aufwand als Modul einbinden, vgl. \autoref{lst:logging_app.module}.
 
 \lstinputlisting[
   language = JavaScript,
@@ -92,7 +94,7 @@ captionpos = b,
 
 Die ErrorHandler-Hook von Angular übermittelt aufgetretene und unbehandelte Fehler an den \texttt{SplunkForwardingErrorHandler}. Weiterhin ist der ErrorHandler \texttt{Injectable} in andere SPA Klassen, wo er bspw. bei den Schnittstellen dazu benutzt wird, dass auch behandelte Fehler an Splunk zu übermitteln.
 
-Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunkdatensatz konvertiert und dann über den zuvor behandelten \texttt{SplunkForwardingService} an Splunk weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
+Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunkdatensatz konvertiert und dann über den zuvor behandelten \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
 
 \lstinputlisting[
   language = JavaScript,
@@ -115,3 +117,5 @@ basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
 captionpos = b,
      label = lst:session-replay_checkout.component
 ]{content/04_erstellung-poc/implementierung-code/session-replay_checkout.component.ts}
+
+\subsubsection{Datenweiterleitung im \enquote{Backend4Frontend}}
