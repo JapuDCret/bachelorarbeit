@@ -5,11 +5,17 @@
 \hline
 Technologie & APM & RUM & Error-Mo\-ni\-tor\-ing & Log-Management & Tracing & Session-Replay \\
 \hline
-Adobe Analytics &  & gruppiert & teils &  &  &  \\
+Adobe Analytics & teils & gruppiert & teils &  &  &  \\
 \hline
-AppDynamics & ja & gruppiert & ja &  & ja &  \\
+Airbrake & ja &  & ja &  &  &  \\
+\hline
+AppDynamics & ja & gruppiert & ja & mit Erweiterung & ja &  \\
+\hline
+Azure Monitor & ja &  & ja & ja & ja &  \\
 \hline
 Broadcom DX APM & ja &  & teils & ja & ja &  \\
+\hline
+Bugsnag &  &  & ja &  &  &  \\
 \hline
 DataDog & ja & gruppiert & ja & ja & ja &  \\
 \hline
@@ -17,23 +23,17 @@ Dynatrace & ja & gruppiert & ja & ja & ja &  \\
 \hline
 Elastic Stack & möglich & möglich & möglich & ja &  &  \\
 \hline
-Fluentd &  &  &  & ja &  &  \\
+Fluentd &  &  &  & nur Aggregierung &  &  \\
 \hline
 FullStory &  & ja & teils &  &  & ja \\
 \hline
-Google Analytics &  & gruppiert & teils &  &  &  \\
+Google Analytics & teils & gruppiert & teils &  &  &  \\
 \hline
-Graylog &  &  &  & ja &  &  \\
+Graylog & möglich & möglich & möglich & ja &  &  \\
 \hline
 Inspectlet &  & ja & teils &  &  & ja \\
 \hline
 Jaeger &  &  &  &  & ja &  \\
-\hline
-LogRocket &  & ja & ja & teils &  & ja \\
-\hline
-New Relic & ja & gruppiert & ja & ja & ja &  \\
-\hline
-Papertrail &  &  &  & ja &  &  \\
 \hline
 \end{tabular}
 }
@@ -47,9 +47,17 @@ Papertrail &  &  &  & ja &  &  \\
 \hline
 Technologie & APM & RUM & Error-Mo\-ni\-tor\-ing & Log-Management & Tracing & Session-Replay \\
 \hline
+LogRocket &  & ja & ja & teils &  & ja \\
+\hline
+New Relic & ja & gruppiert & ja & ja & ja &  \\
+\hline
+Papertrail & möglich & möglich & möglich & ja &  &  \\
+\hline
 Prometheus & ja &  &  &  &  &  \\
 \hline
-Rollbar &  & bei \mbox{Fehlern} & ja &  &  & teils \\
+Raygun & ja & gruppiert und bei \mbox{Fehlern} & ja &  &  &  \\
+\hline
+Rollbar &  & bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
 Sentry &  & bei \mbox{Fehlern} & ja &  &  &  \\
 \hline

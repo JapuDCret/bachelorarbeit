@@ -35,3 +35,17 @@ python convert-TuW-to-grouping.py
 ```bash
 python convert-TuW-to-grouping.py > tools-und-werkzeuge_kategorisierung.tex
 ```
+
+# Generate Rated Overview from Excel File
+
+## Dry Run
+
+```bash
+python convert-TuW-to-rated.py
+```
+
+## Write to file
+
+```bash
+python convert-TuW-to-rated.py > tools-und-werkzeuge_bewertung.tex
+```
