@@ -25,7 +25,7 @@ StackShare bezeichnet Session-Replay als \enquote{User-Feedback-as-a-Service} un
 
 \subsection{Übersicht}
 
-Folgend in Tabellen \ref{tab:technologie-uebersicht-teil1} und \ref{tab:technologie-uebersicht-teil2} werden die gefundenen Technologien näher veranschaulicht. Hierbei wird untersucht, welche Funktionalitäten die jeweilige Technologie vorweist, auf Basis der Produktbeschreiben der Hersteller. Genauer werden folgende Funktionalitäten unterschieden und den Technologien zugeordnet: APM, RUM, Error-Monitoring, Log-Management, (Distributed-)Tracing sowie Session-Replay.
+Folgend werden in der \autoref{tab:technologie-uebersicht} die gefundenen Technologien näher veranschaulicht. Hierbei wird untersucht, welche Funktionalitäten die jeweilige Technologie vorweist, auf Basis der Produktbeschreiben der Hersteller. Genauer werden folgende Funktionalitäten unterschieden und den Technologien zugeordnet: APM, RUM, Error-Monitoring, Log-Management, (Distributed-)Tracing sowie Session-Replay.
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_uebersicht.tex}
 
@@ -36,23 +36,19 @@ Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folge
 \begin{enumerate}
 	\item Performance-Monitoring
 	\begin{itemize}
-		\item Zur Kategorie des Performance-Monitorings gehören allen voran Technologien, bei denen das Application-Performance-Monitoring eine Kernfunktionalität darstellt. Jedoch begrenzen sich keine dieser Tools nur auf APM, sondern können meist mehrere andere Funktionalitäten vorweisen. Meist vertreten sind jedoch Aspekte eines Error-Monitoring, eines Log-Managements sowie eines Distributed Tracings. Neben technischen Aspekten bilden viele dieser Tools mithilfe von APM und RUM auch Einsichten in die geschäftliche Leistung der Anwendung. Auf Basis von RUM werden teils Nutzerverhalten gruppiert visualisiert, um die Nutzerschaft besser verstehen zu können - eine Ansicht einer einzelnen Nutzersitzung wie beim Session-Replay ist jedoch nicht Teil dessen.
+		\item Zur Kategorie des Performance-Monitorings gehören allen voran Technologien, bei denen das Application-Performance-Monitoring eine Kernfunktionalität darstellt. Jedoch begrenzen sich bis auf eines keine der Werkzeuge nur auf APM, sondern können meist mehrere andere Funktionalitäten vorweisen. Meist vertreten sind jedoch Aspekte eines Error-Monitoring, eines Log-Managements sowie eines Distributed Tracings. Neben technischen Aspekten bilden viele dieser Tools mithilfe von APM und RUM auch Einsichten in die geschäftliche Leistung der Anwendung. Auf Basis von RUM werden teils Nutzerverhalten gruppiert visualisiert, um die Nutzerschaft besser verstehen zu können - eine Ansicht einer einzelnen Nutzersitzung wie beim Session-Replay ist jedoch nicht Teil dessen.
 	\end{itemize}
-	\item Log-Management
+	\item Log-Plattform
 	\begin{itemize}
-		\item Im Log-Management sind alle Technologien zusammengefasst, die eine Verarbeitung von Logdaten als ihre Kernfunktionalität verstehen. Weiterhin sind hier nahezu alle Werkzeuge dazu in der Lage, den Entwicklern und Betreibern eine detaillierte Analyse der Logdaten zu ermöglichen. Weiterhin können oftmals auf Basis dieser Daten auch visuelle Darstellungen erstellt werden. Mit diesen Visualisierungen können Aspekte eines APM, RUM oder Error-Monitorings nachgestellt werden. Neben diesen Funktionalitäten steht aber auch ein effizientes Persistenzkonzept im Vordergrund, damit mit den enormen Datenmengen aus unterschiedlichen Systemen umgegangen werden kann \cite{TowardsAutomatedLogParsingForLargeScale}.
+		\item Als Log-Plattform werden alle Technologien bezeichnet, die eine Verarbeitung von Logdaten als ihre Kernfunktionalität verstehen. Weiterhin sind hier nahezu alle Werkzeuge dazu in der Lage, den Entwicklern und Betreibern eine detaillierte Analyse der Logdaten zu ermöglichen. Weiterhin können oftmals auf Basis dieser Daten auch visuelle Darstellungen erstellt werden. Mit diesen Visualisierungen können Aspekte eines APM, RUM oder Error-Monitorings nachgestellt werden. Neben diesen Funktionalitäten steht aber auch ein effizientes Persistenzkonzept im Vordergrund, damit mit den enormen Datenmengen aus unterschiedlichen Systemen umgegangen werden kann \cite{TowardsAutomatedLogParsingForLargeScale}.
 	\end{itemize}
-	\item Tracing
+	\item Tracing-Plattform
 	\begin{itemize}
-		\item In der Kategorie Tracing sind jene Technologien angesiedelt, die sich nur auf Distributed Tracing konzentrieren. Hierbei steht oftmals eine effiziente Architektur im Vordergrund, welche explizit auf die enormen Datenmengen angepasst sind, die beim Distributed Tracing anfallen können \cite{DapperInfrastructure}.
+		\item Zu den Tracing-Plattformen gehören jene Technologien, die sich auf Distributed-Tracing konzentrieren. Hierbei steht oftmals eine effiziente Architektur im Vordergrund, welche explizit auf die enormen Datenmengen angepasst sind, die beim Distributed-Tracing anfallen können \cite{DapperInfrastructure}.
 	\end{itemize}
-	\item Metriken
+	\item Error-Tracking
 	\begin{itemize}
-		\item Zur Kategorie Metriken gehören die Technologien, die nicht die fortgeschrittenen Eigenschaften der Kategorie Performance-Monitoring vorweisen, sondern sich größtenteils oder ausschließlich mit sammeln, verarbeiten und darstellen von Metrikdaten beschäftigen.
-	\end{itemize}
-	\item Error-Monitoring
-	\begin{itemize}
-		\item Die Kategorie Error-Monitoring zeichnet sich dadurch aus, dass die Technologien hier die Erhebung und Visualisierung von Fehlerdaten als Kernfunktionalität besitzen. Weiterhin besitzen viele dieser Werkzeuge ein detailliertes Issue-Management, mit dem sich Teams organisieren können, um Fehler zu beheben und Arbeiten nachzuhalten.
+		\item Die Kategorie Error-Tracking zeichnet sich dadurch aus, dass die Technologien hier die Erhebung und Visualisierung von Fehlerdaten als Kernfunktionalität besitzen. Weiterhin besitzen viele dieser Werkzeuge ein detailliertes Issue-Management, mit dem sich Teams organisieren können, um Fehler zu beheben und Arbeiten nachzuhalten.
 	\end{itemize}
 	\item Session-Replay
 	\begin{itemize}
@@ -64,7 +60,7 @@ Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folge
 	\end{itemize}
 \end{enumerate}
 
-Folgend werden in den Tabellen \ref{tab:technologie-kategorisierung-teil1} und \ref{tab:technologie-kategorisierung-teil2} die Technologien gruppiert nach ihrer Kategorie dargestellt. Da nicht alle Kategorien gleich hilfreich für die hier angestrebte Lösung sind, findet im \autoref{subsec:technologie-vorauswahl} eine Vorauswahl statt, welche Funktionskategorien näher betrachtet werden sollen.
+Folgend werden in der \autoref{tab:technologie-kategorisierung} die Technologien gruppiert nach ihrer Kategorie dargestellt. Da nicht alle Kategorien gleich hilfreich für die hier angestrebte Lösung sind, findet im \autoref{subsec:technologie-vorauswahl} eine Vorauswahl statt, welche Funktionskategorien näher betrachtet werden sollen.
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_kategorisierung.tex}
 
@@ -77,7 +73,7 @@ Die beiden Kategorien Performance-Monitoring und Metriken bieten durch ihr APM s
 
 Hinzukommend und aus einem ähnlichen Grund, wird die Kategorie Web-Analytics nicht näher behandelt. Denn hierbei liegt der Fokus sehr stark auf einer Überprüfung von wirtschaftlichen und operativen Eigenschaften, nicht jedoch den in dieser Arbeit erwünschten Zielen. Die übrig gebliebenen Kategorien werden im nächsten Unterabschnitt näher betrachtet und kriteriengeleitet bewertet.
 
-\subsection{Bewertung}
+\subsection{Kriterien}
 
 Um in dem Proof-of-Concept auf die hier vorgestellten Technologien zurückgreifen zu können, werden diese auf Basis verschiedener Kriterien bewertet. Diese Bewertung stützt sich auf öffentlich verfügbare Informationen, die die Hersteller der jeweiligen Technologie selber veröffentlicht haben. Die Kriterien werden folgend näher beschrieben.
 
@@ -119,20 +115,26 @@ Um in dem Proof-of-Concept auf die hier vorgestellten Technologien zurückgreife
 	\end{itemize}
 \end{enumerate}
 
-Auf Basis dieser Kriterien werden die Technologien der  übrig gebliebenen Kategorien in den Tabellen \ref{tab:technologie-bewertung-teil1} und \ref{tab:technologie-bewertung-teil2} bewertet.
+Auf Basis dieser Kriterien werden die Technologien jeweils nach Kategorie bewertet sowie wird schließlich, je nach Funktionskategorie, die präferierte Technologie ausgewählt.
 
-\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung.tex}
+\subsection{Bewertung}
 
-\subsection{Auswahl}
+In der Kategorie \enquote{Log-Plattform} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien, lediglich Fluentd sticht hervor, aber dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt sondern eher einen Logaggregator ist \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic Stack eignet sich durch die hohe Flexiblität und die Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, indem dass sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise-Deployment kann lediglich nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser 4 Technologien ausschließende Eigenschaften besitzt, sie sind allesamt geeignet für die in dieser Arbeit angestrebte Lösung. Es wird sich jedoch für \textbf{Splunk} entschieden, da der Kunde der OpenKnowledge dieses System bereits besitzt. Wie aber zuvor erwähnt eignen sich die anderen Technologien aber ähnlich gut und die Auswahl kann je nach Situation variieren.
 
-Auf Basis der zuvor erstellten Bewertung wird schließlich je nach Funktionskategorie die präferierte Technologie ausgewählt.
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-log-plattform.tex}
 
-In der Kategorie \enquote{Log-Management} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien, lediglich Fluentd sticht hervor, aber dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt sondern eher einen Logaggregator ist \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic Stack eignet sich durch die hohe Flexiblität und die Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, indem dass sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise-Deployment kann lediglich nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser 4 Technologien ausschließende Eigenschaften besitzt, sie sind allesamt geeignet für die in dieser Arbeit angestrebte Lösung. Es wird sich jedoch für \textbf{Splunk} entschieden, da der Kunde der OpenKnowledge dieses System bereits besitzt. Wie aber zuvor erwähnt eignen sich die anderen Technologien aber ähnlich gut und die Auswahl kann je nach Situation variieren.
+Die Auswahl in der Kategorie \enquote{Error-Tracking} ist etwas diverser, denn hier weisen manche Technologien Funktionalitäten auf, die sonst in dem Gebiet fremd sind. Bespielweise Airbrake und Raygun bieten neben einem Error-Monitoring zudem Aspekte eines APM, sodass die Anwendung/das System auch im Normalbetrieb überprüft werden kann. Jedoch sind diese APM-Funktionalitäten nicht so ausgereift, wie bei spezialisierten APM-Lösungen. Jedoch sind Airbrake und Raygun nur als SaaS-Produkte verfügbar, währenddessen Sentry, Rollbar und Bugsnag auch als OnPremise-Lösung verfügbar sind. Sentry ist zudem vollständig quelloffen verfügbar\footnote{Sentry GitHub Repo: \url{https://github.com/getsentry/sentry}} und entwickelt aktiv mit der Community auf GitHub \cite{GitHub}. Weiterhin ist Sentry das einzig identifizierte Werkzeug, welches eine nicht zeitlich begrenzte Version der SaaS-Lösung zur Verfügung stellt. Eine stark aussagekräftige Entscheidung kann jedoch nicht getroffen werden, da alle Werkzeuge hier adäquat die Bedingungen eines guten Error-Monitoring-Werkzeugs erfüllen. Dennoch wird sich an dieser Stelle für \textbf{Sentry} entschieden, auf Basis der zuvor nahe gelegten Gründe.
 
-Im Gebiet des Distributed Tracings gibt es auch nur wenige oberflächliche Unterschiede, sowohl Jaeger als auch Zipkin sind quelloffen sowie weit verbreitet im Einsatz \cite{AnalysisOfDistributedTracingSystemsEffectOnPerformance}. Jaeger scheint für neue Projekten attraktiver zu sein und findet dort mehr Einsatz, wie in StackShares Gegenüberstellung zu sehen ist \cite{StackShareJaegerVsZipkin}. Teilweise ist dies erklärbar durch die Ergebnisse, die Mart{\'i}nez \etal \cite{ComparisonOfE2ETestingToolsForMicroservices} herausfanden: Jaeger zeigt mehr hilfreiche Informationen an und kann diese schneller bereitstellen als Zipkin. Zudem entwickelt Jaeger aktiv eine Unterstützung des neuen OpenTelemetry Standards \cite{JaegerOpenTelemetry}, jedoch findet sich bei Zipkin keine vergleichbare Entwicklung. Aus diesen Gründen ist \textbf{Jaeger} hierbei das Werkzeug der Wahl.
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-error-tracking.tex}
 
-Die Auswahl in der Kategorie \enquote{Error-Monitoring} ist etwas diverser, denn hier weisen manche Technologien Funktionalitäten auf, die sonst in dem Gebiet fremd sind. Bespielweise Airbrake und Raygun bieten neben einem Error-Monitoring zudem Aspekte eines APM, sodass die Anwendung/das System auch im Normalbetrieb überprüft werden kann. Jedoch sind diese APM-Funktionalitäten nicht so ausgereift, wie bei spezialisierten APM-Lösungen. Jedoch sind Airbrake und Raygun nur als SaaS-Produkte verfügbar, währenddessen Sentry, Rollbar und Bugsnag auch als OnPremise-Lösung verfügbar sind. Sentry ist zudem vollständig quelloffen verfügbar\footnote{Sentry GitHub Repo: \url{https://github.com/getsentry/sentry}} und entwickelt aktiv mit der Community auf GitHub \cite{GitHub}. Weiterhin ist Sentry das einzig identifizierte Werkzeug, welches eine nicht zeitlich begrenzte Version der SaaS-Lösung zur Verfügung stellt. Eine stark aussagekräftige Entscheidung kann jedoch nicht getroffen werden, da alle Werkzeuge hier adäquat die Bedingungen eines guten Error-Monitoring-Werkzeugs erfüllen. Dennoch wird sich an dieser Stelle für \textbf{Sentry} entschieden, auf Basis der zuvor nahe gelegten Gründe.
+Im Gebiet der Tracing-Plattformen gibt es auch nur wenige oberflächliche Unterschiede, sowohl Jaeger als auch Zipkin sind quelloffen sowie weit verbreitet im Einsatz \cite{AnalysisOfDistributedTracingSystemsEffectOnPerformance}. Jaeger scheint für neue Projekten attraktiver zu sein und findet dort mehr Einsatz, wie in StackShares Gegenüberstellung zu sehen ist \cite{StackShareJaegerVsZipkin}. Teilweise ist dies erklärbar durch die Ergebnisse, die Mart{\'i}nez \etal \cite{ComparisonOfE2ETestingToolsForMicroservices} herausfanden: Jaeger zeigt mehr hilfreiche Informationen an und kann diese schneller bereitstellen als Zipkin. Zudem entwickelt Jaeger aktiv eine Unterstützung des neuen OpenTelemetry Standards \cite{JaegerOpenTelemetry}, jedoch findet sich bei Zipkin keine vergleichbare Entwicklung. Aus diesen Gründen ist \textbf{Jaeger} hierbei das Werkzeug der Wahl.
+
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-tracing-plattform.tex}
 
 In der Beschreibung zur Kategorie \enquote{Session-Replay} wurde erwähnt, dass einige dieser Werkzeuge eine eher geschäfts- und andere eher eine entwicklerorientierte Session-Replay-Funktionalität vorweisen. Genauer ist FullStory fast ausschließlich für das Nachvollziehen von User-Experience konzipiert, währenddessen LogRocket sehr detaillierte und sehr technische Informationen liefert \cite{Webalyt}. Inspectlet lässt sich als Mischung dieser beiden Sichten verstehen, bietet aber z. B. nicht alle Informationen an, die LogRocket darstellt  \cite{Webalyt}. Da die hier angestrebte Lösung auf Betreiber und insbesondere Entwickler abzielt, wird sich hiermit für \textbf{LogRocket} entschieden.
 
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-session-replay.tex}
+
 Auf dieser Basis ist im folgenden Kapitel der eigentliche Proof-of-Concept zu entwerfen und zu implementieren. Da manche Technologien bzw. Kategorien Überschneidungen in den Funktionalitäten vorweisen (bpsw. Splunk und Sentry), kommt es ggf. dazu, dass nicht alle hier identifizierten Technologien im Proof-of-Concept zum Einsatz kommen. Vor dem Proof-of-Concept wird jedoch zunächst die die Demoanwendung, auf der das Konzept angewendet werden soll, vorgestellt.
+
+\subsection{Bewertung}

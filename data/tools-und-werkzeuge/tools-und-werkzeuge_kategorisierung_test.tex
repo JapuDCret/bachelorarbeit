@@ -1,14 +1,13 @@
-\begingroup
+\begin{table}%
 \centering
-\setlength{\LTleft}{-20cm plus -1fill}
-\setlength{\LTright}{\LTleft}
-\begin{longtable}{|p{4.15cm}|p{1.4cm}|p{2.0cm}|p{1.9cm}|p{2.0cm}|p{1.4cm}|p{1.4cm}|}
+\addtolength{\leftskip}{-2cm}
+\addtolength{\rightskip}{-2cm}
+\begin{tabular}{|p{4.15cm}|p{1.4cm}|p{2.0cm}|p{1.9cm}|p{2.0cm}|p{1.4cm}|p{1.4cm}|}
 \hline
 Technologie & APM & RUM & Error-Monitoring & Log-Management & Tracing & Session-Replay \\
-\endhead
 \hline
 \hline
-\multicolumn{7}{|l|}{Performance-Monitoring} \\
+\multicolumn{7}{|p{12.25cm}|}{Performance-Monitoring} \\
 \hline
 AppDynamics & ja & gruppiert & ja & mit Erw. & ja &  \\
 \hline
@@ -27,7 +26,7 @@ Azure Monitor & ja &  & ja & ja & ja &  \\
 Prometheus & ja &  &  &  &  &  \\
 \hline
 \hline
-\multicolumn{7}{|l|}{Log-Plattform} \\
+\multicolumn{7}{|p{12.25cm}|}{Log-Plattform} \\
 \hline
 Papertrail & möglich & möglich & möglich & ja &  &  \\
 \hline
@@ -40,14 +39,14 @@ Splunk \mbox{Enterprise} & möglich & möglich & möglich & ja &  &  \\
 Graylog & möglich & möglich & möglich & ja &  &  \\
 \hline
 \hline
-\multicolumn{7}{|l|}{Tracing-Plattform} \\
+\multicolumn{7}{|p{12.25cm}|}{Tracing-Plattform} \\
 \hline
 Jaeger &  &  &  &  & ja &  \\
 \hline
 Zipkin &  &  &  &  & ja &  \\
 \hline
 \hline
-\multicolumn{7}{|l|}{Error-Tracking} \\
+\multicolumn{7}{|p{12.25cm}|}{Error-Tracking} \\
 \hline
 Sentry &  & bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
@@ -62,7 +61,7 @@ Bugsnag &  &  & ja &  &  &  \\
 Raygun & ja & grupp. und bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
 \hline
-\multicolumn{7}{|l|}{Session-Replay} \\
+\multicolumn{7}{|p{12.25cm}|}{Session-Replay} \\
 \hline
 Inspectlet &  & ja & teils &  &  & ja \\
 \hline
@@ -71,13 +70,13 @@ FullStory &  & ja & teils &  &  & ja \\
 LogRocket &  & ja & ja & teils &  & ja \\
 \hline
 \hline
-\multicolumn{7}{|l|}{Web-Analytics} \\
+\multicolumn{7}{|p{12.25cm}|}{Web-Analytics} \\
 \hline
 Google Analytics & teils & gruppiert & teils &  &  &  \\
 \hline
 Adobe Analytics & teils & gruppiert & teils &  &  &  \\
 \hline
+\end{tabular}
 \caption{Kategorisierung der untersuchten Technologien}
 \label{tab:technologie-kategorisierung}
-\end{longtable}
-\endgroup
+\end{table}

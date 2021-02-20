@@ -1,5 +1,6 @@
 import sys
 from math import floor
+import codecs
 
 import numpy as np
 import pandas as pd
@@ -11,15 +12,7 @@ def main():
 
     groupedTechnologies = parse_rows(df)
 
-    sb = []
-
-    print_technologies(sb, groupedTechnologies)
-
-    latexPage = '\n'.join(sb)
-
-    latexPageUtf8 = latexPage.encode('utf8')
-
-    sys.stdout.buffer.write(latexPageUtf8)
+    print_technologies(groupedTechnologies)
 
 def parse_rows(df):
     groupedTechnologies = {}
@@ -65,19 +58,17 @@ def parse_rows(df):
     return groupedTechnologies
 
 PAGE_BREAK_AFTER = 7
-def print_technologies(sb, groupedTechnologies):
+def print_technologies(groupedTechnologies):
     technologieCount = 0
     tableNum = 1
-    
-    print_header(sb, tableNum)
 
     totalGroupCount = len(groupedTechnologies)
     groupCount = 0
 
     for group in groupedTechnologies:
-        sb.append("\\hline")
-        sb.append("\\hline")
-        sb.append("\\multicolumn{7}{|p{15.75cm}|}{%s} \\\\" % (group))
+        sb = []
+    
+        print_header(sb, group)
 
         technologies = groupedTechnologies[group]
 
@@ -87,35 +78,32 @@ def print_technologies(sb, groupedTechnologies):
             print_technology(sb, technology)
             technologieCount += 1
         
-        if technologieCount >= PAGE_BREAK_AFTER and groupCount < totalGroupCount:
-            print_footer(sb, tableNum)
-            ## sb.append("")
-            ## sb.append("\\newpage")
-            sb.append("")
-                    
-            tableNum += 1
-                    
-            print_header(sb, tableNum)
-            
-            technologieCount = 0
-
-    print_footer(sb, tableNum)
+        print_footer(sb, group)
+        
+        latexPage = '\n'.join(sb)
+        latexPageUtf8 = latexPage.encode('utf8')
+        
+        f = codecs.open("tools-und-werkzeuge_bewertung-%s.tex" % group.lower(), "w", "utf-8")
+        f.write(latexPage)
+        f.close()
 
 def print_header(sb, tableNum):
-    sb.append("\hvFloat[rotAngle=90,nonFloat=true,capWidth=w]%")
-    sb.append("{table}%")
-    sb.append("{")
-    sb.append("\\begin{tabular}{|p{2.25cm}|p{2.0cm}|p{2.0cm}|p{2.0cm}|p{1.5cm}|p{2.0cm}|p{1.5cm}|p{2.5cm}|}")
+    sb.append("\\begin{table}[H]%")
+    sb.append("\\centering")
+    sb.append("\\addtolength{\\leftskip}{-2cm}")
+    sb.append("\\addtolength{\\rightskip}{-2cm}")
+    sb.append("\\begin{tabular}{|p{3.05cm}|p{1.8cm}|p{1.7cm}|p{1.2cm}|p{1.3cm}|p{1.7cm}|p{1.3cm}|p{2.6cm}|}")
     sb.append("\\hline")
     sb.append("%s & %s & %s & %s & %s & %s & %s & %s \\\\" %
-     ("Technologie", "Kostenfrei", "Support f. Webanw.", "On Premise", "SaaS", "Standard.", "Multif.", "Zielgruppe"))
+     ("Technologie", "Kostenfrei", "Support f. Webanw.", "On \\mbox{Premise}", "SaaS", "Standard.", "Multif.", "Zielgruppe"))
 
-def print_footer(sb, tableNum):
+def print_footer(sb, group):
     sb.append("\\hline")
     sb.append("\\end{tabular}")
-    sb.append("}")
-    sb.append("{Bewertung der untersuchten Technologien, Teil %d}" % (tableNum))
-    sb.append("{tab:technologie-bewertung-teil%d}" % (tableNum))
+    sb.append("\\caption{Bewertung der Technologien der Kategorie \\enquote{%s}}" % (group))
+    sb.append("\\label{tab:technologie-bewertung-%s}" % (group.lower()))
+    sb.append("\\end{table}")
+    sb.append("")
 
 def print_technology(sb, t):
     sb.append("\\hline")

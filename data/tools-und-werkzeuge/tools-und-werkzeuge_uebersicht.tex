@@ -1,15 +1,17 @@
-\hvFloat[rotAngle=90,nonFloat=true,capWidth=w]%
-{table}%
-{
-\begin{tabular}{|p{2.25cm}|p{1.5cm}|p{2.0cm}|p{3.0cm}|p{3.0cm}|p{1.5cm}|p{2.5cm}|}
+\begingroup
+\centering
+\setlength{\LTleft}{-20cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{longtable}{|p{4.15cm}|p{1.4cm}|p{2.0cm}|p{1.9cm}|p{2.0cm}|p{1.4cm}|p{1.4cm}|}
 \hline
-Technologie & APM & RUM & Error-Mo\-ni\-tor\-ing & Log-Management & Tracing & Session-Replay \\
+Technologie & APM & RUM & Error-Montoring & Log-Management & Tracing & Session-Replay \\
+\endhead
 \hline
 Adobe Analytics & teils & gruppiert & teils &  &  &  \\
 \hline
 Airbrake & ja &  & ja &  &  &  \\
 \hline
-AppDynamics & ja & gruppiert & ja & mit Erweiterung & ja &  \\
+AppDynamics & ja & gruppiert & ja & mit Erw. & ja &  \\
 \hline
 Azure Monitor & ja &  & ja & ja & ja &  \\
 \hline
@@ -23,7 +25,7 @@ Dynatrace & ja & gruppiert & ja & ja & ja &  \\
 \hline
 Elastic Stack & möglich & möglich & möglich & ja &  &  \\
 \hline
-Fluentd &  &  &  & nur Aggregierung &  &  \\
+Fluentd &  &  &  & nur Agg. &  &  \\
 \hline
 FullStory &  & ja & teils &  &  & ja \\
 \hline
@@ -35,18 +37,6 @@ Inspectlet &  & ja & teils &  &  & ja \\
 \hline
 Jaeger &  &  &  &  & ja &  \\
 \hline
-\end{tabular}
-}
-{Übersicht der untersuchten Technologien, Teil 1}
-{tab:technologie-uebersicht-teil1}
-
-\hvFloat[rotAngle=90,nonFloat=true,capWidth=w]%
-{table}%
-{
-\begin{tabular}{|p{2.25cm}|p{1.5cm}|p{2.0cm}|p{3.0cm}|p{3.0cm}|p{1.5cm}|p{2.5cm}|}
-\hline
-Technologie & APM & RUM & Error-Mo\-ni\-tor\-ing & Log-Management & Tracing & Session-Replay \\
-\hline
 LogRocket &  & ja & ja & teils &  & ja \\
 \hline
 New Relic & ja & gruppiert & ja & ja & ja &  \\
@@ -55,7 +45,7 @@ Papertrail & möglich & möglich & möglich & ja &  &  \\
 \hline
 Prometheus & ja &  &  &  &  &  \\
 \hline
-Raygun & ja & gruppiert und bei \mbox{Fehlern} & ja &  &  &  \\
+Raygun & ja & grupp. und bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
 Rollbar &  & bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
@@ -69,7 +59,7 @@ TrackJS &  & bei \mbox{Fehlern} & ja &  &  &  \\
 \hline
 Zipkin &  &  &  &  & ja &  \\
 \hline
-\end{tabular}
-}
-{Übersicht der untersuchten Technologien, Teil 2}
-{tab:technologie-uebersicht-teil2}
+\caption{Übersicht der untersuchten Technologien}
+\label{tab:technologie-uebersicht}
+\end{longtable}
+\endgroup

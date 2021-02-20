@@ -66,43 +66,34 @@ def print_technologies(sb, groupedTechnologies):
     for group in groupedTechnologies:
         sb.append("\\hline")
         sb.append("\\hline")
-        sb.append("\\multicolumn{7}{|p{15.75cm}|}{%s} \\\\" % (group))
+        sb.append("\\multicolumn{7}{|l|}{%s} \\\\" % (group))
 
         technologies = groupedTechnologies[group]
         
         for technology in technologies:
             print_technology(sb, technology)
             technologieCount += 1
-        
-        if technologieCount >= PAGE_BREAK_AFTER:
-            print_footer(sb, tableNum)
-            ## sb.append("")
-            ## sb.append("\\newpage")
-            sb.append("")
-                    
-            tableNum += 1
-                    
-            print_header(sb, tableNum)
-            
-            technologieCount = 0
 
     print_footer(sb, tableNum)
 
 def print_header(sb, tableNum):
-    sb.append("\hvFloat[rotAngle=90,nonFloat=true,capWidth=w]%")
-    sb.append("{table}%")
-    sb.append("{")
-    sb.append("\\begin{tabular}{|p{2.25cm}|p{1.5cm}|p{2.0cm}|p{3.0cm}|p{3.0cm}|p{1.5cm}|p{2.5cm}|}")
+    sb.append("\\begingroup")
+    sb.append("\\centering")
+    sb.append("\\setlength{\LTleft}{-20cm plus -1fill}")
+    sb.append("\\setlength{\LTright}{\LTleft}")
+    sb.append("\\begin{longtable}{|p{4.15cm}|p{1.4cm}|p{2.0cm}|p{1.9cm}|p{2.0cm}|p{1.4cm}|p{1.4cm}|}")
     sb.append("\\hline")
     sb.append("%s & %s & %s & %s & %s & %s & %s \\\\" %
-     ("Technologie", "APM", "RUM", "Error-Mo\\-ni\\-tor\\-ing", "Log-Management", "Tracing", "Session-Replay"))
+     ("Technologie", "APM", "RUM", "Error-Monitoring", "Log-Management", "Tracing", "Session-Replay"))
+    sb.append("\\endhead")
 
 def print_footer(sb, tableNum):
     sb.append("\\hline")
-    sb.append("\\end{tabular}")
-    sb.append("}")
-    sb.append("{Kategorisierung der untersuchten Technologien, Teil %d}" % (tableNum))
-    sb.append("{tab:technologie-kategorisierung-teil%d}" % (tableNum))
+    sb.append("\\caption{Kategorisierung der untersuchten Technologien}")
+    sb.append("\\label{tab:technologie-kategorisierung}")
+    sb.append("\\end{longtable}")
+    sb.append("\\endgroup")
+    sb.append("")
 
 def print_technology(sb, t):
     sb.append("\\hline")
