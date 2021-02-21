@@ -38,16 +38,17 @@ def parse_rows(df):
                 break
 
             previousWasEmpty = False
-            
+
             technologie = sanitize(row['Technologie'])
-            apm = sanitize(row['APM'])
+            im = sanitize(row['IM'])
+            asm = sanitize(row['ASM'])
             rum = sanitize(row['RUM'])
             errorMonitoring = sanitize(row['Error-Monitoring'])
-            logManagement = sanitize(row['Log-Management'])
             tracing = sanitize(row['Tracing'])
+            logManagement = sanitize(row['Log-Management'])
             sessionReplay = sanitize(row['Session-Replay'])
 
-            newTech = Technologie(technologie, apm, rum, errorMonitoring, logManagement, tracing, sessionReplay)
+            newTech = Technology(technologie, im, asm, rum, errorMonitoring, tracing, logManagement, sessionReplay)
 
             if groupedTechnologies.get(gruppe) == None:
                 groupedTechnologies[gruppe] = []
@@ -66,7 +67,7 @@ def print_technologies(sb, groupedTechnologies):
     for group in groupedTechnologies:
         sb.append("\\hline")
         sb.append("\\hline")
-        sb.append("\\multicolumn{7}{|l|}{%s} \\\\" % (group))
+        sb.append("\\multicolumn{8}{|l|}{%s} \\\\" % (group))
 
         technologies = groupedTechnologies[group]
         
@@ -81,10 +82,10 @@ def print_header(sb, tableNum):
     sb.append("\\centering")
     sb.append("\\setlength{\LTleft}{-20cm plus -1fill}")
     sb.append("\\setlength{\LTright}{\LTleft}")
-    sb.append("\\begin{longtable}{|p{4.15cm}|p{1.4cm}|p{2.0cm}|p{1.9cm}|p{2.0cm}|p{1.4cm}|p{1.4cm}|}")
+    sb.append("\\begin{longtable}{|p{4.10cm}|p{0.90cm}|p{0.90cm}|p{1.9cm}|p{1.75cm}|p{1.5cm}|p{1.4cm}|p{1.3cm}|}")
     sb.append("\\hline")
-    sb.append("%s & %s & %s & %s & %s & %s & %s \\\\" %
-     ("Technologie", "APM", "RUM", "Error-Monitoring", "Log-Management", "Tracing", "Session-Replay"))
+    sb.append("%s & %s & %s & %s & %s & %s & %s & %s \\\\" %
+     ("Technologie", "IM", "ASM", "RUM", "Error-Montoring", "Log-Mgmt.", "Tracing", "Session-Replay"))
     sb.append("\\endhead")
 
 def print_footer(sb, tableNum):
@@ -97,8 +98,8 @@ def print_footer(sb, tableNum):
 
 def print_technology(sb, t):
     sb.append("\\hline")
-    sb.append("%s & %s & %s & %s & %s & %s & %s \\\\" %
-        (t.technologie, t.apm, t.rum, t.errorMonitoring, t.logManagement, t.tracing, t.sessionReplay))
+    sb.append("%s & %s & %s & %s & %s & %s & %s & %s \\\\" %
+        (t.technologie, t.im, t.asm, t.rum, t.errorMonitoring, t.logManagement, t.tracing, t.sessionReplay))
 
 def sanitize(val):
     val = nanToEmptyString(val)
@@ -118,14 +119,15 @@ def print_empty_line(sb):
     sb.append("\\hline")
 
 
-class Technologie:
-    def __init__(self, technologie, apm, rum, errorMonitoring, logManagement, tracing, sessionReplay):
+class Technology:
+    def __init__(self, technologie, im, asm, rum, errorMonitoring, tracing, logManagement, sessionReplay):
         self.technologie = technologie
-        self.apm = apm
+        self.im = im
+        self.asm = asm
         self.rum = rum
         self.errorMonitoring = errorMonitoring
-        self.logManagement = logManagement
         self.tracing = tracing
+        self.logManagement = logManagement
         self.sessionReplay = sessionReplay
 
     def __cmp__(self, other):

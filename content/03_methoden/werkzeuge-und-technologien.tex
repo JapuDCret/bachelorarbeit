@@ -25,22 +25,22 @@ StackShare bezeichnet Session-Replay als \enquote{User-Feedback-as-a-Service} un
 
 \subsection{Übersicht}
 
-Folgend werden in der \autoref{tab:technologie-uebersicht} die gefundenen Technologien näher veranschaulicht. Hierbei wird untersucht, welche Funktionalitäten die jeweilige Technologie vorweist, auf Basis der Produktbeschreiben der Hersteller. Genauer werden folgende Funktionalitäten unterschieden und den Technologien zugeordnet: APM, RUM, Error-Monitoring, Log-Management, (Distributed-)Tracing sowie Session-Replay.
+Folgend werden in der \autoref{tab:technologie-uebersicht} die gefundenen Technologien näher veranschaulicht. Hierbei wird untersucht, welche Funktionalitäten die jeweilige Technologie vorweist, auf Basis der Produktbeschreiben der Hersteller. Genauer werden folgende, zuvor identifizierte, Funktionalitäten unterschieden und den Technologien zugeordnet: IM, ASM, RUM, Error-Monitoring, Log-Management, (Distributed-)Tracing sowie Session-Replay.
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_uebersicht.tex}
 
 \subsection{Kategorisierung}
 
-Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folgend auf Basis gemeinsamer Funktionalitäten kategorisiert. Diese Kategorien ähneln oft den Gruppierungen der Quellen, jedoch wurde die Kategorisierung unabhängig dessen erstellt, sondern auf Basis der eigens evaluierten Funktionalitäten. Daraus resultierend ergaben sich 7 Funktionskategorien, in die die Technologien grob einzuordnen sind:
+Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folgend auf Basis gemeinsamer Funktionalitäten kategorisiert. Diese Kategorien ähneln oft den Gruppierungen der Quellen, jedoch wurde die Kategorisierung unabhängig dessen erstellt, sondern auf Basis der eigens evaluierten Funktionalitäten. Daraus resultierend ergaben sich 6 Funktionskategorien, in die die Technologien grob einzuordnen sind:
 
 \begin{enumerate}
-	\item Performance-Monitoring
+	\item APM-Plattform
 	\begin{itemize}
-		\item Zur Kategorie des Performance-Monitorings gehören allen voran Technologien, bei denen das Application-Performance-Monitoring eine Kernfunktionalität darstellt. Jedoch begrenzen sich bis auf eines keine der Werkzeuge nur auf APM, sondern können meist mehrere andere Funktionalitäten vorweisen. Meist vertreten sind jedoch Aspekte eines Error-Monitoring, eines Log-Managements sowie eines Distributed Tracings. Neben technischen Aspekten bilden viele dieser Tools mithilfe von APM und RUM auch Einsichten in die geschäftliche Leistung der Anwendung. Auf Basis von RUM werden teils Nutzerverhalten gruppiert visualisiert, um die Nutzerschaft besser verstehen zu können - eine Ansicht einer einzelnen Nutzersitzung wie beim Session-Replay ist jedoch nicht Teil dessen.
+		\item Zu APM-Plattformen gehören allen voran Technologien, bei denen das Application-and-Service-Monitoring sowie das Infrastructure-Monitoring Kernfunktionalitäten darstellen. Jedoch begrenzen sich bis auf eines keine der Werkzeuge nur auf diese beiden Aspekte, sondern können meist mehrere andere Funktionalitäten vorweisen. Meist vertreten sind jedoch Aspekte eines Error-Monitoring, eines Log-Managements sowie eines Distributed Tracings. Neben technischen Aspekten bilden viele dieser Tools mithilfe von ASM und RUM auch Einsichten in die geschäftliche Leistung der Anwendung. Auf Basis von RUM werden teils Nutzerverhalten gruppiert visualisiert, um die Nutzerschaft besser verstehen zu können - eine Ansicht einer einzelnen Nutzersitzung wie beim Session-Replay ist jedoch nicht Teil dessen.
 	\end{itemize}
 	\item Log-Plattform
 	\begin{itemize}
-		\item Als Log-Plattform werden alle Technologien bezeichnet, die eine Verarbeitung von Logdaten als ihre Kernfunktionalität verstehen. Weiterhin sind hier nahezu alle Werkzeuge dazu in der Lage, den Entwicklern und Betreibern eine detaillierte Analyse der Logdaten zu ermöglichen. Weiterhin können oftmals auf Basis dieser Daten auch visuelle Darstellungen erstellt werden. Mit diesen Visualisierungen können Aspekte eines APM, RUM oder Error-Monitorings nachgestellt werden. Neben diesen Funktionalitäten steht aber auch ein effizientes Persistenzkonzept im Vordergrund, damit mit den enormen Datenmengen aus unterschiedlichen Systemen umgegangen werden kann \cite{TowardsAutomatedLogParsingForLargeScale}.
+		\item Als Log-Plattform werden alle Technologien bezeichnet, die eine Verarbeitung von Logdaten als ihre Kernfunktionalität verstehen. Weiterhin sind hier nahezu alle Werkzeuge dazu in der Lage, den Entwicklern und Betreibern eine detaillierte Analyse der Logdaten zu ermöglichen. Weiterhin können oftmals auf Basis dieser Daten auch visuelle Darstellungen erstellt werden. Mit diesen Visualisierungen können Aspekte eines IM, ASM, RUM oder Error-Monitorings nachgestellt werden. Neben diesen Funktionalitäten steht aber auch ein effizientes Persistenzkonzept im Vordergrund, damit mit den enormen Datenmengen aus unterschiedlichen Systemen umgegangen werden kann \cite{TowardsAutomatedLogParsingForLargeScale}.
 	\end{itemize}
 	\item Tracing-Plattform
 	\begin{itemize}
@@ -50,13 +50,13 @@ Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folge
 	\begin{itemize}
 		\item Die Kategorie Error-Tracking zeichnet sich dadurch aus, dass die Technologien hier die Erhebung und Visualisierung von Fehlerdaten als Kernfunktionalität besitzen. Weiterhin besitzen viele dieser Werkzeuge ein detailliertes Issue-Management, mit dem sich Teams organisieren können, um Fehler zu beheben und Arbeiten nachzuhalten.
 	\end{itemize}
-	\item Session-Replay
+	\item Session-Replay-Dienst
 	\begin{itemize}
 		\item Die Technologien der Kategorie Session-Replay zeichnen Nutzersitzungen auf und stellen diese Betreibern und Entwicklern in nachgestellter Videoform bereit. Hierbei lässt sich jedoch eine geschäftliche und eine technische Repräsentation unterscheiden, beim ersteren werden teils Nutzersitzungen gruppiert und als Heatmaps dargestellt und beim letzteren werden detaillierte technische Informationen mitgeschnitten sowie dargestellt \cite{Webalyt}.
 	\end{itemize}
 	\item Web-Analytics
 	\begin{itemize}
-		\item Die letzte Kategorie beschäftigt sich mit Web-Analytics Technologien. Diese beschäftigen sich mit der Evaluierung der Performance einer Webanwendung, sei es im geschäftlichen oder auch im technischen Sinne \cite{APracticalEvaluationOfWebAnalytics} \cite{WebAnalyticsAnHourADay}. Allgemeiner lässt sich anhand der Charakteristika sagen, dass Web-Analytics eine sehr spezifische Untermenge des Performance-Monitorings darstellt.
+		\item Die letzte Kategorie beschäftigt sich mit Web-Analytics Technologien. Diese beschäftigen sich mit der Evaluierung der Performance einer Webanwendung, sei es im geschäftlichen oder auch im technischen Sinne \cite{APracticalEvaluationOfWebAnalytics} \cite{WebAnalyticsAnHourADay}. Allgemeiner lässt sich anhand der Charakteristika sagen, dass Web-Analytics eine sehr spezifische Untermenge von APM-Plattformen darstellt.
 	\end{itemize}
 \end{enumerate}
 
@@ -69,7 +69,7 @@ Folgend werden in der \autoref{tab:technologie-kategorisierung} die Technologien
 
 Wie zuvor beschrieben eignen sich die unterschiedlichen Funktionskategorien teils mehr teils weniger für die, in dieser Arbeit angestrebte, Lösung: Ein Proof-of-Concept, welches die Nachvollziehbarkeit einer Webanwendung von Anwendungsverhalten und Nutzerinteraktionen für \textbf{Betreiber und Entwickler} verbessert.
 
-Die beiden Kategorien Performance-Monitoring und Metriken bieten durch ihr APM sinnvolle Einsichten in die Leistung und Verfügbarkeit einer Anwendung, helfen aber nicht oder kaum bei der Aufdeckung von einzelnen Problemen. Sie bieten hilfreiche Informationen aus wirtschaftlicher und operativer Sichtweise, weniger aber bieten sie technische Informationen. Ein weiterer Grund gegen Werkzeuge des Performance-Monitorings ist die hier existierende Marktmacht von proprietären Lösungen, die teilweise sehr unflexibel in den Anpassungsmöglichkeiten sind aber dafür vorgefertigte Dashboards liefern, die Arbeit abnehmen können. Um diese Diskrepanz näher zu untersuchen wurden New Relic und Dynatrace beispielhaft näher evaluiert, indem jeweils die Testversion mit einer minimalen Beispielanwendung getestet wurde. Hierbei konnte festgestellt werden, dass die bereitgestellten Informationen, aus Sicht eines Entwicklern, nicht ausreichend Aufschluss bereiten. Aus diesen Gründen, gerade aufgrund der divergierenden Zielgruppen, werden die Funktionskategorien Performance-Monitoring und Metriken nicht näher betrachtet.
+APM-Plattformen bieten durch ihr IM und ASM sinnvolle Einsichten in die Leistung und Verfügbarkeit einer Anwendung, helfen aber nicht oder kaum bei der Aufdeckung von einzelnen Problemen. Sie bieten hilfreiche Informationen aus wirtschaftlicher und operativer Sichtweise, weniger aber bieten sie technische Informationen. Ein weiterer Grund gegen Werkzeuge des Performance-Monitorings ist die hier existierende Marktmacht von proprietären Lösungen, die teilweise sehr unflexibel in den Anpassungsmöglichkeiten sind aber dafür vorgefertigte Dashboards liefern, die Arbeit abnehmen können. Um diese Diskrepanz näher zu untersuchen wurden New Relic und Dynatrace beispielhaft näher evaluiert, indem jeweils die Testversion mit einer minimalen Beispielanwendung getestet wurde. Hierbei konnte festgestellt werden, dass die bereitgestellten Informationen, aus Sicht eines Entwicklern, nicht ausreichend Aufschluss bereiten. Aus diesen Gründen, gerade aufgrund der divergierenden Zielgruppen, werden APM-Plattformen nicht näher betrachtet.
 
 Hinzukommend und aus einem ähnlichen Grund, wird die Kategorie Web-Analytics nicht näher behandelt. Denn hierbei liegt der Fokus sehr stark auf einer Überprüfung von wirtschaftlichen und operativen Eigenschaften, nicht jedoch den in dieser Arbeit erwünschten Zielen. Die übrig gebliebenen Kategorien werden im nächsten Unterabschnitt näher betrachtet und kriteriengeleitet bewertet.
 
@@ -135,6 +135,81 @@ In der Beschreibung zur Kategorie \enquote{Session-Replay} wurde erwähnt, dass 
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-session-replay.tex}
 
-Auf dieser Basis ist im folgenden Kapitel der eigentliche Proof-of-Concept zu entwerfen und zu implementieren. Da manche Technologien bzw. Kategorien Überschneidungen in den Funktionalitäten vorweisen (bpsw. Splunk und Sentry), kommt es ggf. dazu, dass nicht alle hier identifizierten Technologien im Proof-of-Concept zum Einsatz kommen. Vor dem Proof-of-Concept wird jedoch zunächst die die Demoanwendung, auf der das Konzept angewendet werden soll, vorgestellt.
+\subsection{Vorstellung der Technologien}
 
-\subsection{Bewertung}
+\subsubsection{Splunk}
+
+Splunk bietet neben seiner akquirierten APM-Lösung (ehem. SignalFX) eine Log-Plattform an, welches Splunks Kernprodukt darstellt und einer der führenden Plattformen auf dem Markt ist \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Splunk bietet diese Lösung als OnPremise oder auch als SaaS an, und ist so anpassungsfähig im Deployment.
+
+Um Splunk zu testen wurde die SaaS- sowie die OnPremise-Lösung aufgesetzt, jeweils in der kostenlosen Version. Splunk bietet keine JavaScript-Bibliotheken, die das Senden von Daten an den Dienst vereinfachen - jedoch wird eine ansprechbare HTTP-Schnittstelle angeboten und in der Dokumentation beschrieben, der sog. HEC (HTTP Event Collector) \cite{SplunkHEC}. Der HEC ist jedoch standardmäßig nicht von einem Browserkontext aus verwendbar, da sie mit ablehnenden CORS-Headern antwortet. Grund hierfür ist, dass der HEC nicht für dieses Szenario konzipiert wurde. Um dies zu umgehen, wurde ein Proxydienst eingerichtet, der die Daten des Frontends entgegennimmt, diese anreichert und dann nach Splunk weiterleitet.
+
+Folgend konnten in Splunk jedwede Loginformationen eingesehen werden, sowie Fehlerdaten, welche auch nach Splunk gemeldet wurden. Innerhalb von Splunk können mit der eigenen Search Processing Language (SPL) \cite{SplunkSPL} Abfragen durchgeführt werden (vgl. \autoref{fig:splunk_search-processing-language}). Mit dieser Sprache lassen sich, ähnlich wie bei SQL, einzelne Werte oder Listen abrufen aber auch neue komplexe Strukturen durch Unterabfragen generieren \cite{SplunkSQLtoSPL}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/splunk_search-processing-language.png}
+	\caption{Abfragebeispiel in Splunk \cite{SplunkSPL}}
+	\label{fig:splunk_search-processing-language}
+\end{figure}
+
+\subsubsection{Jaeger}
+
+Jaeger wurde 2017 als ein OpenSource-Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, -verarbeitung, -speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing, unterstützt aber auch Datenformate anderer Hersteller (wie z. B. Zipkin \cite{Zipkin}). Eine Unterstützung des OpenTelemetry Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF Projekt zur Speicherung und Visualisierung von Daten.
+
+\begin{wrapfigure}[19]{r}{0.45\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/jaeger_trace-detail-view.png}
+\caption{Trace-Detailansicht. Quelle: Eigene Darstellung}
+\label{fig:jaeger-ui_trace-detail-view}
+\smallskip\par
+\includegraphics[width=\linewidth]{img/03_methoden/jaeger_dependency-graph.png}
+\caption{Dienst-Abhängigkeits-Graph. Quelle: Eigene Darstellung}
+\label{fig:jaeger-ui_dependency-graph}
+\end{wrapfigure}
+
+Jaeger spezialisiert sich auf Tracing und bietet hierfür eine skalierbare Infrastruktur zur Speicherung und Analyse der Daten. Die Traces werden als angereicherte Trace-Gantt-Diagramme dargestellt, wie in \autoref{fig:jaeger-ui_trace-detail-view} zu sehen ist. Hierbei sind sowohl hierarchische als auch zeitliche Beziehungen visualisiert. Wie bei OpenTracing und OpenTelemetry besteht ein Trace aus mehreren Spans, welche meist eine Methode umschließen. Zu den einzelnen Spans lassen sich weitere Informationen anzeigen, wenn vorhanden, wie bspw. Logmeldungen oder Kontextinformationen.
+
+Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die Beziehungen zwischen Diensten zu sehen ist. In \autoref{fig:jaeger-ui_dependency-graph} kann so eine Darstellung betrachtet werden.
+
+\subsubsection{Sentry}
+
+Sentry \cite{Sentry} ist ein SaaS-Produkt der Functional Software Inc., welches sich auf das Error Monitoring spezialisiert. Die Kernfunktionalitäten beschränken sich auf das Error Monitoring, auch wenn von anderen Praktiken einige Aspekte präsent sind, stellen diese keine eigens abgeschlossene Funktionalität dar.
+
+Neben einer kommerziellen Version, stellt Sentry auch eine unbegrenzt kostenlos nutzbare Version bereit, welche im Rahmen dieser Arbeit evaluiert wurde. Der Quellcode für das Backend von Sentry wurde zudem veröffentlicht und bietet Sentry darüber hinaus auch eine OnPremise-Lösung, die auf Docker basiert \cite{SentrySelfHosted}. Um von Webanwendungen Fehler zu erfassen und an Sentry zu melden, bietet Sentry bei NPM \cite{NPM} quelloffene Pakete an \cite{SentryJSGithub}. Dabei werden u. A. Pakete für folgende Frameworks bereitgestellt: JavaScript, Angular, React und Vue.js.
+
+Wird ein Fehler gemeldet, erstellt Sentry hierzu ein \enquote{Issue}, also einen Problembericht. In diesem Problembericht sind detaillierte Informationen zum Fehler zu finden, wie den Stacktrace, den Zeitstempel, die Nutzerumgebung (Browser, Version, etc.) und auch einen Ausschnitt der zuletzt aufgetretenen Logmeldungen in der Browserkonsole (vgl. \autoref{fig:sentry_issue-details}). Zudem schneidet Sentry jegliche Nutzerinteraktionen mit und stellt diese in dem Problembericht mit dar (vgl. \autoref{fig:sentry_issue-event-breadcrumbs}). Treten Fehler gleichen Ursprungs auf, fasst Sentry diese im selben Problembericht zusammen, jedoch kann jede einzelne Fehlerinstanz näher betrachtet werden.
+
+Die angebotenen Fehlerinformationen von Sentry sind zahlreich und helfen beim Nachvollziehen besser als die vorher beleuchteten Werkzeuge, jedoch mangelt es an einer ganzheitlichen Nachvollziehbarkeit, d. h. wenn kein Fehlerfall eingetreten ist, bietet Sentry hierfür auch keine Informationen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/sentry_issue-details.png}
+	\caption{Kerninformation eines Sentry-Issues}
+	\label{fig:sentry_issue-details}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/sentry_issue-event-breadcrumbs.png}
+	\caption{Userinteraktionen bei einer bestimmten Fehlerinstanz}
+	\label{fig:sentry_issue-event-breadcrumbs}
+\end{figure}
+
+\subsubsection{LogRocket}
+
+LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens und konzentriert sich auf detailliertes Session-Replay von JavaScript-basierten Clientanwendungen, um Probleme identifizieren, nachvollziehen und lösen zu können. Anders als vergleichbare Session-Replay-Technologien sind Entwickler die primäre Zielgruppe, nicht das Marketingteam o. Ä. \cite{Webalyt}.
+
+LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an, welche für die Evaluierung verwendet wurde. Zur Datenerhebung wird das Paket \texttt{logrocket} bei NPM angeboten, welches nach der Initialisierung eigenständig die notwendigen Daten sammelt. Mithilfe dieser Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
+
+Neben dem JavaScript-SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. LogRocket ist zudem als OnPremise-Lösung verfügbar. Zusätzlich bietet LogRocket auch eine Integration für andere Tools, wie z. B. Sentry. Bei der Sentry-Integration wird bei einem gemeldeten Fehler direkt auf das \enquote{Video} in LogRocket verlinkt, sodass der Fehler genau betrachtet werden kann.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example-cropped.png}
+	\caption{Ausschnitt eines Session Replays bei LogRocket}
+	\label{fig:logrocket-session-replay-example}
+\end{figure}
+
+\vspace{\baselineskip}
+
+Auf dieser Basis ist im folgenden Kapitel der eigentliche Proof-of-Concept zu entwerfen und zu implementieren. Da manche Technologien bzw. Kategorien Überschneidungen in den Funktionalitäten vorweisen (bpsw. Splunk und Sentry), kommt es ggf. dazu, dass nicht alle hier identifizierten Technologien im Proof-of-Concept zum Einsatz kommen. Vor dem Proof-of-Concept wird jedoch zunächst die die Demoanwendung, auf der das Konzept angewendet werden soll, vorgestellt.

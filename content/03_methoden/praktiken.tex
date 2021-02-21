@@ -1,40 +1,50 @@
 % \section{Praktiken}
 
-In der Fachpraxis haben sich einige Technologien über die Jahre entwickelt und etabliert, welche die Nachvollziehbarkeit von Anwendungsverhalten und Nutzerinteraktion ermöglichen oder verbessern. Auf Basis der zuvor vorgestellten Methoden und teils neuer Ansätze haben sich in der Wirtschaft einige Praktiken entwickelt. Diese werden folgend näher beleuchtet.
+% \subsection{Fachpraxis}
 
-\subsection{System Monitoring}
+\subsection{Application-Performance-Monitoring (APM)}
 
-System Monitoring beschäftigt sich mit der Überwachung der notwendigen Systeme und Dienste in Bezug auf Hardware- und Softwareressourcen. Es handelt sich hierbei um ein projektunabhängiges Monitoring, welches sicherstellen soll, dass die Infrastruktur funktionstüchtig bleibt.
+In der Fachpraxis haben sich über die Jahre einige Technologien entwickelt und etabliert, welche die Nachvollziehbarkeit von Anwendungsverhalten und Nutzerinteraktion ermöglichen oder verbessern. Auf Basis der zuvor vorgestellten Methoden und teils neuer Ansätze haben sich in der Wirtschaft einige Praktiken entwickelt. Eines dieser Ansätze ist das Application-Performance-Monitoring (APM, teils auch Application-Performance-Management).
 
-Ein Beispiel für System Monitoring wäre u. A., wenn man eine Menge an Systemen auf die Festplatten- und CPU-Auslastung hin kontrolliert und überwacht. Es können weitere Aspekte überwacht werden, aber im Regelfall hat die Überwachung selbst nichts mit einem eigentlichen Projekt zu tun, außer dass die Infrastruktur hierfür sichergestellt wird.
+APM lässt sich nicht simpel definieren, denn es existiert kein Konsens, welche Eigenschaften und Funktionalitäten ein APM umfasst. Ahmed \etal \cite{StudyingTheEffectivenessOfAPMTools}, Heger \etal \cite{APMStateOfTheArtAndChallenges}, Rabl \etal \cite{SolvingBigDataChallengesForAPM} sowie Dynatrace \cite{DynatraceAPM} definieren, dass APM eine Menge an Methoden, Techniken und Werkzeugen umfasst, die das System konstant überwachen und Aufschluss über den Zustand geben, sodass die Verfügbarkeit des Systems sichergestellt werden kann. Anders definieren dies jedoch Santos Filipe \cite{ClientSideMonitoringOfDistributedSystems}, New Relic \cite{NewRelicAPM} und Gartner \cite{GartnerMagicQuadrantForAPM}, welche APM weniger allgemeingültig definieren, sondern APM eher über explizite Teilaspekte definieren, die es erfüllen muss, damit es sich um ein konformes APM handelt. Jedoch existiert hier ebenso kein Konsens, welche expliziten Aspekte erfüllt sein müssen, damit ein Monitoring-System zu einem APM wird.
 
-\subsection{Log Management}
+In dieser Arbeit wird auf Basis der ersten und eher allgemeingültigen Definition ein APM so definiert: APM befasst sich mit dem Beobachten eines Softwaresystems und der Gewinnung von relevanten Daten aus diesem System zur näheren Analyse, um zu ermöglichen, dass Rückschlüsse über die Gesundheit des Systems gezogen werden können und so die Verfügbarkeit sichergestellt werden kann. Um dies zu erreichen, lassen sich grob 5 Fachgebiete differenzieren, die unterschiedliche Aspekte eines Softwaresystems aufdecken \cite{ASurveyOfCloudMonitoringTools} \cite{GartnerMagicQuadrantForAPM} \cite{ResearchAndApplicationOfOperatingMonitoring}:
 
-Log Management umfasst die Erfassung, Speicherung, Verarbeitung und Analyse von Logdaten von Anwendungen. Neben diesen Funktionen bieten solche Werkzeuge oftmals fundierte Suchfunktionen und Visualisierungsmöglichkeiten. Um die Daten aus einer Anwendung heraus zu exportieren, gibt es meist eine Vielzahl an Integrationen für Frameworks und Logbibliotheken.
+\begin{enumerate}
+	\item Infrastruktur-Monitoring (IM)
+	\item Application-and-Service-Monitoring (ASM)
+	\item Real-User-Monitoring (RUM)
+	\item Error-Monitoring
+	\item Distributed-Tracing
+\end{enumerate}
 
-Einer der wichtigsten Punkte beim Log Management, ist der Umgang mit großen Datenmengen und die gewünschten Operationen, die Nutzer damit durchführen möchten.
+\subsubsection{Infrastructure-Monitoring (IM)}
 
-\subsection{Application Performance Monitoring (APM)}
+Infrastructure-Monitoring beschäftigt sich hauptsächlich mit der Überwachung der Infrastruktur. Hierbei wird bspw. die Verfügbarkeit von Netzwerkressourcen überwacht sowie die Auslastung von Hard- und Softwareressourcen. Dieses Monitoring kann ohne Anpassungen der Software erfolgen und stellt somit ein Beispiel für Black-Box-Monitoring dar \cite{ClientSideMonitoringOfDistributedSystems}. Beispielsweise ist die Überwachung von CPU- und Speicherausnutzung eines Containers Teil von Infrastructure-Monitoring.
 
-Beim Application Performance Monitoring werden Messdaten innerhalb von Anwendungen gesammelt, um das Anwendungsverhalten nachvollziehbar zu gestalten \cite{StudyingTheEffectivenessOfAPMTools}. Beispielsweise werden Aufrufe von Schnittstellen näher beleuchtet und die Antwortzeit gespeichert. Auf Basis der Daten lassen sich u. A. Abweichungen von der Norm feststellen, von einzelnen Systemen oder vom aktuellen Gesamtsystem zu einem vorherigen Zeitpunkt.
+\subsubsection{Application-and-Service-Monitoring (ASM)}
 
-Mithilfe von APM lassen sich allgemeine Aspekte von Software, wie die Ressourcennutzung, überprüfen aber auch spezielle Faktoren, wie die Ausführungszeit einer wichtigen Methode, lassen sich so beleuchten. Die zu veranschaulichenden Aspekte werden zum Großteil über Metriken in numerische Werte abgebildet.
+Anders als beim System-Monitoring handelt es sich bei Application-and-Service-Monitoring (ASM, teilweise auch Application-Component-Monitoring) um White-Box-Monitoring. Genauer bedeutet dies, dass die Softwarekomponenten angepasst werden müssen, sodass innerhalb der Laufzeitumgebungen Daten gesammelt werden können. Beispielsweise werden die Antwortzeit von Schnittstellaufrufen protokolliert und systematisch überwacht. Auf Basis der Daten lassen sich u. A. Abweichungen von der Norm feststellen, von einzelnen Systemen oder vom aktuellen Gesamtsystem zu einem vorherigen Zeitpunkt.
 
-\subsection{Real User Monitoring (RUM)}
+\subsubsection{Real-User-Monitoring (RUM)}
 
 \nomenclature[Fachbegriff]{UI}{User-Interface}
 
-Real User Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Benutzeroberfläche \cite{IdentifyingWebPerformanceDegradations}. Hiermit lässt sich nachvollziehen, wie ein Nutzer die Anwendung verwendet. RUM kann weiterhin dazu verwendet werden, um nachzuvollziehen, wie ein Zustand vom Nutzer erreicht worden ist. Aber es können auch ineffiziente Klickpfade hierdurch festgestellt werden und darauf basierend UX-Verbesserungen vorgenommen werden.
+Real-User-Monitoring beschäftigt sich mit dem Mitschneiden von allen Nutzerinteraktionen und Umgebungseigenschaften einer Benutzeroberfläche \cite{IdentifyingWebPerformanceDegradations}. Um diese Daten zu ermitteln ist eine Änderung der Software für die Benutzeroberfläche notwendig, welches RUM zu einem White-Box-Monitoring macht. RUM wird jedoch nicht dazu verwendet, die Interaktionen eines einzelnen Nutzers aufzudecken, sondern Aufschluss über die gesamte Nutzerschaft der Anwendung zu erhalten. Die Daten werden oftmals gruppiert bspw. nach den Interaktionen oder auch nach Umgebungseigenschaften, wie dem Browser der Nutzer. Durch die Gruppierung lassen sich Probleme der User-Experience feststellen \cite{AConceptLatticeForRecognitionOfUserProblems}, aber auch Leistungsprobleme der Anwendung feststellen und ob diese den unterschiedlichen Umgebungen der Nutzer geschuldet sind \cite{IdentifyingWebPerformanceDegradations}.
 
-Weiterhin ist es beim RUM auch üblich Nutzerinteraktionen gruppierte zu analysieren, um verbreitete und unübliche Sitzungen zu identifizieren. Hiermit wird die Nutzerschaft und ihre Verhaltensweisen nachvollziehbarer gemacht.
+\subsubsection{Error-Monitoring}
 
-%\subsection{Synthetic Monitoring}
-%
-%Beim Synthetic Monitoring werden Endnutzer simuliert, um Aspekte wie Funktionalität oder Verfügbarkeit zu verifizieren \cite{IdentifyingWebPerformanceDegradations}. Hierbei können Werkzeuge zur Browserautomatisierung eine echte Benutzung einer Webanwendung simulieren. Des Weiteren ist aber auch eine Nachstellung des Verhaltens der Webanwendung eine Option, indem z. B. Aufrufe zu Partnersystemen simuliert werden.
+Das Error-Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Error-Monitoring lässt sich sowohl als White-Box- sowie als Black-Box-Monitoring umsetzen, da über existierende Protokollierung bereits Fehler festgestellt werden können, jedoch kann es hierbei sinnvoll sein eine Software anzupassen, um mehr Kontextinformationen zu erfassen. Das Error-Monitoring wird oftmals eng mit einem Issue-Management verbunden, um aufgetretene Fehler und deren Behebung nachzuhalten zu machen \cite{CrashbinCrashMonitoring}.
 
-\subsection{Error Monitoring}
+\subsubsection{Distributed-Tracing}
 
-Das Error Monitoring konzentriert sich auf das Erfassen und Melden von Fehlern \cite{CrashbinCrashMonitoring}. Neben den eigentlichen Fehlern werden meist alle verfügbaren Kontextinformationen mit erfasst. Darunter finden sich u. A. Daten aus den Gebieten RUM und Logging. Das Error Monitoring wird oftmals eng mit einem Issue-Management verbunden, um aufgetretene Fehler und deren Behebung nachvollziehbar zu machen \cite{CrashbinCrashMonitoring}.
+Beim Distributed-Tracing handelt es sich um die fortgeschrittene Art des Tracings, welche systemübergreifend den Durchlauf von Abfragen protokolliert (vgl. \autoref{sec:tracing}). Diese Art von Monitoring gibt, anders als die anderen Arten, keine Einsicht in einzelne Komponenten, sondern veranschaulicht die resultierenden Interaktionen einer Abfrage.
+
+\subsection{Log-Management}
+
+Neben dem APM gibt es zudem weitere Funktionalitäten, die Technologien in der Fachpraxis vorweisen, wie z. B. das Log-Management. Log-Management umfasst die Erfassung, Speicherung, Verarbeitung und Analyse von Logdaten von Anwendungen. Neben diesen Funktionen bieten solche Werkzeuge oftmals fundierte Suchfunktionen und Visualisierungsmöglichkeiten. Um die Daten aus einer Anwendung heraus zu exportieren, gibt es meist eine Vielzahl an Integrationen für Frameworks und Logbibliotheken.
+
+Einer der wichtigsten Punkte beim Log Management, ist der Umgang mit großen Datenmengen und die gewünschten Operationen, die Nutzer damit durchführen möchten.
 
 \subsection{Session-Replay}
 
@@ -63,24 +73,26 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 \subsection{OpenTelemetry}
 \label{subsec:opentelemetry}
 
-OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnote{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen.
+Neben diesen Praktiken haben sich in der Wirtschaft einige Standards entwickelt, um die Vorgehensweisen zu vereinheitlichen und miteinander kompatibel zu machen. Einer dieser Standards ist OpenTelemetry. \textit{\color{red} TODO: OpenTelemetry beschreiben}
 
-Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
-
-\nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
-\nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
-\footnotetext{Eine Entwicklung einer Definition zu Logging ist im Gange \cite{OpenTelemetryLoggingSpecification}.}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection_2.png}
-	\caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
-	\label{fig:otel-unified-collection}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.75\linewidth]{img/03_methoden/dynatrace_otel-components.png}
-	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
-	\label{fig:otel-components}
-\end{figure}
+%OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnote{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen.
+%
+%Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
+%
+%\nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
+%\nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
+%\footnotetext{Eine Entwicklung einer Definition zu Logging ist im Gange \cite{OpenTelemetryLoggingSpecification}.}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection_2.png}
+%	\caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
+%	\label{fig:otel-unified-collection}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.75\linewidth]{img/03_methoden/dynatrace_otel-components.png}
+%	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
+%	\label{fig:otel-components}
+%\end{figure}

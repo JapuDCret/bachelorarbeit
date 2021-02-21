@@ -3,10 +3,10 @@
 %\textit{In diesem Kapitel soll beschrieben werden, wie eine Nachvollziehbarkeit in Webanwendungen erreicht werden kann. Spezielle Methoden und Praktiken sollen vorgestellt und beleuchtet werden.}
 % \textit{Hier könnte unter anderem \textbf{OpenTelemetry} betrachtet werden.}
 
-\vspace{-\baselineskip}
-
 \section{Methoden für eine bessere Nachvollziehbarkeit}
 \label{sec:methoden}
+
+Nachvollziehbarkeit bietet somit einen wichtigen Mehrwert für Entwickler und Betreiber von Webanwendungen, wie aber kann eine verbesserte Nachvollziehbarkeit erreicht werden? Zunächst werden die drei Methoden Logging, Metriken und Tracing behandelt, die nach Sridharan \etal \cite{DistributedSystemsObservability} die Grundpfeiler der Observability darstellen.
 
 \subsection{Logging}
 
@@ -29,22 +29,23 @@ Wird Structured Logging eingesetzt und ein System analysiert die Protokolldaten 
 
 \subsection{Metriken}
 
-Mit Metriken versucht man Softwareeigenschaften vergleichbar abzubilden. Hierfür werden einzelne Messungen durchgeführt, die dann mit anderen Messungen derselben Kategorie gegenübergestellt werden. Mit den Gegenüberstellungen lassen sich wiederum Rückschlüsse zu Softwareeigenschaften ziehen, dass bspw. eine Anfrage deutlich länger benötigt als andere \enquote{gleichwertige} Anfragen. Weiterhin lassen sich historische Veränderungen in den Metriken erkennen und können unerwünschte Abweichungen aufdecken.
+Metriken sind numerische Repräsentationen von Daten, die in einer Zeitspanne aufgenommen wurden. Mithilfe von Metriken können mathematische Konzepte dazu verwendet werden, um Verständnis zu gewinnen und Vorhersagen zu treffen \cite{DistributedSystemsObservability}. Metriken sind zudem optimal für effiziente Datenbankabfragen sowie eine Langzeitspeicherung geeignet, da die Struktur oftmals gleich ist, sie zum Großteil lediglich numerische Werte beinhalten sowie sind sie aggregierbar.
 
-Beispiele für Metriken sind:
+\begin{wrapfigure}[10]{r}{0.35\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/03_methoden/prometheus-metric-sample.png}
+\caption{Struktur eines Prometheus-Metrik-Datensatzes \cite{DistributedSystemsObservability}}
+\label{fig:prometheus-metric-datensatz}
+\end{wrapfigure}
 
-\begin{enumerate}
-	\item Eine Zeitmessung, bzgl. der Dauer einer HTTP-Anfrage.
-	\item Eine Messung der CPU-Auslastung.
-\end{enumerate}
+Beispielsweise identifiziert Prometheus \cite{Prometheus} Metriken über einen eindeutigen Namen und Schlüsselwertepaaren (vgl. \autoref{fig:prometheus-metric-datensatz}) und speichert die assoziierten Daten in einem Zeitstempel und einem Fließkommawert. Zudem können Technologien rund um die Metrikerhebung einfacher mit großen oder ansteigenden Datenaufkommen reagieren, da die Daten aggregierbar sind \cite{DistributedSystemsObservability}. Anders als z. B. bei Logsystemen, bei denen sich entweder die Auslastung bei mehr Daten erhöht oder Daten verworfen werden müssen, leiden Metriksysteme durch die Eigenschaften von Metriken selbst weniger darunter.
 
-\nomenclature[Fachbegriff]{HTTP}{Hyper-Text-Transfer-Protocol}
-\nomenclature[Fachbegriff]{CPU}{Central Processing Unit, auf Deutsch \enquote{Prozessor}.}
+Durch die Kompatibilität, mathematische Konzepte auf Metriken anwenden zu können, eignen sie sich zudem dafür, eine Übersicht eines Gesamtsystems bereitzustellen und ermöglichen so die Verfügbarkeit überprüfbar zu gestalten \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}. Jedoch besitzen Metriken durch genau diese Eigenschaften auch Grenzen, sie können bspw. wenig aussagekräftig für das Verständnis des Verhaltens einzelner Komponenten zu einem Zeitpunkt sein. Hierbei können Logs getrennt Aufschluss über die einzelnen Komponenten bieten, jedoch um die Kommunikation zwischen Komponenten oder Systemen zu verstehen sind weder Logs noch Metriken zielführend - aus diesem Grund entwickelte sich das Tracing \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}.
 
 \subsection{Tracing}
 \label{sec:tracing}
 
-Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen \cite{TowardsPerformanceToolingInteroperability}. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
+Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen in Softwaresystemen \cite{TowardsPerformanceToolingInteroperability}. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein Tracing von verteilten Systemen nennt man \enquote{Distributed Tracing}. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
 OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span ist besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methode, bei einer Webanwendung kann dies eine Verarbeitung sein oder einen durch den Nutzer hervorgerufenen Eventfluss sein. Ein Span kann Kindspans beinhalten, wenn in der Methode weitere Spans erzeugt wurden (z. B. durch einen Methodenaufruf). Ein Trace ist eine Menge von Spans, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
 
@@ -66,20 +67,17 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 
 \subsection{Fehlerberichte}
 
-\begin{wrapfigure}[15]{r}{0.4\textwidth}
+\begin{wrapfigure}[16]{r}{0.4\textwidth}
 \centering
-\vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
 \caption{Fehlerbericht in der Instagram App \cite{Instagram}}
 \label{fig:instagram-bug-report}
 \end{wrapfigure}
 
-Fehlerberichte sind ein klassisches Mittel, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin kann die Intention des Nutzers ermittelt werden, vorausgesetzt er gibt dies an.
+Neben diesen drei Grundpfeilern der Observability stellen Bugreports ein klassisches Mittel dar, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin können Informationen des Nutzers ermittelt werden, wie es hierzu gekommen ist und warum es ein Problem darstellt, vorausgesetzt er gibt dies an.
 
 Konträr zu diesen Vorteilen stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
 
-\section{Praktiken}
-\label{sec:praktiken}
 \input{content/03_methoden/praktiken}
 
 \section{Werkzeuge und Technologien}
