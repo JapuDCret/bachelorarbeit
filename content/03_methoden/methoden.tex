@@ -6,9 +6,26 @@
 \section{Methoden für eine bessere Nachvollziehbarkeit}
 \label{sec:methoden}
 
-Nachvollziehbarkeit bietet somit einen wichtigen Mehrwert für Entwickler und Betreiber von Webanwendungen, wie aber kann eine verbesserte Nachvollziehbarkeit erreicht werden? Zunächst werden die drei Methoden Logging, Metriken und Tracing behandelt, die nach Sridharan \etal \cite{DistributedSystemsObservability} die Grundpfeiler der Observability darstellen.
+Nachvollziehbarkeit bietet somit einen wichtigen Mehrwert für Entwickler und Betreiber von Webanwendungen, wie aber kann eine verbesserte Nachvollziehbarkeit erreicht werden?
 
-\subsection{Logging}
+\subsection{Fehlerberichte}
+
+\begin{wrapfigure}[16]{r}{0.4\textwidth}
+\centering
+\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
+\caption{Fehlerbericht in der Instagram App \cite{Instagram}}
+\label{fig:instagram-bug-report}
+\end{wrapfigure}
+
+Fehlerberichte sind klassisches Mittel, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin können Informationen des Nutzers ermittelt werden, wie es hierzu gekommen ist und warum es ein Problem darstellt, vorausgesetzt er gibt dies an.
+
+Konträr zu diesen Vorteilen stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
+
+\subsection{Die Grundpfeiler der Observability}
+
+Da Fehlerberichte somit nicht ausreichend sind, um den Entwicklern eine ausreichende Nachvollziehbarkeit zu gewährleisten, sind zusätzliche Konzepte notwendig um dies zu erreichen. Nach Sridharan \etal \cite{DistributedSystemsObservability} sowie \cite{TraefikLogsRequestTracingAndMetrics} \cite{IntrospectiveOfTheCloudManagementToolbox} \cite{MultilevelObservabilityInCloudOrchestration} existieren drei Grundpfeiler der Observability, die in ihrer Funktion einzigartig sind und sich gegenseitig ergänzen: Logs, Metriken und Traces.
+
+\subsubsection{Logging}
 
 %\textit{Folgende Fragen sollen zur Methode beantwortet werden}
 %\begin{enumerate}
@@ -17,17 +34,15 @@ Nachvollziehbarkeit bietet somit einen wichtigen Mehrwert für Entwickler und Be
 %	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
 %\end{enumerate}
 
-Mit Logging bezeichnet man die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen \cite{LearningToLog}. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
+Logging bezeichnet die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen \cite{LearningToLog}. Diese erstellten Protokolle nennt man Logs und sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden \cite{LearningToLog}.
 
-Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung im Produktivmodus nachvollziehen können \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit, die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, zu begründen, wie in \autoref{sec:logdaten} erläutert.
-
-%Weiterhin bieten detaillierte Logs meist zu viele Informationen, um diese manuell zu analysieren. Um eine effiziente maschinenbasierte Analyse zu ermöglichen, wird Structured Logging verwendet.
+Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung in einer Produktivumgebung nachvollziehen können \cite{EventLogsForTheAnalysisOfSoftwareFailures} \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit, die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, zu begründen, wie in \autoref{sec:logdaten} erläutert.
 
 Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn ein Aggregator nun jedoch Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured Logging ins Spiel. Bei Structured Logging \cite{StructuredAndInteroperableLogging} werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch menschenlesbar sein oder definiert die Logmeldung bspw. als JSON-Objekt. Durch die feste Definition des Formates wird der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
 
 Wird Structured Logging eingesetzt und ein System analysiert die Protokolldaten auf enthaltene Werte, so wird ermöglicht, dass auf diese Protokolle nicht nur manuell einzusehen sind, sondern dass auch auf Basis dessen komplexe Datenanalysen durchgeführt werden können \cite{StructuredAndInteroperableLogging}. Mit diesen Datenanalysen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken \cite{StructuredLoggingCraftingUsefulMessageContent}. Weiterhin lassen sich so aus Logmeldungen auch spezielle Daten wie Metriken extrahieren.
 
-\subsection{Metriken}
+\subsubsection{Metriken}
 
 Metriken sind numerische Repräsentationen von Daten, die in einer Zeitspanne aufgenommen wurden. Mithilfe von Metriken können mathematische Konzepte dazu verwendet werden, um Verständnis zu gewinnen und Vorhersagen zu treffen \cite{DistributedSystemsObservability}. Metriken sind zudem optimal für effiziente Datenbankabfragen sowie eine Langzeitspeicherung geeignet, da die Struktur oftmals gleich ist, sie zum Großteil lediglich numerische Werte beinhalten sowie sind sie aggregierbar.
 
@@ -42,7 +57,7 @@ Beispielsweise identifiziert Prometheus \cite{Prometheus} Metriken über einen e
 
 Durch die Kompatibilität, mathematische Konzepte auf Metriken anwenden zu können, eignen sie sich zudem dafür, eine Übersicht eines Gesamtsystems bereitzustellen und ermöglichen so die Verfügbarkeit überprüfbar zu gestalten \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}. Jedoch besitzen Metriken durch genau diese Eigenschaften auch Grenzen, sie können bspw. wenig aussagekräftig für das Verständnis des Verhaltens einzelner Komponenten zu einem Zeitpunkt sein. Hierbei können Logs getrennt Aufschluss über die einzelnen Komponenten bieten, jedoch um die Kommunikation zwischen Komponenten oder Systemen zu verstehen sind weder Logs noch Metriken zielführend - aus diesem Grund entwickelte sich das Tracing \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}.
 
-\subsection{Tracing}
+\subsubsection{Tracing}
 \label{sec:tracing}
 
 Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen in Softwaresystemen \cite{TowardsPerformanceToolingInteroperability}. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein Tracing von verteilten Systemen nennt man \enquote{Distributed Tracing}. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
@@ -65,18 +80,9 @@ Ein verteilter Trace, oftmals \enquote{Distributed Trace} genannt, ist ein Trace
 	\label{fig:otel-temporal-relationship}
 \end{minipage}
 
-\subsection{Fehlerberichte}
-
-\begin{wrapfigure}[16]{r}{0.4\textwidth}
-\centering
-\includegraphics[width=\linewidth]{img/instagram-feedback/instagram-feedback.jpg}
-\caption{Fehlerbericht in der Instagram App \cite{Instagram}}
-\label{fig:instagram-bug-report}
-\end{wrapfigure}
-
-Neben diesen drei Grundpfeilern der Observability stellen Bugreports ein klassisches Mittel dar, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin können Informationen des Nutzers ermittelt werden, wie es hierzu gekommen ist und warum es ein Problem darstellt, vorausgesetzt er gibt dies an.
-
-Konträr zu diesen Vorteilen stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gefunden Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
+\subsection{OpenTelemetry}
+\label{subsec:opentelemetry}
+\input{content/03_methoden/opentelemetry}
 
 \input{content/03_methoden/praktiken}
 
