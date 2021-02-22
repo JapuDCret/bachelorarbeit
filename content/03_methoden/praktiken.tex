@@ -73,7 +73,15 @@ Beim Abspielen werden die Aufrufe dann in derselben Reihenfolge an die Eventloop
 \subsection{OpenTelemetry}
 \label{subsec:opentelemetry}
 
-Neben diesen Praktiken haben sich in der Wirtschaft einige Standards entwickelt, um die Vorgehensweisen zu vereinheitlichen und miteinander kompatibel zu machen. Einer dieser Standards ist OpenTelemetry. \textit{\color{red} TODO: OpenTelemetry beschreiben}
+Neben diesen Praktiken haben sich in der Wirtschaft einige Standards entwickelt, um die Vorgehensweisen zu vereinheitlichen und miteinander kompatibel zu machen. Einer dieser Standards ist OpenTelemetry \cite{OpenTelemetry}.
+
+OpenTelemetry (OTel) ist ein sich derzeit\footnote{Ein erster (General-Availability-)Release der Spezifikation ist für die erste Hälfte 2021 geplant \cite{OpenTelemetryGARelease}.} entwickelnder Standard, welcher als Ziel hat, dass das erfassen, weiterleiten und verarbeiten von  Tracing-, Metrik- und Logdaten\footnotemark{} herstellerunabhängig ermöglicht wird. OTel entwickelte sich aus dem Zusammenschluss der Teams hinter den beiden Standards OpenTracing und OpenCensus \cite{OpenCensus}, die das gleiche Ziel der Vereinheitlichung, der hier existierenden Ansätze, verfolgen  \cite{UseNixDistributiveTracing}. Weiterhin versucht OTel nicht nur die bisherige Landschaft zu vereinigen, sondern definiert bspw. eine zukunftsorientierte Architektur aus unterschiedlichen Komponenten und wie diese miteinander kommunizieren \cite{DistributedTracingInPractice}. Microsoft, Google, die Cloud-Native-Computing-Foundation (CNCF) sowie führende Unternehmen und Entwickler von Observability-Technologien arbeiten an der Voranschreite des OTel Standards \cite{DistributedTracingInPractice} \cite{OpenTelemetryCommunityMembers}.
+
+\nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
+\nomenclature[Fachbegriff]{CNCF}{Cloud-Native-Computing-Foundation}
+\footnotetext{Die Entwicklung einer Logging-Spezifikation ist im Gange \cite{OpenTelemetryLoggingSpecification}.}
+
+ \textit{\color{red} TODO: OpenTelemetry detaillierter beschreiben}
 
 %OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnote{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen.
 %

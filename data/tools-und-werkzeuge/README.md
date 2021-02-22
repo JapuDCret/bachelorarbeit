@@ -47,5 +47,5 @@ python convert-TuW-to-rated.py
 ## Write to file
 
 ```bash
-python convert-TuW-to-rated.py > tools-und-werkzeuge_bewertung.tex
+python convert-TuW-to-rated.py
 ```
