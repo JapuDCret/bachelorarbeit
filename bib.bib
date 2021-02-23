@@ -282,18 +282,26 @@ howpublished = "\url{https://newrelic.com/resources/ebooks/what-is-observability
 howpublished = "\url{https://thenewstack.io/monitoring-and-observability-whats-the-difference-and-why-does-it-matter/}",
 }
 
-@Article{FacebookBugBountyHunt,
-       title = {Mark Zuckerberg’s Facebook page was hacked by an unemployed Web developer},
-     journal = {The Washington Post},
-      author = {Khalil Shreateh and Caitlyn Dewey},
-        year = {2013},
-   timestamp = {2013.09.07},
-       month = {Aug},
-howpublished = "\url{https://www.washingtonpost.com/news/the-switch/wp/2013/08/19/mark-zuckerbergs-facebook-page-was-hacked-by-an-unemployed-web-developer/}",
-        note = "[Online; abgerufen am 21.12.2020]",
+% Methoden und Praktiken
+%% Fehlerberichte
+@Misc{Instagram,
+       title = {Instagram App Screenshot},
+      author = {Facebook},
+   publisher = {Facebook},
+        year = {2020},
+howpublished = "\url{https://www.instagram.com/}",
+}
+@InProceedings{WhatMakesAGoodBugReport,
+      author = {Nicolas Bettenburg and Sascha Just and Adrian Schr{\"o}ter and Cathrin Weiss and Rahul Premraj and Thomas Zimmermann},
+   booktitle = {Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of software engineering},
+       title = {What makes a good bug report?},
+        year = {2008},
+      volume = {},
+      number = {},
+       pages = {308--318},
 }
 
-% Methoden und Praktiken
+%% 3 Pfeiler
 @InBook{DistributedSystemsObservability,
        title = {Distributed Systems Observability: A Guide to Building Robust Systems},
       author = {Cindy Sridharan},
@@ -387,24 +395,76 @@ organization = {Springer}
        title = {Crashbin – Dokumentation},
         year = 2019,
        pages = {15-19},
-howpublished = {Hochschule für Technik Rapperswil \&Fachhochschule Ostschweiz},
+howpublished = {Hochschule für Technik Rapperswil \& Fachhochschule Ostschweiz},
 }
-@Misc{Instagram,
-       title = {Instagram App Screenshot},
-      author = {Facebook},
-   publisher = {Facebook},
+
+@Misc{OpenTelemetry,
+      author = "{OpenTelemetry}",
+       title = {About | OpenTelemetry},
+howpublished = "\url{https://opentelemetry.io/about/}",
         year = {2020},
-howpublished = "\url{https://www.instagram.com/}",
+        note = "[Online; abgerufen am 19.11.2020]",
 }
-@InProceedings{WhatMakesAGoodBugReport,
-      author = {Nicolas Bettenburg and Sascha Just and Adrian Schr{\"o}ter and Cathrin Weiss and Rahul Premraj and Thomas Zimmermann},
-   booktitle = {Proceedings of the 16th ACM SIGSOFT International Symposium on Foundations of software engineering},
-       title = {What makes a good bug report?},
-        year = {2008},
-      volume = {},
-      number = {},
-       pages = {308--318},
+@Misc{OTelSpecification,
+      author = "{OpenTelemetry}",
+       title = {OpenTelemetry Specification | Overview},
+howpublished = "\url{https://github.com/open-telemetry/opentelemetry-specification/blob/168aa71131420f58d3428e206b84a69b97dd7a07/specification/overview.md}",
+        year = {2021},
+        note = "[Online; abgerufen am 23.12.2021]",
 }
+@Misc{OpenCensus,
+      author = "{OpenCensus}",
+       title = {OpenCensus},
+howpublished = "\url{https://opencensus.io/introduction/#overview}",
+        year = {2020},
+        note = "[Online; abgerufen am 19.11.2020]",
+}
+@Article{UseNixDistributiveTracing,
+      author = {Dave Josephsen},
+       title = {iVoyeur: Distributive Tracing},
+     journal = {;login:},
+        issn = {1044-6397},
+        year = {2019},
+      volume = {44},
+      number = {4},
+       pages = {56},
+}
+@InBook{DistributedTracingInPractice,
+       title = {Distributed tracing in practice: Instrumenting, analyzing, and debugging microservices},
+      author = {Austin Parker and Daniel Spoonhower and Jonathan Mace and Ben Sigelman and Rebecca Isaacs},
+       month = {April},
+        year = {2020},
+     edition = {1},
+   publisher = {O'Reilly Media},
+        isbn = {978-1-492-05663-8},
+     chapter = {3},
+       pages = {34--43}
+}
+@Misc{OpenTelemetryCommunityMembers,
+      author = "{OpenTelemetry}",
+       title = {OpenTelemetry Community Members},
+howpublished = "\url{https://github.com/open-telemetry/community/blob/01acd5d2c39b764554ac3d87a64a18a09250e9a3/community-members.md}",
+        year = {2020},
+        note = "[Online; abgerufen am 22.02.2021]",
+}
+%% Log-Management
+@InBook{LoggingAndLogManagement,
+       title = {Logging and log management: the authoritative guide to understanding the concepts surrounding logging and log management},
+      author = {Anton Chuvakin and Kevin Schmidt and Chris Phillips},
+        year = {2012},
+   publisher = {Newnes},
+     chapter = {20},
+       pages = {369--380}
+}
+@InProceedings{DesignLogManagementSystem,
+       title = {Design log management system of computer network devices infrastructures based on ELK stack},
+      author = {Adian F. Rochim and Mukhlish A. Aziz and Adnan Fauzi},
+   booktitle = {2019 International Conference on Electrical Engineering and Computer Science (ICECOS)},
+       pages = {338--342},
+        year = {2019},
+organization = {IEEE}
+}
+%% Session-Replay
 @Article{NoBoundariesExfiltrationBySessionReplayScripts,
        title = {No boundaries: Exfiltration of personal data by session-replay scripts},
       author = {Steven Englehardt and Gunes Acar and Arvind Narayanan},
@@ -413,6 +473,24 @@ howpublished = "\url{https://www.instagram.com/}",
         year = {2017},
        pages = {3--4},
 }
+@InProceedings{AdvancedWebAnalyticsToolForMouseTracking,
+       title = {Advanced web analytics tool for mouse tracking and real-time data processing},
+      author = {Luk{\'a}{\v{s}} {\v{C}}egan and Petr Filip},
+   booktitle = {2017 IEEE 14th International Scientific Conference on Informatics},
+       pages = {431--435},
+        year = {2017},
+organization = {IEEE}
+}
+@InProceedings{TimelapsePaper,
+       title = {Interactive Record/Replay for Web Application Debugging},
+      author = {Brian Burg and Richard Bailey and Andrew J. Ko and Michael D. Ernst},
+        year = {2013},
+   booktitle = {Proceedings of the 26th annual ACM symposium on User interface software and technology},
+       pages = {473--484},
+}
+
+
+% Werkzeuge und Technologien
 @Article{ASurveyOfCloudMonitoringTools,
        title = {A survey of cloud monitoring tools: Taxonomy, capabilities and objectives},
       author = {Kaniz Fatema and Vincent C. Emeakaroha and Philip D. Healy and John P. Morrison and Theo Lynn
@@ -602,7 +680,7 @@ howpublished = "\url{https://www.datadoghq.com/}",
 @Misc{NewRelic,
       author = "{New Relic}",
        title = {New Relic | Deliver more perfect software},
-howpublished = "\url{https://opentelemetry.io/registry/}",
+howpublished = "\url{https://newrelic.com/}",
         year = {2021},
         note = "[Online; abgerufen am 17.02.2021]",
 }
@@ -663,7 +741,7 @@ howpublished = "\url{https://www.graylog.org/}",
         note = "[Online; abgerufen am 17.02.2021]",
 }
 @Misc{Jaeger,
-      author = {{Jaeger Authors}},
+      author = {{Jaeger Autoren}},
        title = {Jaeger: open source, end-to-end distributed tracing},
 howpublished = "\url{https://www.jaegertracing.io/}",
         year = {2021},
@@ -810,7 +888,7 @@ howpublished = "\url{https://stackshare.io/stackups/jaeger-vs-zipkin}",
         note = "[Online; abgerufen am 19.02.2021]",
 }
 @Misc{JaegerOpenTelemetry,
-      author = "{StackShare}",
+      author = {{Jaeger Autoren}},
        title = {OpenTelemetry - Jaeger documentation},
 howpublished = "\url{https://www.jaegertracing.io/docs/1.21/opentelemetry/}",
         year = {2021},
@@ -862,57 +940,6 @@ howpublished = "\url{https://develop.sentry.dev/self-hosted/}",
 }
 
 
-@Misc{OpenTelemetry,
-      author = "{OpenTelemetry}",
-       title = {About | OpenTelemetry},
-howpublished = "\url{https://opentelemetry.io/about/}",
-        year = {2020},
-        note = "[Online; abgerufen am 19.11.2020]",
-}
-@Misc{OTelSpecification,
-      author = "{OpenTelemetry}",
-       title = {OpenTelemetry Specification | Overview},
-howpublished = "\url{https://github.com/open-telemetry/opentelemetry-specification/blob/323cd1d8811d3e3df08bec689f9dacd6cb782888/specification/overview.md}",
-        year = {2020},
-        note = "[Online; abgerufen am 11.12.2020]",
-}
-@Misc{OpenCensus,
-      author = "{OpenCensus}",
-       title = {OpenCensus},
-howpublished = "\url{https://opencensus.io/introduction/#overview}",
-        year = {2020},
-        note = "[Online; abgerufen am 19.11.2020]",
-}
-@Article{UseNixDistributiveTracing,
-      author = {Dave Josephsen},
-       title = {iVoyeur: Distributive Tracing},
-     journal = {;login:},
-        issn = {1044-6397},
-        year = {2019},
-      volume = {44},
-      number = {4},
-       pages = {56},
-}
-@InBook{DistributedTracingInPractice,
-       title = {Distributed tracing in practice: Instrumenting, analyzing, and debugging microservices},
-      author = {Austin Parker and Daniel Spoonhower and Jonathan Mace and Ben Sigelman and Rebecca Isaacs},
-       month = {April},
-        year = {2020},
-     edition = {1},
-   publisher = {O'Reilly Media},
-        isbn = {978-1-492-05663-8},
-     chapter = {Open Source Instrumentation: Interfaces, Libraries and Frameworks},
-       pages = {}
-}
-@Misc{OpenTelemetryCommunityMembers,
-      author = "{OpenTelemetry}",
-       title = {OpenTelemetry Community Members},
-howpublished = "\url{https://github.com/open-telemetry/community/blob/01acd5d2c39b764554ac3d87a64a18a09250e9a3/community-members.md}",
-        year = {2020},
-        note = "[Online; abgerufen am 22.02.2021]",
-}
-
-
 @InProceedings{StudyingTheEffectivenessOfAPMTools,
        title = {Studying the effectiveness of application performance management (APM) tools for detecting performance regressions for web applications: an experience report},
       author = {Tarek M. Ahmed and Cor-Paul Bezemer and Tse-Hsun Chen and Ahmed E. Hassan and Weiyi Shang},
@@ -933,7 +960,7 @@ howpublished = "\url{https://github.com/opentracing/specification/blob/c064a86b6
        title = {opentelemetry-specification/unified-collection.png},
 howpublished = "\url{https://github.com/open-telemetry/opentelemetry-specification/blob/8e7b2cc17f2c572282c4e5e4d3cc54401749d8ff/specification/logs/img/unified-collection.png}",
         year = {2020},
-        note = "[Online; abgerufen am 19.11.2020]",
+        note = "Bildquelle, [Online; abgerufen am 19.11.2020]",
 }
 @Misc{OpenTelemetryGARelease,
       author = "{OpenTelemetry}",
@@ -948,14 +975,6 @@ howpublished = "\url{https://github.com/open-telemetry/opentelemetry-specificati
 howpublished = "\url{https://github.com/open-telemetry/opentelemetry-specification/issues/894}",
         year = {2021},
         note = "[Online; abgerufen am 29.01.2021]",
-}
-@Misc{DynatraceOTelComponents,
-      author = "{Dynatrace}",
-       title = {What is OpenTelemetry? Everything you wanted to know},
-howpublished = "\url{https://www.dynatrace.com/news/blog/what-is-opentelemetry/}",
-        year = {2020},
-   timestamp = {2020.07.31},
-        note = "[Online; abgerufen am 20.11.2020]",
 }
 
 
@@ -977,14 +996,6 @@ howpublished = "\url{https://www.dynatrace.com/news/blog/what-is-opentelemetry/}
        title = {Tracey - Distributed Trace Comparison and Aggregation using NLP techniques},
         year = {2020},
  institution = {University of British Columbia},
-}
-
-@InProceedings{TimelapsePaper,	
-      author = {Brian Burg and Richard Bailey and Andrew J. Ko and Michael D. Ernst},
-       title = {Interactive Record/Replay for Web Application Debugging},
-        year = {2013},
-   booktitle = {Proceedings of the 26th annual ACM symposium on User interface software and technology},
-       pages = {473--484},
 }
 
 @InProceedings{FamePaper,	
