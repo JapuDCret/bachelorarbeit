@@ -10,19 +10,19 @@ Um die Anforderungen systematisch einzuordnen, werden sie auf Basis von zwei Mod
 Beim ersten Modell handelt es sich um das Kano-Modell \cite{KanoModell} der Kundenzufriedenheit, welches in  \autoref{tab:merkmale-nach-dem-kano-modell} erläutert wird.
 
 \begin{table}[H]
-\begin{tabular}{ |p{1.15cm}|p{2.75cm}|p{9.6cm}| }
+\begin{tabular}{ |p{1.75cm}|p{2.40cm}|p{9.25cm}| }
 	\hline
 	Kürzel & Titel & Beschreibung \\
 	\hline
-	\textbf{B} & Basis\-merkmal & Merkmale, die als selbstverständlich angesehen werden. Eine Erfüllung erhöht kaum die Zufriedenheit, jedoch eine Nichterfüllung führt zu starker Unzufriedenheit \\
+	\textbf{Basis.} & Basis\-merkmal & Merkmale, die als selbstverständlich angesehen werden. Eine Erfüllung erhöht kaum die Zufriedenheit, jedoch eine Nichterfüllung führt zu starker Unzufriedenheit \\
 	\hline
-	\textbf{L} & Leistungs\-merkmal & Merkmale, die der Kunde erwartet und bei nicht Vorhandensein in Unzufriedenheit äußert. Ein Vorhandensein erzeugt Zufriedenheit, beim Übertreffen umso mehr. \\
+	\textbf{Leistungs.} & Leistungs\-merkmal & Merkmale, die der Kunde erwartet und bei nicht Vorhandensein in Unzufriedenheit äußert. Ein Vorhandensein erzeugt Zufriedenheit, beim Übertreffen umso mehr. \\
 	\hline
-	\textbf{S} & Begeisterungs\-merkmal & Merkmale, die eine Herabsetzung von der Konkurrenz ermöglichen und die den Nutzenfaktor steigern. Sind sie vorhanden, steigern sie die Zufriedenheit merklich. \\
+	\textbf{Begeist.} & Begeisterungs\-merkmal & Merkmale, die eine Herabsetzung von der Konkurrenz ermöglichen und die den Nutzenfaktor steigern. Sind sie vorhanden, steigern sie die Zufriedenheit merklich. \\
 	\hline
-	\textbf{U} & Unerhebliches Merkmal & Für den Kunden belanglos, ob vorhanden oder nicht. \\
+	\textbf{Unerh.} & Unerhebliches Merkmal & Für den Kunden belanglos, ob vorhanden oder nicht. \\
 	\hline
-	\textbf{R} & Rückweisungs\-merkmal & Diese Merkmale führen bei Vorhandensein zu Unzufriedenheit, sind jedoch beim Fehlen unerheblich. \\
+	\textbf{Rückw.} & Rückweisungs\-merkmal & Diese Merkmale führen bei Vorhandensein zu Unzufriedenheit, sind jedoch beim Fehlen unerheblich. \\
 	\hline
 \end{tabular}
  \captionsetup{justification=centering}
@@ -37,9 +37,9 @@ Neben der Unterscheidung nach dem Kano-Modell werden die Anforderungen in funkti
 	\hline
 	Kürzel & Titel & Beschreibung \\
 	\hline
-	f & funktional & Beschreiben Anforderungen, welche ein Produkt ausmachen und von anderen differenzieren (\enquote{Was soll das Produkt können?}). Sie sind sehr spezifisch für das jeweilige Produkt. Ein Beispiel: Das Frontend fragt Daten für X vom Partnersystem 1 über eine SOAP-API ab, etc.\\
+	\textbf{f.} & funktional & Beschreiben Anforderungen, welche ein Produkt ausmachen und von anderen differenzieren (\enquote{Was soll das Produkt können?}). Sie sind sehr spezifisch für das jeweilige Produkt. Ein Beispiel: Das Frontend fragt Daten für X vom Partnersystem 1 über eine SOAP-API ab, etc.\\
 	\hline
-	nf & nicht-funktional & Beschreiben Leistungs- und Qualitätsanforderungen und Randbedingungen (\enquote{Wie soll das Produkt sich verhalten?}). Sie sind meist unspezifisch und in gleicher Form auch in unterschiedlichsten Produkten vorzufinden. Beispiele sind: Benutzbarkeit, Verfügbarkeit, Antwortzeit, etc. Zur Überprüfung sind oftmals messbare, vergleichbare und reproduzierbare Definitionen notwendig. \\
+	\textbf{n. f.} & nicht-funktional & Beschreiben Leistungs- und Qualitätsanforderungen und Randbedingungen (\enquote{Wie soll das Produkt sich verhalten?}). Sie sind meist unspezifisch und in gleicher Form auch in unterschiedlichsten Produkten vorzufinden. Beispiele sind: Benutzbarkeit, Verfügbarkeit, Antwortzeit, etc. Zur Überprüfung sind oftmals messbare, vergleichbare und reproduzierbare Definitionen notwendig. \\
 	\hline
 \end{tabular}
  \captionsetup{justification=centering}
@@ -82,7 +82,7 @@ Um die Anforderungen strukturiert zu erfassen, werden sie ähnlich einer Karteik
 \begin{tabular}{ |p{1.25cm}|p{5.5cm}|p{2.25cm}|p{2.1cm}|p{1.25cm}| }
 \hline
 Id            & Name          & Kano-Modell   & Funktionsart  & Quelle        \\
-\textit{1234} & \textit{Dummy} & \textit{S} & \textit{nf} & \textit{S} \\
+\textit{1234} & \textit{Dummy} & \textit{Begeist.} & \textit{n. f.} & \textit{S} \\
 \hline
 \multicolumn{5}{|l|}{\textit{Hier wird die Anforderung beschrieben.}} \\
 \hline

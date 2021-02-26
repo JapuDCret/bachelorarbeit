@@ -25,12 +25,12 @@ def main():
     sys.stdout.buffer.write(latexPageUtf8)
 
 def printAnforderung(sb, row):
-    id = row['Id']
-    kano = row['Kano-Modell']
-    funkt = row['Funktionsart']
-    quelle = row['Quelle']
-    titel = row['Titel']
-    beschr = row['Beschreibung']
+    id = sanitize(row['Id'])
+    kano = sanitize(row['Kano-Modell'])
+    funkt = sanitize(row['Funktionsart'])
+    quelle = sanitize(row['Quelle'])
+    titel = sanitize(row['Titel'])
+    beschr = sanitize(row['Beschreibung'])
     
     sb.append("")
     sb.append("\\begin{anf}{anf:%d}{%d}{%s}{%s}{%s}{%s}" % (id, id, titel, kano, funkt, quelle))
@@ -43,6 +43,16 @@ def printGruppe(sb, group):
     sb.append("\\subsubsection{" + group + "}")
     sb.append("")
 
+def sanitize(cellValue):
+    if type(cellValue) == int or type(cellValue) == float:
+        return cellValue
+    
+    text = cellValue
+    
+    text = text.replace(" \"", " \\enquote{")
+    text = text.replace("\"", "}")
+    
+    return text
 
 if __name__ == "__main__":
     # execute only if run as a script

@@ -1,104 +1,96 @@
 
-\subsubsection{Grundanforderungen}
-
-
-\begin{anf}{anf:1010}{1010}{Konzept}{B}{f}{A}
-\multicolumn{5}{|p{14.05cm}|}{Es wird ein System konzipiert, welches darauf abzielt die Nachvollziehbarkeit einer JavaScript-basierten Webanwendung zu verbessern. Speziell sollen Benutzerinteraktionen und Anwendungsverhalten nachvollziehbarer gemacht werden.} \\
-\hline
-\end{anf}
-
-\begin{anf}{anf:1020}{1020}{Demoanwendung}{B}{f}{A}
-\multicolumn{5}{|p{14.05cm}|}{Eine Demoanwendung ist zu Erstellen und soll dazu dienen, das Konzept darauf anwenden zu können.\par Diese Demoanwendung soll Fehlerverhalten beinhalten, die dann mithilfe der Lösung besser nachvollziehbar zu gestalten sind.} \\
-\hline
-\end{anf}
-
-\begin{anf}{anf:1030}{1030}{Proof-of-Concept}{B}{f}{A}
-\multicolumn{5}{|p{14.05cm}|}{Auf Basis des Konzeptes, ist die Demo-Anwendung zu erweitern.} \\
-\hline
-\end{anf}
-
-\begin{anf}{anf:1031}{1031}{Bewertung Proof-of-Concept}{B}{f}{A}
-\multicolumn{5}{|p{14.05cm}|}{Nach Abschluss der Implementierung des Proof-of-Concepts soll dieser veranschaulicht und bewertet werden. Grundlage hierfür sind diese Anforderungen sowie die, zu identifizierende, Fähigkeit die Fehlerszenarien der Demoanwendung nachvollziehbar zu gestalten.} \\
-\hline
-\end{anf}
-
 \subsubsection{Funktionsumfang}
 
 
-\begin{anf}{anf:2010}{2010}{Schnittstellen-Logging}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Das Aufrufen von Schnittstellen ist mittels einer Logmeldung zu notieren. Hierbei sind relevante Informationen wie Aufrufparameter ebenfalls zu notieren.} \\
+\begin{anf}{anf:2110}{2110}{Schnittstellen-Logging}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Im Frontend ist das Aufrufen von Schnittstellen ist mittels einer Logmeldung zu notieren. Hierbei soll vor Aufruf geloggt werden, welche Schnittstelle aufgerufen wird und mit welchen Parametern. Nach dem Aufruf soll bei Erfolg das Ergebnisobjekt geloggt werden, und bei einem Fehler soll dieser notiert werden.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2011}{2011}{Use-Case-Logging}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Tritt ein Use-Case auf, soll dieser im Log notiert werden. Beispielsweise soll notiert werden, wenn ein Nutzer ein Formular absendet.} \\
+\begin{anf}{anf:2111}{2111}{Use-Case-Logging}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Tritt im Frontend ein Use-Case auf, soll dieser im Log notiert werden. Beispielsweise soll notiert werden, wenn ein Nutzer das Absenden eines Formular initiiert.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2020}{2020}{Error-Monitoring}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Tritt ein Fehler auf, der nicht gefangen wurde, so ist dieser automatisch zu erfasst und um weitere Attribute zu ergänzen.\par Sonstige Fehler können auch erfasst werden, aber hierbei ist keine automatische Erfassung gefordert.} \\
+\begin{anf}{anf:2120}{2120}{Übertragung von Logs}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Logmeldungen des Frontends sind an ein \enquote{Log-Management}-Partnersystem weiterzuleiten.\par Dabei sind Logmeldungen ab dem Log-Level \enquote{DEBUG} und höher zu übertragen.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2030}{2030}{Tracing}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Es werden Tracingdaten ähnlich wie bei OpenTracing und OpenTelemetry erfasst.\par Optimalerweise werden die Tracingdaten mit OpenTelemetry-konformen Komponenten erfasst.} \\
+\begin{anf}{anf:2210}{2210}{Error-Monitoring}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Wird ein nicht abgefangener Fehler im JavaScript-Kontext geworfen, so ist dieser automatisch zu erfassen und um weitere Attribute zu ergänzen.\par Abgefangene und behandelte Fehler können ebenso erfasst werden, jedoch ist hierbei keine automatische Erfassung gefordert.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2040}{2040}{Metriken}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Es werden Metrikdaten ähnlich wie bei OpenTelemetry erfasst.\par Optimalerweise werden die Tracingdaten mit OpenTelemetry-konformen Komponenten erfasst.} \\
+\begin{anf}{anf:2220}{2220}{Übertragung von Fehlern}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Fehler des Frontends sind an ein \enquote{Error-Monitoring}-Partnersystem weiterzuleiten.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2050}{2050}{Session-Replay}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Es sollen Session-Replay-Daten erhoben werden, anhand dessen die Benutzerinteraktionen und das Anwendungsverhalten nachgestellt werden kann. Diese Funktionalität darf jedoch standardmäßig deaktiviert sein.} \\
+\begin{anf}{anf:2310}{2310}{Tracing}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Im Frontend sowie im Backend sind Tracing Spans zu erstellen, die Business-Methoden sowie Schnittstellenaufrufe umschließen. Bei einem Schnittstellaufruf sind die Informationen des Spankontextes über einen Traceheader zu übergeben, sodass die subsequent erstellten Spans hiermit assoziiert werden können.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2110}{2110}{Übertragung von Logs}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Ausgewählte Logmeldungen sind an ein Partnersystem weiterzuleiten. Die Auswahl könnte über die Kritikalität, also dem Log-Level, der Logmeldung erfolgen.} \\
+\begin{anf}{anf:2311}{2311}{Tracing-Standard}{Leistungs.}{n. f.}{A}
+\multicolumn{5}{|p{14.05cm}|}{Das Tracing soll einem gängigen Standard (wie OpenTelemetry oder OpenTracing) folgen.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2120}{2120}{Übertragung von Fehlern}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Fehler sind an ein Partnersystem weiterzuleiten.} \\
+\begin{anf}{anf:2320}{2320}{Übertragung von Tracingdaten}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Tracingdaten von Front- und Backend sind an ein \enquote{Tracing}-Partnersystem weiterzuleiten.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2130}{2130}{Übertragung von Tracingdaten}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Tracingdaten sind an ein Partnersystem weiterzuleiten.} \\
+\begin{anf}{anf:2410}{2410}{Metriken}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Im Frontend sind beispielhaft Metriken zu erheben, wie z. B. die Zeit bis der Nutzer interagieren kann (Time to Interactive (TTI)) oder die Anzahl an Aufrufen je Schnittstelle} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2140}{2140}{Übertragung von Metrikdaten}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Metrikdaten sind an ein Partnersystem weiterzuleiten.} \\
+\begin{anf}{anf:2411}{2411}{Metrik-Standard}{Begeist.}{n. f.}{A}
+\multicolumn{5}{|p{14.05cm}|}{Metriken sollen nach einem gängigen Standard (wie OpenTelemetry) erfasst werden.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:2150}{2150}{Übertragung von Session-Replay-Daten}{B}{f}{S}
-\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Session-Replay-Daten sind an ein Partnersystem weiterzuleiten.} \\
+\begin{anf}{anf:2420}{2420}{Übertragung von Metrikdaten}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Sämtlich erfasste Metriken des Frontends sind an ein \enquote{Metrik}-Partnersystem weiterzuleiten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:2510}{2510}{Session-Replay}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Im Frontend sind Daten zwecks Session-Replay zu erheben, welche u. A. Benutzerinteraktionen, Schnittstellaufrufe sowie DOM-Manipulationen enthalten.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:2511}{2511}{Schalter für Session-Replay}{Basis.}{f.}{A}
+\multicolumn{5}{|p{14.05cm}|}{Beim ersten Aufruf des Frontends sind keine Session-Replay-Daten zu erheben.\par Stattdessen soll der Nutzer über einen Dialog auswählen können, ob er der Aufnahme zustimmt und erst danach sind diese Daten zu erheben.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:2520}{2520}{Übertragung von Session-Replay-Daten}{Basis.}{f.}{S}
+\multicolumn{5}{|p{14.05cm}|}{Sämtlich im Frontend erfasste Daten zum Session-Replay sind an ein \enquote{Session-Replay}-Partnersystem weiterzuleiten.} \\
 \hline
 \end{anf}
 
 \subsubsection{Eigenschaften}
 
 
-\begin{anf}{anf:3010}{3010}{Resilienz der Übertragung}{S}{f}{S}
+\begin{anf}{anf:3010}{3010}{Resilienz der Übertragung}{Begeist.}{f.}{S}
 \multicolumn{5}{|p{14.05cm}|}{Daten, die der Nachvollziehbarkeit dienen, sollen, wenn möglich, bei einer fehlgeschlagenen Verbindung nicht verworfen werden. Sie sind mindestens 120s vorzuhalten und in dieser Zeit sind wiederholt Verbindungsversuche zu unternehmen.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:3020}{3020}{Batchverarbeitung}{S}{f}{S}
+\begin{anf}{anf:3020}{3020}{Batchverarbeitung}{Begeist.}{f.}{S}
 \multicolumn{5}{|p{14.05cm}|}{Daten, die der Nachvollziehbarkeit dienen, sind, wenn möglich, gruppiert an externe Systeme zu senden. Hierbei ist eine kurze Aggregationszeit von bis zu 10s akzeptabel.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:3100}{3100}{Anzahl Partnersysteme}{B}{nf}{K}
+\begin{anf}{anf:3100}{3100}{Anzahl Partnersysteme}{Basis.}{n. f.}{K}
 \multicolumn{5}{|p{14.05cm}|}{Die Anzahl an zusätzlichen Partnersystemen, die für die Lösung benötigt werden, ist so gering zu halten wie möglich.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:3200}{3200}{Structured Logging}{L}{f}{A+S}
+\begin{anf}{anf:3200}{3200}{Structured Logging}{Leistungs.}{f.}{A+S}
 \multicolumn{5}{|p{14.05cm}|}{Das Logging soll mit einem vordefinierten Format durchgeführt werden. Für ähnliche Funktionsgruppen (wie ein Schnittstellenaufruf) soll das gleiche Format verwendet werden. Ein anwendungsübergreifendes Format ist nicht gefordert.} \\
 \hline
 \end{anf}
@@ -106,52 +98,72 @@
 \subsubsection{Partnersysteme}
 
 
-\begin{anf}{anf:5010}{5010}{Partnersystem \textit{Log-Management}}{B}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Logmeldungen weitergeleitet werden. Dieses System soll die Logmeldungen speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Logmeldungen bieten.} \\
+\begin{anf}{anf:5100}{5100}{Partnersystem \textit{Log-Management}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein \enquote{Log-Management}-Partnersystem, zu dem Logmeldungen weitergeleitet werden und welches diese speichert.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5020}{5020}{Partnersystem \textit{Error-Monitoring}}{B}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Fehler weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Fehler bieten.} \\
+\begin{anf}{anf:5110}{5110}{Manuelle Analyse \textit{Log-Management}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Nutzer des Systems sollen die erfassten Logmeldungen einsehen sowie diese filtern können. Die Filtierung erfolgt auf Basis der Eigenschaften der Logmeldung (bspw. des Log-Levels).} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5021}{5021}{Visualisierung \textit{Error-Monitoring}}{L}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Fehler weiterzuleiten sind, soll diese grafisch darstellen können.} \\
+\begin{anf}{anf:5200}{5200}{Partnersystem \textit{Error-Monitoring}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein \enquote{Error-Monitoring}-Partnersystem, zu dem Fehler weitergeleitet werden und welches diese persistiert.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5022}{5022}{Alerting  \textit{Error-Monitoring}}{S}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Fehler weiterzuleiten sind, soll bei Auftreten von bestimmten Fehlern oder Fehleranzahlen eine Meldung erzeugen (per E-Mail, Slack, o. Ä.).} \\
+\begin{anf}{anf:5210}{5210}{Manuelle Analyse \textit{Error-Monitoring}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Nutzer des Systems sollen die erfassten Fehler einsehen sowie diese filtern können. Die Filtierung erfolgt auf Basis der Eigenschaften der Fehler (bspw. der Fehlername).} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5030}{5030}{Partnersystem \textit{Tracing}}{B}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Tracingdaten weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Tracingdaten bieten.} \\
+\begin{anf}{anf:5220}{5220}{Visualisierung \textit{Error-Monitoring}}{Leistungs.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Die Fehler sollen bspw. in Histogrammen grafisch dargestellt werden können.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5031}{5031}{Visualisierung \textit{Tracing}}{B}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Tracingdaten weitergeleitet werden, soll diese grafisch als Tracing-Wasserfallgraph darstellen können.} \\
+\begin{anf}{anf:5230}{5230}{Alerting  \textit{Error-Monitoring}}{Begeist.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Bei Auftreten von bestimmten Fehlern oder einer Anzahl von Fehlern soll eine Meldung erzeugt werden können (per E-Mail, Slack, o. Ä.).} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5040}{5040}{Partnersystem \textit{Metriken}}{L}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu dem Metriken weitergeleitet werden. Dieses System soll die Fehler speichern und den Entwicklern und Betreibern eine Einsicht in die erfassten Metriken bieten.} \\
+\begin{anf}{anf:5300}{5300}{Partnersystem \textit{Tracing}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein \enquote{Tracing}-Partnersystem, welches die Tracingdaten konsumiert und speichert. Zusammengehörige Spans sind zu Traces zusammenzufassen.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5041}{5041}{Visualisierung \textit{Metriken}}{L}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Metriken weiterzuleiten sind, soll diese grafisch darstellen können.} \\
+\begin{anf}{anf:5310}{5310}{Manuelle Analyse \textit{Tracing}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Die erfassten Tracingdaten sind für die Nutzer des Systems einsehbar, sowie können diese gefiltert werden. Die Filtierung erfolgt auf Basis von Eigenschaften der Tracingdaten (wie Name des meldenden Systems).} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5042}{5042}{Alerting \textit{Metriken}}{S}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Metriken weiterzuleiten sind, soll bei Auftreten von bestimmten Metrikwerten oder Überschreitungen von Schwellen eine Meldung erzeugen (per E-Mail, Slack, o. Ä.).} \\
+\begin{anf}{anf:5320}{5320}{Visualisierung \textit{Tracing}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Das Partnersystem, zu dem die Tracingdaten weitergeleitet werden, soll diese grafisch als Trace-Gantt-Diagramm darstellen können.} \\
 \hline
 \end{anf}
 
-\begin{anf}{anf:5050}{5050}{Partnersystem \textit{Session-Replay}}{B}{f}{A+S}
-\multicolumn{5}{|p{14.05cm}|}{Es existiert ein Partnersystem, zu die Session-Replay-Daten weitergeleitet werden. Dieses System soll anhand dieser Daten eine Benutzersitzung rekreieren können.} \\
+\begin{anf}{anf:5400}{5400}{Partnersystem \textit{Metriken}}{Leistungs.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein \enquote{Metrik}-Partnersystem, zu dem Metriken weitergeleitet werden und welches diese persistiert.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:5410}{5410}{Visualisierung \textit{Metriken}}{Leistungs.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Metriken sind grafisch darstellbar, bspw. in Histogrammen.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:5420}{5420}{Alerting \textit{Metriken}}{Begeist.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Bei Auftreten von bestimmten Metrikwerten oder Überschreitungen von Schwellen soll eine Meldung erzeugt werden können (per E-Mail, Slack, o. Ä.).} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:5500}{5500}{Partnersystem \textit{Session-Replay}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Es existiert ein \enquote{Session-Replay}-Partnersystem, zu die Daten zum Session-Replay gesendet werden und welches diese analysiert und speichert.} \\
+\hline
+\end{anf}
+
+\begin{anf}{anf:5510}{5510}{Nachstellung \textit{Session-Replay}}{Basis.}{f.}{A+S}
+\multicolumn{5}{|p{14.05cm}|}{Dieses System soll anhand der Daten jede aufgezeichnete Benutzersitzung in Videoform nachstellen.} \\
 \hline
 \end{anf}
