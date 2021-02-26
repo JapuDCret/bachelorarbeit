@@ -191,7 +191,7 @@ Addressvalidierung</panel_attributes>
       <h>189</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-&lt;&lt;HTTP&gt;&gt;
+&lt;&lt;REST&gt;&gt;
 </panel_attributes>
     <additional_attributes>800.0;10.0;190.0;10.0;190.0;190.0;10.0;190.0</additional_attributes>
   </element>
@@ -204,7 +204,7 @@ Addressvalidierung</panel_attributes>
       <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-&lt;&lt;HTTP&gt;&gt;
+&lt;&lt;REST&gt;&gt;
 </panel_attributes>
     <additional_attributes>800.0;20.0;10.0;20.0</additional_attributes>
   </element>
@@ -217,7 +217,7 @@ Addressvalidierung</panel_attributes>
       <h>144</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-&lt;&lt;HTTP&gt;&gt;
+&lt;&lt;REST&gt;&gt;
 </panel_attributes>
     <additional_attributes>320.0;140.0;210.0;140.0;210.0;10.0;10.0;10.0</additional_attributes>
   </element>
@@ -230,7 +230,7 @@ Addressvalidierung</panel_attributes>
       <h>288</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-&lt;&lt;HTTP&gt;&gt;
+&lt;&lt;REST&gt;&gt;
 </panel_attributes>
     <additional_attributes>320.0;300.0;170.0;300.0;170.0;10.0;10.0;10.0</additional_attributes>
   </element>
@@ -289,7 +289,7 @@ drawArc(0,0,20,20,270,180,true) transparency=0</panel_attributes>
       <w>63</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;HTTP&gt;&gt;</panel_attributes>
+    <panel_attributes>&lt;&lt;REST&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -300,7 +300,7 @@ drawArc(0,0,20,20,270,180,true) transparency=0</panel_attributes>
       <w>63</w>
       <h>18</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;HTTP&gt;&gt;</panel_attributes>
+    <panel_attributes>&lt;&lt;REST&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
