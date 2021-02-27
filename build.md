@@ -6,8 +6,13 @@
 	https://miktex.org/
  - TexMaker
 	https://www.xm1math.net/texmaker/
+	
+## Initiale Kommandos und Anpassungen
 
-## Anpassungen
+### Submodules
+
+ 1. Untermodule laden
+ 	`git submodule update --init --recursive`
 
 ### Texmaker
 
@@ -17,12 +22,14 @@
  2. Das Kommando "makeindex" muss auf folgenden Wert gesetzt werden
 	`makeindex %.nlo -s nomencl.ist -o %.nls`
 
+### Erstmaliges Übersetzen
 
+Damit alle notwendigen Dateien\* generiert werden, muss das Dokument mehrfach komplett übersetzt werden, da die Bibliotheken gegenseitige Abhängigkeiten aufweisen. Wie man richtig übersetzt, findet sich im nächsten Abschnitt.
+
+\* wie `main.aux`, `tikz-figures/` usw.
 
 ## Übersetzen
 
 In Texmaker kann nun mit der Taste **F1** der Text übersetzt werden.
-
-Damit das Literaturverzeichnis auch aktualisiert wird, muss es durch Tastendruck  **F11** übersetzt werden.
-
-Damit das Abkürzungsverzeichnis auch aktualisiert wird, muss es durch Tastendruck  **F12** übersetzt werden.
+Damit das Literaturverzeichnis auch aktualisiert wird, muss es durch Tastendruck **F11** übersetzt werden.
+Damit das Abkürzungsverzeichnis auch aktualisiert wird, muss es durch Tastendruck **F12** übersetzt werden.
