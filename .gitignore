@@ -266,3 +266,7 @@ Backup of *.doc*
 
 # Visio autosave temporary files
 *.~vsd*
+
+# Own Ignores
+# Ignore textidote report (inflates line count)
+textidote_report.html
