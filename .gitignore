@@ -270,3 +270,7 @@ Backup of *.doc*
 # Own Ignores
 # Ignore textidote report (inflates line count)
 textidote_report.html
+
+# ignore converted pdf
+main.pdf.docx
+main.docx

@@ -149,11 +149,11 @@ captionpos = b,
 
 \subsection{Architektur}
 
-Abschließend lässt sich somit folgende, in \autoref{fig:implementierung_architektur} zu betrachtende, Architektur visualisieren. Bei \circled{1} lässt sich die Übertragung von Spans an Jaeger betrachten, bei dem die Backend-Dienste aufgrund der verwendeten Java-Anbindung (\texttt{io\allowbreak{}.\allowbreak{}jaegertracing\allowbreak{}:\allowbreak{}jaeger-client}) die Spans über das Protokoll \enquote{Apache Thrift} \cite{Thrift} berichten und das \enquote{Backend4Frontend} verwendet zur Weiterleitung eine OTel-Anbindung an Jaeger, die widerum gRPC verwendent. Die Übertragung von Log-, Metrik sowie Fehlerdaten lässt sich bei \circled{2} betrachten, dabei handelt es sich um Daten, die zuvor vom Frontend gesendet wurden (vgl. \circled{3}). Die Kommunikation mit LogRocket (vgl. \circled{4}) funktioniert hingegen ohne Weiterleitung und über eine proprietäre Kommunikation auf Basis von gRPC.
+Abschließend lässt sich somit folgende, in \autoref{fig:implementierung_architektur} zu betrachtende, Architektur visualisieren. Bei \circled{1} lässt sich die Übertragung von Spans an Jaeger betrachten, bei dem die Backend-Dienste aufgrund der verwendeten Java-Anbindung (\texttt{io\allowbreak{}.\allowbreak{}jaegertracing\allowbreak{}:\allowbreak{}jaeger-client}) die Spans über das Protokoll \enquote{Apache Thrift} \cite{Thrift} berichten und das \enquote{Backend4Frontend} verwendet zur Weiterleitung eine OTel-Anbindung an Jaeger, die widerum gRPC verwendent. Die Übertragung von Log-, Metrik sowie Fehlerdaten lässt sich bei \circled{2} betrachten, dabei handelt es sich um Daten, die zuvor vom Frontend gesendet wurden (vgl. \circled{3}). Die Kommunikation mit LogRocket (vgl. \circled{4}) verläuft ohne Weiterleitung und mit einem proprietärer Protokoll auf Basis von gRPC \cite{LogRocketPerformance}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/implementierung.png}
+	\includegraphics[width=0.89\linewidth]{img/04_erstellung-poc/implementierung.png}
 	\caption{Architektur des Proof-of-Concepts}
 	\label{fig:implementierung_architektur}
 \end{figure}

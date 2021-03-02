@@ -17,7 +17,7 @@ Ein Direktversicherer bietet Versicherungsprodukte seinen Kunden ausschließlich
 \nomenclature[Fachbegriff]{Serverseitiges Rendering}{Die darzustellenden Inhalte, werden beim Server generiert und der Client stellt diese dar. Beispielsweise sind Anwendungen mit PHP oder auch eine Java Web Application}
 \nomenclature[Fachbegriff]{Clientseitiges Rendering}{Der Server stellt dem Client lediglich die Logik und die notwendigen Daten bereit, die eigentliche Inhaltsgenerierung geschieht im Client. Beispiel siehe \autoref{sec:single-page-applications}}
 
-Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigen Rendering realisiert wurden, sind heutzutage Javascript-basierte Webanwendungen mit clientseitigem Rendering die Norm \cite{ShiftToClientSideWebApplications}. Bei einer solchen Webanwendung befindet sich ein Großteil der Logik im Browser des Nutzers, bspw. wird der Nutzer durch einen komplexen Wizard geführt und erst bei Absenden des letzten Formulars geschieht eine Interaktion mit einem Server.
+Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigem Rendering realisiert wurden, sind heutzutage JavaScript-basierte Webanwendungen mit clientseitigem Rendering die Norm \cite{ShiftToClientSideWebApplications}. Bei einer solchen Webanwendung befindet sich ein Großteil der Logik im Browser des Nutzers, bspw. wird der Nutzer durch einen komplexen Wizard geführt und erst bei Absenden des letzten Formulars geschieht eine Interaktion mit einem Server.
 
 Im produktiven Einsatz kommt es auch bei gut getesteten Webanwendungen hin und wieder vor, dass es zu unvorhergesehenen Fehlern in der Berechnung oder Verarbeitung kommt. Liegt die Ursache für den Fehler im Browser, z. B. aufgrund einer ungültigen Wertkombination, ist dies eine Herausforderung. Während bei Server-Anwendungen Fehlermeldungen in den Log-Dateien einzusehen sind, gibt es für den Betreiber der Anwendung i. d. R. keine Möglichkeit die notwendigen Informationen über den Nutzer und seine Umgebung abzurufen. Noch wichtiger ist, dass er mitbekommt, wenn ein Nutzer ein Problem bei der Bedienung der Anwendung hat. Ohne eine aktive Benachrichtigung durch den Nutzer, sowie detaillierte Informationen, ist es dem Betreiber nicht möglich, Kenntnis über das Problem zu erlangen, geschweige denn dieses nachzustellen.
 
@@ -61,15 +61,19 @@ Die Demoanwendung wird als Single-Page-Application (SPA) \cite{SinglePageApplica
 %\end{itemize}
 \section{Vorgehensweise}
 
+\vspace{-0.25\baselineskip}
+
 Um das Ziel dieser Arbeit, also ein Proof-of-Concept zu erstellen, welches die Nachvollziehbarkeit einer bestehenden Anwendung erhöht, zu erreichen, wird zunächst die theoretische Seite des Forschungsfeldes beleuchtet. Hierzu gehört eine nähere Betrachtung der Umgebung \enquote{Browser} und von Webanwendungen, sowie gilt es die Nachvollziehbarkeit zu definieren und im Hinblick auf SPAs zu erläutern.
 
 Darauf aufbauend sind aktuelle Ansätze zur verbesserten Nachvollziehbarkeit zu recherchieren und zu beschreiben. Speziell sollen hierbei die allgemeinen übergreifenden Methoden und die tatsächlichen angewandten Praktiken differenziert beschrieben werden. Hierbei ist u. A. der Stand der Technik aus Wirtschaft und Literatur zu erläutern, um darauffolgend und auf Basis dessen ein Proof-of-Concept zu erstellen.
 
 Bevor jedoch der PoC implementiert wird, soll ein Konzept erstellt werden, welches darlegt, wie der PoC eine verbesserte Nachvollziehbarkeit erreicht. Ist nun das Konzept erstellt, gilt es dieses auf eine SPA anzuwenden und das Proof-of-Concept zu erstellen. Im Anschluss an die Implementierung gilt es diese kritisch zu bewerten, einerseits ob die Forschungsfrage beantwortet werden konnte und andererseits in Aspekten wie Übertragbarkeit und Auswirkungen für den Nutzer.
 
+\vspace{-0.25\baselineskip}
+
 \section{Open Knowledge GmbH}
 
-\vspace{-0.5\baselineskip}
+\vspace{-0.50\baselineskip}
 
 Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Open Knowledge GmbH erstellt. Der Standortleiter des Standortes Essen, Dipl.-Inf. Stephan Müller, übernimmt die Zweitbetreuung.
 
