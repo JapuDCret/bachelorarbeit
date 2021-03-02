@@ -49,7 +49,7 @@
 	\begin{table}[H]
 	\begin{tabular}{ |p{1.25cm}|p{5.5cm}|p{2.25cm}|p{2.1cm}|p{1.25cm}| }
 \hline
-Id   & Name          & Kano-Modell  & Funktionsart & Quelle       \\
+Id	 & Name					& Kano-Modell	& Funktionsart & Quelle			 \\
 #2 & #3 & #4 & #5 & #6 \\
 \hline
 }%
@@ -90,6 +90,49 @@ Id   & Name          & Kano-Modell  & Funktionsart & Quelle       \\
 	morecomment=[l]{\#},
 	morestring=[b]",
 	morestring=[b]',
+	% fix umlaute causing issues
+	% https://tex.stackexchange.com/questions/24528/having-problems-with-listings-and-utf-8-can-it-be-fixed/24529
+	extendedchars=true,
+	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1,
+}
+
+\lstdefinelanguage{AngularTemplateHTML}{
+	language=html,
+	sensitive=true,	
+	alsoletter={<>=-},
+	morecomment=[s]{<!-}{-->},
+	tag=[s],
+	otherkeywords={
+	% General
+	>,
+	% Standard tags
+	<!DOCTYPE,
+	</html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
+	% body
+	</body, <body,
+	% Divs
+	</div, <div, </div>, 
+	% Paragraphs
+	</p, <p, </p>, </h1, <h1, </h2, <h2, </h3, <h3, </h4, <h4, </h5, <h5, </h6, <h6,
+	% scripts
+	</script, <script,
+	% More tags...
+	<canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article, <button, </button
+	},
+	ndkeywords={
+	% General
+	=,
+	% HTML attributes
+	charset=, src=, id=, width=, height=, style=, type=, rel=, href=, class=, color=, (click)=,
+	% SVG attributes
+	fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
+	% properties
+	margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
+	% CSS3 properties
+	transform:, -moz-transform:, -webkit-transform:,
+	animation:, -webkit-animation:,
+	transition:,	transition-duration:, transition-property:, transition-timing-function:,
+	},
 	% fix umlaute causing issues
 	% https://tex.stackexchange.com/questions/24528/having-problems-with-listings-and-utf-8-can-it-be-fixed/24529
 	extendedchars=true,

@@ -12,10 +12,9 @@ export class LocalizationService {
     this.log.info('getTranslations(): requesting translations');
     
     // start span with provided span as a parent
-    const span = this.tracer.startSpan(
-      'LocalizationService.getTranslations',
-      { /* attributes */},
-      parentSpan && api.setSpan(api.context.active(), parentSpan)
+    const span = this.traceUtil.startChildSpan(
+        this.tracer, 'LocalizationService.getTranslations', parentSpan,
+        { 'shoppingCartId': window.customer.shoppingCartId }
     );
 
     // generate a jaeger-compatible trace header from OTel span
