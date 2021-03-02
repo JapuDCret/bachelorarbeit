@@ -28,7 +28,7 @@ Wie aus der Geschichte zu JavaScript zu sehen ist, entwickelte CORS sich aus dem
 
 Wie eine \enquote{cross-origin} Ajax-Anfrage nach dem Konzept von CORS gehandhabt wird, ist in \autoref{fig:cors-workflow} zu betrachten. Wenn eine HTTP-Anfrage nicht \enquote{simple}\footnotemark ist, führt der Browser einen sogenannten \enquote{Preflighted Request} aus, bei dem vor der eigentlichen Anfrage eine zusätzliche OPTIONS-Anfrage gesendet wird. Bestätigt nun der Webserver in seiner Antwort auf die OPTIONS-Anfrage, dass die Anfrage so erlaubt ist, wird auch die eigentliche Ajax-Anfrage ausgeführt. Ansonsten schlägt die Anfrage fehl und im JavaScript-Kontext ist lediglich der Fehlschlag zu sehen, ohne einen Hinweis auf die Diskrepanz bzgl. CORS.
 
-\footnotetext{Eine Anfrage ist \enquote{simple}, wenn 1. der Methode GET, HEAD oder POST entspricht; 2. sie keine eigene Header enthält; und 3. der \enquote{Content-Type} von POST-Anfragen einem der folgenden Werte entspricht: \enquote{application/x-www-form-urlencoded}, \enquote{multipart/form-data} oder \enquote{text/plain} \cite{MDNCORS}.}
+\footnotetext{Eine Anfrage ist \enquote{simple}, wenn 1. sie der Methode GET, HEAD oder POST entspricht; 2. sie keine benutzerdefinierten Header enthält; und 3. der \enquote{Content-Type} von POST-Anfragen einem der folgenden Werte entspricht: \enquote{application/x-www-form-urlencoded}, \enquote{multipart/form-data} oder \enquote{text/plain} \cite{MDNCORS}.}
 
 \begin{figure}[H]
 	\centering
