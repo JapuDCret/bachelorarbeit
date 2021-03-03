@@ -124,7 +124,8 @@ Um in dem Proof-of-Concept auf die hier vorgestellten Technologien zurückgreife
 
 Auf Basis dieser Kriterien werden die Technologien jeweils nach Kategorie bewertet sowie wird schließlich, je nach Funktionskategorie, die präferierte Technologie ausgewählt.
 
-\subsection{Bewertung}
+\subsection{Bewertung und Auswahl}
+\label{subsec:bewertung-und-auswahl}
 
 In der Kategorie \enquote{Log-Plattformen} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien, lediglich Fluentd sticht hervor, aber dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt, sondern es sich um einen Logaggregator handelt \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic-Stack eignet sich durch die hohe Flexiblität und der Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben  \cite{ThreatIdentificationFromAccessLogsUsingElasticStack} \cite{DesignLogManagementSystem}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, indem dass sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic-Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise-Deployment kann lediglich nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser 4 Technologien ausschließende Eigenschaften besitzt, sie sind allesamt geeignet für die in dieser Arbeit angestrebte Lösung. Es wurde sich für \textbf{Splunk} entschieden, da es bereits bei OpenKnowledge im Einsatz ist. Wie aber zuvor erwähnt eignen sich die anderen Technologien ähnlich gut und eine erneute Auswahl mit anderen situationsbedingten Kriterien könnte variieren.
 
@@ -147,7 +148,7 @@ In der Beschreibung zur Kategorie \enquote{Session-Replay} wurde erwähnt, dass 
 \subsubsection{Splunk}
 \label{subsec:splunk}
 
-Splunk bietet neben seiner akquirierten APM-Lösung (ehem. SignalFX) eine Log-Plattform an, welches Splunks Kernprodukt darstellt und einer der führenden Plattformen auf dem Markt ist \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Splunk bietet diese Lösung als OnPremise oder auch als SaaS an, und ist so anpassungsfähig im Deployment.
+Splunk bietet neben seiner akquirierten APM-Lösung (ehem. SignalFX) eine Log-Plattform an, Splunk Enterprise (nachfolgend auch nur Splunk genannt), welches Splunks Kernprodukt darstellt und einer der führenden Plattformen auf dem Markt ist \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Diese Lösung wird als OnPremise sowie auch als SaaS angeboten, dies erlaubt ein Flexibilität im Deployment.
 
 Um Splunk zu testen wurde die SaaS- sowie die OnPremise-Lösung aufgesetzt, jeweils in der kostenlosen Version. Splunk bietet keine JavaScript-Bibliotheken, die das Senden von Daten an den Dienst vereinfachen - jedoch wird eine ansprechbare HTTP-Schnittstelle angeboten und in der Dokumentation beschrieben, der sog. HEC (HTTP Event Collector) \cite{SplunkHEC}. Der HEC ist jedoch standardmäßig nicht von einem Browserkontext aus verwendbar, da sie mit ablehnenden CORS-Headern antwortet. Grund hierfür ist, dass der HEC nicht für dieses Szenario konzipiert wurde. Um dies zu umgehen, wurde ein Proxydienst eingerichtet, der die Daten des Frontends entgegennimmt, diese anreichert und dann nach Splunk weiterleitet.
 
@@ -156,7 +157,7 @@ Folgend konnten in Splunk jedwede Loginformationen eingesehen werden, sowie Fehl
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{img/03_methoden/splunk_search-processing-language.png}
-	\caption{Abfragebeispiel in Splunk \cite{SplunkSPL}}
+	\caption{Abfragebeispiel in Splunk aus \cite{SplunkSPL}}
 	\label{fig:splunk_search-processing-language}
 \end{figure}
 
@@ -165,7 +166,7 @@ Folgend konnten in Splunk jedwede Loginformationen eingesehen werden, sowie Fehl
 
 Jaeger wurde 2017 als ein OpenSource-Projekt der CNCF gestartet \cite{Jaeger}. Es ist ein System für verteiltes Tracing und bietet Funktionalitäten zur Datensammlung, --verarbeitung, --speicherung bis hin zur Visualisierung. Jaeger unterstützt und implementiert den Standard OpenTracing, unterstützt aber auch Datenformate anderer Hersteller (wie z. B. Zipkin \cite{Zipkin}). Eine Unterstützung des OpenTelemetry-Standards ist derzeit im Gange. Weiterhin kann Jaeger dazu benutzt werden, Metriken nach Prometheus \cite{Prometheus} zu exportieren, einem weiteren CNCF-Projekt zur Speicherung und Visualisierung von Daten.
 
-\begin{wrapfigure}[10]{r}{0.45\textwidth}
+\begin{wrapfigure}[11]{r}{0.40\textwidth}
 \centering
 \includegraphics[width=\linewidth]{img/03_methoden/jaeger_dependency-graph.png}
 \caption{Dienst-Abhängigkeits-Graph. Quelle: Eigene Darstellung}
@@ -179,7 +180,7 @@ Anhand der Traces generiert Jaeger zudem automatisch eine Architektur, indem die
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{img/03_methoden/jaeger_trace-detail-view.png}
-	\caption{Trace-Detailansicht. Quelle: Eigene Darstellung}
+	\caption{Trace-Detailansicht. Eigener Screenshot aus Jaeger}
 	\label{fig:jaeger-ui_trace-detail-view}
 \end{figure}
 
@@ -197,14 +198,14 @@ Die angebotenen Fehlerinformationen von Sentry sind zahlreich und helfen beim Na
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{img/03_methoden/sentry_issue-details.png}
-	\caption{Kerninformation eines Sentry-Issues}
+	\caption{Kerninformation eines Issues. Eigener Screenshot aus Sentry}
 	\label{fig:sentry_issue-details}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.80\linewidth]{img/03_methoden/sentry_issue-event-breadcrumbs.png}
-	\caption{Userinteraktionen bei einer bestimmten Fehlerinstanz}
+	\caption{Userinteraktionen bei einer bestimmten Fehlerinstanz. Eigener Screenshot aus Sentry}
 	\label{fig:sentry_issue-event-breadcrumbs}
 \end{figure}
 
@@ -220,7 +221,7 @@ Neben dem JavaScript-SDK bietet LogRocket quelloffenene Plugins für folgende Bi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{img/03_methoden/logrocket_session-replay-example-cropped.png}
-	\caption{Ausschnitt eines Session Replays bei LogRocket}
+	\caption{Ausschnitt eines Session Replays. Eigener Screenshot aus LogRocket}
 	\label{fig:logrocket-session-replay-example}
 \end{figure}
 

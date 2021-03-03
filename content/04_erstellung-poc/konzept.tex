@@ -1,0 +1,34 @@
+% \section{Konzept}
+% \input{content/04_erstellung-poc/konzept}
+
+Anhand der Anforderungen und den zuvor in \autoref{sec:werkzeuge-und-technologien} recherchierten Technologien, gilt es nun ein Konzept zu erstellen wie die Demoanwendung zu erweitern ist. Dabei ist das Grundziel die Nachvollziehbarkeit dieser Anwendung zu erhöhen. In den Anforderungen werden 4 Arten von Daten genannt, die es zu erheben und zu nutzen gilt. Darunter die 3 \enquote{Grundpfeiler der Observability} Logs, Metriken und Traces sowie die gesondert zu betrachtende Methodik des Session-Replays.
+
+In \autoref{subsec:bewertung-und-auswahl} wurden kriteriengeleitet bereits Technologien identifiziert, mit denen eine verbesserte Nachvollziehbarkeit erreicht werden kann: Splunk, Sentry, Jaeger sowie LogRocket (vgl. \autoref{tab:uebersicht-ausgewaehlte-technologien}). Bei dieser Übersicht ist zu betrachten, dass Splunk die grundsätzlichen Funktionalitäten von Sentry abdecken kann. Andere Werkzeuge des Error-Monitorings weisen die gleiche Überschneidung auf. Lediglich das Issue-Management, welches in diesen Technologien oft ein fester Bestandteil ist, kann nicht nur mit Splunk abgebildet werden - diese Funktionalität ist aber für die in dieser Arbeit verfolgten Ziele nicht relevant. Weiterhin gehören Bug-Tracking-Systeme bereits unabdingbar zu einem Softwareprojekt \cite{BugzillaITrackerAndOtherBugTrackers}, ein weiteres ähnlich agierendes System könnte hierbei eine Dopplung darstellen und somit unerwünscht sein. TODO
+
+\begingroup
+\centering
+\setlength{\LTleft}{-20cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{longtable}{|p{4.10cm}|p{0.90cm}|p{0.90cm}|p{1.9cm}|p{1.75cm}|p{1.5cm}|p{1.4cm}|p{1.3cm}|}
+\hline
+Technologie & IM & ASM & RUM & Error-Montoring & Log-Mgmt. & Tracing & Session-Replay \\
+\endhead
+Splunk & ja(*) & ja(*) & ja(*) & ja(*) & ja &  &  \\
+\hline
+Jaeger &  &  &  &  &  & ja &  \\
+\hline
+Sentry &  &  & ja(*) & ja &  &  &  \\
+\hline
+LogRocket &  &  & ja & ja &  &  & ja \\
+\hline
+\caption{Übersicht der ausgewählten Technologien}
+\label{tab:uebersicht-ausgewaehlte-technologien}
+\end{longtable}
+\endgroup
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{img/04_erstellung-poc/konzept.png}
+	\caption{Architektur des Konzeptes. Eigene Darstellung}
+	\label{fig:konzept}
+\end{figure}

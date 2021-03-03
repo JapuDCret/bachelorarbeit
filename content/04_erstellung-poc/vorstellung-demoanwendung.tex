@@ -61,7 +61,7 @@ Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_deployment.png}
-	\caption{Demoanwendung: Deployment-Diagramm, Quelle: Eigene Darstellung}
+	\caption{Demoanwendung: Deployment-Diagramm. Eigene Darstellung}
 	\label{fig:demoanwendung_deployment}
 \end{figure}
 
@@ -81,7 +81,7 @@ n werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig g
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_01-warenkorb.png}
-	\caption{Demoanwendung: Startseite \enquote{Warenkorb}}
+	\caption{Demoanwendung: Startseite \enquote{Warenkorb}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_01-warenkorb}
 \end{figure}
 
@@ -96,7 +96,7 @@ Sind beide Prüfungen jedoch erfolgreich, so wird ein Seitenwechsel in der SPA d
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_02-rechnungsadresse.png}
-	\caption{Demoanwendung: Seite \enquote{Rechnungsadresse}}
+	\caption{Demoanwendung: Seite \enquote{Rechnungsadresse}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_02-rechnungsadresse}
 \end{figure}
 
@@ -113,7 +113,7 @@ Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_03-lieferdaten.png}
-	\caption{Demoanwendung: Seite \enquote{Lieferdaten}}
+	\caption{Demoanwendung: Seite \enquote{Lieferdaten}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_03-lieferdaten}
 \end{figure}
 
@@ -121,14 +121,14 @@ Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben
 
 Anschließend der Eingabe der Lieferdaten wird der Nutzer nun gebeten seine Zahlungsinformationen einzugeben. Hierbei kann der Nutzer zwischen 4 Zahlungsarten auswählen: per Rechnung, Lastschrift, PayPal oder Kreditkarte. Wie bei den anderen Formularen kann der Nutzer auf das vorhergehende Formular über den Button \enquote{Zurück} wechseln.
 
-Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteten Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal muss die PayPal-E-Mail werden und bei der Auswahl der Kreditkarte müssen die Kreditkarteninformationen Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum angegeben werden. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
+Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteten Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
 
 Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergreifende Komponenten übergeben.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.90\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_04-zahlungsdaten.png}
-	\caption{Demoanwendung: Seite \enquote{Zahlungsdaten}}
+	\includegraphics[width=0.85\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_04-zahlungsdaten.png}
+	\caption{Demoanwendung: Seite \enquote{Zahlungsdaten}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_04-zahlungsdaten}
 \end{figure}
 
@@ -142,8 +142,8 @@ Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der I
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.65\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_05-bestelluebersicht.png}
-	\caption{Demoanwendung: Seite \enquote{Bestellübersicht}}
+	\includegraphics[width=0.68\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_05-bestelluebersicht_cropped}
+	\caption{Demoanwendung: Seite \enquote{Bestellübersicht}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_05-bestelluebersicht}
 \end{figure}
 
@@ -156,16 +156,14 @@ Auf dieser Seite kann der Nutzer nun nur noch auf den Button \enquote{Zum Shop} 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.75\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_06-bestellbestaetigung.png}
-	\caption{Demoanwendung: Finale Seite \enquote{Bestellbestätigung}}
+	\caption{Demoanwendung: Finale Seite \enquote{Bestellbestätigung}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_06-bestellbestaetigung}
 \end{figure}
-
-Wie in \autoref{anf:1020} definiert wurden in das Frontend einige Fehler eingebaut, damit diese, mit der zu erstellenden Lösung, aufgedeckt werden können. Diese Fehler werden nachfolgend näher betrachtet.
 
 \subsection{Fehlerszenarien}
 \label{subsec:fehlerszenarien}
 
-Um später mithilfe der Observability-Werkzeuge Probleme aufzudecken, besitzt die Demoanwendung einige simulierte problembehaftete Implementierungen. Diese Fehler wurden in Zusammenarbeit mit den Stakeholdern konzipiert. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
+Um später mithilfe der Observability-Werkzeuge Probleme aufzudecken, besitzt die Demoanwendung einige bewusst eingebaute Implementierungen, welche problembehaftete sind. Diese sind in Zusammenarbeit mit den Stakeholdern konzipiert worden. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
 
 Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
@@ -175,7 +173,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/04_erstellung-poc/demoanwendung_fehlerszenario-uebersetzungen}
-\caption{Fehlende Texte}
+\caption{Fehlende Texte. Eigener Screenshot}
 \label{fig:demoanwendung_fehlerszenario-uebersetzungen}
 \end{wrapfigure}
 
