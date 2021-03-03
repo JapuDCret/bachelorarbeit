@@ -69,12 +69,9 @@ Die einzelnen Dienste wurden mit Eclipse MicroProfile \cite{EclipseMicroprofile}
 
 Danach wurden die einzelnen Dienste in jeweils eigene Docker-Images\footnote{Docker \cite{Docker} ist eine Software zum Erstellen und Ausführen von Anwendungscontainern \cite{PatternsForSoftwareOrchestration}} verpackt, um eine einheitliche Umgebung auch auf unterschiedlichen Rechnern zu gewährleisten. Diese Images wurden dann mit Kubernetes\footnote{Kubernetes \cite{Kubernetes} ist eine Software zum Orchestrieren Container-basierter Anwendungen \cite{KeyCharacteristicsOfAContainerOrchestrationPlatform}} aufgesetzt und miteinander verbunden.
 
-
-\newpage
-
 \subsection{Frontend}
 
-Wie beim Kunden wurde ein Wizard auf Basis von Angular erstellt, welcher mehrere aufeinander folgende Formulare in derselben SPA enthält. In den folgenden Abschnitten wird das Frontend anhand eines Beispieldurchlaufs durch die einzelnen Seiten vorgestellt.
+Wie beim Kunden wurde auf Basis von Angular ein Wizard erstellt, welcher mehrere aufeinander folgende Formulare in derselben SPA enthält. Folgend wird das Frontend anhand eines Beispieldurchlaufs durch die einzelnen Seiten vorgestellt.
 
 \subsubsection{Warenkorb}
 
@@ -236,6 +233,8 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 %
 %Das Backend ist in dem Sinne repräsentativ, dass es auf keiner stark vereinfachten Infrastruktur basiert, sondern gewollt an die Situation des Open Knowledge Kunden abbildet. Des Weiteren stellt die gewählte Architektur einen modernen Ansatz dar, denn die Architektur ist Microservice-orientiert \cite{MicroserviceArchitecture}.
 
-Dennoch ist anzumerken, dass die Demoanwendung nur ein Modell einer tatsächlichen Webanwendung darstellt. Wie jedes Modell können nicht alle Gegebenheiten des zu modellierenden Sachverhalts nachgestellt werden. Jedoch ist durch den allgemein gehaltenen Anwendungsfall und die moderne Umsetzung eine Übertragbarkeit zu ähnlichen Projekten durchaus vorhanden.
+\subsection{Repräsentation}
 
-Nun da die Demoanwendung beschrieben ist, wird das Konzept erstellt, welches letztendlich auf die Demoanwendung anzuwenden ist. Das Konzept selber ist jedoch losgelöst von der Demoanwendung zu verstehen.
+Es ist anzumerken, dass die Demoanwendung nur ein Modell einer tatsächlichen Webanwendung darstellt. Wie jedes Modell können nicht alle Gegebenheiten des zu modellierenden Sachverhalts nachgestellt werden. Jedoch ist durch den allgemein gehaltenen Anwendungsfall und die moderne Umsetzung eine Übertragbarkeit zu ähnlichen Projekten durchaus vorhanden.
+
+Nun da die Demoanwendung beschrieben ist, werden die Anforderungen näher erläutert, die das zu erstellende Konzept erfüllen soll.
