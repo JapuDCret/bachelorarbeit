@@ -152,7 +152,8 @@ Addressvalidierung</panel_attributes>
       <w>153</w>
       <h>99</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+    <panel_attributes>valign=center
+halign=center
 Jaeger</panel_attributes>
     <additional_attributes/>
   </element>
@@ -237,7 +238,8 @@ frontend</panel_attributes>
       <w>153</w>
       <h>81</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+    <panel_attributes>valign=center
+halign=center
 Splunk</panel_attributes>
     <additional_attributes/>
   </element>
@@ -249,7 +251,8 @@ Splunk</panel_attributes>
       <w>153</w>
       <h>81</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Cloud&gt;&gt;
+    <panel_attributes>valign=center
+halign=center
 LogRocket</panel_attributes>
     <additional_attributes/>
   </element>
