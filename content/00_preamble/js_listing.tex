@@ -3,10 +3,10 @@
 %
 
 \lstdefinelanguage[ECMAScript2015]{JavaScript}[]{JavaScript}{
-  morekeywords=[1]{await, async, case, catch, class, const, default, do,
-    enum, export, extends, finally, from, implements, import, instanceof,
-    let, static, super, switch, throw, try},
-  morestring=[b]` % Interpolation strings.
+	morekeywords=[1]{await, async, case, catch, class, const,
+		default, do, enum, export, extends, finally, from, implements,
+		import, instanceof, let, static, super, switch, throw, try},
+	morestring=[b]` % Interpolation strings.
 }
 
 
@@ -14,26 +14,30 @@
 % JavaScript version 1.1 by Gary Hammock
 %
 % Reference:
-%   B. Eich and C. Rand Mckinney, "JavaScript Language Specification
-%     (Preliminary Draft)", JavaScript 1.1.  1996-11-18.  [Online]
-%     http://hepunx.rl.ac.uk/~adye/jsspec11/titlepg2.htm
+%	 B. Eich and C. Rand Mckinney, "JavaScript Language Specification
+%		 (Preliminary Draft)", JavaScript 1.1.	1996-11-18.	[Online]
+%		 http://hepunx.rl.ac.uk/~adye/jsspec11/titlepg2.htm
 %
 
 \lstdefinelanguage{JavaScript}{
-  morekeywords=[1]{break, continue, delete, else, for, function, if, in,
-    new, return, this, typeof, var, void, while, with, =>, constructor, window, class, interface, enum, declare, const, var, typeof},
-  % Literals, primitive types, and reference types.
-  morekeywords=[2]{false, null, true, boolean, number, undefined,
-    Array, Boolean, Date, Math, Number, String, Object, void, any, string, private, public, protected},
-  % Built-ins.
-  morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape, pipe, tap, subscribe},
-  morekeywords=[4]{@Injectable, @NgModule, @Inject},
-  sensitive,
-  morecomment=[s]{/*}{*/},
-  morecomment=[l]//,
-  morecomment=[s]{/**}{*/}, % JavaDoc style comments
-  morestring=[b]',
-  morestring=[b]"
+	morekeywords=[1]{break, continue, delete, else, for, function,
+		if, in, new, return, this, typeof, var, void, while, with, =>,
+		constructor, window, class, interface, enum, declare, const,
+		var, typeof},
+	% Literals, primitive types, and reference types.
+	morekeywords=[2]{false, null, true, boolean, number, undefined,
+		Array, Boolean, Date, Math, Number, String, Object, void, any,
+		string, private, public, protected},
+	% Built-ins.
+	morekeywords=[3]{eval, parseInt, parseFloat, escape, unescape,
+		pipe, tap, subscribe},
+	morekeywords=[4]{@Injectable, @NgModule, @Inject},
+	sensitive,
+	morecomment=[s]{/*}{*/},
+	morecomment=[l]//,
+	morecomment=[s]{/**}{*/}, % JavaDoc style comments
+	morestring=[b]',
+	morestring=[b]"
 }[keywords, comments, strings]
 
 
@@ -48,43 +52,44 @@
 \definecolor{crimson}{rgb}{0.86, 0.8, 0.24}
 
 \lstdefinestyle{JSES6Base}{
-  backgroundcolor=\color{white},
-  basicstyle=\ttfamily,
-  breakatwhitespace=false,
-  breaklines=true,
-  captionpos=b,
-  columns=fullflexible,
-  commentstyle=\color{mediumgray}\upshape,
-  emph={},
-  emphstyle=\color{crimson},
-  extendedchars=true,  % requires inputenc
-  fontadjust=true,
-  frame=single,
-  identifierstyle=\color{black},
-  keepspaces=true,
-  keywordstyle=\color{mediumblue},
-  keywordstyle={[2]\color{darkviolet}},
-  keywordstyle={[3]\color{royalblue}},
-  keywordstyle={[4]\color{mediumblue}},
-  numbers=left,
-  numbersep=5pt,
-  numberstyle=\color{black},
-  rulecolor=\color{black},
-  showlines=true,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  stringstyle=\color{forestgreen},
-  tabsize=2,
-  title=\lstname,
-  upquote=true  % requires textcomp
+	backgroundcolor=\color{white},
+	basicstyle=\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	columns=fullflexible,
+	commentstyle=\color{mediumgray}\upshape,
+	emph={},
+	emphstyle=\color{crimson},
+	extendedchars=true,	% requires inputenc
+	fontadjust=true,
+	frame=single,
+	identifierstyle=\color{black},
+	keepspaces=true,
+	keywordstyle=\color{mediumblue},
+	keywordstyle={[2]\color{darkviolet}},
+	keywordstyle={[3]\color{royalblue}},
+	keywordstyle={[4]\color{mediumblue}},
+	numbers=left,
+	numbersep=5pt,
+	numberstyle=\color{black},
+	rulecolor=\color{black},
+	showlines=true,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	stringstyle=\color{forestgreen},
+	tabsize=2,
+	title=\lstname,
+	upquote=true,	% requires textcomp
+	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1,
 }
 
 \lstdefinestyle{JavaScript}{
-  language=JavaScript,
-  style=JSES6Base
+	language=JavaScript,
+	style=JSES6Base
 }
 \lstdefinestyle{ES6}{
-  language=ES6,
-  style=JSES6Base
+	language=ES6,
+	style=JSES6Base
 }

@@ -1,0 +1,45 @@
+[
+	{
+		"event": {
+			"message": "submit()",
+			"path": "http://localhost:4200/checkout",
+			"severity": 2,
+			"shoppingCartId": "f7db5e54-ec9a-9161-ff27-2468b1f41f54",
+			"timestamp": "2021-03-05T17:56:54.548Z"
+		},
+		"sourcetype": "log"
+	}, {
+		"event": {
+			"message": "order(): placing order, data = ",
+			"param0": "{\"shoppingCartId\":\"f7db5e54-ec9a-9161-ff27-2468b1f41f54\",...}",
+			"path": "http://localhost:4200/checkout",
+			"severity": 2,
+			"shoppingCartId": "f7db5e54-ec9a-9161-ff27-2468b1f41f54",
+			"timestamp": "2021-03-05T17:56:54.553Z"
+		},
+		"sourcetype": "log"
+	}, {
+		"event": {
+			"component": "OrderService",
+			"description": "Anfrage zum Bestelldienst war nicht erfolgreich, Fehler = HTTP 400 Bad Request",
+			"environment": "development",
+			"frontendModel": {
+			},
+			"message": "Http failure response for http://localhost:53246/data/order: 502 Bad Gateway",
+			"name": "HttpErrorResponse",
+			"path": "http://localhost:4200/checkout",
+			"shoppingCartId": "f7db5e54-ec9a-9161-ff27-2468b1f41f54"
+		},
+		"sourcetype": "error"
+	}, {
+		"event": {
+			"logRocketSessionURL": "n/a",
+			"param0": "{\"name\":\"HttpErrorResponse\",\"message\":...}",
+			"path": "http://localhost:4200/checkout",
+			"severity": 4,
+			"shoppingCartId": "f7db5e54-ec9a-9161-ff27-2468b1f41f54",
+			"timestamp": "2021-03-05T17:56:54.765Z"
+		},
+		"sourcetype": "log"
+	},
+]

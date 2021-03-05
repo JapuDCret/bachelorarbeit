@@ -16,7 +16,7 @@ export class SplunkForwardingErrorHandler extends ErrorHandler {
             event: {
                 ...optionalData,
                 frontendModel: window.frontendModel,
-                // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
+                // vgl. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error
                 name: error.name,
                 message: error.message,
                 stack: error.stack,

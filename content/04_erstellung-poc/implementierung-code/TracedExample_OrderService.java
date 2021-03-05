@@ -10,8 +10,8 @@ public class OrderService {
 
         validation.validateShippingData(order.getShippingData());
 
-        /* calculate Order and prepare Receipt */
+        /* Berechnung zur Bestellung */
 
-        return new Receipt(/* receipt data */);
+        return new Receipt(/* Belegdaten */);
     }
 }

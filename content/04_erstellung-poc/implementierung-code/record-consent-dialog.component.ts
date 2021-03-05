@@ -9,16 +9,13 @@ export class RecordConsentDialogComponent {
   }
 
   activateLogRocket() {
-    // initialize session recording
+    // Initialisiere die Aufnahme mit LogRocket
     LogRocket.init(this.config.logRocketAppId, {});
 
-    // start a new session
+    // Starte eine neue Sitzung
     LogRocket.startNewSession();
 
-    // pass unique "session"-id to LogRocket
-    LogRocket.identify(window.customer.shoppingCartId);
-
-    // make sessionURL accessable
+    // Stelle die LogRocket sessionURL bereit
     LogRocket.getSessionURL((sessionURL) => {
       window.logrocketData.sessionURL = sessionURL;
 

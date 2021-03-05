@@ -11,16 +11,16 @@ export class LocalizationService {
   public getTranslations(parentSpan?: api.Span) {
     this.log.info('getTranslations(): requesting translations');
     
-    // start span with provided span as a parent
+    // Starte einen neuen Span mit Elternreferenz
     const span = this.traceUtil.startChildSpan(
         this.tracer, 'LocalizationService.getTranslations', parentSpan,
         { 'shoppingCartId': window.customer.shoppingCartId }
     );
 
-    // generate a jaeger-compatible trace header from OTel span
+    // Generiere aus OTel span einen Jaeger-kompatiblen HTTP-Header
     const jaegerTraceHeader = this.traceUtil.serializeSpanContextToJaegerHeader(span.context());
 
-    // increment the requestCounter metric
+    // Erhöhe die "requestCounter"-Metric
     this.requestCounter.add(1, { 'component': 'LocalizationService' });
 
     return this.http.get<Localization>(
@@ -35,7 +35,7 @@ export class LocalizationService {
             span.end();
           },
           (err) => {
-            // handle and record exception
+            // Protokolliere Fehler
             span.recordException({ code: err.status, name: err.name, message: err.message });
             span.end();
           }

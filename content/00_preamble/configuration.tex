@@ -1,5 +1,3 @@
-
-
 % Schachtelungstiefe eine Nummerierung der Überschriften 
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
@@ -30,14 +28,24 @@
 % Listing defintion for JavaScript and ECMAScript2015 (ES6)
 \input{content/00_preamble/js_listing.tex}
 
+% Listing defintion for Angular HTML
+\input{content/00_preamble/angular-html_listing.tex}
+
+% Listing defintion for JSON
+\input{content/00_preamble/json_listing.tex}
+
 % Listing defintion for Java
 \input{content/00_preamble/java_listing.tex}
+
+% Listing defintion for Gherkin
+\input{content/00_preamble/gherkin_listing.tex}
 
 % own commands
 \newcommand{\etal}{\textit{et al.\@ }}
 \newcommand{\citationneeded}{{\color{red}[cite]}}
 \newcommand{\source}[1]{\vspace{-0.75\baselineskip}\caption*{Quelle: {#1}} }
 
+% custom Anforderung command
 \newcounter{anfcounter}
 \renewcommand{\theanfcounter}{\arabic{anfcounter}}
 
@@ -70,71 +78,3 @@ Id	 & Name					& Kano-Modell	& Funktionsart & Quelle			 \\
 }
 
 \pgfplotsset{compat=1.17}
-
-% Gherkin
-% https://gist.github.com/nsommer/9a04f6ebc6ea8b9f5b816becb97e7d9b
-\lstdefinelanguage{gherkin}{
-	morekeywords = {
-		Given,
-		When,
-		Then,
-		And,
-		Scenario,
-		Feature,
-		But,
-		Background,
-		Scenario Outline,
-		Examples
-	},
-	sensitive=true,
-	morecomment=[l]{\#},
-	morestring=[b]",
-	morestring=[b]',
-	% fix umlaute causing issues
-	% https://tex.stackexchange.com/questions/24528/having-problems-with-listings-and-utf-8-can-it-be-fixed/24529
-	extendedchars=true,
-	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1,
-}
-
-\lstdefinelanguage{AngularTemplateHTML}{
-	language=html,
-	sensitive=true,	
-	alsoletter={<>=-},
-	morecomment=[s]{<!-}{-->},
-	tag=[s],
-	otherkeywords={
-	% General
-	>,
-	% Standard tags
-	<!DOCTYPE,
-	</html, <html, <head, <title, </title, <style, </style, <link, </head, <meta, />,
-	% body
-	</body, <body,
-	% Divs
-	</div, <div, </div>, 
-	% Paragraphs
-	</p, <p, </p>, </h1, <h1, </h2, <h2, </h3, <h3, </h4, <h4, </h5, <h5, </h6, <h6,
-	% scripts
-	</script, <script,
-	% More tags...
-	<canvas, /canvas>, <svg, <rect, <animateTransform, </rect>, </svg>, <video, <source, <iframe, </iframe>, </video>, <image, </image>, <header, </header, <article, </article, <button, </button
-	},
-	ndkeywords={
-	% General
-	=,
-	% HTML attributes
-	charset=, src=, id=, width=, height=, style=, type=, rel=, href=, class=, color=, (click)=,
-	% SVG attributes
-	fill=, attributeName=, begin=, dur=, from=, to=, poster=, controls=, x=, y=, repeatCount=, xlink:href=,
-	% properties
-	margin:, padding:, background-image:, border:, top:, left:, position:, width:, height:, margin-top:, margin-bottom:, font-size:, line-height:,
-	% CSS3 properties
-	transform:, -moz-transform:, -webkit-transform:,
-	animation:, -webkit-animation:,
-	transition:,	transition-duration:, transition-property:, transition-timing-function:,
-	},
-	% fix umlaute causing issues
-	% https://tex.stackexchange.com/questions/24528/having-problems-with-listings-and-utf-8-can-it-be-fixed/24529
-	extendedchars=true,
-	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1,
-}

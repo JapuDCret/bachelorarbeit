@@ -1,0 +1,24 @@
+% Gherkin
+% https://gist.github.com/nsommer/9a04f6ebc6ea8b9f5b816becb97e7d9b
+\lstdefinelanguage{gherkin}{
+	morekeywords = {
+		Given,
+		When,
+		Then,
+		And,
+		Scenario,
+		Feature,
+		But,
+		Background,
+		Scenario Outline,
+		Examples
+	},
+	sensitive=true,
+	morecomment=[l]{\#},
+	morestring=[b]",
+	morestring=[b]',
+	% fix umlaute causing issues
+	% https://tex.stackexchange.com/questions/24528/having-problems-with-listings-and-utf-8-can-it-be-fixed/24529
+	extendedchars=true,
+	literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1 {ß}{{\ss}}1,
+}

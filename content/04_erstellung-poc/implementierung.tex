@@ -86,7 +86,7 @@ captionpos = b,
      label = lst:logging_app.module
 ]{content/04_erstellung-poc/implementierung-code/logging_app.module.ts}
 
-Wie in den vorherigen Codebeispielen zum Tracing zu sehen war, kann ein \texttt{NGXLogger} im Konstruktor von Komponenten und Diensten injected werden. Logmeldungen die hiermit erfasst werden, werden je nach Konfiguration und Loglevel der jeweiligen Meldung in die Browserkonsole geschrieben. Über einen \texttt{NGXLoggerMonitor} lassen sich die Logmeldungen anzapfen, wie in \autoref{lst:splunk-logging-monitor} zu sehen ist. Hierbei werden die Logmeldungen in ein Splunkformat übertragen und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} übertragen.
+Wie in den vorherigen Codebeispielen zum Tracing zu sehen war, kann ein \texttt{NGXLogger} im Konstruktor von Komponenten und Diensten injected werden. Logmeldungen die hiermit erfasst werden, werden je nach Konfiguration und Loglevel der jeweiligen Meldung in die Browserkonsole geschrieben. Über einen \texttt{NGXLoggerMonitor} lassen sich die Logmeldungen anzapfen, wie in \autoref{lst:splunk-logging-monitor} zu sehen ist. Hierbei werden die Logmeldungen in ein Splunkformat übertragen und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} übertragen. Die Funktionsweise der Weiterleitung wird an späterer Stelle genauer beschrieben.
 
 \lstinputlisting[
   language = JavaScript,
@@ -96,8 +96,6 @@ basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
 captionpos = b,
      label = lst:splunk-logging-monitor
 ]{content/04_erstellung-poc/implementierung-code/splunk-logging-monitor.ts}
-
-\pagebreak
 
 \subsubsection{Fehler}
 
@@ -114,6 +112,29 @@ captionpos = b,
      label = lst:splunk-forwarding-error-handler
 ]{content/04_erstellung-poc/implementierung-code/splunk-forwarding-error-handler.ts}
 
+\subsubsection{Weiterleitung an Splunk}
+
+Wie zuvor beschrieben werden Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an Splunk gesendet. Damit dieser nicht für jedes Datenobjekt einen Aufruf durchführt, gruppiert dieser eintreffende Daten zuvor.
+
+Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Senden eines Batches, 5 Wiederholversuche gestartet werden mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Beispielhafte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
+
+\lstinputlisting[
+  language = JavaScript,
+     style = ES6,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Implementierung des \texttt{SplunkForwardingService},
+captionpos = b,
+     label = lst:splunk-forwarding.service
+]{content/04_erstellung-poc/implementierung-code/splunk-forwarding.service.ts}
+
+\lstinputlisting[
+  language = JSON,
+basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
+   caption = Beispiel eines Batches,
+captionpos = b,
+     label = lst:log-batch_example
+]{content/04_erstellung-poc/implementierung-data/log-batch_example.json}
+
 \subsubsection{Session-Replay}
 
 \begin{wrapfigure}[10]{r}{0.27\textwidth}
@@ -123,7 +144,7 @@ captionpos = b,
 \label{fig:recording-consent_button-inactive}
 \end{wrapfigure}
 
-LogRocket wird standardmäßig nicht aktiv, außer wenn der Nutzer explizit der Aufzeichnung zustimmt. Dies bedeutet jedoch auch, dass bis zur Zustimmung keine Sitzungsdaten aufgenommen wurden. Klickt der Nutzer jedoch auf den, unten rechts in der Anwendung schwebenden, Button (vgl. \autoref{fig:recording-consent_button-inactive}), wird ein Einverständnis-Dialog geöffnet. Hierbei (vgl. \autoref{fig:recording-consent_dialog-inactive}) erhält der Nutzer eine Übersicht welche Daten aufgenommen werden und an wen diese dann weitergesendet werden. Stimmt der Nutzer zu, wird LogRocket initialisiert, wie im \autoref{lst:record-consent-dialog.component.html} sowie \autoref{lst:record-consent-dialog.component.ts} zu sehen ist. Nach dem Warenkorbdialog und nach der Eingabe der Rechnungsadresse werden zudem weitere identifizierende Daten an LogRocket übermittelt. Die Aufnahme der Sitzung läuft größtenteils autonom, lediglich behandelte Fehler müssen LogRocket manuell übermittelt werden.
+LogRocket wird erst aktiviert, wenn der Nutzer explizit der Aufzeichnung zustimmt. Dies bedeutet jedoch auch, dass bis zur Zustimmung keine Sitzungsdaten aufgenommen wurden. Klickt der Nutzer jedoch auf den, unten rechts in der Anwendung schwebenden, Button (vgl. \autoref{fig:recording-consent_button-inactive}), wird ein Einverständnis-Dialog geöffnet. Hierbei (vgl. \autoref{fig:recording-consent_dialog-inactive}) erhält der Nutzer eine Übersicht welche Daten aufgenommen werden und an wen diese dann weitergesendet werden. Stimmt der Nutzer zu, wird LogRocket initialisiert, wie im \autoref{lst:record-consent-dialog.component.html} sowie \autoref{lst:record-consent-dialog.component.ts} zu sehen ist. Nach dem Warenkorbdialog und nach der Eingabe der Rechnungsadresse werden zudem weitere identifizierende Daten an LogRocket übermittelt. Die Aufnahme der Sitzung läuft größtenteils autonom, lediglich behandelte Fehler müssen LogRocket manuell übermittelt werden.
 	
 \begin{figure}[H]
 	\centering
