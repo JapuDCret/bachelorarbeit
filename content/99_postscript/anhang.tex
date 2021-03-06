@@ -43,3 +43,51 @@ Weiterhin lässt sich die selbe Thematik bei Google Trends \cite{GoogleTrendsCro
 	\caption{Google Trends zur Browserkompatibilität, angereichert mit \cite{MicrosoftIEandEdgeLifecycleFAQ}}
 	\label{fig:google-search-trends_cross-browser-compatability}
 \end{figure}
+
+\section{Weitere Demonstration}
+\label{sec:weitere-demonstration}
+
+\subsection{LogRocket}
+\label{sec:demo-logrocket}
+
+Im Anhang befindet sich ein Video, welches die Aufnahme eines Session-Replays von LogRocket ist. Das eigentliche Session-Replay ist interaktiv und Daten wie der DOM, die Konsole und auch Netzwerkaufrufe können inspiziert werden.
+
+\subsection{Splunk}
+\label{sec:demo-splunk}
+
+Neben Logs wurden in Splunk zudem auch Metriken und Fehler erhoben. Bei Metriken handelt es sich um beispielhafte Daten, die veranschaulichen und beweisen sollen, dass das Konzept funktioniert. Genauer wurden zwei wesentliche Metriken aufgezeichnet, einerseits die Anzahl an Produkten im Warenkorb und andererseits die aufgetretenen Fehler in einer Sitzung. Diese Metriken wurden auf einer Seite in Splunk visuell dargestellt, welche in \autoref{fig:splunk_metric-overview} zu sehen ist.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.00\linewidth]{img/99_postscript/splunk_metric-overview.png}
+	\caption{Metrikübersicht in Splunk}
+	\label{fig:splunk_metric-overview}
+\end{figure}
+
+Um speziell Fehler zu visualisieren und diese auch gruppiert darzustellen, wurde in Splunk eine Seite hierfür erstellt \autoref{fig:splunk_error-dashboard}. In der Fehlerübersicht lassen sich ein Histogramm, ein Top-Chart sowie die letzten 50 Events im Detail betrachten. Hierbei ließe sich bspw. ein erhöhtes Fehleraufkommen feststellen, das von der Norm abweicht.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.00\linewidth]{img/99_postscript/splunk_error-dashboard.png}
+	\caption{Fehlerübersicht in Splunk}
+	\label{fig:splunk_error-dashboard}
+\end{figure}
+
+\subsection{Jaeger}
+\label{sec:demo-jaeger}
+
+In Jaeger lassen sich neben dem Trace-Gantt-Diagramm auch Traces miteinander vergleichen, sodass Unterschiede in den Aufrufen entdeckt werden können. In den Abbildungen \ref*{fig:keine-uebersetzungen_jaeger_error-comparison-all} und \ref*{fig:keine-uebersetzungen_jaeger_error-comparison-zoom} ist ein solcher Vergleich zu sehen. Hierbei werden Traces verglichen, die durch eine Anfrage von Warenkorb- und Übersetzungsdaten von Frontend aus resultiert sind. Dabei divergieren die beiden Traces in der Antwort vom Übersetzungsdienst, denn es wird bei einem Trace dort ein Fehler geworfen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.00\linewidth]{img/99_postscript/keine-uebersetzungen_jaeger_error-comparison-all.png}
+	\caption{Tracevergleich in Jaeger}
+	\label{fig:keine-uebersetzungen_jaeger_error-comparison-all}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.00\linewidth]{img/99_postscript/keine-uebersetzungen_jaeger_error-comparison-zoom.png}
+	\caption{Tracevergleich in Jaeger (Zoom)}
+	\label{fig:keine-uebersetzungen_jaeger_error-comparison-zoom}
+\end{figure}

@@ -106,7 +106,7 @@ Sind beide Prüfungen jedoch erfolgreich, so wird ein Seitenwechsel in der SPA d
 
 Nach einer erfolgreichen Eingabe der Rechnungsadresse, wird der Nutzer nun gebeten seine Daten einzugeben, wo die Produkte hin geliefert werden sollen. Hierzu kann er entweder die relevanten Daten aus der Rechnungsübernehmen lassen (Standardfall) oder er gibt alternativ abweichende Lieferdaten an, wie in \autoref{fig:demoanwendung_vorstellung_03-lieferdaten} zu sehen ist. Wie zuvor kann der Nutzer auch auf das vorherige Formular zurückspringen.
 
-Bei der Angabe von abweichenden Lieferdaten werden, wie beim Formular der Rechnungsadresse, zunächst die Eingabefelder überprüft und bei Fehlschlag visuell dem Nutzer darüber berichtet. Anders als bei der Rechnungsadresse wird jedoch nicht die Adressvalidierungsdienst befragt, dies wird in \autoref{sec:invalid-address-is-valid} aufgefasst und erläutert.
+Bei der Angabe von abweichenden Lieferdaten werden, wie beim Formular der Rechnungsadresse, zunächst die Eingabefelder überprüft und bei Fehlschlag visuell dem Nutzer darüber berichtet. Anders als bei der Rechnungsadresse wird jedoch nicht die Adressvalidierungsdienst befragt, dies wird im \autoref{subsec:ungueltige-adressen-sind-gueltig} aufgefasst und erläutert.
 
 Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben erfolgt, wird beim Klick auf \enquote{Weiter} ein Seitenwechsel in der SPA durchgeführt. Auch hier erfolgt kein Serveraufruf, jedoch werden die Daten an die übergreifende Komponente innerhalb der Webanwendung weitergereicht.
 
@@ -168,6 +168,7 @@ Um später mithilfe der Observability-Werkzeuge Probleme aufzudecken, besitzt di
 Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
 \subsubsection{\enquote{Keine Übersetzungen}}
+\label{subsec:keine-uebersetzungen}
 
 \begin{wrapfigure}[6]{r}{0.33\textwidth}
 \centering
@@ -181,11 +182,11 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 - Ursache: Die Pods, die den Übersetzungsdienst enthalten, werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, weswegen er keine Übersetzungen der Artikel enthält. Wird zu diesem Pod verbunden, tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
 
-\subsubsection{\enquote{Gültige Straßen sind ungültig}}
-
-- Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise führt die Eingabe \enquote{Ährenweg} zu einem Fehler.
-
-- Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem Regular-Expression \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
+%\subsubsection{\enquote{Gültige Straßen sind ungültig}}
+%
+%- Problem: Nutzer berichten, dass Ihr Straßenname nicht eingeben werden kann. Beispielsweise führt die Eingabe \enquote{Ährenweg} zu einem Fehler.
+%
+%- Ursache: Der Adressvalidierungsdienst validiert Straßen mit dem Regular-Expression \texttt{[a-zA-Z\textbackslash,\textbackslash-\textbackslash ]+}, welches keine gängigen Sonderzeichen (ä ,ö ,ü, ß) erlaubt.
 
 % rausgenommen, zu viel Dopplung
 %\subsubsection{\enquote{Gültige Hausnummern sind ungültig}}
@@ -194,32 +195,33 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 %
 %- Ursache: Der Adressvalidierungsdienst validiert Hausnummern als Zahl und schlägt im o. g. Fall in der Konvertierung fehl.
 
-\subsubsection{\enquote{Gültige Städte sind ungültig}}
-
-- Problem: Nutzer aus Gießen berichten, dass Sie das Formular zur Rechnungsadresse nicht ausfüllen können
-
-- Ursache: Der Adressvalidierungsdienst meldet die Stadt \enquote{Gießen} als ungültig, weil sie nicht in der lokalen Tabelle vorhanden ist.
+%\subsubsection{\enquote{Gültige Städte sind ungültig}}
+%
+%- Problem: Nutzer aus Gießen berichten, dass Sie das Formular zur Rechnungsadresse nicht ausfüllen können
+%
+%- Ursache: Der Adressvalidierungsdienst meldet die Stadt \enquote{Gießen} als ungültig, weil sie nicht in der lokalen Tabelle vorhanden ist.
 
 \subsubsection{\enquote{Ungültige Adressen sind gültig}}
-\label{sec:invalid-address-is-valid}
+\label{subsec:ungueltige-adressen-sind-gueltig}
 
 - Problem: Nutzer können in den Lieferdaten ungültige Eingaben tätigen und absenden, bei der Bestellaufgabe kommt es zu einem Fehler.
 
 - Ursache: Das Frontend überprüft lediglich die Rechnungsadresse, aber nicht die Lieferadresse
 
-\subsubsection{\enquote{Vor- und Nachnamen werden abgeschnitten}}
+%\subsubsection{\enquote{Vor- und Nachnamen werden abgeschnitten}}
+%
+%- Problem: Nutzer berichten, dass in der Bestellbestätigung Ihre Vor- und Nachnamen abgeschnitten dargestellt werden.
+%
+%- Ursache: Der Bestelldienst begrenzt den Vor- sowie den Nachnamen auf 20 Zeichen, das Frontend begrenzt dies jedoch nicht.
 
-- Problem: Nutzer berichten, dass in der Bestellbestätigung Ihre Vor- und Nachnamen abgeschnitten dargestellt werden.
-
-- Ursache: Der Bestelldienst begrenzt den Vor- sowie den Nachnamen auf 20 Zeichen, das Frontend begrenzt dies jedoch nicht.
-
-\subsubsection{\enquote{Falsche Zahlungsart}}
-
-- Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
-
+%\subsubsection{\enquote{Falsche Zahlungsart}}
+%
+%- Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
+%
 - Ursache: Das Frontend sendet alle Formulardaten jeder Rechnungsart an den Dienst \enquote{Bestellungen}. Dieser nimmt aber an, dass alle nicht ausgewählten Rechnungsarten statt Formulardaten nur \texttt{null} enthalten.
 
 \subsubsection{\enquote{Lange Verarbeitung}}
+\label{subsec:lange-verarbeitung}
 
 - Problem: Beim Abrufen der Warenkorbdaten kommt es zu einer unerwünschten Wartezeit (von ca. 6-10s).
 

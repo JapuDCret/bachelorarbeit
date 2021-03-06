@@ -45,7 +45,7 @@ captionpos = b,
      label = lst:app-observability
 ]{content/04_erstellung-poc/implementierung-code/app-observability.module.ts}
 
-Im \autoref{lst:shopping-cart-datasource} ist die Benutzung des zur Verfügung gestellten \texttt{Tracers} zu sehen, hierbei wird ein Span erstellt und bei Schnittstellenaufrufen an die jeweiligen Services übergeben.
+Im folgenden \autoref{lst:shopping-cart-datasource} ist die Benutzung des zur Verfügung gestellten \texttt{Tracers} zu sehen, hierbei wird ein Span erstellt und bei Schnittstellenaufrufen an die jeweiligen Services übergeben. Wie der Span weiterverwendet wird, ist im nächsten Absatz beschrieben.
 
 \lstinputlisting[
   language = JavaScript,
@@ -114,9 +114,9 @@ captionpos = b,
 
 \subsubsection{Weiterleitung an Splunk}
 
-Wie zuvor beschrieben werden Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an Splunk gesendet. Damit dieser nicht für jedes Datenobjekt einen Aufruf durchführt, gruppiert dieser eintreffende Daten zuvor.
+Wie zuvor beschrieben werden Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an Splunk gesendet. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser die eintreffenden Daten zuvor.
 
-Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Senden eines Batches, 5 Wiederholversuche gestartet werden mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Beispielhafte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
+Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Senden eines Batches, 5 Wiederholversuche gestartet werden mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
 
 \lstinputlisting[
   language = JavaScript,
@@ -126,6 +126,8 @@ basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
 captionpos = b,
      label = lst:splunk-forwarding.service
 ]{content/04_erstellung-poc/implementierung-code/splunk-forwarding.service.ts}
+
+\pagebreak
 
 \lstinputlisting[
   language = JSON,
@@ -169,8 +171,6 @@ basicstyle = {\footnotesize\fontfamily{pcr}\selectfont},
 captionpos = b,
      label = lst:record-consent-dialog.component.ts
 ]{content/04_erstellung-poc/implementierung-code/record-consent-dialog.component.ts}
-
-% TODO: Resilienz, Batchverarbeitung, Structured Logging
 
 \subsection{Architektur}
 
