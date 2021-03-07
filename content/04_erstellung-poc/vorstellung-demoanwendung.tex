@@ -54,9 +54,9 @@ Neben dem eigentlichen User-Interface soll auch ein Backend Teil der Demoanwendu
 
 Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und wurde ebenso wie die Webanwendung auch an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
 
-Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersystemen ermöglicht sowie die Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
+Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersystemen ermöglicht sowie Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
-Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine möglichst realitätsnahe Repräsentation zu erstellen. Speziell wird bei einer solchen Architektur der Nutzen von Tracing deutlicher, nämlich um z. B. die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
+Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine möglichst realitätsnahe Repräsentation zu erstellen. Speziell wird bei einer solchen Architektur der Nutzen von Tracing deutlicher, nämlich, um z. B. die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
 
 \begin{figure}[H]
 	\centering
@@ -91,7 +91,7 @@ Startet der Nutzer den Bestellvorgang, so landet er zunächst auf der Eingabemas
 
 Beim Absenden des Formulars wird zunächst die Validität der Eingabefelder überprüft, bspw. ob die PLZ aus 5 Zahlen besteht, und anschließend wird die Adresse dem Adressvalidierungsdienst zur Prüfung übergeben. Schlägt eine Validierung fehl, so wird dies entweder direkt am verursachenden Textfeld angezeigt oder in einer allgemeinen Fehlermeldung im unteren Bereich der Eingabemaske ausgegeben.
 
-Sind beide Prüfungen jedoch erfolgreich, so wird ein Seitenwechsel in der SPA durchgeführt. Neben der Adressüberprüfung wird kein zusätzlicher Serveraufruf durchgeführt, die eingegeben Daten werden jedoch intern einer übergreifenden Komponente übergeben.
+Sind beide Prüfungen jedoch erfolgreich, so wird ein Seitenwechsel in der SPA durchgeführt. Neben der Adressüberprüfung wird kein zusätzlicher Serveraufruf abgesetzt, die eingegeben Daten werden jedoch intern einer übergeordneten Komponente übergeben.
 
 \begin{figure}[H]
 	\centering
@@ -108,7 +108,7 @@ Nach einer erfolgreichen Eingabe der Rechnungsadresse, wird der Nutzer nun gebet
 
 Bei der Angabe von abweichenden Lieferdaten werden, wie beim Formular der Rechnungsadresse, zunächst die Eingabefelder überprüft und bei Fehlschlag visuell dem Nutzer darüber berichtet. Anders als bei der Rechnungsadresse wird jedoch nicht die Adressvalidierungsdienst befragt, dies wird im \autoref{subsec:ungueltige-adressen-sind-gueltig} aufgefasst und erläutert.
 
-Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben erfolgt, wird beim Klick auf \enquote{Weiter} ein Seitenwechsel in der SPA durchgeführt. Auch hier erfolgt kein Serveraufruf, jedoch werden die Daten an die übergreifende Komponente innerhalb der Webanwendung weitergereicht.
+Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben erfolgt, wird beim Klick auf \enquote{Weiter} ein Seitenwechsel in der SPA durchgeführt. Auch hier erfolgt kein Serveraufruf, jedoch werden die Daten an die übergeordnete Komponente innerhalb der Webanwendung weitergereicht.
 
 \begin{figure}[H]
 	\centering
@@ -123,7 +123,7 @@ Anschließend der Eingabe der Lieferdaten wird der Nutzer nun gebeten seine Zahl
 
 Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteten Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
 
-Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergreifende Komponenten übergeben.
+Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergeordnete Komponenten übergeben.
 
 \begin{figure}[H]
 	\centering
@@ -136,9 +136,9 @@ Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt
 
 Da der Nutzer nun alle notwendigen Daten zur Bestellung eingegeben hat, wird auf dieser Seite ihm eine Übersicht dieser Eingaben präsentiert, wie in \autoref{fig:demoanwendung_vorstellung_05-bestelluebersicht} zu sehen ist. Wie bei allen Formularen gibt es auch hier die Option für den Nutzer zu einem vorherigen Formular zurückzuspringen und Anpassungen vorzunehmen.
 
-In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt und nicht clientseitig gespeichert. Die anderen Daten sind nur clientseitig gespeichert und werden über eine übergreifende Komponente bereitgestellt. Weitere Eingaben sind auf dieser Seite vom Nutzer aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
+In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt und nicht clientseitig gespeichert. Die anderen Daten sind nur clientseitig gespeichert und werden über eine übergreifende Komponente bereitgestellt. Weitere Eingaben des Nutzers sind auf dieser Seite aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
 
-Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der Identifier des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben und dies führt zu einem Seitenwechsel.
+Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der Identifier des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben, weiterhin erfolgt ein eberSeitenwechsel.
 
 \begin{figure}[H]
 	\centering

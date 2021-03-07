@@ -1,6 +1,6 @@
 \subsection{Backend}
 
-Wie in \autoref{subsec:demoanwendung-backend} beschrieben, wurden die Dienste mit Eclipse MicroProfile umgesetzt. Neben den standardmäßig enthaltenen Bibliotheken, gibt es hierbei aber auch unterstützte optionale Bibliotheken, wie Implementierungen von \texttt{OpenAPI}, \texttt{OpenTracing}, \texttt{Fault Tolerance} und vieler weiterer \cite{EclipseMicroprofile}.
+Wie in \autoref{subsec:demoanwendung-backend} beschrieben, wurden die Dienste mit Eclipse MicroProfile umgesetzt. Neben den standardmäßig enthaltenen Bibliotheken gibt es hierbei aber auch unterstützte optionale Bibliotheken, wie Implementierungen von \texttt{OpenAPI}, \texttt{OpenTracing}, \texttt{Fault Tolerance} und vieler weiterer \cite{EclipseMicroprofile}.
 
 Um Traces von den Microservices zu sammeln, wurde die OpenTracing Implementierung sowie ein Jaeger-Client \cite{JaegerClient} zum Exportieren der Daten hinzugezogen. Mit dieser Anbindung lassen sich per Annotation (vgl. \autoref{lst:implementierung-traced-example}) alle zu tracenden Businessmethoden definieren, die dann automatisch getraced und über den Jaeger-Client an Jaeger gesendet werden. Bei jedem Microservice wurde diese Annotation dann an relevante Methoden geschrieben und der Jaeger-Client konfiguriert, was automatisch zu der Übertragung von verteilten Traces in Jaeger führte.
 
@@ -75,7 +75,7 @@ Die gesammelten OTel Tracingdaten werden über einen Standard-Exporter an das \e
 
 \subsubsection{Logging}
 
-Das Logging im Frontend wurde über das npm \cite{NPM} Paket \texttt{ngx-logger}\footnote{ngx-logger auf GitHub: \url{https://github.com/dbfannin/ngx-logger}} realisiert, welches eine speziell an Angular angepasste Logging-Lösung darstellt. Da dieses Pakete extra an Angular angepasst ist, lässt es sich ohne großen Aufwand als Modul einbinden, vgl. \autoref{lst:logging_app.module}.
+Das Logging im Frontend wurde über das npm \cite{NPM} Paket \texttt{ngx-logger}\footnote{ngx-logger auf GitHub: \url{https://github.com/dbfannin/ngx-logger}} realisiert, welches eine speziell an Angular angepasste Logging-Lösung darstellt. Da dieses Paket extra an Angular angepasst ist, lässt es sich ohne großen Aufwand als Modul einbinden und einsetzen (vgl. \autoref{lst:logging_app.module}).
 
 \lstinputlisting[
   language = JavaScript,
@@ -86,7 +86,7 @@ captionpos = b,
      label = lst:logging_app.module
 ]{content/04_erstellung-poc/implementierung-code/logging_app.module.ts}
 
-Wie in den vorherigen Codebeispielen zum Tracing zu sehen war, kann ein \texttt{NGXLogger} im Konstruktor von Komponenten und Diensten injected werden. Logmeldungen die hiermit erfasst werden, werden je nach Konfiguration und Loglevel der jeweiligen Meldung in die Browserkonsole geschrieben. Über einen \texttt{NGXLoggerMonitor} lassen sich die Logmeldungen anzapfen, wie in \autoref{lst:splunk-logging-monitor} zu sehen ist. Hierbei werden die Logmeldungen in ein Splunkformat übertragen und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} übertragen. Die Funktionsweise der Weiterleitung wird an späterer Stelle genauer beschrieben.
+Wie in den vorherigen Codebeispielen zum Tracing zu sehen war, kann ein \texttt{NGXLogger} im Konstruktor von Komponenten und Diensten injected werden. Logmeldungen, die hiermit erfasst werden, werden je nach Konfiguration und Loglevel der jeweiligen Meldung in die Browserkonsole geschrieben. Über einen \texttt{NGXLoggerMonitor} lassen sich die Logmeldungen anzapfen, wie in \autoref{lst:splunk-logging-monitor} zu sehen ist. Hierbei werden die Logmeldungen in ein Splunkformat übertragen und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} übertragen. Die Funktionsweise der Weiterleitung wird an späterer Stelle genauer beschrieben.
 
 \lstinputlisting[
   language = JavaScript,
@@ -116,7 +116,7 @@ captionpos = b,
 
 Wie zuvor beschrieben werden Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an Splunk gesendet. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser die eintreffenden Daten zuvor.
 
-Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Senden eines Batches, 5 Wiederholversuche gestartet werden mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
+Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Sendens eines Batches, 5 Wiederholversuche gestartet werden mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
 
 \lstinputlisting[
   language = JavaScript,
@@ -174,7 +174,7 @@ captionpos = b,
 
 \subsection{Architektur}
 
-Abschließend lässt sich somit folgende, in \autoref{fig:implementierung_architektur} zu betrachtende, Architektur visualisieren. Bei \circled{1} lässt sich die Übertragung von Spans an Jaeger betrachten, bei dem die Backend-Dienste aufgrund der verwendeten Java-Anbindung (\texttt{io\allowbreak{}.\allowbreak{}jaegertracing\allowbreak{}:\allowbreak{}jaeger-client}) die Spans über das Protokoll \enquote{Apache Thrift} \cite{Thrift} berichten und das \enquote{Backend4Frontend} verwendet zur Weiterleitung eine OTel-Anbindung an Jaeger, die widerum gRPC verwendent. Die Übertragung von Log-, Metrik sowie Fehlerdaten lässt sich bei \circled{2} betrachten, dabei handelt es sich um Daten, die zuvor vom Frontend gesendet wurden (vgl. \circled{3}). Die Kommunikation mit LogRocket (vgl. \circled{4}) verläuft ohne Weiterleitung und mit einem proprietärer Protokoll auf Basis von gRPC \cite{LogRocketPerformance}.
+Abschließend lässt sich somit folgende, in \autoref{fig:implementierung_architektur} zu betrachtende, Architektur visualisieren. Bei \circled{1} lässt sich die Übertragung von Spans an Jaeger betrachten, bei dem die Backend-Dienste aufgrund der verwendeten Java-Anbindung (\texttt{io\allowbreak{}.\allowbreak{}jaegertracing\allowbreak{}:\allowbreak{}jaeger-client}) die Spans über das Protokoll \enquote{Apache Thrift} \cite{Thrift} berichten und das \enquote{Backend4Frontend} verwendet zur Weiterleitung eine OTel-Anbindung an Jaeger, die wiederum gRPC verwendet. Die Übertragung von Log-, Metrik sowie Fehlerdaten lässt sich bei \circled{2} betrachten, dabei handelt es sich um Daten, die zuvor vom Frontend gesendet wurden (vgl. \circled{3}). Die Kommunikation mit LogRocket (vgl. \circled{4}) verläuft ohne Weiterleitung und mit einem proprietärer Protokoll auf Basis von gRPC \cite{LogRocketPerformance}.
 
 \hvFloat[rotAngle=90,nonFloat=true,capWidth=w,floatPos=H]%
 {figure}

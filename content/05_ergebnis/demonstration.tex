@@ -4,7 +4,7 @@ Da die Implementierung nun erfolgt und beschrieben ist, wird nun beispielhaft de
 
 \subsection{Aufdecken des Szenarios \enquote{Keine Übersetzungen}}
 
-In diesem Fehlerszenario sind für den Nutzer in der Webanwendung die Übersetzungsschlüssel zu sehen, statt der tatsächlichen Produktnamen (vgl. \autoref{subsec:keine-uebersetzungen}). Da es sich hierbei um einen Fallback handelt, wurde in der Webanwendung darauf verzichtet einen Fehler zu werfen. Dieser würde in Splunk hervorgehoben werden. Jedoch lassen sich in Splunk die Logdaten durchsuchen und so Sitzungen herausfinden, bei denen dieses Problem aufgetreten ist (vgl. \autoref{fig:keine-uebersetzungen_splunk-logs}). Darauf basierend konnten verwandte Logs der selben \enquote{Sitzung} inspiziert werden, jedoch konnte anhand dessen das Fehlverhalten nicht weiter nachvollzogen werden. Jedoch bietet die nun gefundene \texttt{shoppingCartId} die Möglichkeit, damit in weiteren Systemen nachzuforschen.
+In diesem Fehlerszenario sind für den Nutzer in der Webanwendung die Übersetzungsschlüssel zu sehen, statt der tatsächlichen Produktnamen (vgl. \autoref{subsec:keine-uebersetzungen}). Da es sich hierbei um einen Fallback handelt, wurde in der Webanwendung darauf verzichtet einen Fehler zu werfen. Dieser würde in Splunk hervorgehoben werden. Jedoch lassen sich in Splunk die Logdaten durchsuchen und so Sitzungen herausfinden, bei denen dieses Problem aufgetreten ist (vgl. \autoref{fig:keine-uebersetzungen_splunk-logs}). Darauf basierend konnten verwandte Logs derselben \enquote{Sitzung} inspiziert werden, jedoch konnte anhand dessen das Fehlverhalten nicht weiter nachvollzogen werden. Jedoch bietet die nun gefundene \texttt{shoppingCartId} die Möglichkeit, damit in weiteren Systemen nachzuforschen.
 	
 \begin{figure}[H]
 	\centering
@@ -22,7 +22,7 @@ In diesem Fehlerszenario sind für den Nutzer in der Webanwendung die Übersetzu
 
 In Jaeger lassen sich anhand der \texttt{shopping\-Cart\-Id} Traces finden (vgl. \autoref{fig:uebersetzungen_jaeger_search-cropped}). Einer dieser Traces ist mit einem Fehler markiert und entsprang der Funktion \texttt{getAndMapShoppingCart} im Frontend. Dabei handelt es sich um eine Funktion, die die Warenkorb- sowie Übersetzungsdaten abruft und diese zusammengeführt.
 
-Bei Klick auf den Trace erhält man Einsicht in das entsprechende Trace-Gantt-Diagramm (vgl. \autoref{fig:keine-uebersetzungen_jaeger_detail}). Bei dem Aufruf ist im Übersetzungsdienst ein Fehler aufgetreten, welcher vermutlich die fehlenden Übersetzungen verursachte. Weiterhin wurde ein Log im Span hinterlegt, welches die genaue Ursache beschreibt: \texttt{configuration is invalid}. Zudem ist auch der genaue Kubernetes-Pod (\texttt{localization-svc-003}) zu sehen, der die Abfrage durchführte. Somit sind dem problemlösenden Entwickler viele notwendige Informationen geboten, die ihm dabei helfen das Problem zu lösen.
+Bei Klick auf den Trace wird das entsprechende Trace-Gantt-Diagramm geöffnet (vgl. \autoref{fig:keine-uebersetzungen_jaeger_detail}). Bei dem Aufruf ist im Übersetzungsdienst ein Fehler aufgetreten, welcher vermutlich die fehlenden Übersetzungen verursachte. Weiterhin wurde ein Log im Span hinterlegt, welches die genaue Ursache beschreibt: \texttt{configuration is invalid}. Zudem ist auch der genaue Kubernetes-Pod (\texttt{localization-svc-003}) zu sehen, der die Abfrage durchführte. Somit sind dem problemlösenden Entwickler viele notwendige Informationen geboten, die ihm dabei helfen das Problem zu lösen.
 
 \begin{figure}[H]
 	\centering

@@ -15,8 +15,8 @@ Der OpenTelemetry-Standard definiert einige Komponenten, die jeweils spezielle A
 	\item \textbf{API}: Die API stellt die öffentlich sichtbare Schnittstelle der OTel-Verarbeitung (des SDKs) dar, Verwender sind Entwickler sowie instrumentierende Bibliotheken. Mit der API kann ein Entwickler einen Trace initialisieren, darauf aufbauend einen Span erzeugen und diesen Span starten.
 	\item \textbf{Instrumentation-Library}: Bei einer solchen Bibliothek handelt es sich um eine spezifische Anbindung der OTel-API an bspw. ein Framework (wie JAX-RS oder Angular). Teilweise erlauben solche Bibliotheken auch eine automatische Erfassung der Daten, sodass bspw. bei relevanten Methoden (wie Schnittstellaufrufen) ein Span erzeugt wird.
 	\item \textbf{SDK}: Das SDK stellt das Herzstück der Verarbeitung bei OTel dar und pflegt u. A. die Beziehung zwischen den Spans sowie reicht diese an Verarbeitungsmethoden weiter und letztendlich übergibt sie an die exportierende Komponente. Der erzeugte Span wird mit seinen Kontextinformationen im SDK vorgehalten und bei Beendigung des Spans wird dieser an die angebunden Exporter übergeben.
-	\item \textbf{Exporter}: Exporter sind spezifische Anbindungen, die Daten im OTel-Format annimmt und diese für die Gegenstelle aufbereitet sowie an diese transportiert. Die Gegenstelle kann entweder eine Datensenke darstellen, oder auch eine weiterverarbeitende Komponente sein. In diesem Beispiel wird der Span nicht in ein anderes Format überführt, da er an einen OTel-Colletor gesendet wird.
-	\item \textbf{Collector}: Collector sind eine OTel-Schnittstelle um unterschiedliche OTel-Daten anzunehmen und diese an weitere Systeme mithilfe von Exporter zu überreichen. Bei dem Exporter in diesem Beispiel werden die Daten in das passende Format des Telemetry-Backends überführt.
+	\item \textbf{Exporter}: Exporter sind spezifische Anbindungen, die Daten im OTel-Format annimmt und diese für die Gegenstelle aufbereitet sowie an diese transportiert. Die Gegenstelle kann entweder eine Datensenke darstellen oder auch eine weiterverarbeitende Komponente sein. In diesem Beispiel wird der Span nicht in ein anderes Format überführt, da er an einen OTel-Colletor gesendet wird.
+	\item \textbf{Collector}: Collector sind eine OTel-Schnittstelle, um unterschiedliche OTel-Daten anzunehmen und diese an weitere Systeme mithilfe von Exporter zu überreichen. Bei dem Exporter in diesem Beispiel werden die Daten in das passende Format des Telemetry-Backends überführt.
 	\item \textbf{Telemetry-Backend}: Ein Telemetry-Backend stellt die Datensenke der OTel-Daten dar und bietet den Entwicklern und Betreibern eine Visualisierung der gesammelten Daten. Beispiele hierfür sind z. B. Jaeger \cite{Jaeger} oder Prometheus \cite{Prometheus}.
 \end{itemize}
  
@@ -28,25 +28,3 @@ Der OpenTelemetry-Standard definiert einige Komponenten, die jeweils spezielle A
 \end{figure}
 
 OpenTelemetry legt somit ein fundiertes Konzept fest, welches die Interoperabilität der derzeit existierenden Systeme erhöhen wird, vorausgesetzt der Standard wird erfolgreich veröffentlicht und auch adaptiert.
-
-%OpenTelemetry (OTel) \cite{OpenTelemetry} ist ein sich derzeit\footnote{Ein erster (General-Availability-)Release der Spezifikation ist für Q1 2021 geplant \cite{OpenTelemetryGARelease}.} entwickelnder herstellerunabhängiger Standard, um Tracing-, Metrik- und Logdaten\footnotemark{} zu erfassen, zu verarbeiten, zu analysieren und zu visualisieren. OTel fasst die beiden Standards OpenTracing und OpenCensus \cite{OpenCensus} zusammen und hat sich als Ziel gesetzt diese zu erweitern \cite{UseNixDistributiveTracing}. Hinter dem Standard stehen u. A. die Cloud Native Computing Foundation (CNCF), Google, Microsoft, und führende Hersteller von Tracing- und Monitoring-Lösungen.
-%
-%Ziel ist es, dass Entwickler Tools und Werkzeuge benutzen können, ohne erneut hochspezifische Anbindungen schreiben und konfigurieren zu müssen. Stattdessen definiert der Standard Komponenten, die spezielle Aufgabengebiete haben und mit einer allgemeinen API anzusprechen sind. Die technische Infrastruktur einer auf OTel basierenden Lösung ist in \autoref{fig:otel-unified-collection} zu sehen. Im groben definiert OTel folgende Komponenten: API, SDK, Exporter, Collector und Backend (vgl. \autoref{fig:otel-components}).
-%
-%\nomenclature[Fachbegriff]{OTel}{OpenTelemetry}
-%\nomenclature[Fachbegriff]{CNCF}{Cloud Native Computing Foundation}
-%\footnotetext{Eine Entwicklung einer Definition zu Logging ist im Gange \cite{OpenTelemetryLoggingSpecification}.}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=\linewidth]{img/03_methoden/otel_unified-collection_2.png}
-%	\caption{Schaubild einer Lösung auf Basis von OTel \cite{OpenTelemetryUnifiedCollection}}
-%	\label{fig:otel-unified-collection}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.75\linewidth]{img/03_methoden/dynatrace_otel-components.png}
-%	\caption{OTel Komponenten \cite{DynatraceOTelComponents}}
-%	\label{fig:otel-components}
-%\end{figure}
