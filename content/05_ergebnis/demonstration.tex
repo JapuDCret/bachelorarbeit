@@ -46,9 +46,9 @@ Bis auf die Fehlermeldung liefert Splunk jedoch nicht sprechende Informationen, 
 
 \subsection{Aufdecken des Szenarios \enquote{Lange Verarbeitung}}
 
-In diesem Szenario kommt es bei der Anzeige des Warenkorbes zu einer starken Verzögerung, bis dieser Sichtbar ist (vgl. \autoref{subsec:lange-verarbeitung}). Hierbei ist Splunk wenig hilfreich, da eine zeitliche Abfolge alleine durch Logs schwer nachvollziehbar ist. Durch LogRocket ist das resultierende Verhalten gut nachvollzuziehen und ein Video dessen ist im Anhang vorzufinden (siehe \autoref{sec:demo-logrocket}).
+In diesem Szenario kommt es bei der Anzeige des Warenkorbes zu einer starken Verzögerung, bis dieser sichtbar ist (vgl. \autoref{subsec:lange-verarbeitung}). Hierbei ist Splunk wenig hilfreich, da eine zeitliche Abfolge alleine durch Logs schwer nachvollziehbar ist. Durch LogRocket ist das resultierende Verhalten gut nachvollzuziehen und ein Video dessen ist im Anhang vorzufinden (siehe \autoref{sec:demo-logrocket}).
 
-Hierbei hilft erneut Jaeger, denn durch Traces lassen sich nicht nur hierarchische Beziehungen nachvollziehen, sondern auch zeitliche. Eine Trace-Gantt-Visualisierung eines Traces, bei dem der Warenkorb abgerufen wird, ist in \autoref{fig:lange-verarbeitung_jaeger} zu betrachten. Dabei sticht hervor, dass der überwiegende Anteil der Zeit nicht in den Backendanfragen verloren geht, sondern durch die Operation \texttt{mapShoppingCart} im Frontend geschieht. Anhand dieser Informationen kann ein Entwickler nun hergehen und diese Operation verbessern.
+Hierbei hilft erneut Jaeger, denn durch Traces lassen sich nicht nur hierarchische Beziehungen nachvollziehen, sondern auch zeitliche. Eine Trace-Gantt-Visualisierung eines Traces, bei dem der Warenkorb abgerufen wird, ist in \autoref{fig:lange-verarbeitung_jaeger} zu betrachten. Dabei sticht hervor, dass der überwiegende Anteil der Zeit nicht in den Backendanfragen verloren geht, sondern durch die Operation \texttt{mapShoppingCart} im Frontend. Anhand dieser Informationen kann ein Entwickler nun hergehen und diese Operation verbessern.
 
 \begin{figure}[H]
 	\centering

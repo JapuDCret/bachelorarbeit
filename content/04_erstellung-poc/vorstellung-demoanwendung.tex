@@ -167,10 +167,12 @@ Um später mithilfe der Observability-Werkzeuge Probleme aufzudecken, besitzt di
 
 Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
+\pagebreak
+
 \subsubsection{\enquote{Keine Übersetzungen}}
 \label{subsec:keine-uebersetzungen}
 
-\begin{wrapfigure}[6]{r}{0.33\textwidth}
+\begin{wrapfigure}[7]{r}{0.33\textwidth}
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/04_erstellung-poc/demoanwendung_fehlerszenario-uebersetzungen}
@@ -218,7 +220,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 %
 %- Problem: Nutzer berichten, dass in der Bestellbestätigung die falsche Zahlungsart angezeigt wird. In der Bestellübersicht wurde jedoch die korrekte Zahlungsart angezeigt.
 %
-- Ursache: Das Frontend sendet alle Formulardaten jeder Rechnungsart an den Dienst \enquote{Bestellungen}. Dieser nimmt aber an, dass alle nicht ausgewählten Rechnungsarten statt Formulardaten nur \texttt{null} enthalten.
+%- Ursache: Das Frontend sendet alle Formulardaten jeder Rechnungsart an den Dienst \enquote{Bestellungen}. Dieser nimmt aber an, dass alle nicht ausgewählten Rechnungsarten statt Formulardaten nur \texttt{null} enthalten.
 
 \subsubsection{\enquote{Lange Verarbeitung}}
 \label{subsec:lange-verarbeitung}
@@ -237,4 +239,6 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 
 Es ist anzumerken, dass die Demoanwendung nur ein Modell einer tatsächlichen Webanwendung darstellt. Wie jedes Modell können nicht alle Gegebenheiten des zu modellierenden Sachverhalts nachgestellt werden. Jedoch ist durch den allgemein gehaltenen Anwendungsfall und die moderne Umsetzung eine Übertragbarkeit zu ähnlichen Projekten durchaus vorhanden.
 
-Nun da die Demoanwendung beschrieben ist, werden die Anforderungen näher erläutert, die das zu erstellende Konzept erfüllen soll.
+Nun da die Demoanwendung beschrieben ist, werden die Anforderungen näher erläutert, die das zu erstellende Proof-of-Concept erfüllen soll.
+
+\pagebreak

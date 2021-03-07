@@ -1,3 +1,53 @@
 % \section{Übertragbarkeit}
 
-\textit{Wie gut lassen sich die ermittelten Ergebnisse im PoC auf andere Projekte im selben Umfeld übertragen?}
+Neben der Erfüllung von gestellten Anforderungen sowie der Aufdeckung von Fehlerszenarien, sollte der Proof-of-Concept sowie das zugrundeliegende Konzept eine Übertragbarkeit aufweisen. Übertragbarkeit meint hierbei, ob und wie gut sich die ermittelten Ergebnisse auf andere Projekte übertragen lassen.
+
+Zunächst wurde eine Demoanwendung erstellt, anhand dessen die Entwicklung des Konzeptes und der eigentlichen Implementierung erfolgten. Bei dieser Demoanwendung handelt es sich hauptsächlich um eine Rich-Internet-Application, die mit Angular umgesetzt wurde und eine Microservice-orientierte Architektur im Backend nutzt. Setzen Aspekte der erstellten Lösung auf diese Randbedingungen, schränken sie die Übertragbarkeit auf andere Systeme ein.
+
+Das Konzept wurde jedoch nicht starr an die Demoanwendung angelehnt, sondern basiert grundlegend auf den zuvor identifizierten fehlenden Informationen bei RIAs und den ermittelten Technologien, um diese Informationslücke zu füllen. Anders ist dies jedoch bei der Umsetzung, denn hier wurden einige Aspekte auf Basis der eingesetzten Frameworks umgesetzt. Beispielsweise basiert das Tracing im Backend auf der Unterstützung von OpenTracing im Eclipse Microprofile Framework. Des Weiteren basiert die Erfassung von Logs und Fehlern im Frontend auf Angular spezifischen Bibliotheken oder Komponenten.
+
+Eine direkte Bewertung der Übertragbarkeit erfolgt nicht, stattdessen werden die Annahmen erfasst. Die Erfassung der Annahmen erfolgt in \autoref{tab:annahmen-der-erstellten-loesungen}. Dabei wird jede Annahme jeweils für das Konzept sowie für die Umsetzung bewertet, dabei werden folgende Bewertungsschlüssel verwendet:
+
+\begin{itemize}
+	\item \textbf{ja}: Die Annahme muss erfüllt sein.
+	\item \textbf{nein}: Die Annahme muss nicht erfüllt sein.
+	\item \textbf{nebensächlich}: Damit ist gemeint, dass die Annahme nicht erfüllt sein muss, jedoch dies bspw. zu einer Minderung der Funktionalität führt. Weiterhin kann hiermit auch gemeint sein, dass die Annahme durch einen äquivalenten Ersatz erfüllt werden kann.
+\end{itemize}
+
+\begingroup
+\centering
+\setlength{\LTleft}{-20cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{longtable}{|p{10cm}|p{1.9cm}|p{1.9cm}|}
+\hline
+Annahme & Konzept & Umsetzung \\
+\endhead
+\hline
+Das System kann erweitert werden & ja & ja \\
+\hline
+Das System kann erweitert werden & ja & ja \\
+\hline
+Das Frontend ist eine RIA & ja & ja \\
+\hline
+Das Frontend ist eine SPA & nein & ja \\
+\hline
+Das Frontend wurde mit Angular erstellt & nein & ja \\
+\hline
+Das Frontend realisiert einen Wizard & nein & nein \\
+\hline
+Das Backend folgt einem Microservice-Architektur-Ansatz & nebensächl. & ja \\
+\hline
+Das Backend wurde mit Java umgesetzt & nein & ja \\
+\hline
+Das Backend wurde mit Eclipse MicroProfile umgesetzt & nein & nebensächl. \\
+\hline
+Splunk kann eingesetzt werden & nebensächl. & ja \\
+\hline
+Jaeger kann eingesetzt werden & nebensächl. & ja \\
+\hline
+LogRocket kann eingesetzt werden & ja & ja \\
+\hline
+\caption{Annahmen der erstellten Lösungen}
+\label{tab:annahmen-der-erstellten-loesungen}
+\end{longtable}
+\endgroup
