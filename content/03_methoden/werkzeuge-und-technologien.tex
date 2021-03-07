@@ -32,6 +32,8 @@ Folgend werden in der \autoref{tab:technologie-uebersicht} die gefundenen Techno
 	\item \textit{keine Angabe}: Die Funktionalität ist nicht vorhanden.
 \end{enumerate}
 
+\pagebreak
+
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_uebersicht.tex}
 
 \subsection{Kategorisierung}
@@ -55,6 +57,7 @@ Damit die Veranschaulichung übersichtlicher wird, werden die Technologien folge
 	\begin{itemize}
 		\item Die Kategorie Error-Tracking zeichnet sich dadurch aus, dass die Technologien hier die Erhebung und Visualisierung von Fehlerdaten als Kernfunktionalität besitzen. Weiterhin besitzen viele dieser Werkzeuge ein detailliertes Issue-Management, mit dem sich Teams organisieren können, um Fehler zu beheben und Arbeiten nachzuhalten.
 	\end{itemize}
+	\pagebreak
 	\item Session-Replay-Dienste
 	\begin{itemize}
 		% ersterem/letzterem wird klein geschrieben
@@ -100,6 +103,8 @@ Um in dem Proof-of-Concept auf die hier vorgestellten Technologien zurückgreife
 	\begin{itemize}
 		\item Mit diesen zwei Kriterien soll bewertet werden, wie diese Technologie eingesetzt werden kann. Ist sie in einer eigenen Infrastruktur aufsetzbar, also \enquote{On-Premise}, oder existiert die Technologie als buchbarer Dienst z. B. in der Cloud, also Software-as-a-Service (SaaS).
 	\end{itemize}
+	
+	\pagebreak
 
 	\item Standardisierung
 	\begin{itemize}
@@ -127,17 +132,19 @@ Auf Basis dieser Kriterien werden die Technologien jeweils nach Kategorie bewert
 \subsection{Bewertung und Auswahl}
 \label{subsec:bewertung-und-auswahl}
 
-In der Kategorie \enquote{Log-Plattformen} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien, lediglich Fluentd sticht hervor, aber dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt, sondern es sich um einen Logaggregator handelt \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic-Stack eignet sich durch die hohe Flexiblität und der Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben  \cite{ThreatIdentificationFromAccessLogsUsingElasticStack} \cite{DesignLogManagementSystem}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, indem dass sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic-Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise-Deployment kann lediglich nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser 4 Technologien ausschließende Eigenschaften besitzt, sie sind allesamt geeignet für die in dieser Arbeit angestrebte Lösung. Es wurde sich für \textbf{Splunk} entschieden, da es bereits bei OpenKnowledge im Einsatz ist. Wie aber zuvor erwähnt eignen sich die anderen Technologien ähnlich gut und eine erneute Auswahl mit anderen situationsbedingten Kriterien könnte variieren.
+In der Kategorie \enquote{Log-Plattformen} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien, lediglich Fluentd sticht hervor, aber dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt, sondern es sich um einen Logaggregator handelt \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic-Stack eignet sich durch die hohe Flexiblität und der Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben  \cite{ThreatIdentificationFromAccessLogsUsingElasticStack} \cite{DesignLogManagementSystem}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, indem dass sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic-Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise-Deployment kann lediglich nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser 4 Technologien ausschließende Eigenschaften besitzt, sie sind allesamt geeignet für die in dieser Arbeit angestrebte Lösung.
+
+Es wurde sich für \textbf{Splunk} entschieden, da es bereits bei OpenKnowledge im Einsatz ist. Wie aber zuvor erwähnt eignen sich die anderen Technologien ähnlich gut und eine erneute Auswahl mit anderen situationsbedingten Kriterien könnte variieren.
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-log-plattformen.tex}
-
-Die Auswahl in der Kategorie \enquote{Error-Tracking} ist etwas diverser, denn hier weisen manche Technologien Funktionalitäten auf, die sonst in dem Gebiet fremd sind. Bespielweise bieten Airbrake und Raygun neben einem Error-Monitoring zudem Aspekte eines APM, sodass die Anwendung/das System auch im Normalbetrieb überprüft werden kann. Jedoch sind diese APM-Funktionalitäten nicht so ausgereift, wie bei spezialisierten APM-Lösungen. Airbrake und Raygun sind lediglich als SaaS-Produkte verfügbar, währenddessen Sentry, Rollbar und Bugsnag auch als OnPremise-Lösung verfügbar sind. Sentry ist zudem vollständig quelloffen verfügbar\footnote{Sentry GitHub Repo: \url{https://github.com/getsentry/sentry}} und entwickelt aktiv mit der Community auf GitHub \cite{GitHub}. Weiterhin ist Sentry das einzige identifizierte Werkzeug, welches eine nicht zeitlich begrenzte Version der SaaS-Lösung zur Verfügung stellt. Eine stark aussagekräftige Entscheidung kann jedoch nicht getroffen werden, da alle Werkzeuge hier adäquat die Bedingungen eines guten Error-Monitoring-Werkzeugs erfüllen. Dennoch wird sich an dieser Stelle für \textbf{Sentry} entschieden, auf Basis der zuvor nahe gelegten Gründe.
-
-\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-error-tracking.tex}
 
 Im Gebiet der Distributed-Tracing-Systeme gibt es auch nur wenige oberflächliche Unterschiede, sowohl Jaeger als auch Zipkin sind quelloffen, sowie sind sie weit verbreitet im Einsatz \cite{AnalysisOfDistributedTracingSystemsEffectOnPerformance}. Jaeger scheint für neue Projekten attraktiver zu sein und findet dort mehr Einsatz, wie in StackShares Gegenüberstellung zu sehen ist \cite{StackShareJaegerVsZipkin}. Teilweise ist dies erklärbar durch die Ergebnisse, die Mart{\'i}nez \etal \cite{ComparisonOfE2ETestingToolsForMicroservices} herausfanden: Jaeger zeigt mehr hilfreiche Informationen an und kann diese schneller bereitstellen als Zipkin. Zudem entwickelt Jaeger aktiv eine Unterstützung des neuen OpenTelemetry-Standards \cite{JaegerOpenTelemetry}, jedoch findet sich bei Zipkin keine vergleichbare Entwicklung. Aus diesen Gründen ist \textbf{Jaeger} hierbei das Werkzeug der Wahl.
 
 \input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-distributed-tracing-systeme.tex}
+
+Die Auswahl in der Kategorie \enquote{Error-Tracking} ist etwas diverser, denn hier weisen manche Technologien Funktionalitäten auf, die sonst in dem Gebiet fremd sind. Bespielweise bieten Airbrake und Raygun neben einem Error-Monitoring zudem Aspekte eines APM, sodass die Anwendung/das System auch im Normalbetrieb überprüft werden kann. Jedoch sind diese APM-Funktionalitäten nicht so ausgereift, wie bei spezialisierten APM-Lösungen. Airbrake und Raygun sind lediglich als SaaS-Produkte verfügbar, währenddessen Sentry, Rollbar und Bugsnag auch als OnPremise-Lösung verfügbar sind. Sentry ist zudem vollständig quelloffen verfügbar\footnote{Sentry GitHub Repo: \url{https://github.com/getsentry/sentry}} und entwickelt aktiv mit der Community auf GitHub \cite{GitHub}. Weiterhin ist Sentry das einzige identifizierte Werkzeug, welches eine nicht zeitlich begrenzte Version der SaaS-Lösung zur Verfügung stellt. Eine stark aussagekräftige Entscheidung kann jedoch nicht getroffen werden, da alle Werkzeuge hier adäquat die Bedingungen eines guten Error-Monitoring-Werkzeugs erfüllen. Dennoch wird sich an dieser Stelle für \textbf{Sentry} entschieden, auf Basis der zuvor nahe gelegten Gründe.
+
+\input{data/tools-und-werkzeuge/tools-und-werkzeuge_bewertung-error-tracking.tex}
 
 In der Beschreibung zur Kategorie \enquote{Session-Replay} wurde erwähnt, dass einige dieser Werkzeuge eine eher geschäfts- und andere eher eine entwicklerorientierte Session-Replay-Funktionalität vorweisen. Genauer ist FullStory fast ausschließlich für das Nachvollziehen von User-Experience konzipiert, währenddessen LogRocket sehr detaillierte und sehr technische Informationen liefert \cite{Webalyt}. Inspectlet lässt sich als Mischung dieser beiden Sichten verstehen, bietet aber z. B. nicht alle Informationen an, die LogRocket darstellt  \cite{Webalyt}. Da die hier angestrebte Lösung auf Betreiber und insbesondere Entwickler abzielt, wird sich hiermit für \textbf{LogRocket} entschieden.
 
