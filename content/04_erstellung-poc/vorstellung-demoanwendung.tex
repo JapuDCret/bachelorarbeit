@@ -75,8 +75,7 @@ Wie beim Kunden wurde auf Basis von Angular ein Wizard erstellt, welcher mehrere
 
 \subsubsection{Warenkorb}
 
-\autoref{fig:demoanwendung_vorstellung_01-warenkorb} zeigt die Startseite, die der Nutzer sieht, wenn er die Demoanwendung aufruft. Hierbei wird simuliert, dass der Nutzer zuvor in einem Online-Obsthandel einige Produkte ausgewählt hat und sich nun auf der Ansichtsseite des Warenkorbs befindet. Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten. Die hier angezeigten Date
-n werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird keine Serverabruf durchgeführt, sondern in der SPA ein Seitenwechsel vorgenommen.
+\autoref{fig:demoanwendung_vorstellung_01-warenkorb} zeigt die Startseite, die der Nutzer sieht, wenn er die Demoanwendung aufruft. Hierbei wird simuliert, dass der Nutzer zuvor in einem Online-Obsthandel einige Produkte ausgewählt hat und sich nun auf der Ansichtsseite des Warenkorbs befindet. Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten. Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird keine Serverabruf durchgeführt, sondern in der SPA wird ein Seitenwechsel vorgenommen.
 
 \begin{figure}[H]
 	\centering
@@ -163,9 +162,9 @@ Auf dieser Seite kann der Nutzer nun nur noch auf den Button \enquote{Zum Shop} 
 \subsection{Fehlerszenarien}
 \label{subsec:fehlerszenarien}
 
-Um später mithilfe der Observability-Werkzeuge Probleme aufzudecken, besitzt die Demoanwendung einige bewusst eingebaute Implementierungen, welche problembehaftete sind. Diese sind in Zusammenarbeit mit den Stakeholdern konzipiert worden. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
+Um später mithilfe von Observability-Werkzeugen Probleme aufzudecken, besitzt die Demoanwendung einige bewusst eingebaute Implementierungen, welche problembehaftet sind. Diese sind in Zusammenarbeit mit den Stakeholdern konzipiert worden. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
 
-Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Sie werden folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
+Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Ein Ausschnitt wird folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
 \pagebreak
 
