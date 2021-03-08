@@ -30,7 +30,7 @@ Dies stellt ein Kernproblem von  Webanwendungen dar \cite{ClientSideMonitoringOf
 %\end{itemize}
 \section{Zielsetzung}
 
-Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScript-basierten Webanwendung die Möglichkeit zu geben, das Verhalten ihrer Anwendung und die Interaktionen von Nutzer nachzuvollziehen. Diese Nachvollziehbarkeit soll insbesondere bei Fehlerfällen u. Ä. gewährleistet sein, ist aber auch in sonstigen Fällen zu erstreben, wie z. B. wenn die Betreiber nachvollziehen wollen, welche Interaktionen der Nutzer getätigt hat. Eine vollständige Überwachung der Anwendung und des Nutzers (wie bspw. bei Werbe-Tracking) sind jedoch nicht vorgesehen. Daraus ergibt sich die Forschungsfrage:
+Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScript-basierten Webanwendung die Möglichkeit zu geben, das Verhalten ihrer Anwendung und die Interaktionen von Nutzern nachzuvollziehen. Diese Nachvollziehbarkeit soll insbesondere bei Fehlerfällen u. Ä. gewährleistet sein, ist aber auch in sonstigen Fällen zu erstreben, wie z. B. wenn die Betreiber nachvollziehen wollen, welche Interaktionen der Nutzer getätigt hat. Eine vollständige Überwachung der Anwendung und des Nutzers (wie bspw. bei Werbe-Tracking) sind jedoch nicht vorgesehen. Daraus ergibt sich die Forschungsfrage:
 
 \begin{quotation}
 	Wie sieht ein Ansatz aus, um den Betreibern von JavaScript-basierten Webanwendungen eine Nachvollziehbarkeit zu gewährleisten?
@@ -38,9 +38,7 @@ Das grundlegende Ziel dieser Arbeit soll es sein, den Betreibern einer JavaScrip
 
 Vom Leser wird eine Grundkenntnis der Informatik in Theorie oder Praxis erwartet, aber es sollen keine detaillierten Erfahrungen in der Webentwicklung vom Leser erwartet werden. Daher sind das Projektumfeld und seine besonderen Eigenschaften zu erläutern.
 
-Die anzustrebende Lösung soll ein Proof-of-Concept sein, welches eine, zu erstellenden, Demoanwendung erweitert. Die Demoanwendung soll repräsentativ eine abgespeckte JavaScript-basierte Webanwendung darstellen, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.
-
-%Vor der eigentlichen Lösungserstellung soll jedoch die theoretische Seite beleuchtet werden, indem die Nachvollziehbarkeit sowie Methoden und Praktiken zur Erreichung dieser beschrieben werden. Es gilt aktuelle Literatur und den Stand der Technik zu erörtern, in Bezug auf die Forschungsfrage. Beim Stand der Technik sind Technologien aus Fachpraxis und Literatur näher zu betrachten und zu beschreiben.
+Die anzustrebende Lösung soll ein Proof-of-Concept sein, welches eine, zu erstellende, Demoanwendung erweitert. Die Demoanwendung soll repräsentativ eine abgespeckte JavaScript-basierte Webanwendung darstellen, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.
 
 Weiterhin gilt es zu beleuchten, wie die Auswirkungen für die Nutzer der Webanwendung sind. Wurde die Leistung der Webanwendung beeinträchtigt (erhöhte Ladezeit, erhöhte Datenlast)? Werden mehr Daten von ihm erhoben und zu welchem Zweck?
 
@@ -63,7 +61,7 @@ Die Demoanwendung wird als Single-Page-Application (SPA) \cite{SinglePageApplica
 
 \vspace{-0.25\baselineskip}
 
-Um das Ziel dieser Arbeit, also ein Proof-of-Concept zu erstellen, welches die Nachvollziehbarkeit einer bestehenden Anwendung erhöht, zu erreichen, wird zunächst die theoretische Seite des Forschungsfeldes beleuchtet. Hierzu gehört eine nähere Betrachtung der Umgebung \enquote{Browser} und von Webanwendungen, sowie gilt es die Nachvollziehbarkeit zu definieren und im Hinblick auf SPAs zu erläutern.
+Um das Ziel dieser Arbeit, also ein Proof-of-Concept zu erstellen, welches die Nachvollziehbarkeit einer bestehenden Anwendung erhöht, zu erreichen, wird zunächst die theoretische Seite des Forschungsfeldes beleuchtet. Hierzu gehört eine nähere Betrachtung der Umgebung \enquote{Browser}, von Webanwendungen, sowie gilt es die Nachvollziehbarkeit zu definieren und im Hinblick auf SPAs zu erläutern.
 
 Darauf aufbauend sind aktuelle Ansätze zur verbesserten Nachvollziehbarkeit zu recherchieren und zu beschreiben. Speziell sollen hierbei die allgemeinen übergreifenden Methoden und die tatsächlichen angewandten Praktiken differenziert beschrieben werden. Hierbei ist u. A. der Stand der Technik aus Wirtschaft und Literatur zu erläutern, um darauffolgend und auf Basis dessen ein Proof-of-Concept zu erstellen.
 
@@ -75,9 +73,9 @@ Bevor jedoch der PoC implementiert wird, soll ein Konzept erstellt werden, welch
 
 \vspace{-0.50\baselineskip}
 
-Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Open Knowledge GmbH erstellt. Der Standortleiter des Standortes Essen, Dipl.-Inf. Stephan Müller, übernimmt die Zweitbetreuung.
+Die Bachelorarbeit wird im Rahmen einer Werkstudententätigkeit innerhalb der Open Knowledge GmbH erstellt. Der Leiter des Standortes Essen, Dipl.-Inf. Stephan Müller, übernimmt die Zweitbetreuung. Neben Stephan Müller ist Christian Wansart ein Stakeholder der hier zu erstellenden Lösung, er ist bei der Open Knowledge angestellt.
 
-Die Open Knowledge GmbH ist ein branchenneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg, dem Hauptsitz des Unternehmens, gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde in Essen der zweite Standort eröffnet, an dem 13 Mitarbeiter angestellt sind.
+Die Open Knowledge GmbH ist ein branchenneutrales mittelständisches Dienstleistungsunternehmen mit dem Ziel bei der Analyse, Planung und Durchführung von Softwareprojekten zu unterstützen. Das Unternehmen wurde im Jahr 2000 in Oldenburg gegründet und beschäftigt heute 74 Mitarbeiter. Mitte 2017 wurde in Essen der zweite Standort eröffnet, an dem 13 Mitarbeiter angestellt sind.
 
 Die Mitarbeiter von Open Knowledge übernehmen in Kundenprojekten Aufgaben bei der Analyse über die Projektziele und der aktuellen Ausgangssituationen, der Konzeption der geplanten Software, sowie der anschließenden Implementierung. Die erstellten Softwarelösungen stellen Individuallösungen dar und werden den Bedürfnissen der einzelnen Kunden entsprechend konzipiert und implementiert. Technisch liegt die Spezialisierung bei der Mobile- und bei der Java Enterprise Entwicklung, bei der stets moderne Technologien und Konzepte verwendet werden. Die Geschäftsführer als auch diverse Mitarbeiter der Open Knowledge GmbH sind als Redner auf Fachmessen wie der Javaland oder als Autoren in Fachzeitschriften wie dem Java Magazin vertreten.
 

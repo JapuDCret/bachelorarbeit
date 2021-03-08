@@ -1,24 +1,24 @@
 Neben der Umgebung Browser beschäftigt sich die Arbeit hauptsächlich mit der Nachvollziehbarkeit. Nachvollziehbarkeit bedeutet allgemein, dass über ein resultierendes Verhalten eines Systems auch interne Zustände nachvollzogen werden können. Dies ist keine neue Idee, sondern fand bereits 1960 im Gebiet der Kontrolltheorie starke Bedeutung \cite{OnTheGeneralTheoryOfControlSystems}. Nach Freedman \cite{TestabilityOfSoftwareComponents} und Scrocca \etal \cite{TheKaijuProjectPaper} lässt sich diese Definition auch auf Softwaresysteme übertragen und wird dabei mit \enquote{Observability} bezeichnet. Scrocca adaptiert dabei die von Majors \cite{MajorsObservability} genannte Definition:
 
 \begin{quotation}
-\enquote{Observability for software is the property of knowing what is happening inside a distributed application at runtime by simply asking questions from the outside and without the need to modify its code to gain insights.}
+\enquote{Observability for software is the property of knowing what is happening inside a (distributed) application at runtime by simply asking questions from the outside and without the need to modify its code to gain insights.}
 \end{quotation}
 
 Insbesondere in der Wirtschaft hat sich der Begriff der Observability etabliert \cite{DynatraceObservability} \cite{NewRelicObservability}. Hierbei lässt sich die Observability als eine Weiterentwicklung des klassischen Monitorings von Software betrachten \cite{TheNewStackMonitoringAndObservability}. Ziel dabei ist es Anwendungen und Systeme weitesgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können.
 
 %\vspace{-0.5\baselineskip}
-\subsection{Nachvollziehbarkeit bei SPAs}
+\section{Nachvollziehbarkeit bei SPAs}
 \label{sec:nachvollziehbarkeit-bei-spas}
 
 Speziell in dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher betrachtet. Wie zuvor in \autoref{sec:single-page-applications} geschildert, gibt es bei Webanwendungen und insbesondere Singe-Page-Applications besondere Eigenschaften, die es den Betreibern und Entwicklern erschweren das Verhalten ihrer Anwendung und die Interaktionen eines Nutzers nachzuvollziehen. Meist lassen sich aus Sicht der Betreiber nur die Kommunikationsaufrufe der Anwendung zum Backend nachvollziehen, aber nicht wie es dazu gekommen ist und wie diese Daten weiterverarbeitet werden. Somit ist eine gängige SPA nicht gut nachvollziehbar.
 
-\subsubsection{Logdaten}
+\subsection{Logdaten}
 \label{sec:logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Durch die zuvor beschrieben Härtungsmaßnahmen von Browsern ist es hinzukommend nicht möglich, das Log direkt in eine Datei zu schreiben.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung in Browsern \cite{MDNConsole}. Diese Ausgabe ist aber für den Standard-Benutzer unbekannt und es kann nicht erwartet werden, dass Nutzer dieses Log bereitstellen. Durch die zuvor beschrieben Härtungsmaßnahmen von Browsern ist es hinzukommend nicht möglich, das Log direkt in eine Datei zu schreiben.
 
 Um die Logdaten also zu erheben, gilt es entweder ein spezielles Log-Framework in der Webanwendung zu verwenden oder die bestehende Schnittstelle zu überschreiben oder zu wrappen. Nachdem die Datenerhebung gewährleistet ist, gilt es jedoch zudem die Daten an ein Partnersystem weiterzuleiten, welches die Beachtung der zuvor beschriebenen Einschränkungen erfordert. Alles in Allem stellt sich die Logdatenerhebung als nicht trivial dar, eine genauere Betrachtung erfolgt in der Untersuchung bestehender Lösungen.
 
-\subsubsection{Fernzugriff}
+\subsection{Fernzugriff}
 
-Ein weiterer Punkt, der den \enquote{Browser} von anderen Umgebungen unterscheidet, ist, dass die Betreiber und Entwickler sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen, bei denen die Nutzerschaft bekannt ist, ließe sich solch eine Funktionalität ggf. realisieren. Es gibt jedoch keine standardmäßige Funktionalität auf die gesetzt werden kann, wie z. B. das Remote-Application-Debugging \cite{JavaDebugWireProtocol} von Java. Weiterhin sind bei einer Webanwendung, die für den offenen Markt geschaffen ist, hierbei sind die Nutzer zahlreich sowie unbekannt und so eine Funktionalität lässt sich nicht realistisch umsetzen.
+Ein weiterer Punkt, der den \enquote{Browser} von anderen Umgebungen unterscheidet, ist, dass die Betreiber und Entwickler sich normalerweise nicht auf die Systeme der Nutzer schalten können. Bei Expertenanwendungen, bei denen die Nutzerschaft bekannt ist, ließe sich solch eine Funktionalität ggf. realisieren. Es gibt jedoch keine standardmäßige Funktionalität auf die gesetzt werden kann, wie z. B. das Remote-Application-Debugging \cite{JavaDebugWireProtocol} von Java. Weiterhin sind bei einer Webanwendung, die für den offenen Markt geschaffen ist, die Nutzer zahlreich und unbekannt --- hierbei lässt sich eine solche Funktionalität nicht realistisch umsetzen.
