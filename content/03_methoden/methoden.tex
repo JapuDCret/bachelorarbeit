@@ -6,7 +6,7 @@
 \section{Methoden für eine bessere Nachvollziehbarkeit}
 \label{sec:methoden}
 
-Wie in \autoref{sec:nachvollziehbarkeit} zu erkennen ist bietet Nachvollziehbarkeit einen wichtigen Mehrwert für Entwickler und Betreiber von Webanwendungen, wie aber kann eine verbesserte Nachvollziehbarkeit erreicht werden? In diesem Abschnitt werden einige Methoden vorgestellt mit denen diesen Ziel erreicht werden kann.
+Nachvollziehbarkeit bietet einen wichtigen Mehrwert für Entwickler und Betreiber von Webanwendungen. Wie aber kann eine verbesserte Nachvollziehbarkeit bei einer Webanwendung erreicht werden? In diesem Abschnitt werden einige Methoden vorgestellt mit denen diesen Ziel erreicht werden kann.
 
 \subsection{Fehlerberichte}
 
@@ -17,13 +17,13 @@ Wie in \autoref{sec:nachvollziehbarkeit} zu erkennen ist bietet Nachvollziehbark
 \label{fig:instagram-bug-report}
 \end{wrapfigure}
 
-Fehlerberichte sind klassisches Mittel, um den Nutzer selbst aktiv werden zu lassen und zu erfragen, welche Aktionen er durchgeführt hat und was schiefgelaufen ist (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin können Informationen des Nutzers ermittelt werden, wie es hierzu gekommen ist und warum es ein Problem darstellt, vorausgesetzt er gibt dies an.
+Fehlerberichte sind ein klassisches Mittel, um den Nutzer aufzufordern selber Bericht über ein Problem zu erstatten (vgl \autoref{fig:instagram-bug-report}). Hiermit können Fehler, aber auch unverständliche Workflows, aufgedeckt werden. Weiterhin können Informationen des Nutzers ermittelt werden, wie es hierzu gekommen ist und warum es ein Problem darstellt, vorausgesetzt er gibt dies an. Fehlerberichte sind ein einfach einzusetzendes Mittel, welches keine oder keine starke Integration in sonstige Teile der Anwendung benötigt.
 
-Konträr zu diesen Vorteilen stehen jedoch die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gesammelten Ergebnisse über die Effektivität von Fehlerberichten. Denn Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erläutert werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
+Konträr zu diesen Vorteilen stehen die von Bettenburg \etal \cite{WhatMakesAGoodBugReport} gesammelten Ergebnisse über die Effektivität von Fehlerberichten. Nutzer meldeten Informationen und Details, die sich für die Entwickler als nicht allzu hilfreich herausstellten. Diese Diskrepanz kann u. A. dadurch erklärt werden, dass Nutzer im Regelfall kein technisches Verständnis des Systems vorweisen.
 
 \subsection{Die Grundpfeiler der Observability}
 
-Da Fehlerberichte somit nicht ausreichend sind, um den Entwicklern eine ausreichende Nachvollziehbarkeit zu gewährleisten, sind zusätzliche Konzepte notwendig um dies zu erreichen. Nach Sridharan \etal \cite{DistributedSystemsObservability} sowie \cite{TraefikLogsRequestTracingAndMetrics} \cite{IntrospectiveOfTheCloudManagementToolbox} \cite{MultilevelObservabilityInCloudOrchestration} existieren drei Grundpfeiler der Observability, die in ihrer Funktion einzigartig sind und sich gegenseitig ergänzen: Logs, Metriken und Traces.
+Da Fehlerberichte nicht ausreichend sind, um den Entwicklern eine angemessene Nachvollziehbarkeit zu gewährleisten, sind zusätzliche Konzepte notwendig, um dies zu erreichen. Nach Sridharan \etal \cite{DistributedSystemsObservability} sowie \cite{TraefikLogsRequestTracingAndMetrics} \cite{IntrospectiveOfTheCloudManagementToolbox} \cite{MultilevelObservabilityInCloudOrchestration} existieren drei Grundpfeiler der Observability, die in ihrer Funktion einzigartig sind und sich gegenseitig ergänzen: Logging, Metriken und Tracing.
 
 \subsubsection{Logging}
 
@@ -34,17 +34,17 @@ Da Fehlerberichte somit nicht ausreichend sind, um den Entwicklern eine ausreich
 %	\item \textit{Welches Verhalten kann hiermit aufgedeckt/nachvollziehbar gemacht werden?}
 %\end{enumerate}
 
-Logging bezeichnet die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen \cite{LearningToLog}. Diese erstellten Protokolle werden Logs genannt, sie helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass genügend und informationsreiche Logmeldungen in die Anwendung eingebaut wurden und dass diese verstanden werden konnten \cite{LearningToLog}.
+Logging bezeichnet die systematische Protokollierung von Softwareprozessen und ihren internen Zuständen \cite{LearningToLog}. Diese Protokolle, auch Logs genannt, helfen Betreibern und Entwicklern nach der Ausführung einer Anwendung nachvollziehen zu können, wie die genaue Verarbeitung war. Die daraus resultierende Nachvollziehbarkeit setzt jedoch voraus, dass ausreichend detaillierte Logmeldungen in die Anwendung integriert sind und sie verstanden werden können \cite{LearningToLog}.
 
-Logs stellen meist die hauptsächliche oder einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung in einer Produktivumgebung nachvollziehen können  \cite{EventLogsForTheAnalysisOfSoftwareFailures} \cite{LearningToLog}. Gerade in Problemfällen können Logs kritische Informationen bereitstellen. Bei JavaScript-basierten Webanwendungen werden jedoch selten Logs aus einer Produktivumgebung erhoben. Dies ist u. A. durch die Notwendigkeit, die Logs von einem Endnutzersystem an ein Partnersystem weiterleiten zu müssen, zu begründen, wie in \autoref{sec:logdaten} erläutert.
+Logs stellen die primäre oder in manchen Fällen die einzige Methode dar, wie Betreiber und Entwickler das Verhalten einer Anwendung in einer Produktivumgebung nachvollziehen können  \cite{EventLogsForTheAnalysisOfSoftwareFailures} \cite{LearningToLog}. Gerade in Fehlersituationen können Logs kritische Informationen bereitstellen. Wie in \autoref{sec:logdaten} beschrieben ist die Erhebung von Logmeldungen in einer JavaScript-basierten Webanwendung nicht trivial und findet daher kaum Anklang.
 
-Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun ein Aggregator Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured-Logging ins Spiel. Bei Structured-Logging \cite{StructuredAndInteroperableLogging} werden die Logmeldungen in einem vordefinierten Format erzeugt. Dieses Format kann entweder auch menschenlesbar sein oder definiert die Logmeldung bspw. als JSON-Objekt. Durch die feste Definition des Formates wird bei der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
+Logmeldungen erfolgen meist textbasiert und in einem menschenlesbaren Format. Wenn nun ein Aggregator Informationen aus einer großen Menge von Logs extrahiert, ist so ein Format hinderlich, da es nicht effizient analysiert werden kann. Um dem entgegen zu wirken, kommt Structured-Logging ins Spiel. Bei Structured-Logging \cite{StructuredAndInteroperableLogging} werden die Logmeldungen in einem definierten Format erzeugt, i. d. R. in Form von Key-Value Paaren. Durch die feste Definition des Formates, z. B. als JSON-Objekt, wird bei der Loganalyse ermöglicht, effizient die notwendigen Daten zu extrahieren.
 
-Wird Structured-Logging eingesetzt und ein System analysiert die Protokolldaten auf enthaltene Werte, so wird ermöglicht, dass diese Protokolle nicht nur manuell einzusehen sind, sondern dass auch auf Basis dessen komplexe Datenanalysen durchgeführt werden können \cite{StructuredAndInteroperableLogging}. Mit diesen Datenanalysen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken \cite{StructuredLoggingCraftingUsefulMessageContent}. Weiterhin lassen sich so aus Logmeldungen auch spezielle Informationen wie Metriken extrahieren.
+Structured-Logging ermöglicht, dass auf Basis der Protokolle komplexe Datenanalysen durchgeführt werden können \cite{StructuredAndInteroperableLogging}. Mit diesen lassen sich auch bei großen Datenmengen situationsrelevante Informationen entlocken \cite{StructuredLoggingCraftingUsefulMessageContent}. So lassen sich auch aus Logmeldungen gesonderte Informationen wie Metriken extrahieren.
 
 \subsubsection{Metriken}
 
-Metriken sind numerische Repräsentationen von Daten, die in einer Zeitspanne aufgenommen wurden. Mithilfe von Metriken können mathematische Konzepte dazu verwendet werden, um Verständnis zu gewinnen und Vorhersagen zu treffen \cite{DistributedSystemsObservability}. Metriken sind zudem optimal für effiziente Datenbankabfragen sowie eine Langzeitspeicherung geeignet. Dies der Fall, da die Struktur der Daten einheitlich ist und sie zum Großteil lediglich numerische Werte beinhalten, was sie zudem aggregierbar macht.
+Metriken sind numerische Repräsentationen von Daten, die in einer Zeitspanne aufgenommen wurden. Mithilfe von Metriken können mathematische Konzepte verwendet werden, um Verständnis zu gewinnen und Vorhersagen zu treffen \cite{DistributedSystemsObservability}. Metriken sind zudem optimal für effiziente Datenbankabfragen sowie eine Langzeitspeicherung geeignet. Dies ist durch die einheitliche Struktur und die hauptsächlich numerischen Werte bedingt.
 
 \begin{wrapfigure}[10]{r}{0.35\textwidth}
 \centering
@@ -53,32 +53,46 @@ Metriken sind numerische Repräsentationen von Daten, die in einer Zeitspanne au
 \label{fig:prometheus-metric-datensatz}
 \end{wrapfigure}
 
-Beispielsweise identifiziert Prometheus \cite{Prometheus} Metriken über einen eindeutigen Namen und Schlüsselwertpaare (vgl. \autoref{fig:prometheus-metric-datensatz}) und speichert die assoziierten Daten mit einem Zeitstempel und einem Fließkommawert. Zudem können Technologien rund um die Metrikerhebung einfacher mit großen oder ansteigenden Datenaufkommen reagieren, da die Daten aggregierbar sind \cite{DistributedSystemsObservability}. Anders als z. B. bei Logsystemen, bei denen sich entweder die Auslastung bei mehr Daten erhöht oder Daten verworfen werden müssen, leiden Metriksysteme durch die Eigenschaften von Metriken selbst weniger darunter.
+Beispielsweise identifiziert Prometheus \cite{Prometheus} Metriken über einen eindeutigen Namen und Schlüsselwertpaare (vgl. \autoref{fig:prometheus-metric-datensatz}) und speichert die assoziierten Daten mit einem Zeitstempel und einem Fließkommawert. Zudem können Technologien rund um die Metrikerhebung einfacher mit großen Datenmengen umgehen, da die Metriken aggregierbar sind \cite{DistributedSystemsObservability}.
 
-Durch die Kompatibilität, mathematische Konzepte auf Metriken anwenden zu können, eignen sie sich zudem dafür, eine Übersicht eines Gesamtsystems bereitzustellen und ermöglichen, so die Verfügbarkeit überprüfbar zu gestalten \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}. Jedoch besitzen Metriken durch genau diese Eigenschaften auch Grenzen, sie können bspw. wenig aussagekräftig für das Verständnis des Verhaltens einzelner Komponenten zu einem Zeitpunkt sein. Hierbei können wiederrum Logs getrennt Aufschluss über die einzelnen Komponenten bieten. Damit die Kommunikation zwischen Komponenten oder Systemen nachvollziehbar wird, besonders aus Sicht eines einzelnen ursprünglichen Aufrufs, sind weder Logs noch Metriken ausreichend zielführend - aus diesem Grund entwickelte sich das Tracing \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}.
+Durch die Kompatibilität, mathematische Konzepte auf Metriken anwenden zu können, eignen sie sich zudem dafür, die Verfügbarkeit von Komponenten überprüfbar zu gestalten und erlauben so eine Übersicht der \enquote{Gesundheit} eines Gesamtsystems zu veranschaulichen \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}. Metriken besitzen jedoch auch Grenzen in dem was sie aufdecken können, nämlich lässt sich nur mithilfe von Metriken nicht das Verhalten eines Systems zu einem exakten Zeitpunkt nachvollziehen. Hierbei helfen wiederrum Logs und bieten dabei detaillierte Einsicht in einzelnen Situationen. Damit die Kommunikation zwischen Komponenten oder Systemen nachvollziehbar wird, besonders aus Sicht eines einzelnen ursprünglichen Aufrufs, sind weder Logs noch Metriken ausreichend zielführend - aus diesem Grund entwickelte sich das Tracing \cite{MultilevelObservabilityInCloudOrchestration} \cite{DistributedSystemsObservability}.
 
 \subsubsection{Tracing}
 \label{sec:tracing}
 
-Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen in Softwaresystemen \cite{TowardsPerformanceToolingInteroperability}. Hierbei erfasst Tracing einerseits die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems. Andererseits zeichnet Tracing aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Ein Tracing von verteilten Systemen nennt man \enquote{Distributed-Tracing}. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
+Tracing beschäftigt sich mit dem Aufzeichnen von Kommunikationsflüssen in Softwaresystemen \cite{TowardsPerformanceToolingInteroperability}. Hierbei werden die Kommunikationsflüsse innerhalb einer Anwendung bzw. innerhalb eines Systems erfasst. Tracing zeichnet aber auch die Kommunikationsflüsse bei verteilten Systemen auf, um diese, meist komplexen Zusammenhänge, zu veranschaulichen. Das Tracing von verteilten Systemen wird als \enquote{Distributed-Tracing} bezeichnet. Ein herstellerunabhängiger Standard, der sich aus diesem Gebiet entwickelt hat, ist OpenTracing \cite{OpenTracing}.
 
-OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methode, bei einer Webanwendung kann dies eine Verarbeitung sein oder einen durch den Nutzer hervorgerufenen Eventfluss. Ein Span kann Kindspans beinhalten, wenn während des Lebenszyklusses weitere Spans erzeugt wurden (z. B. durch einen Methodenaufruf). Ein Trace ist eine Menge von Spans, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
+OpenTracing bildet diese Kommunikationsflüsse über zwei grundlegende Objekte ab: Traces und Spans. Ein Span besitzt einen Anfangs- und einen Endzeitpunkt und \textit{umspannt} meist eine Methodenaufruf. Bei einer Webanwendung kann dies eine JavaScript-Funktion oder ein durch den Nutzer hervorgerufener Eventfluss sein. Werden innerhalb eines Spans weitere Spans erstellt, z. B. durch einen Methodenaufruf, dann werden diese als Kindspans des ursprünglichen Spans assoziiert. Ein Trace ist eine Menge von Spans, die alle über eine einzelne logische Aktion - wie z. B. den Druck einer Taste - ausgelöst wurden oder resultieren. Ein Trace lässt sich einerseits über die kausalen Beziehungen zwischen den Spans visualisieren (vgl. \autoref{fig:otel-causal-relationship}), oder auch über die zeitliche Reihenfolge der einzelnen Spans (vgl. \autoref{fig:otel-temporal-relationship}).
 
-Ein verteilter Trace, oftmals \enquote{Distributed-Trace} genannt, ist ein Trace, der sich aus den Spans verschiedener Systeme zusammensetzt, die miteinander kommunizieren. Hierbei werden die Traceinformationen oftmals über zusätzliche Felder bei existierenden Aufrufen propagiert, wie z. B. dem Einfügen eines Trace-Headers bei HTTP-Anfragen. Die dann an ein Tracesystem gemeldeten Spans gehen somit über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus und bilden somit einen Distributed-Trace \cite{OpenTracingSpecification}. Auf Basis von reellen Aufrufen können somit die tatsächlichen Zusammenhänge der einzelnen Systeme miteinander nachempfunden werden.
+Ein verteilter Trace, oftmals \enquote{Distributed-Trace} genannt, ist ein Trace, der sich aus den Spans verschiedener Systeme zusammensetzt, die miteinander kommunizieren. Hierbei werden die Traceinformationen über zusätzliche Felder bei existierenden Aufrufen propagiert, wie z. B. dem Einfügen eines Trace-Headers bei HTTP-Anfragen. Die dann an ein Tracesystem gemeldeten Spans gehen somit über die Grenzen von Anwendungen, Prozessen und Netzwerken hinaus und bilden einen Distributed-Trace \cite{OpenTracingSpecification}. Auf Basis von reellen Aufrufen können die tatsächlichen Zusammenhänge der einzelnen Systeme miteinander nachempfunden werden.
 
-\begin{minipage}{.47\textwidth}
+%\begin{minipage}{.49\textwidth}
+%	\centering
+%	\includegraphics[width=\linewidth]{img/03_methoden/otel_causal-relationship.png}
+%	\captionof{figure}{Kausale Beziehung zwischen Spans. Eigene Darstellung.}
+%	\label{fig:otel-causal-relationship}
+%\end{minipage}%
+%\hspace{.06\textwidth}
+%\begin{minipage}{.49\textwidth}
+%	\centering
+%	\includegraphics[width=\linewidth]{img/03_methoden/otel_temporal-relationship}
+%	\captionof{figure}{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
+%	\label{fig:otel-temporal-relationship}
+%\end{minipage}
+ 
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/otel_causal-relationship.png}
-	\captionof{figure}{Kausale Beziehung zwischen Spans. Eigene Darstellung.}
+	\includegraphics[width=0.75\linewidth]{img/03_methoden/otel_causal-relationship.png}
+	\caption{Kausale Beziehung zwischen Spans. Eigene Darstellung.}
 	\label{fig:otel-causal-relationship}
-\end{minipage}%
-\hspace{.06\textwidth}
-\begin{minipage}{.47\textwidth}
+\end{figure}
+ 
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{img/03_methoden/otel_temporal-relationship}
-	\captionof{figure}{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
+	\includegraphics[width=0.75\linewidth]{img/03_methoden/otel_temporal-relationship}
+	\caption{Zeitliche Beziehung zwischen Spans. Eigene Darstellung.}
 	\label{fig:otel-temporal-relationship}
-\end{minipage}
+\end{figure}
 
 \subsection{OpenTelemetry}
 \label{subsec:opentelemetry}
