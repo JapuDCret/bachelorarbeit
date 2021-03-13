@@ -1,7 +1,7 @@
 \section{Studien zur Browserkompatibilität}
 \label{sec:studien-zur-browser-kompatibilitaet}
 
-Im \autoref{sec:browserprodukte} wurde die Anzahl an Studien zur Browserkompatiblität dargestellt. Dabei wurde in der Suche jeweils bei den Optionen \texttt{von} und \texttt{bis} des Erscheinungsjahres jedes Jahr einzeln eingegeben und eine Suche durchgeführt, die Trefferanzahl wurde dann notiert. Die Daten hierfür wurden über die Literatursuchmaschine \enquote{Google Scholar} am 25.02.2021 abgerufen. Für die Suche wurde folgender Suchterm benutzt:
+Im \autoref{sec:browserprodukte} wurde die Anzahl an Studien zur Browserkompatiblität dargestellt. Die Daten hierfür wurden über die Literatursuchmaschine \enquote{Google Scholar} am 25.02.2021 abgerufen. Dabei wurde für jedes Jahr eine eigene Suche durchgeführt und die Ergebnisanzahl notiert, wobei jede Suche eingeschränkt wurde, dass das Veröffentlichungsdatum im jew. Jahr lag. Für die Suche wurde folgender Suchterm benutzt:
 \begin{verbatim}
 "cross browser" compatibility|incompatibility|inconsistency|XBI
 \end{verbatim}
@@ -50,12 +50,12 @@ Weiterhin lässt sich dieselbe Thematik bei Google Trends \cite{GoogleTrendsCros
 \subsection{LogRocket}
 \label{sec:demo-logrocket}
 
-Im Anhang befindet sich ein Video, welches die Aufnahme eines Session-Replays von LogRocket ist. Das eigentliche Session-Replay erfolgt interaktiv im Browser und Daten wie der DOM, die Konsole und auch Netzwerkaufrufe können vom Entwickler inspiziert werden.
+Eine Aufzeichnung des Session-Replays von LogRocket zu einer beispielhaften Sitzung, kann unter \texttt{Anhang/session-replay-via-logrocket.mp4} betrachtet werden. Das eigentliche Session-Replay erfolgt interaktiv im Browser und Daten wie der DOM, die Konsole und auch Netzwerkaufrufe können vom Entwickler inspiziert werden.
 
 \subsection{Splunk}
 \label{sec:demo-splunk}
 
-Neben Logs wurden in Splunk zudem auch Metriken und Fehler erhoben. Bei Metriken handelt es sich um beispielhafte Daten, die veranschaulichen und beweisen sollen, dass das Konzept funktioniert. Genauer wurden zwei wesentliche Metriken aufgezeichnet, einerseits die Anzahl an Produkten im Warenkorb und andererseits die aufgetretenen Fehler in einer Sitzung. Diese Metriken wurden auf einer Seite in Splunk visuell dargestellt, welche in \autoref{fig:splunk_metric-overview} zu sehen ist.
+Neben Logs wurden in Splunk zudem auch Metriken und Fehler erhoben. Bei den aufgezeichneten Metriken handelt es sich um Beispiele für den in der Demo umgesetzten Anwendungsfall: Die Anzahl an Produkten im Warenkorb und die aufgetretenen Fehler in einer Sitzung. Die Metriken wurden auf einer Seite in Splunk visuell dargestellt, welche in \autoref{fig:splunk_metric-overview} zu sehen ist.
 
 \begin{figure}[H]
 	\centering
@@ -64,7 +64,7 @@ Neben Logs wurden in Splunk zudem auch Metriken und Fehler erhoben. Bei Metriken
 	\label{fig:splunk_metric-overview}
 \end{figure}
 
-Um speziell Fehler zu visualisieren und diese auch gruppiert darzustellen, wurde in Splunk eine Seite hierfür erstellt \autoref{fig:splunk_error-dashboard}. In der Fehlerübersicht lassen sich ein Histogramm, ein Top-Chart sowie die letzten 50 Events im Detail betrachten. Hierbei ließe sich bspw. ein erhöhtes Fehleraufkommen feststellen, das von der Norm abweicht.
+Um Fehler zu visualisieren und gruppiert darzustellen, wurde in Splunk eine eigene Seite erstellt, die in \autoref{fig:splunk_error-dashboard} zu betrachten ist. In der Fehlerübersicht lassen sich ein Histogramm, ein Top-Chart sowie die letzten 50 Events im Detail betrachten. Durch diese Seite lassen sich bspw. erhöhte Fehleraufkommen feststellen und die Häufigkeit von unterschiedlichen Fehlern vergleichen.
 
 \begin{figure}[H]
 	\centering
@@ -76,9 +76,7 @@ Um speziell Fehler zu visualisieren und diese auch gruppiert darzustellen, wurde
 \subsection{Jaeger}
 \label{sec:demo-jaeger}
 
-In Jaeger lassen sich neben dem Trace-Gantt-Diagramm auch Traces miteinander vergleichen, sodass Unterschiede in den Aufrufen entdeckt werden können. In den Abbildungen \ref*{fig:jaeger_comparison-all} und \ref*{fig:jaeger_comparison-zoom} ist ein solcher Vergleich zu sehen. Hierbei werden Traces verglichen, die durch eine Anfrage von Warenkorb- und Übersetzungsdaten von Frontend aus resultiert sind. Dabei
-
- divergieren die beiden Traces in der Antwort vom Übersetzungsdienst, denn es wird bei einem Trace dort ein Fehler geworfen.
+In Jaeger lassen sich neben dem Trace-Gantt-Diagramm auch Traces miteinander vergleichen, sodass Unterschiede in den Aufrufen entdeckt werden können. In den Abbildungen \ref*{fig:jaeger_comparison-all} und \ref*{fig:jaeger_comparison-zoom} ist ein solcher Vergleich zu sehen. Hierbei werden Traces verglichen, die durch eine Anfrage von Warenkorb- und Übersetzungsdaten von Frontend aus resultierten. Dabei divergieren die beiden Traces in der Antwort vom Übersetzungsdienst, denn es wird bei einem Trace dort ein Fehler geworfen.
 
 \begin{figure}[H]
 	\centering
@@ -98,7 +96,7 @@ Der von Jaeger automatisch erstellte Dienst-Abhängigkeits-Graph kann folgend in
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth]{img/99_postscript/jaeger_service-dependency-graph.png}
+	\includegraphics[width=1.00\linewidth]{img/99_postscript/jaeger_service-dependency-graph.png}
 	\caption{Dienst-Abhängigkeits-Graph in Jaeger}
 	\label{fig:jaeger_service-dependency-graph}
 \end{figure}
