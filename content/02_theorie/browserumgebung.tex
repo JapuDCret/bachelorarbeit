@@ -1,4 +1,4 @@
-Web-Browser haben sich seit der Veröffentlichung von Mosaic, einer der ersten populären Browser, im Jahr 1993 stark weiterentwickelt \cite{EvolutionOfTheWebBrowser}. Das Abrufen und Anzeigen von statischen HTML-Dokumenten wurde mithilfe von JavaScript um interaktive und später um dynamische Inhalte erweitert. Mittels JavaScript können Entwickler heutzutage komplexe browser-unabhängige Webanwendungen realisieren \cite{SinglePageApplication}. Diese Entwicklung hat den Browser als populäre Laufzeitumgebung für Anwendungen über alle Betriebssysteme und Plattformen hinweg etabliert \cite{TheWebAsAnApplicationPlatform}.
+Web-Browser haben sich seit der Veröffentlichung von Mosaic, einem der ersten populären Browser, im Jahr 1993 stark weiterentwickelt \cite{EvolutionOfTheWebBrowser}. Das Abrufen und Anzeigen von statischen HTML-Dokumenten wurde mithilfe von JavaScript um interaktive und später um dynamische Inhalte erweitert. Mittels JavaScript können Entwickler heutzutage komplexe browser-unabhängige Webanwendungen realisieren \cite{SinglePageApplication}. Diese Entwicklung hat den Browser als populäre Laufzeitumgebung für Anwendungen über alle Betriebssysteme und Plattformen hinweg etabliert \cite{TheWebAsAnApplicationPlatform}.
 
 \subsection{Browserprodukte}
 \label{sec:browserprodukte}
@@ -44,6 +44,33 @@ Die Vielfalt an Browsern bereitet Webentwicklern immer wieder Herausforderungen 
 
 \nomenclature[Fachbegriff]{XBI}{Cross-Browser-Incompatibilities}
 
-Generell lässt sich feststellen, dass auch in der Literatur die Veröffentlichungen in Bezug auf (In-)Kompatibilität von Browsern abnehmen, wie in \autoref{fig:studien-zur-browser-kompatibilitaet} zu betrachten ist. Dies spricht dafür, dass das Problem von XBIs weniger präsent ist als zuvor. Somit wird die besondere Hürde, die XBIs darstellen, nicht als relevante in dieser Arbeit angesehen.
+Generell lässt sich feststellen, dass auch in der Literatur die Veröffentlichungen in Bezug auf (In-)Kompatibilität von Browsern abnehmen, wie in \autoref{fig:studien-zur-browser-kompatibilitaet} zu betrachten ist. Dies spricht dafür, dass das Problem von XBIs weniger präsent ist als zuvor. Somit wird die besondere Hürde, die XBIs darstellen, in dieser Arbeit als nicht relevant angesehen.
 
-Im Jahr 2020 gab es eine wesentliche Entwicklung, die die Kompatibilität zwischen Browsern erhöht und Unterschiede zukünftig spürbar reduzieren wird. Microsoft ist beim Folgeprodukt zum Internet Explorer, dem Microsoft Edge, von einer proprietären Browser-Engine zu Chromium gewechselt \cite{MicrosoftEdgeChromium} und verwendet somit denselben Kern wie die Browser Chrome und Opera. Zudem stellte Microsoft zum 30.11.2020 den Support für den Internet Explorer 11 ein \cite{MicrosoftInternetExplorerDeprecation}. Im Februar 2021 meldete StatCounter \cite{StatCounterBrowserMarketshare} eine Marktverteilung bei Desktop-Browsern von 66,47\% Chrome, 10,27\% Safari, 8,17\% Firefox, 8,01\% Edge, 2,68\% Opera und 1,89\% Internet Explorer.
+\pagebreak
+
+Im Jahr 2020 gab es eine wesentliche Entwicklung, die die Kompatibilität zwischen Browsern erhöhen und Unterschiede zukünftig spürbar reduzieren wird. Microsoft ist beim Folgeprodukt zum Internet Explorer, dem Microsoft Edge, von einer proprietären Browser-Engine zu Chromium gewechselt \cite{MicrosoftEdgeChromium} und verwendet somit denselben Kern wie die Browser Chrome und Opera. Zudem stellte Microsoft zum 30.11.2020 den Support für den Internet Explorer 11 ein \cite{MicrosoftInternetExplorerDeprecation}.
+
+Eine Übersicht der aktuellen Browser mit Marktnteil und den verwendeten Engines für Layout und JavaScript, kann in \autoref{tab:uebersicht-der-aktuellen-browser} betrachtet werden. Hierbei wird deutlich, dass der überwiegende Anteil (>95\%) der Desktop-Browser auf den Engines Blink, WebKit und Gecko bzw. für JavaScript auf V8, JavaScriptCore und SpiderMonkey basieren.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Browser & Anteil        & Layout-Engine  & JavaScript-Engine \\
+  \hline
+  Chrome  & 66,47\%       & Blink          & V8                \\
+  \hline
+  Safari  & 10,27\%       & WebKit         & JavaScriptCore    \\
+  \hline
+  Firefox & 8,17\%        & Gecko          & SpiderMonkey      \\
+  \hline
+  Edge    & 8,01\%        & Blink          & V8                \\
+  \hline
+  Opera   & 2,68\%        & Blink          & V8                \\
+  \hline
+  Internet Explorer & 1,89\% & Trident     & Chakra            \\
+  \hline
+\end{tabular}
+\caption{Übersicht aktueller Browser \cite{StatCounterBrowserMarketshare} \cite{CompatibilityAndDefaults}}
+	\label{tab:uebersicht-der-aktuellen-browser}
+\end{table}

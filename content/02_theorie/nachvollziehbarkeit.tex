@@ -4,18 +4,18 @@ Neben der Umgebung Browser und SPAs als solche, stellt die Nachvollziehbarkeit e
 \enquote{Observability for software is the property of knowing what is happening inside a (distributed) application at runtime by simply asking questions from the outside and without the need to modify its code to gain insights.}
 \end{quotation}
 
-Insbesondere in der Wirtschaft hat sich der Begriff der Observability etabliert \cite{DynatraceObservability} \cite{NewRelicObservability}. Hierbei lässt sich die Observability als eine Weiterentwicklung des klassischen Monitorings von Software betrachten \cite{TheNewStackMonitoringAndObservability}. Ziel dabei ist es Anwendungen und Systeme weitesgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können.
+Insbesondere in der Wirtschaft hat sich der Begriff der Observability etabliert \cite{DynatraceObservability} \cite{NewRelicObservability}. Hierbei lässt sich die Observability als eine Weiterentwicklung des klassischen Monitorings von Software betrachten \cite{TheNewStackMonitoringAndObservability}. Ziel dabei ist es, Anwendungen und Systeme weitestgehend beobachtbar zu machen und darauf basierend Betreibern und Entwicklern zu ermöglichen, auch aus unbekannten Situationen Rückschlüsse über die Anwendung oder das System ziehen zu können.
 
 %\vspace{-0.5\baselineskip}
 \subsection{Nachvollziehbarkeit bei SPAs}
 \label{sec:nachvollziehbarkeit-bei-spas}
 
-In dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher betrachtet. Wie zuvor in \autoref{sec:single-page-applications} geschildert, gibt es bei Webanwendungen und insbesondere Singe-Page-Applications besondere Eigenschaften, die es den Betreibern und Entwicklern erschweren das Verhalten ihrer Anwendung und die Interaktionen eines Nutzers nachzuvollziehen. Meist lassen sich aus Sicht der Betreiber nur die Kommunikationsaufrufe der Anwendung zum Backend nachvollziehen, aber nicht wie es dazu gekommen ist und wie diese Daten weiterverarbeitet werden.
+In dieser Arbeit wird die Nachvollziehbarkeit bei Webanwendungen näher betrachtet. Wie zuvor in \autoref{sec:single-page-applications} geschildert, gibt es bei Webanwendungen und insbesondere Singe-Page-Applications besondere Eigenschaften, die es den Betreibern und Entwicklern erschweren, das Verhalten ihrer Anwendung und die Interaktionen eines Nutzers nachzuvollziehen. Meist lassen sich aus Sicht der Betreiber nur die Kommunikationsaufrufe der Anwendung zum Backend nachvollziehen, aber nicht wie es dazu gekommen ist und wie diese Daten weiterverarbeitet werden.
 
 \subsubsection{Logdaten}
 \label{sec:logdaten}
 
-Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung in Browsern \cite{MDNConsole}. Diese Ausgabe ist dem Standard-Benutzer i. d. R. unbekannt, daher kann nicht erwartet werden, dass Nutzer im Fehlerfall ein Log bereitstellen können. Durch die zuvor beschrieben Härtungsmaßnahmen von Browsern ist es hinzukommend nicht möglich, das Log direkt in eine Datei zu schreiben.
+Ähnlich wie bei anderen Umgebungen gibt es eine standardisierte Log- bzw. Konsolenausgabe für die JavaScript-Umgebung in Browsern \cite{MDNConsole}. Diese Ausgabe ist dem Standard-Benutzer i. d. R. unbekannt, daher kann nicht erwartet werden, dass Nutzer im Fehlerfall ein Log bereitstellen können. Durch die zuvor beschriebenen Härtungsmaßnahmen von Browsern ist es hinzukommend nicht möglich, das Log direkt in eine Datei zu schreiben.
 
 Um die Logdaten im Browser erheben zu können, gilt es entweder ein spezielles Log-Framework in der Webanwendung zu verwenden bzw. die bestehende Schnittstelle zu überschreiben oder zu wrappen und die Logdaten an ein Partnersystem weiterzuleiten, welches die Sammlung, Aggregation und Auswertung ermöglicht.
 
