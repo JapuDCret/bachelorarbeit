@@ -1,8 +1,8 @@
 \subsection{Backend}
 
-Wie in \autoref{subsec:demoanwendung-backend} beschrieben, wurden die Dienste mit Eclipse MicroProfile umgesetzt. Neben den standardmäßig enthaltenen Bibliotheken gibt es hierbei aber auch unterstützte optionale Bibliotheken, wie Implementierungen von \texttt{OpenAPI}, \texttt{OpenTracing}, \texttt{Fault Tolerance} und vieler weiterer \cite{EclipseMicroprofile}.
+Die Dienste wurden mit Eclipse MicroProfile umgesetzt. Neben den standardmäßig enthaltenen Bibliotheken gibt es hierbei aber auch unterstützte optionale Bibliotheken, wie Implementierungen von \texttt{OpenAPI}, \texttt{OpenTracing}, \texttt{Fault Tolerance} und vieler weiterer \cite{EclipseMicroprofile}.
 
-Um Traces von den Microservices zu sammeln, wurde die OpenTracing Implementierung sowie ein Jaeger-Client \cite{JaegerClient} zum Exportieren der Daten hinzugezogen. Mit dieser Anbindung lassen sich per Annotation (vgl. \autoref{lst:implementierung-traced-example}) alle zu tracenden Businessmethoden definieren, die dann automatisch getraced und über den Jaeger-Client an Jaeger gesendet werden. Bei jedem Microservice wurde diese Annotation dann an relevante Methoden geschrieben und der Jaeger-Client konfiguriert, was automatisch zu der Übertragung von verteilten Traces in Jaeger führte.
+Um Traces von den Microservices zu sammeln, wurde die OpenTracing Implementierung sowie ein Jaeger-Client \cite{JaegerClient} zum Exportieren der Daten hinzugezogen. Mit dieser Anbindung lassen sich per Annotation (vgl. \autoref{lst:implementierung-traced-example}) alle zu tracenden Businessmethoden definieren, die dann automatisch getraced und über den Jaeger-Client an Jaeger gesendet werden. Bei jedem Microservice wurden diese relevanten Methoden annotiert und der Jaeger-Client konfiguriert, was automatisch zu der Übertragung von verteilten Traces in Jaeger führte.
 
 \lstinputlisting[
   language = java,
@@ -13,7 +13,7 @@ captionpos = b,
      label = lst:implementierung-traced-example
 ]{content/04_erstellung-poc/implementierung-code/TracedExample_OrderService.java}
 
-\begin{wrapfigure}[8]{r}{0.45\textwidth}
+\begin{wrapfigure}[9]{r}{0.45\textwidth}
 \centering
 \vspace{-\baselineskip}
 \includegraphics[width=\linewidth]{img/04_erstellung-poc/implementierung_jaeger-trace-example.png}
@@ -21,20 +21,22 @@ captionpos = b,
 \label{fig:implementierung_jaeger-trace-example}
 \end{wrapfigure}
 
-In Jaeger erzeugt der o. g. Quellcode die in \autoref{fig:implementierung_jaeger-trace-example} zu sehenden Spans. Neben den Traces werden keine weiteren Daten von Backend-Komponenten erhoben, da das Hauptaugenmerk der Arbeit im Frontend liegt. Jedoch wird der Dienst \enquote{Backend4Frontend} dazu verwendet, die Daten aus dem Frontend an die Partnersysteme weiterzuleiten, wie im nächsten Abschnitt erläutert wird.
+In Jaeger erzeugt der o. g. Quellcode die in \autoref{fig:implementierung_jaeger-trace-example} zu sehenden Spans. Bei diesem Ausschnitt ist erkennbar, dass der Dienst \enquote{Bestellungen} für eine ursprüngliche Anfrage zwei Anfragen an den Dienst \enquote{Adressvalidierung} sendet, jeweils für die Rechnungs- und Lieferadresse. Neben den Traces werden keine weiteren Daten von Backend-Komponenten erhoben, da das Hauptaugenmerk der Arbeit auf dem Frontend liegt.
 
 \subsection{Frontend}
 
 \subsubsection{Datenweiterleitung im \enquote{Backend4Frontend}}
 
-Da Logs, Metriken und Fehler mit Splunk gesammelt werden, aber Splunk keine direkt aus dem Browser ansprechbare Schnittstelle bietet, müssen diese über einen Dienst vorher an Splunk weitergeleitet werden (vgl. \autoref{subsec:splunk}). Diese Einschränkung von Splunk geht jedoch damit einher, dass Splunk von der \enquote{Außenwelt} abgeschottet wird, sodass Unbefugte keinen Zugriff auf das System erhalten. Im weiterleitenden Dienst könnten zuvor die Daten validiert und gefiltert werden. Somit ist also ein weiterleitender Dienst notwendig, aber auch architektonisch sinnvoll. Weiterhin sind Tracingdaten an Jaeger zu berichten, dies ist aber erneut nicht möglich, da kein browserkompatibler Jaeger-Client identifiziert werden konnte. Dies wird in \autoref{subsec:traces-und-metriken} näher erläutert.
+
+
+Da Logs, Metriken und Fehler mit Splunk gesammelt werden, aber Splunk keine direkt aus dem Browser ansprechbare Schnittstelle bietet, müssen diese über einen Dienst an Splunk weitergeleitet werden (vgl. \autoref{subsec:splunk}). Neben diesen Daten sind zudem Traces auf dem Frontend an Jaeger zu berichten, dies ist aber erneut nicht möglich, da kein browserkompatibler Jaeger-Client identifiziert werden konnte. Eine nähere Betrachtung dessen erfolgt im nächsten Abschnitt.
 
 Da der Dienst \enquote{Backend4Frontend} bereits zum Weiterleiten verwendet wird, wurde dieser erweitert, sodass er Traces, Logs, Metriken sowie Fehler entgegennehmen kann und diese an Jaeger bzw. Splunk sendet. Vor der eigentlichen Weiterleitung werden die Daten mit Kontextinformationen angereichert, wie bpsw. der User-IP oder der Browserversion. Die Traces werden dann über eine OpenTelemetry-Anbindung an Jaeger gesendet, die anderen Daten werden an die HEC-Schnittstelle \cite{SplunkHEC} von Splunk übertragen.
 
 \subsubsection{Traces und Metriken}
 \label{subsec:traces-und-metriken}
 
-Das Frontend erhebt ebenso wie das Backend Traces, aber zusätzlich werden auch Metriken, Logmeldungen und Fehler erhoben und gemeldet. Traces und Metriken werden auf Basis von OpenTelemetry-JavaScript-Komponenten \cite{OpenTelemetryJS} erhoben. Genauer werden diese Komponenten in einem Angular Modul (siehe \autoref{lst:app-observability}) initialisiert und der restlichen Anwendung über \enquote{providers} zur Verfügung gestellt. Hierbei wird der SPA ein \texttt{Tracer} bereitgestellt, mit dem Spans aufgezeichnet werden können, ein \texttt{Meter}, welcher es erlaubt Metriken zu erstellen, und eine \texttt{requestCounter}-Metrik, welches die Aufzeichnung der Aufrufanzahl schnittstellenübergreifend erlaubt.
+Das Frontend erhebt ebenso wie das Backend Traces, zusätzlich werden aber auch Metriken, Logmeldungen und Fehler erfasst und gemeldet. Traces und Metriken werden auf Basis von OpenTelemetry-JavaScript-Komponenten \cite{OpenTelemetryJS} erhoben. Diese Komponenten werden in einem eigenen Angular-Modul (siehe \autoref{lst:app-observability}) initialisiert und der Anwendung über \enquote{providers} zur Verfügung gestellt. Hierbei wird der SPA ein \texttt{Tracer} bereitgestellt, mit dem Spans aufgezeichnet werden können, ein \texttt{Meter}, welcher es erlaubt Metriken zu erstellen, und eine \texttt{requestCounter}-Metrik, welches die Aufzeichnung der Aufrufanzahl schnittstellenübergreifend erlaubt.
 
 \lstinputlisting[
   language = JavaScript,
@@ -67,11 +69,11 @@ captionpos = b,
      label = lst:localization.service
 ]{content/04_erstellung-poc/implementierung-code/tracing_localization.service.ts}
 
-Es wurde sich für die OpenTelemetry-Implementierung für Tracing und Metriken im Frontend entschieden, da wie in \autoref{subsec:opentelemetry} beschrieben, OpenTelemetry einen vielversprechenden Standard darstellt. Weiterhin konnte keine Bibliothek identifiziert werden, die die Traces erhebt und direkt an Jaeger sendet. Es gibt zwar einen Jaeger-Client für Node.js\footnote{Jaeger-Client für Node.js: \url{https://github.com/jaegertracing/jaeger-client-node}}, jedoch befindet sich das browserkompatible Pendant\footnote{Jaeger-Client für Browser: \url{https://github.com/jaegertracing/jaeger-client-javascript/}} seit 2017 in den Startlöchern \cite{JaegerJSClientUsageInABrowser}. Weiterhin existiert ein OTel-Exporter für Jaeger\footnote{OTel Jaeger Exporter: \url{https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger}}, welcher jedoch auch nur mit Node.js funktioniert. Grund hierfür ist, dass das zugrundeliegende Protokoll gRPC \cite{grpc} nicht komplett aus einer Browserumgebung aus unterstützt wird \cite{grpcWebLimitations}.
+Um das Erheben von Traces und Metriken im Frontend zu realisieren, wurden OpenTelemetry-Komponenten herangezogen, da wie in \autoref{subsec:opentelemetry} beschrieben, OpenTelemetry einen vielversprechenden Standard darstellt. Weiterhin konnte keine Bibliothek identifiziert werden, die die Traces erhebt und direkt an Jaeger sendet. Es gibt zwar einen Jaeger-Client für Node.js\footnote{Jaeger-Client für Node.js: \url{https://github.com/jaegertracing/jaeger-client-node}}, jedoch befindet sich das browserkompatible Pendant\footnote{Jaeger-Client für Browser: \url{https://github.com/jaegertracing/jaeger-client-javascript/}} seit 2017 in den Startlöchern \cite{JaegerJSClientUsageInABrowser}. Zudem existiert ein OTel-Exporter für Jaeger\footnote{OTel Jaeger Exporter: \url{https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-exporter-jaeger}}, welcher jedoch auch nur mit Node.js funktioniert. Grund hierfür ist, dass das zugrundeliegende Protokoll gRPC \cite{grpc} nicht komplett aus einer Browserumgebung aus unterstützt wird \cite{grpcWebLimitations}.
 
 \nomenclature[Fachbegriff]{gRPC}{gRPC Remote-Procedure-Call}
 
-Die gesammelten OTel-Tracingdaten werden über einen Standard-Exporter an das \enquote{Backend4Frontend} gesendet, welcher diese dann in ein Jaeger-konformes Format umwandelt und sie dann subsequent an Jaeger übertragt. Die Metrikdaten werden jedoch bereits im Frontend in ein Splunk-kompatibles Logformat konvertiert. Nach der Konvertierung werden die Daten an den \texttt{SplunkForwardingService} übergeben, welcher an späterer Stelle näher beschrieben wird.
+Die gesammelten OTel-Tracingdaten werden über einen Standard-Exporter an das \enquote{Backend4Frontend} gesendet, welcher diese dann in ein Jaeger-konformes Format umwandelt und sie dann subsequent an Jaeger übertragt. Die Metrikdaten werden bereits im Frontend in ein Splunk-kompatibles Logformat konvertiert. Nach der Konvertierung werden die Daten an den \texttt{SplunkForwardingService} übergeben, welcher in \autoref{subsec:weiterleitung-an-splunk} näher beschrieben wird.
 
 \subsubsection{Logging}
 
@@ -99,7 +101,7 @@ captionpos = b,
 
 \subsubsection{Fehler}
 
-Die ErrorHandler-Hook von Angular übermittelt aufgetretene und unbehandelte Fehler an den \texttt{SplunkForwardingErrorHandler}. Weiterhin ist der ErrorHandler \texttt{Injectable} in andere Angular-Klassen, wo er bspw. bei den Schnittstellen dazu benutzt wird, dass auch behandelte Fehler an Splunk zu übermitteln.
+Die ErrorHandler-Hook von Angular übermittelt aufgetretene und unbehandelte Fehler an den \texttt{SplunkForwardingErrorHandler}. Weiterhin ist der ErrorHandler ein \texttt{Injectable}, wodurch er in andere Angular-Klassen \enquote{injected} werden kann. Der ErrorHandler wird bspw. bei den Schnittstellen dazu verwendet, um dort bereits behandelte Fehler auch an Splunk zu übermitteln.
 
 Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunkdatensatz konvertiert und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
 
@@ -113,10 +115,11 @@ captionpos = b,
 ]{content/04_erstellung-poc/implementierung-code/splunk-forwarding-error-handler.ts}
 
 \subsubsection{Weiterleitung an Splunk}
+\label{subsec:weiterleitung-an-splunk}
 
-Wie zuvor beschrieben werden Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an Splunk gesendet. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser die eintreffenden Daten zuvor.
+Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} gesendet und letztendlich an Splunk übermittelt. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser \texttt{Service} die eintreffenden Daten.
 
-Wie in \autoref{lst:splunk-forwarding.service} zu sehen ist, wird alle 5s geprüft, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Sendens eines Batches, 5 Wiederholversuche gestartet werden, mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden dann automatisch von Splunk interpretiert und die enthaltenen Felder werden zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler, so wie sie an Splunk übertragen wurden, sind in \autoref{lst:log-batch_example} zu betrachten.
+Im \autoref{lst:splunk-forwarding.service} ist erkennbar, dass alle 5s geprüft wird, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Sendens eines Batches, fünf Wiederholversuche gestartet werden, mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden automatisch von Splunk interpretiert und die enthaltenen Felder zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler sind in \autoref{lst:log-batch_example} zu betrachten.
 
 \lstinputlisting[
   language = JavaScript,
@@ -146,7 +149,7 @@ captionpos = b,
 \label{fig:recording-consent_button-inactive}
 \end{wrapfigure}
 
-LogRocket wird erst aktiviert, wenn der Nutzer explizit der Aufzeichnung zustimmt. Dies bedeutet jedoch auch, dass bis zur Zustimmung keine Sitzungsdaten aufgenommen wurden. Klickt der Nutzer jedoch auf den, unten rechts in der Anwendung schwebenden, Button (vgl. \autoref{fig:recording-consent_button-inactive}), wird ein Einverständnis-Dialog geöffnet. Hierbei (vgl. \autoref{fig:recording-consent_dialog-inactive}) erhält der Nutzer eine Übersicht welche Daten aufgenommen werden und an wen diese dann weitergesendet werden. Stimmt der Nutzer zu, wird LogRocket initialisiert, wie im \autoref{lst:record-consent-dialog.component.html} sowie \autoref{lst:record-consent-dialog.component.ts} zu sehen ist. Nach dem Warenkorbdialog und nach der Eingabe der Rechnungsadresse werden zudem weitere identifizierende Daten an LogRocket übermittelt. Die Aufnahme der Sitzung läuft größtenteils autonom, lediglich behandelte Fehler müssen LogRocket manuell übermittelt werden.
+Die Übermittlung der Daten an LogRocket wird erst aktiviert, wenn der Nutzer explizit der Aufzeichnung zustimmt. Dies bedeutet jedoch auch, dass bis zur Zustimmung keine Sitzungsdaten aufgenommen wurden. Klickt der Nutzer jedoch auf den, unten rechts in der Anwendung schwebenden, Button (vgl. \autoref{fig:recording-consent_button-inactive}), wird ein Einverständnis-Dialog geöffnet. Hierbei (vgl. \autoref{fig:recording-consent_dialog-inactive}) erhält der Nutzer eine Übersicht welche Daten aufgenommen werden und an wen diese dann weitergesendet werden. Stimmt der Nutzer zu, wird LogRocket initialisiert, wie im \autoref{lst:record-consent-dialog.component.html} sowie \autoref{lst:record-consent-dialog.component.ts} zu sehen ist. Nach dem Warenkorbdialog und nach der Eingabe der Rechnungsadresse werden zudem weitere identifizierende Daten an LogRocket übermittelt. Die Aufnahme der Sitzung läuft größtenteils autonom, lediglich behandelte Fehler müssen LogRocket manuell übermittelt werden.
 	
 \begin{figure}[H]
 	\centering

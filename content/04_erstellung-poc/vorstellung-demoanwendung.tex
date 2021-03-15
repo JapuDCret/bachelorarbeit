@@ -1,16 +1,16 @@
 % \section{Vorstellung der Demoanwendung}
 
-Wie zuvor erwähnt wird zunächst eine Demoanwendung erstellt, an der das zu erstellende Konzept anzuwenden ist. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung, wie diese aufgebaut ist und was für eine Art von Webanwendung sie repräsentiert.
+Vor dem zu erstellenden Konzept word zunächst eine Demoanwendung erstellt, an der das Konzept anzuwenden ist. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung, wie diese aufgebaut ist und was für eine Art von Webanwendung sie repräsentiert.
 
-In der Motivation ist ein konkretes Problem eines Kunden der Open Knowledge genannt. Damit die Demoanwendung realistisch eine moderne Webanwendung \cite{RichWebBasedApplications} darstellt, wird sie in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Bei der Webanwendung handelt es sich um einen Wizard \cite{EzMolAWebServerWizard}, also einer Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizards werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
+Die Motivation nennt ein konkretes Problem eines Kunden der Open Knowledge. Um eine moderne Webanwendung \cite{RichWebBasedApplications} darzustellen, wird die Demoanwendung in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Die Webanwendung realisiert einen einen Wizard \cite{EzMolAWebServerWizard}, also eine Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizards werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
 
-Es wurde sich dafür entschieden, dass die Webanwendung eine Bestellfunktionalität eines Obst-Webshops darstellen soll. Der Warenkorb hierfür wird anfangs dynamisch generiert und soll so simulieren, dass eine andere Komponente diesen erstellt hat. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
+Die Demoanwendung soll eine Bestellfunktionalität eines Obst-Webshops darstellen. Der Warenkorb hierfür wird anfangs dynamisch generiert und simuliert so, dass dieser durch einen vorgelagerten Prozess erstellt wurde. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
 \subsection{Verhaltensdefinition}
 
-Mit den beiden Stakeholdern, Christian Wansart und Stephan Müller, die beide am Projekt für den Kunden involviert sind, wurde diese Verhaltensdefinition erstellt. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior-Driven Development (BDD). BDD wurde 2006 erstmals von Dan North benannt und definiert \cite{IntroducingBDD}. Bei BDD werden User-Stories aus der Sicht eines äußerlichen Betrachters entworfen und geschrieben. Dabei umfassen die User-Stories Beispiele, wie sich die Anwendung in diesen Szenarien verhalten soll.
+Der gewünschte Funktionsumfang der Demoanwendung wurde mittels einer Verhaltensdefinition festgehalten. Diesen Ansatz der Definition der Software anhand des Verhaltens nennt man Behavior-Driven Development (BDD). BDD wurde 2006 erstmals von Dan North benannt und definiert \cite{IntroducingBDD}. Bei BDD werden User-Stories aus der Sicht eines äußerlichen Betrachters entworfen und geschrieben. Dabei umfassen die User-Stories Beispiele, wie sich die Anwendung in diesen Szenarien verhalten soll.
 
-Um die BDD-Definition festzuhalten wurde sie in der gängigen Gherkin-Syntax \cite{Gherkin} geschrieben. Die Syntax ist natürlich zu lesen, folgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
+Die BDD-Definition wurde in der gängigen Gherkin-Syntax \cite{Gherkin} geschrieben. Die Syntax ist natürlich zu lesen. Nachfolgend werden alle gewünschten Features der Demoanwendung in der Gherkin-Syntax aufgelistet.
 
 \lstinputlisting[
   language = gherkin,
@@ -47,16 +47,14 @@ captionpos = b,
      label = lst:demoanwendung-gherkin-bestellung_abschließen
 ]{content/04_erstellung-poc/warenkorb-gherkin/5-bestellung_abschließen.feature}
 
-Neben dem eigentlichen User-Interface soll auch ein Backend Teil der Demoanwendung sein. Hierfür wurde auf Basis der Verhaltensdefinition eine Architektur entworfen, die im folgenden Abschnitt näher beschrieben wird.
+Neben dem Frontend soll ein dazugehöriges Backend Teil der Demoanwendung sein. Auf Basis der Verhaltensdefinition wurde eine Architektur entworfen, welche im folgenden Abschnitt näher erläutert wird.
 
 \subsection{Backend}
 \label{subsec:demoanwendung-backend}
 
-Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und wurde, ebenso wie die Webanwendung auch, an das Projekt des Open Knowledge Kunden angelehnt. In \autoref{fig:demoanwendung_deployment} lässt sich die konzipierte und umgesetzte Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar. Diese Architektur wurde mit den Stakeholdern zusammen konzipiert und ähnelt dem des Direktversicherers.
+Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und orientiert sich grob an der Architektur, die der Direktversicherer derzeit betreibt. Die einzelnen Dienste wurden auf Basis von Java EE sowie Kubernetes erstellt. In \autoref{fig:demoanwendung_deployment} lässt sich die Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar.
 
-Für das Frontend ist die einzig anzusprechende Schnittstelle das \enquote{backend4frontend}, welches die Kommunikation zu Partnersystemen ermöglicht sowie Sicherheits- und Validitätsaspekte überprüft. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
-
-Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine möglichst realitätsnahe Repräsentation zu erstellen. Speziell wird bei einer solchen Architektur der Nutzen von Tracing deutlicher, nämlich, um z. B. die Zusammenhänge zwischen den Diensten nachvollziehen zu können. Dies wird beim Einsatz und der Vorstellung der Lösung näher betrachtet.
+Die Kommunikation mit dem Backend erfolgt über einen Service der das \enquote{Backend4Frontend}-Pattern realisiert. Das Backend4Frontend bündelt alle Schnittstellen der dahinter liegenden Dienste, sodass das Frontend nur mit einem einzelnen Dienst kommunizieren muss. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
 \begin{figure}[H]
 	\centering
@@ -65,28 +63,35 @@ Mit dieser recht komplexen Architektur einer Demoanwendung wurde versucht, eine 
 	\label{fig:demoanwendung_deployment}
 \end{figure}
 
-Die einzelnen Dienste wurden mit Eclipse MicroProfile \cite{EclipseMicroprofile} umgesetzt. MicroProfile ist eine Sammlung verschiedener Java-EE-Frameworks und Technologien zur Umsetzung von Microservices und zielt darauf ab, diese weiterzuentwickeln und zu standardisieren. Speziell wurden die Dienste auf Basis von JAX-RS als REST-Services umgesetzt. 
+Die einzelnen Dienste wurden mit Eclipse MicroProfile \cite{EclipseMicroprofile} umgesetzt. MicroProfile ist eine Sammlung verschiedener Java-EE-Frameworks und Technologien zur Umsetzung von Microservices. Kern der Dienste, die auf MicroProfile basieren, sind die REST-Schnittstellen, die mit JAX-RS umgesetzt werden.
 
-Danach wurden die einzelnen Dienste in jeweils eigene Docker-Images\footnote{Docker \cite{Docker} ist eine Software zum Erstellen und Ausführen von Anwendungscontainern \cite{PatternsForSoftwareOrchestration}} verpackt, um eine einheitliche Umgebung auch auf unterschiedlichen Rechnern zu gewährleisten. Diese Images wurden dann mit Kubernetes\footnote{Kubernetes \cite{Kubernetes} ist eine Software zum Orchestrieren Container-basierter Anwendungen \cite{KeyCharacteristicsOfAContainerOrchestrationPlatform}} aufgesetzt und miteinander verbunden.
+Die einzelnen Dienste wurden jeweils als Docker-Images\footnote{Docker \cite{Docker} ist eine Software zum Erstellen und Ausführen von Anwendungscontainern \cite{PatternsForSoftwareOrchestration}} gepackt, zur Gewährleistung einer einheitlichen Umgebung auch auf unterschiedlichen Rechnern. Um ein einfaches Management der Services zu ermöglichen, wird die Plattform Kubernetes\footnote{Kubernetes \cite{Kubernetes} ist eine Software zum Orchestrieren Container-basierter Anwendungen \cite{KeyCharacteristicsOfAContainerOrchestrationPlatform}} verwendet.
 
 \subsection{Frontend}
 
-Wie beim Kunden wurde auf Basis von Angular ein Wizard erstellt, welcher mehrere aufeinander folgende Formulare in derselben SPA enthält. Folgend wird das Frontend anhand eines Beispieldurchlaufs durch die einzelnen Seiten vorgestellt.
+Auf Basis von Angular realisiert das Frontend einen Wizard, welcher mehrere aufeinander folgende Formulare in derselben SPA enthält. Anhand eines Beispieldurchlaufs durch die einzelnen Seiten wird das Frontend veranschaulicht:
+
+\begin{quotation}
+	Warenkorb \textrightarrow{} Rechnungsadresse \textrightarrow{} Lieferdaten \textrightarrow{} Zahlungsdaten
+	 \textrightarrow{} Bestellung abschließen \textrightarrow{} Bestellbestätigung
+\end{quotation}
 
 \subsubsection{Warenkorb}
 
-\autoref{fig:demoanwendung_vorstellung_01-warenkorb} zeigt die Startseite, die der Nutzer sieht, wenn er die Demoanwendung aufruft. Hierbei wird simuliert, dass der Nutzer zuvor in einem Online-Obsthandel einige Produkte ausgewählt hat und sich nun auf der Ansichtsseite des Warenkorbs befindet. Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten. Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird kein Serverabruf durchgeführt, sondern in der SPA wird ein Seitenwechsel vorgenommen.
+Die erste Seite des Wizards zeigt den Inhalts des Warenkorbs eines Online-Shops für Früchte (vgl \autoref{fig:demoanwendung_vorstellung_01-warenkorb}). Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten.
+
+Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird kein Serverabruf durchgeführt, sondern in der SPA wird ein Seitenwechsel vorgenommen.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_01-warenkorb.png}
+	\includegraphics[width=1.00\linewidth]{img/04_erstellung-poc/demoanwendung_vorstellung_01-warenkorb_more-items.png}
 	\caption{Demoanwendung: Startseite \enquote{Warenkorb}. Eigener Screenshot}
 	\label{fig:demoanwendung_vorstellung_01-warenkorb}
 \end{figure}
 
 \subsubsection{Rechnungsadresse}
 
-Startet der Nutzer den Bestellvorgang, so gelangt er zunächst auf der Eingabemaske zur Rechnungsadresse (vgl. \autoref{fig:demoanwendung_vorstellung_02-rechnungsadresse}). Hier wird er gebeten rechnungsrelevante Informationen anzugeben, u. A. seine Adresse. Er kann jedoch auch auf die vorherige Seite zurückspringen.
+Auf der zweiten Seite des Wizards wird die Rechnungsadresse erfasst (vgl. \autoref{fig:demoanwendung_vorstellung_02-rechnungsadresse}). Hierbei wird der Nutzer gebeten rechnungsrelevante Informationen, wie seine Adresse, anzugeben. Er kann jedoch auch auf die vorherige Seite zurückspringen.
 
 Beim Absenden des Formulars wird zunächst die Validität der Eingabefelder überprüft, bspw. ob die PLZ aus 5 Zahlen besteht, und anschließend wird die Adresse dem Adressvalidierungsdienst zur Prüfung übergeben. Schlägt eine Validierung fehl, so wird dies entweder direkt am verursachenden Textfeld angezeigt oder in einer allgemeinen Fehlermeldung im unteren Bereich der Eingabemaske ausgegeben.
 
@@ -103,7 +108,7 @@ Sind beide Prüfungen jedoch erfolgreich, so wird ein Seitenwechsel in der SPA d
 
 \subsubsection{Lieferdaten}
 
-Nach einer erfolgreichen Eingabe der Rechnungsadresse, wird der Nutzer nun gebeten seine Daten einzugeben, wo die Produkte hin geliefert werden sollen. Hierzu kann er entweder die relevanten Daten aus der Rechnungsadresse übernehmen lassen (Standardfall) oder er gibt alternativ abweichende Lieferdaten an, wie in \autoref{fig:demoanwendung_vorstellung_03-lieferdaten} zu sehen ist. Wie zuvor kann der Nutzer auch auf das vorherige Formular zurückspringen.
+Die dritte Seite des Wizards erfasst die Lieferdaten des Nutzers. Der Nutzer kann entweder die relevanten Daten aus der Rechnungsadresse übernehmen lassen (Standardfall) oder er gibt alternativ abweichende Lieferdaten an, wie in \autoref{fig:demoanwendung_vorstellung_03-lieferdaten} zu sehen ist. Wie zuvor kann der Nutzer auch auf das vorherige Formular zurückspringen.
 
 Bei der Angabe von abweichenden Lieferdaten werden, wie beim Formular der Rechnungsadresse, zunächst die Eingabefelder überprüft und bei Fehlschlag visuell dem Nutzer kenntlich gemacht. Anders als bei der Rechnungsadresse wird jedoch nicht der Adressvalidierungsdienst befragt, dies wird im \autoref{subsec:ungueltige-adressen-sind-gueltig} aufgefasst und erläutert.
 
@@ -118,7 +123,7 @@ Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben
 
 \subsubsection{Zahlungsdaten}
 
-Anschließend der Eingabe der Lieferdaten wird der Nutzer nun gebeten seine Zahlungsinformationen einzugeben. Hierbei kann der Nutzer zwischen 4 Zahlungsarten auswählen: per Rechnung, Lastschrift, PayPal oder Kreditkarte. Wie bei den anderen Formularen kann der Nutzer auf das vorhergehende Formular über den Button \enquote{Zurück} wechseln.
+Die vierte Seite des Wizards bittet den Nutzer zur Eingabe seiner gewünschten Zahlart sowie der jew. Zahlungsinformationen. Dabei kann der er zwischen 4 Zahlungsarten wählen: per Rechnung, Lastschrift, PayPal oder Kreditkarte. Wie bei den anderen Formularen kann der Nutzer auf das vorhergehende Formular über den Button \enquote{Zurück} wechseln.
 
 Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteten Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
 
@@ -133,9 +138,9 @@ Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt
 
 \subsubsection{Bestellübersicht}
 
-Da der Nutzer nun alle notwendigen Daten zur Bestellung eingegeben hat, wird ihm auf dieser Seite eine Übersicht dieser Eingaben präsentiert, wie in \autoref{fig:demoanwendung_vorstellung_05-bestelluebersicht} zu sehen ist. Wie bei allen Formularen gibt es auch hier die Option für den Nutzer zu einem vorherigen Formular zurückzuspringen und Anpassungen vorzunehmen.
+Die vorletzte Seite des Wizard fasst die Bestelldaten zusammen (vgl. \autoref{fig:demoanwendung_vorstellung_05-bestelluebersicht}) und sendet die Daten bei der Bestätigung des Formulars an das Backend. Wie bei allen Formularen gibt es auch hier die Option für den Nutzer zu einem vorherigen Formular zurückzuspringen und Anpassungen vorzunehmen.
 
-In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt und nicht clientseitig gespeichert. Die anderen Daten sind nur clientseitig gespeichert und werden über eine übergreifende Komponente bereitgestellt. Weitere Eingaben des Nutzers sind auf dieser Seite aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
+In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt. Zuvor eingegebene Daten sind hingegen lediglich clientseitig gespeichert und werden von einer übergreifende Komponente bereitgestellt. Weitere Eingaben des Nutzers sind auf dieser Seite aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
 
 Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der Identifier des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben, weiterhin erfolgt ein Seitenwechsel.
 
@@ -148,7 +153,7 @@ Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der I
 
 \subsubsection{Bestellbestätigung}
 
-Über die erfolgreiche Bestellung leitet die SPA automatisch auf diese Seite weiter. Hier werden die Daten der Bestellbestätigung dem Nutzer visuell präsentiert (vgl. \autoref{fig:demoanwendung_vorstellung_06-bestellbestaetigung}). Bei den angezeigten Daten handelt es sich nicht um die zuvor gespeicherten, sondern ausschließlich um die vom Bestelldienst übermittelten Daten.
+Die sechste und letzte Seite des Wizards visualisiert die Bestellbestätigung nach einer erfolgreichen Bestellung, wie in \autoref{fig:demoanwendung_vorstellung_06-bestellbestaetigung} zu sehen ist. Bei den angezeigten Daten handelt es sich nicht um die zuvor gespeicherten, sondern ausschließlich um die vom Bestelldienst übermittelten Daten.
 
 Auf dieser Seite kann der Nutzer nun nur noch auf den Button \enquote{Zum Shop} klicken und gelangt erneut zur Startseite, jedoch mit einem neuen Warenkorb.
 
@@ -162,7 +167,7 @@ Auf dieser Seite kann der Nutzer nun nur noch auf den Button \enquote{Zum Shop} 
 \subsection{Fehlerszenarien}
 \label{subsec:fehlerszenarien}
 
-Um später mithilfe von Observability-Werkzeugen Probleme aufzudecken, besitzt die Demoanwendung einige bewusst eingebaute Implementierungen, welche problembehaftet sind. Diese sind in Zusammenarbeit mit den Stakeholdern konzipiert worden. Bei der Konzeption wurde versucht möglichst realitätsnahe oder sogar tatsächlich beim Kunden aufgetretene Probleme einzubauen.
+Um später mithilfe von Observability-Werkzeugen Probleme aufzudecken und Aspekte der Nachvollziehbarkeit darzustellen, weist die Demoanwendung eine Reihe von typischen Fehlern auf, die bewusst integriert wurden.
 
 Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerwünscht strenger Validierung, über Konfigurationsfehlern bis hin zu ineffizienter Datenverarbeitung. Ein Ausschnitt wird folgend in Fehlerszenarien beschrieben, aus der Sicht eines Projektteams, welches diese Szenarien berichtet bekommen oder selbst notiert hat.
 
