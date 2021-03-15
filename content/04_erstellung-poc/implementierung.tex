@@ -31,7 +31,7 @@ In Jaeger erzeugt der o. g. Quellcode die in \autoref{fig:implementierung_jaeger
 
 Da Logs, Metriken und Fehler mit Splunk gesammelt werden, aber Splunk keine direkt aus dem Browser ansprechbare Schnittstelle bietet, müssen diese über einen Dienst an Splunk weitergeleitet werden (vgl. \autoref{subsec:splunk}). Neben diesen Daten sind zudem Traces auf dem Frontend an Jaeger zu berichten, dies ist aber erneut nicht möglich, da kein browserkompatibler Jaeger-Client identifiziert werden konnte. Eine nähere Betrachtung dessen erfolgt im nächsten Abschnitt.
 
-Da der Dienst \enquote{Backend4Frontend} bereits zum Weiterleiten verwendet wird, wurde dieser erweitert, sodass er Traces, Logs, Metriken sowie Fehler entgegennehmen kann und diese an Jaeger bzw. Splunk sendet. Vor der eigentlichen Weiterleitung werden die Daten mit Kontextinformationen angereichert, wie bpsw. der User-IP oder der Browserversion. Die Traces werden dann über eine OpenTelemetry-Anbindung an Jaeger gesendet, die anderen Daten werden an die HEC-Schnittstelle \cite{SplunkHEC} von Splunk übertragen.
+Da der Dienst \enquote{Backend4Frontend} bereits zum Weiterleiten verwendet wird, wurde dieser erweitert, sodass er Traces, Logs, Metriken sowie Fehler entgegennehmen kann und diese an Jaeger bzw. Splunk sendet. Vor der eigentlichen Weiterleitung werden die Daten mit Kontextinformationen angereichert, wie bspw. der User-IP oder der Browserversion. Die Traces werden dann über eine OpenTelemetry-Anbindung an Jaeger gesendet, die anderen Daten werden an die HEC-Schnittstelle \cite{SplunkHEC} von Splunk übertragen.
 
 \subsubsection{Traces und Metriken}
 \label{subsec:traces-und-metriken}

@@ -1,8 +1,8 @@
 % \section{Vorstellung der Demoanwendung}
 
-Vor dem zu erstellenden Konzept word zunächst eine Demoanwendung erstellt, an der das Konzept anzuwenden ist. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung, wie diese aufgebaut ist und was für eine Art von Webanwendung sie repräsentiert.
+Vor dem zu erstellenden Konzept wird zunächst eine Demoanwendung erstellt, an der das Konzept anzuwenden ist. Dieser Abschnitt beschäftigt sich mit der Vorstellung der Demoanwendung, wie diese aufgebaut ist und was für eine Art von Webanwendung sie repräsentiert.
 
-Die Motivation nennt ein konkretes Problem eines Kunden der Open Knowledge. Um eine moderne Webanwendung \cite{RichWebBasedApplications} darzustellen, wird die Demoanwendung in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Die Webanwendung realisiert einen einen Wizard \cite{EzMolAWebServerWizard}, also eine Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizards werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
+Die Motivation nennt ein konkretes Problem eines Kunden der Open Knowledge. Um eine moderne Webanwendung \cite{RichWebBasedApplications} darzustellen, wird die Demoanwendung in Grundzügen den Aufbau der Webanwendung des Direktversicherers nachahmen. Die Webanwendung realisiert einen Wizard \cite{EzMolAWebServerWizard}, also eine Sequenz von aufeinanderfolgenden Dialogseiten bei dem der Nutzer Daten eingeben soll. Bei der Webanwendung handelt es sich um eine clientbasierte Angular-SPA. Die Webanwendung validiert einzelne Felder gegen Partnersysteme (bspw. beim Adressfeld). Am Ende des Wizards werden die gesamten Daten an ein weiteres Partnersystem übermittelt, welches darauf basierend eine Berechnung durchführt und das Ergebnis dann an die Webanwendung sendet.
 
 Die Demoanwendung soll eine Bestellfunktionalität eines Obst-Webshops darstellen. Der Warenkorb hierfür wird anfangs dynamisch generiert und simuliert so, dass dieser durch einen vorgelagerten Prozess erstellt wurde. Der Nutzer soll seine Rechnungs- und Lieferdaten eingeben und am Ende die Bestellung ausführen können. Um das gewünschte Verhalten der Demoanwendung zu definieren, wird es im folgenden Abschnitt festgelegt.
 
@@ -54,7 +54,7 @@ Neben dem Frontend soll ein dazugehöriges Backend Teil der Demoanwendung sein. 
 
 Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und orientiert sich grob an der Architektur, die der Direktversicherer derzeit betreibt. Die einzelnen Dienste wurden auf Basis von Java EE sowie Kubernetes erstellt. In \autoref{fig:demoanwendung_deployment} lässt sich die Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar.
 
-Die Kommunikation mit dem Backend erfolgt über einen Service der das \enquote{Backend4Frontend}-Pattern realisiert. Das Backend4Frontend bündelt alle Schnittstellen der dahinter liegenden Dienste, sodass das Frontend nur mit einem einzelnen Dienst kommunizieren muss. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
+Die Kommunikation mit dem Backend erfolgt über einen Service, der das \enquote{Backend\-4\-Frontend}-Pattern realisiert. Das Backend4Frontend bündelt alle Schnittstellen der dahinter liegenden Dienste, sodass das Frontend nur mit einem einzelnen Dienst kommunizieren muss. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
 \begin{figure}[H]
 	\centering
@@ -78,7 +78,7 @@ Auf Basis von Angular realisiert das Frontend einen Wizard, welcher mehrere aufe
 
 \subsubsection{Warenkorb}
 
-Die erste Seite des Wizards zeigt den Inhalts des Warenkorbs eines Online-Shops für Früchte (vgl \autoref{fig:demoanwendung_vorstellung_01-warenkorb}). Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten.
+Die erste Seite des Wizards zeigt den Inhalt des Warenkorbs eines Online-Shops für Früchte (vgl \autoref{fig:demoanwendung_vorstellung_01-warenkorb}). Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten.
 
 Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird kein Serverabruf durchgeführt, sondern in der SPA wird ein Seitenwechsel vorgenommen.
 
@@ -125,9 +125,9 @@ Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben
 
 Die vierte Seite des Wizards bittet den Nutzer zur Eingabe seiner gewünschten Zahlart sowie der jew. Zahlungsinformationen. Dabei kann der er zwischen 4 Zahlungsarten wählen: per Rechnung, Lastschrift, PayPal oder Kreditkarte. Wie bei den anderen Formularen kann der Nutzer auf das vorhergehende Formular über den Button \enquote{Zurück} wechseln.
 
-Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteten Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
+Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteter Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
 
-Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergeordnete Komponenten übergeben.
+Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergeordnete Komponente übergeben.
 
 \begin{figure}[H]
 	\centering
@@ -140,7 +140,7 @@ Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt
 
 Die vorletzte Seite des Wizard fasst die Bestelldaten zusammen (vgl. \autoref{fig:demoanwendung_vorstellung_05-bestelluebersicht}) und sendet die Daten bei der Bestätigung des Formulars an das Backend. Wie bei allen Formularen gibt es auch hier die Option für den Nutzer zu einem vorherigen Formular zurückzuspringen und Anpassungen vorzunehmen.
 
-In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt. Zuvor eingegebene Daten sind hingegen lediglich clientseitig gespeichert und werden von einer übergreifende Komponente bereitgestellt. Weitere Eingaben des Nutzers sind auf dieser Seite aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer bevor er die Bestellung kostenpflichtig durchführt.
+In der Bestellübersicht werden explizit der ausgewählte Warenkorb, die eingegebenen Rechnungs- und Lieferadresse sowie die gewählte Zahlungsart dargestellt. Der Warenkorb wird hierbei analog zur Warenkorbseite vom Warenkorbdienst abgefragt. Zuvor eingegebene Daten sind hingegen lediglich clientseitig gespeichert und werden von einer übergreifenden Komponente bereitgestellt. Weitere Eingaben des Nutzers sind auf dieser Seite aber nicht gefordert, sie dient hauptsächlich der visuellen Überprüfung für den Nutzer, bevor er die Bestellung kostenpflichtig durchführt.
 
 Sendet der Nutzer die Bestellung ab, werden die zuvor eingegeben Daten und der Identifier des Warenkorbs an den Bestelldienst übergeben. Dieser überprüft beide Adresseingaben gegen den Adressvalidierungsdienst, ruft den Warenkorb vom Warenkorbdienst ab und errechnet auf dieser Datenbasis den Bestellbeleg. Der Bestellbeleg wird dem Frontend in der Antwort übergeben, weiterhin erfolgt ein Seitenwechsel.
 

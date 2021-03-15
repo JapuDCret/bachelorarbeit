@@ -2,7 +2,7 @@
 
 In diesem Abschnitt ist festzustellen, welchen Einfluss die Lösung für den Nutzer der jeweiligen Webanwendung besitzt. Dabei gilt es bspw. den Aspekt der Ladezeit sowie des erhöhten Datenaufkommens zu beleuchten.
 
-Um die leistungsrelevanten Daten zu erheben, wurden das Frontend jeweils ohne und mit der Lösung mithilfe des \enquote{Performance Analysis}-Werkzeugs im Firefox \cite{FirefoxPerformanceAnalysis} analysiert. Um den Aspekt der Ladezeit, also die Zeit bis die Anwendung für den Nutzer interaktiv wird, zu messen, wurde pauschal die Zeit bis zur ersten ausgehenden Datenabfrage gemessen. Die Ergebnisse sind in \autoref{fig:Einfluss-fuer-den-Nutzer_erste-Anfrage} zu betrachten. Dabei wird erkennbar, dass die Lösung mit ~1080ms statt ~780ms eine leicht erhöhte durchsch. Ladezeit aufweist.
+Um die leistungsrelevanten Daten zu erheben, wurden das Frontend jeweils ohne und mit der Lösung mithilfe des \enquote{Performance Analysis}-Werkzeugs im Firefox \cite{FirefoxPerformanceAnalysis} analysiert. Um den Aspekt der Ladezeit, also die Zeit bis die Anwendung für den Nutzer interaktiv wird, zu messen, wurde pauschal die Zeit bis zur ersten ausgehenden Datenabfrage gemessen. Die Ergebnisse sind in \autoref{fig:Einfluss-fuer-den-Nutzer_erste-Anfrage} zu betrachten. Dabei wird erkennbar, dass die Lösung mit ~1080ms statt ~780ms eine leicht erhöhte durchschnittliche Ladezeit aufweist.
 
 \begin{figure}[H]
 	\centering
@@ -17,7 +17,7 @@ Dabei lässt sich feststellen, dass das Datenaufkommen in beiden Fällen kaum er
 
 Letztendlich lässt sich feststellen, dass der Performance-Einfluss der Lösung marginal und vernachlässigbar ist.
 
-\footnotetext{Durch Komprimierung wie gzip sind die tatsächlich zu übertragenden Bytes geringer als die eigentliche Datenmenge \cite{FirefoxContentEncoding}.}
+\footnotetext{Durch Komprimierung wie \texttt{gzip} sind die tatsächlich zu übertragenden Bytes geringer als die eigentliche Datenmenge \cite{FirefoxContentEncoding}.}
 
 \begin{figure}[H]
 	\centering
