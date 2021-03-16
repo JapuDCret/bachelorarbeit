@@ -4,8 +4,9 @@
 
  1. [:book: Anleitung zum Übersetzen der Arbeit](build.md)
  2. [:open_file_folder: Verzeichnis mit exportieren Versionen](export/)
- 3. [:bookmark_tabs: Literaturrecherche.xlsx](Literatur/Literaturrecherche.xlsx)
- 4. **[:computer: Demoanwendung (mit eingebauter Lösung)](https://github.com/JapuDCret/bachelorarbeit-demoanwendung/tree/loesung)**
+ 3. [:robot: Automatisch erzeugte Versionen](https://github.com/JapuDCret/bachelorarbeit/actions/workflows/build.yml)
+ 4. [:bookmark_tabs: Literaturrecherche.xlsx](Literatur/Literaturrecherche.xlsx)
+ 5. **[:computer: Demoanwendung (mit eingebauter Lösung)](https://github.com/JapuDCret/bachelorarbeit-demoanwendung/tree/loesung)**
 
 ## Kurzfassung
 	
