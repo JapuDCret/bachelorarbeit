@@ -17,7 +17,7 @@ Ein Direktversicherer bietet seinen Kunden Versicherungsprodukte ausschließlich
 \nomenclature[Fachbegriff]{Serverseitiges Rendering}{Die darzustellenden Inhalte, werden beim Server generiert und der Client stellt diese dar. Beispielsweise sind Anwendungen mit PHP oder auch eine Java Web Application}
 \nomenclature[Fachbegriff]{Clientseitiges Rendering}{Der Server stellt dem Client lediglich die Logik und die notwendigen Daten bereit, die eigentliche Inhaltsgenerierung geschieht im Client. Beispiel siehe \autoref{sec:single-page-applications}}
 
-Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigem Rendering realisiert wurden, sind heutzutage JavaScript-basierte Webanwendungen mit clientseitigem Rendering die weit verbreitet \cite{ShiftToClientSideWebApplications}. Bei einer solchen Webanwendung befindet sich ein Großteil der Anwendungslogik im Browser des Nutzers, z. B. erfolgt bei einem Wizard erst bei Absenden eine Interaktion mit einem Server.
+Während in der Vergangenheit Online-Auftritte i. d. R. als Webanwendung mit serverseitigem Rendering realisiert wurden, sind heutzutage JavaScript-basierte Webanwendungen mit clientseitigem Rendering weit verbreitet \cite{ShiftToClientSideWebApplications}. Bei einer solchen Webanwendung befindet sich ein Großteil der Anwendungslogik im Browser des Nutzers, z. B. erfolgt bei einem Wizard erst bei Absenden eine Interaktion mit einem Server.
 
 Im produktiven Einsatz kommt es auch bei gut getesteten Webanwendungen vor, dass bspw. unvorhergesehene Fehler in der Berechnung oder Verarbeitung auftreten. Liegt die Ursache für den Fehler im Browser, z. B. aufgrund einer ungültigen Wertkombination, steht der Betreiber vor einer Herausforderung. Bei Server-Anwendungen können Fehlermeldungen in Log-Dateien geprüft werden, ein Betreiber einer Webanwendung hat i. d. R. keine Möglichkeit die notwendigen Informationen über den Nutzer und seine Umgebung abzurufen. Hinzu kommt, dass der Betreiber gar nicht mitbekommt, wenn ein Nutzer auf ein Problem bei der Bedienung der Anwendung hat. Ohne eine aktive Benachrichtigung durch den Nutzer, sowie detaillierte Informationen, ist es dem Betreiber nicht möglich, Kenntnis über das Problem zu erlangen, geschweige denn dieses nachzustellen.
 
@@ -36,11 +36,9 @@ Das grundlegende Ziel dieser Arbeit ist es, den Betreibern einer JavaScript-basi
 	\textit{Wie sieht ein Ansatz aus, um den Betreibern von JavaScript-basierten Webanwendungen eine Nachvollziehbarkeit zu gewährleisten?}
 \end{quotation}
 
-% Vom Leser wird eine Grundkenntnis der Informatik in Theorie oder Praxis erwartet, aber es sollen keine detaillierten Erfahrungen in der Webentwicklung vom Leser erwartet werden. Daher sind das Projektumfeld und seine besonderen Eigenschaften zu erläutern.
-
 Zur Vorbereitung der Entwicklung des Proof-of-Concepts ist der Stand der Technik zu recherchieren. Die daraus resultierenden Erkenntnisse sind bei der Erstellung zu beachten und anzuwenden.
 
-Die anzustrebende Lösung ist ein Proof-of-Concept, welcher eine, zu erstellende, Demoanwendung erweitert. Die Demoanwendung steht repräsentativ für eine JavaScript-basierte Webanwendung, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.
+Die anzustrebende Lösung ist ein Proof-of-Concept, welcher eine zu erstellende Demoanwendung erweitert. Die Demoanwendung steht repräsentativ für eine JavaScript-basierte Webanwendung, bei der die zuvor benannten Hürden zur Nachvollziehbarkeit bestehen.
 
 Weiterhin gilt es zu beleuchten, welche Auswirkungen der Einsatz von Methoden zur Nachvollziehbarkeit für Nutzer der Webanwendung hat. Wird bspw. die Leistung der Webanwendung beeinträchtigt (erhöhte Ladezeit, erhöhte Datenlast).
 
@@ -51,7 +49,7 @@ Am Ende der Ausarbeitung soll überprüft werden, ob und wie die Forschungsfrage
 \nomenclature[Fachbegriff]{PoC}{Proof-of-Concept}
 \nomenclature[Fachbegriff]{SPA}{Single-Page-Application}
 
-Die Demoanwendung wird als Single-Page-Application (SPA) \cite{SinglePageApplication} realisiert. Bei der Datenerhebung und -verarbeitung werden datenschutzrechtliche Aspekte nicht näher zu betrachtet. Darüber hinaus liegt bei der Recherche zum Stand der Technik eine allgemein bewertende Gegenüberstellung von Technologien nicht im Fokus der Arbeit.
+Die Demoanwendung wird als Single-Page-Application (SPA) \cite{SinglePageApplication} realisiert. Bei der Datenerhebung und -verarbeitung werden datenschutzrechtliche Aspekte nicht näher betrachtet. Darüber hinaus liegt bei der Recherche zum Stand der Technik eine allgemein bewertende Gegenüberstellung von Technologien nicht im Fokus der Arbeit.
 
 \pagebreak
 
