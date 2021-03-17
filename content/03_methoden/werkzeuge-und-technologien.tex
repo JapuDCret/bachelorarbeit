@@ -7,7 +7,7 @@
 %
 %\textit{Weiterhin könnte beleuchtet werden, wie ähnliche Herausforderungen bei anderen „Fat-Client“-Lösungen (also nicht SPAs) angegangen werden, und kann man hier vielleicht etwas lernen oder übertragen (und wenn nicht, warum nicht)?}
 
-Um die gewünschte Lösung, den Proof-of-Concept, zu erstellen, muss zuvor der Stand der Technik erörtert werden. In diesem Abschnitt wird ein Überblick über aktuelle Technologien gegeben. Die vorgestellten Technologien werden kategorisiert und nach zuvor definierten Kriterien bewertet. Daraus ergibt sich eine Auswahl, der für den Proof-of-Concept in Frage kommenden Technologien.
+Um die gewünschte Lösung, den Proof-of-Concept, zu erstellen, muss zuvor der Stand der Technik erörtert werden. In diesem Abschnitt wird ein Überblick über aktuelle Technologien gegeben. Die vorgestellten Technologien werden kategorisiert und nach zuvor definierten Kriterien bewertet. Daraus ergibt sich eine Auswahl, der für den Proof-of-Concept infrage kommenden Technologien.
 
 \subsection{Recherche}
 
@@ -70,7 +70,7 @@ In der \autoref{tab:technologie-kategorisierung} werden die Technologien gruppie
 \subsection{Vorauswahl}
 \label{subsec:technologie-vorauswahl}
 
-Wie zuvor beschrieben eignen sich nicht alle Funktionskategorien teils mehr teils weniger für die in dieser Arbeit angestrebte Lösung: Ein Proof-of-Concept, welches die Nachvollziehbarkeit einer Webanwendung von Anwendungsverhalten und Nutzerinteraktionen für \textbf{Betreiber und Entwickler} verbessert.
+Wie zuvor beschrieben eignen sich nicht alle Funktionskategorien teils mehr, teils weniger für die in dieser Arbeit angestrebte Lösung: Ein Proof-of-Concept, welches die Nachvollziehbarkeit einer Webanwendung von Anwendungsverhalten und Nutzerinteraktionen für \textbf{Betreiber und Entwickler} verbessert.
 
 APM-Plattformen bieten durch ihr IM und ASM aufschlussreiche Einsichten in die Leistung und Verfügbarkeit einer Anwendung, helfen aber nicht oder kaum bei der Aufdeckung von einzelnen Problemen. Sie bieten hilfreiche Informationen aus wirtschaftlicher und operativer Sicht, bieten aber technische Informationen. Ein weiterer Grund gegen die Nutzung von Werkzeugen des Application-Performance-Monitorings ist die hier existierende Marktmacht von proprietären Lösungen. Die proprietären Ansätze zeichnen sich durch vorgefertigte Lösungen aus, die aber unflexibel in den Anpassungsmöglichkeiten sind. Um diese Diskrepanz näher zu untersuchen wurden New Relic und Dynatrace evaluiert. Hierbei konnte festgestellt werden, dass die bereitgestellten Informationen, aus Sicht eines Entwicklers, nicht ausreichend Aufschluss boten. So fehlte eine detaillierte Einsicht in einzelne Fehlerszenarien oder auch Nutzersitzungen. Stattdessen wurden gruppierte Informationen bereitgestellt, die die grobe \enquote{Gesundheit} des Systems widerspiegeln. Aus diesen Gründen, gerade aufgrund der divergierenden Zielgruppen, werden APM-Plattformen nicht näher betrachtet.
 
@@ -89,7 +89,7 @@ Um für den Proof-of-Concept passende Technologien zu identifizieren, werden die
 		\footnotetext{Ein Agent ist eine Bibliothek, die die jeweiligen Daten (wie Klicks, Ladezeiten für Ressourcen und DOM-Events, usw.), eigenständig sammelt und an ein Partnersystem übertragt \cite{SolvingBigDataChallengesForAPM}}
 
 	\item OnPremise und SaaS
-	\par Mit diesen zwei Kriterien soll bewertet werden, wie diese Technologie eingesetzt werden kann. Ist sie in einer eigenen Infrastruktur aufsetzbar, also \enquote{On-Premise}, oder existiert die Technologie als buchbarer Dienst z. B. in der Cloud, also als Software-as-a-Service (SaaS).
+	\par Mit diesen zwei Kriterien soll bewertet werden, wie diese Technologie eingesetzt werden kann. Ist sie in einer eigenen Infrastruktur aufsetzbar, also \enquote{OnPremise}, oder existiert die Technologie als buchbarer Dienst z. B. in der Cloud, also als Software-as-a-Service (SaaS).
 
 	\item Standardisierung
 	\par Setzt die jeweilige Technologie auf etablierte Standards, wie OpenTracing bei Distributed-Tracing? Falls nicht, sind einzelne Komponenten (z. B. zur Instrumentalisierung) quelloffen oder öffentlich spezifiziert, sodass diese ausgetauscht oder angepasst werden können.
@@ -107,7 +107,7 @@ Auf Basis dieser Kriterien werden nachfolgend die Technologien bewertet. Anschli
 \subsection{Bewertung und Auswahl}
 \label{subsec:bewertung-und-auswahl}
 
-In der Kategorie \enquote{Log-Plattformen} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien (vgl. \autoref{tab:technologie-bewertung-log-plattformen}), lediglich Fluentd sticht hervor. Dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt, sondern es sich um einen Logaggregator handelt \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic-Stack eignet sich durch die hohe Flexiblität und der Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben  \cite{ThreatIdentificationFromAccessLogsUsingElasticStack} \cite{DesignLogManagementSystem}. Papertrail, Splunk sowie Graylog lassen sich als klassiche Log-Management-Werkzeuge verstehen, da sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic-Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise Einsatz kann nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstüzt. Letztendlich lässt sich sagen, dass keine dieser vier Technologien ausschließende Eigenschaften besitzt, sondern allesamt für die in dieser Arbeit angestrebte Lösung geeignet sind.
+In der Kategorie \enquote{Log-Plattformen} findet sich auf Basis der Bewertung wenig Varianz zwischen den Technologien (vgl. \autoref{tab:technologie-bewertung-log-plattformen}), lediglich Fluentd sticht hervor. Dies ist dadurch erklärbar, dass Fluentd kein vollständiges Log-Management darstellt, sondern es sich um einen Logaggregator handelt \cite{FluentdAggregator}. Somit ist Fluentd nur als verwandte Technologie anzusehen und fällt somit als Präferenz aus. Der Elastic-Stack eignet sich durch die hohe Flexiblität und der Komponente Logstash auch dazu, Log-Management mit ihr zu betreiben  \cite{ThreatIdentificationFromAccessLogsUsingElasticStack} \cite{DesignLogManagementSystem}. Papertrail, Splunk sowie Graylog lassen sich als klassische Log-Management-Werkzeuge verstehen, da sie speziell auf diese Funktionskategorie angepasst sind. Graylog sowie der Elastic-Stack sind quelloffen, aber auch als SaaS verfügbar. Bei einem gewünschten OnPremise Einsatz kann nur Papertrail nicht eingesetzt werden, denn dies wird nicht unterstützt. Letztendlich lässt sich sagen, dass keine dieser vier Technologien ausschließende Eigenschaften besitzt, sondern allesamt für die in dieser Arbeit angestrebte Lösung geeignet sind.
 
 Letztendlich wurde sich für \textbf{Splunk} entschieden, weil es u. A. beim Kunden bereits im Einsatz ist. Wie aber zuvor erwähnt, eignen sich die anderen Technologien ähnlich gut und eine erneute Auswahl mit anderen situationsbedingten Kriterien könnte variieren.
 

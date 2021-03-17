@@ -52,7 +52,7 @@ Neben dem Frontend soll ein dazugehöriges Backend Teil der Demoanwendung sein. 
 \subsection{Backend}
 \label{subsec:demoanwendung-backend}
 
-Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und orientiert sich grob an der Architektur, die der Direktversicherer derzeit betreibt. Die einzelnen Dienste wurden auf Basis von Java EE sowie Kubernetes erstellt. In \autoref{fig:demoanwendung_deployment} lässt sich die Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar.
+Das Backend wurde als Microservice-Architektur \cite{MicroserviceArchitecture} konzipiert und orientiert sich grob an der Architektur, die der Direktversicherer derzeit betreibt. Die einzelnen Dienste wurden auf Basis von Java-EE sowie Kubernetes erstellt. In \autoref{fig:demoanwendung_deployment} lässt sich die Architektur betrachten, hierbei stellen Pods einzelne Containersysteme dar.
 
 Die Kommunikation mit dem Backend erfolgt über einen Service, der das \enquote{Backend\-4\-Frontend}-Pattern realisiert. Das Backend4Frontend bündelt alle Schnittstellen der dahinter liegenden Dienste, sodass das Frontend nur mit einem einzelnen Dienst kommunizieren muss. Die weiteren Dienste \enquote{Bestellungen}, \enquote{Übersetzungen}, \enquote{Addressvalidierung} und \enquote{Warenkorb} übernehmen die jeweilige Funktion, die ihr Name beschreibt. Der Dienst \enquote{Bestellungen} ist das Partnersystem, welches beim Fertigstellen des Wizards aufgerufen wird und es führt dabei weitere Datenabfragen und Validitätsüberprüfungen mit Partnerdiensten durch.
 
@@ -83,7 +83,7 @@ Auf Basis von Angular realisiert das Frontend einen Wizard, welcher mehrere aufe
 
 \subsubsection{Warenkorb}
 
-Die erste Seite des Wizards zeigt den Inhalt des Warenkorbs eines Online-Shops für Früchte (vgl \autoref{fig:demoanwendung_vorstellung_01-warenkorb}). Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten.
+Die erste Seite des Wizards zeigt den Inhalt des Warenkorbs eines Online-Shops für Früchte (vgl. \autoref{fig:demoanwendung_vorstellung_01-warenkorb}). Hier kann der Nutzer seine Auswahl prüfen und bei Zufriedenheit kann er den Bestellvorgang starten.
 
 Die hier angezeigten Daten werden vom Warenkorbdienst abgerufen, über die Angabe eines zuvor zufällig generierten Warenkorb-Identifiers. Die Warenkorbdaten werden zudem mit Übersetzungsdaten vom Übersetzungsdienst angereichert, denn in den Warenkorbdaten stehen lediglich Übersetzungsschlüssel wie \texttt{item.peach}, die dann auf den tatsächlichen Übersetzungswert abgebildet werden also \texttt{Pfirsich}. Beim Starten des Bestellvorgangs wird kein Serverabruf durchgeführt, sondern in der SPA wird ein Seitenwechsel vorgenommen.
 
@@ -130,7 +130,7 @@ Sind keine abweichenden Lieferdaten erwünscht oder die Validierung der Eingaben
 
 Die vierte Seite des Wizards bittet den Nutzer zur Eingabe seiner gewünschten Zahlart sowie der jew. Zahlungsinformationen. Dabei kann der er zwischen 4 Zahlungsarten wählen: per Rechnung, Lastschrift, PayPal oder Kreditkarte. Wie bei den anderen Formularen kann der Nutzer auf das vorhergehende Formular über den Button \enquote{Zurück} wechseln.
 
-Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteter Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweilig einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
+Bei Auswahl der Rechnungsart \enquote{Rechnung} muss der Nutzer keine weiteren Daten eingeben. Hingegen sind bei anderen Rechnungsarten weitere Daten einzugeben, wie z. B. der in der \autoref{fig:demoanwendung_vorstellung_04-zahlungsdaten} zu betrachteter Rechnungsart \enquote{Lastschrift}, hier muss der Kontoinhaber und die IBAN angegeben werden. Bei PayPal ist die E-Mail anzugeben und bei der Auswahl der Kreditkarte folgende Kreditkarteninformationen: Karteninhaber, Kartennummer, CVC sowie das Ablaufdatum. Die jeweils einzugebenden Daten werden clientseitig validiert, ähnlich wie bei den vorherigen Formularen.
 
 Ist eine Rechnungsart ausgewählt und die einzugebenden Daten valide ausgefüllt, so führt ein Absenden des Formulars zu einem Seitenwechsel auf die Seite zum Abschließen der Bestellung. Es wird keine zusätzliche Serverinteraktion durchgeführt, die Daten werden jedoch erneut an die übergeordnete Komponente übergeben.
 
@@ -189,7 +189,7 @@ Diese Fehler gehören unterschiedlichen Problemgruppen an, sie reichen von unerw
 \label{fig:demoanwendung_fehlerszenario-uebersetzungen}
 \end{wrapfigure}
 
-- Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
+- Problem: Nutzer berichten, dass manchmal die Webanwendung beim Start keine Artikeltexte anzeigt (vgl. \autoref{fig:demoanwendung_fehlerszenario-uebersetzungen}).
 
 - Ursache: Die Pods, die den Übersetzungsdienst enthalten, werden repliziert bereitgestellt. Einer der Pods hat eine defekte Konfiguration, weswegen er keine Übersetzungen der Artikel enthält. Wird zu diesem Pod verbunden, tritt das Fehlverhalten auf. Dies ist eine Nachstellung eines tatsächlichen Problems beim Kunden.
 
