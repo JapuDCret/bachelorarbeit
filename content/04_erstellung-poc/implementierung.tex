@@ -103,7 +103,7 @@ captionpos = b,
 
 Die ErrorHandler-Hook von Angular übermittelt aufgetretene und unbehandelte Fehler an den \texttt{SplunkForwardingErrorHandler}. Weiterhin ist der ErrorHandler ein \texttt{Injectable}, wodurch er in andere Angular-Klassen \enquote{injected} werden kann. Der ErrorHandler wird bspw. bei den Schnittstellen dazu verwendet, um dort bereits behandelte Fehler auch an Splunk zu übermitteln.
 
-Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunkdatensatz konvertiert und dann über den \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
+Wird ein Fehler gemeldet, werden zunächst die Fehlerinformationen in einen Splunk\-da\-ten\-satz konvertiert und dann über den \texttt{SplunkForwardingService} weitergeleitet. Neben diesem Verhalten wird zusätzlich auch der Fehler an LogRocket übermittelt, damit dieser im Video des Session-Replays gesondert angezeigt wird.
 
 \lstinputlisting[
   language = JavaScript,
@@ -117,7 +117,7 @@ captionpos = b,
 \subsubsection{Weiterleitung an Splunk}
 \label{subsec:weiterleitung-an-splunk}
 
-Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an das \enquote{Backend4Frontend} gesendet und letztendlich an Splunk übermittelt. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser \texttt{Service} die eintreffenden Daten.
+Logs, Metriken und Fehler über den  \texttt{SplunkForwardingService} an das \enquote{Backend\-4\-Frontend} gesendet und letztendlich an Splunk übermittelt. Damit nicht jedes Datenobjekt einen Aufruf auslöst, gruppiert dieser \texttt{Service} die eintreffenden Daten.
 
 Im \autoref{lst:splunk-forwarding.service} ist erkennbar, dass alle 5s geprüft wird, ob Daten zur Weiterleitung zur Verfügung stehen. Ebenso ist zu sehen, dass beim Fehlschlag des Sendens eines Batches, fünf Wiederholversuche gestartet werden, mit einer Wartezeit von 15s. Die grundlegende Funktionalität dessen wurde mit RxJS \cite{RxJS} umgesetzt, einer Kernbibliothek von Angular, die Reactive Programming \cite{ReactiveProgramming} in JavaScript erlaubt. Weiterhin werden die Daten an Splunk nicht im Textformat übertragen, sondern direkt in JSON. Die JSON-Objekte werden automatisch von Splunk interpretiert und die enthaltenen Felder zugreifbar gemacht. Durch das gewählte Format \cite{StructuredAndInteroperableLogging} ist auch die \autoref{anf:3200} zum Structured-Loggings erfüllt. Ausgesuchte Logmeldungen und Fehler sind in \autoref{lst:log-batch_example} zu betrachten.
 
@@ -142,8 +142,9 @@ captionpos = b,
 
 \subsubsection{Session-Replay}
 
-\begin{wrapfigure}[10]{r}{0.27\textwidth}
+\begin{wrapfigure}[9]{r}{0.35\textwidth}
 \centering
+\vspace{-0.5\baselineskip}
 \includegraphics[width=\linewidth]{img/04_erstellung-poc/implementierung_frontend_recording-consent_button-inactive.png}
 \caption{Button zum Öffnen des Dialogs}
 \label{fig:recording-consent_button-inactive}
@@ -157,6 +158,8 @@ Die Übermittlung der Daten an LogRocket wird erst aktiviert, wenn der Nutzer ex
 	\caption{Einverständnis-Dialog}
 	\label{fig:recording-consent_dialog-inactive}
 \end{figure}
+
+\vspace{-0.5\baselineskip}
 
 \lstinputlisting[
   language = AngularTemplateHTML,

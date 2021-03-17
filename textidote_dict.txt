@@ -18,6 +18,7 @@ Synthetic Monitoring
 Error
 Error Monitoring
 Session-Replay
+Session-Replays
 OpenTelemetry
 OTel
 OpenCensus
@@ -305,8 +306,13 @@ RIA
 RIAs
 Rich-Web-Application
 Rich-Web-Based-Application
+wrappen
 gecached
 Browserfunktion
 Browserfunktionen
 XHR-Bytes
 gzip
+Java-EE
+JAX-RS
+Webcrawler
+Macromedia

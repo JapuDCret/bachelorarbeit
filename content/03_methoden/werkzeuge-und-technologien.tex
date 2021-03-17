@@ -130,7 +130,7 @@ In der Beschreibung zur Kategorie \enquote{Session-Replay} wurde erwähnt, dass 
 \subsubsection{Splunk}
 \label{subsec:splunk}
 
-Splunk bietet neben seiner akquirierten APM-Lösung (ehem. SignalFX) eine Log-Plattform an: Splunk Enterprise (nachfolgend einfach Splunk genannt). Dies stellt das Kernprodukt von Splunk dar und ist eine der führenden Plattformen auf dem Markt \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Diese Lösung wird als OnPremise sowie als SaaS angeboten, was ein flexibles Deployment erlaubt.
+Splunk bietet neben der akquirierten APM-Lösung (ehem. SignalFX) eine Log-Plattform an: Splunk Enterprise (nachfolgend einfach Splunk genannt). Dies stellt das Kernprodukt von Splunk dar und ist eine der führenden Plattformen auf dem Markt \cite{ThreatIdentificationFromAccessLogsUsingElasticStack}. Diese Lösung wird als OnPremise sowie als SaaS angeboten, was ein flexibles Deployment erlaubt.
 
 Splunk bietet keine JavaScript-Bibliotheken, die das Senden von Daten an den Dienst vereinfachen - es steht jedoch mit dem HTTP Event Collector (HEC) \cite{SplunkHEC} eine Schnittstelle zur Verfügung, die eine Übermittlung von eigenen Logdaten ermöglicht. Der HEC ist standardmäßig nicht aus einem Browserkontext her verwendbar, da er mit ablehnenden CORS-Headern antwortet. Grund hierfür ist, dass der HEC nicht für dieses Szenario konzipiert wurde. Um dies zu umgehen, wurde ein Proxydienst eingerichtet, der die Daten des Frontends entgegennimmt, diese anreichert und dann an Splunk weiterleitet.
 
@@ -198,7 +198,7 @@ LogRocket \cite{LogRocket} ist ein SaaS-Produkt des gleichnamigen Unternehmens u
 
 LogRocket bietet eine kostenlose Testversion des SaaS-Produktes an, welche für die Evaluierung verwendet wurde. Zur Datenerhebung wird das Paket \texttt{logrocket} bei NPM \cite{NPM} angeboten, welches nach der Initialisierung eigenständig die notwendigen Daten sammelt. Mithilfe dieser Daten wird die gesamte Sitzung des Nutzers nachgestellt. Hierbei ist die Anwendung, die Nutzerinteraktionen, die Netzwerkaufrufe sowie das DOM zu sehen. Die Reproduktion wird videoähnlich aufbereitet und erlaubt ein präzises Nachvollziehen der zeitlichen Reihenfolge und Bedeutung (vgl. \autoref{fig:logrocket-session-replay-example}).
 
-Neben dem JavaScript-SDK bietet LogRocket quelloffenene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. Zusätzlich bietet LogRocket auch eine Integration für andere Tools, wie z. B. Sentry. Bei der Integration für Sentry wird bei einem gemeldeten Fehler in Sentry direkt auf das \enquote{Video} in LogRocket verlinkt.
+Neben dem JavaScript-SDK bietet LogRocket quelloffene Plugins für folgende Bibliotheken: Redux, React, MobX, Vuex, ngrx, React Native. Zusätzlich bietet LogRocket auch eine Integration für andere Tools, wie z. B. Sentry. Bei der Integration für Sentry wird bei einem gemeldeten Fehler in Sentry direkt auf das \enquote{Video} in LogRocket verlinkt.
 
 \begin{figure}[H]
 	\centering
