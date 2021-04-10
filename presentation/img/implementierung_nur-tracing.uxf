@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>468</x>
+      <y>558</y>
+      <w>216</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+backend4frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>675</x>
+      <y>243</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Warenkorb</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>495</x>
+      <y>360</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Bestellungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>882</x>
+      <y>360</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Übersetzungen</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>297</x>
+      <y>189</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+Addressvalidierung</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>288</y>
+      <w>171</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;50.0;10.0;50.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>369</x>
+      <y>234</y>
+      <w>189</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;270.0;190.0;270.0;190.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>558</x>
+      <y>405</y>
+      <w>72</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>585</x>
+      <y>288</y>
+      <w>189</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;240.0;10.0;240.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>612</x>
+      <y>405</y>
+      <w>369</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>390.0;10.0;390.0;140.0;10.0;140.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>387</x>
+      <y>234</y>
+      <w>198</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0;200.0;90.0;200.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1215</x>
+      <y>234</y>
+      <w>153</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+Jaeger</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>297</y>
+      <w>189</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>190.0;10.0;30.0;10.0;30.0;100.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>837</x>
+      <y>252</y>
+      <w>396</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>420.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>657</x>
+      <y>279</y>
+      <w>576</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;230.0;10.0;230.0;120.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>459</x>
+      <y>207</y>
+      <w>774</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>840.0;50.0;780.0;50.0;780.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>180</x>
+      <y>558</y>
+      <w>207</w>
+      <h>207</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+&lt;&lt;service&gt;&gt;
+frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>621</y>
+      <w>153</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>657</x>
+      <y>333</y>
+      <w>594</w>
+      <h>405</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#040d97
+&lt;&lt;gRPC&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;590.0;10.0;590.0;430.0;10.0;430.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>657</x>
+      <y>315</y>
+      <w>576</w>
+      <h>342</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=#5aa469
+&lt;&lt;Thrift&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>620.0;10.0;530.0;10.0;530.0;360.0;10.0;360.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>495</x>
+      <y>612</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;module&gt;&gt;
+backend4frontend</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>495</x>
+      <y>693</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;module&gt;&gt;
+OTel-Jaeger-Exporter</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>702</y>
+      <w>153</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+
+
+&lt;&lt;REST&gt;&gt;
+
+</panel_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>198</x>
+      <y>693</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;module&gt;&gt;
+OTel-Tracer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>198</x>
+      <y>612</y>
+      <w>171</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;module&gt;&gt;
+App</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>270</x>
+      <y>657</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+ Traces</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
